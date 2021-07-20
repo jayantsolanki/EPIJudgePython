@@ -10,7 +10,25 @@ RED, WHITE, BLUE = range(3)
 
 def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
     # TODO - you fill in here.
-    return
+    pivot = A[pivot_index]
+    #keep the follwing invariants during partioning
+    # bottom group: A[:smaller]
+    # middle group: A[smaller:larger]
+    # unclassified group: A[equal:larger]
+    # top group: A[larger:]
+    smaller, equal, larger = 0, 0, len(A)
+    #keep iterating as long as there is an unclassified element
+    while equal < larger:
+        # A[equal] is incoming unclassified element
+        if A[equal] < pivot:
+            A[smaller], A[equal] = A[equal], A[smaller]
+            smaller, equal = smaller + 1, equal + 1
+        elif A[equal] == pivot:
+            equal += 1
+        else: # A[equal] > pivot
+            larger -= 1
+            A[equal], A[larger] = A[larger], A[equal]
+    return A
 
 
 @enable_executor_hook
@@ -41,6 +59,6 @@ def dutch_flag_partition_wrapper(executor, A, pivot_idx):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('dutch_national_flag.py',
+        generic_test.generic_test_main('5-01-dutch_national_flag.py',
                                        'dutch_national_flag.tsv',
                                        dutch_flag_partition_wrapper))

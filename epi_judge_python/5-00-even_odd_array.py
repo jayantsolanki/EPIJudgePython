@@ -7,9 +7,16 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
-def even_odd(A: List[int]) -> None:
+def even_odd(Arr: List[int]) -> None:
     # TODO - you fill in here.
-    return
+    next_even, next_odd = 0, len(Arr)-1
+    while next_even<next_odd:
+        if Arr[next_even]%2==0:
+            next_even+=1
+        else:
+            Arr[next_even], Arr[next_odd] = Arr[next_odd], Arr[next_even]
+            next_odd-=1
+    return Arr
 
 
 @enable_executor_hook
@@ -32,5 +39,5 @@ def even_odd_wrapper(executor, A):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('even_odd_array.py',
+        generic_test.generic_test_main('5-00-even_odd_array.py',
                                        'even_odd_array.tsv', even_odd_wrapper))

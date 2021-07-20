@@ -9,8 +9,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10001
             },
-            "Python: count_bits.py": {
-                "passed": 0,
+            "Python: 4-00-count_bits.py": {
+                "passed": 10001,
                 "total": 10001
             }
         },
@@ -23,8 +23,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: parity.py": {
-                "passed": 0,
+            "Python: 4-01-parity.py": {
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -37,8 +37,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10001
             },
-            "Python: swap_bits.py": {
-                "passed": 0,
+            "Python: 4-02-swap_bits.py": {
+                "passed": 10001,
                 "total": 10001
             }
         },
@@ -51,8 +51,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: reverse_bits.py": {
-                "passed": 0,
+            "Python: 4-03-reverse_bits.py": {
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -65,8 +65,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: closest_int_same_weight.py": { 
-                "passed": 0,
+            "Python: 4-04-closest_int_same_weight.py": {
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -79,8 +79,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10006
             },
-            "Python: primitive_multiply.py": {
-                "passed": 0,
+            "Python: 4-05-primitive_multiply.py": {
+                "passed": 10006,
                 "total": 10006
             }
         },
@@ -93,8 +93,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: primitive_divide.py": {
-                "passed": 0,
+            "Python: 4-06-primitive_divide.py": {
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -107,8 +107,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10002
             },
-            "Python: power_x_y.py": {
-                "passed": 0,
+            "Python: 4-07-power_x_y.py": {
+                "passed": 10002,
                 "total": 10002
             }
         },
@@ -121,8 +121,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 19952
             },
-            "Python: reverse_digits.py": {
-                "passed": 0,
+            "Python: 4-08-reverse_digits.py": {
+                "passed": 19952,
                 "total": 19952
             }
         },
@@ -135,8 +135,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 20000
             },
-            "Python: is_number_palindromic.py": {
-                "passed": 0,
+            "Python: 4-09-is_number_palindromic.py": {
+                "passed": 20000,
                 "total": 20000
             }
         },
@@ -149,8 +149,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 7
             },
-            "Python: uniform_random_number.py": {
-                "passed": 0,
+            "Python: 4-10-uniform_random_number.py": {
+                "passed": 7,
                 "total": 7
             }
         },
@@ -163,8 +163,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: rectangle_intersection.py": {
-                "passed": 0,
+            "Python: 4-11-rectangle_intersection.py": {
+                "passed": 10000,
                 "total": 10000
             }
         }
@@ -179,8 +179,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 1001
             },
-            "Python: even_odd_array.py": {
-                "passed": 0,
+            "Python: 5-00-even_odd_array.py": {
+                "passed": 1001,
                 "total": 1001
             }
         },
@@ -193,8 +193,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 204
             },
-            "Python: dutch_national_flag.py": {
-                "passed": 0,
+            "Python: 5-01-dutch_national_flag.py": {
+                "passed": 204,
                 "total": 204
             }
         },
@@ -207,7 +207,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 505
             },
-            "Python: int_as_array_increment.py": {
+            "Python: 5-02-int_as_array_increment.py": {
                 "passed": 0,
                 "total": 505
             }
@@ -221,7 +221,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 1000
             },
-            "Python: int_as_array_multiply.py": {
+            "Python: 5-03-int_as_array_multiply.py": {
                 "passed": 0,
                 "total": 1000
             }
@@ -235,7 +235,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 2004
             },
-            "Python: advance_by_offsets.py": {
+            "Python: 5-04-advance_by_offsets.py": {
                 "passed": 0,
                 "total": 2004
             }
@@ -249,7 +249,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 2003
             },
-            "Python: sorted_array_remove_dups.py": {
+            "Python: 5-05-sorted_array_remove_dups.py": {
                 "passed": 0,
                 "total": 2003
             }
@@ -263,7 +263,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 402
             },
-            "Python: buy_and_sell_stock.py": {
+            "Python: 5-06-buy_and_sell_stock.py": {
                 "passed": 0,
                 "total": 402
             }
@@ -277,7 +277,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 402
             },
-            "Python: buy_and_sell_stock_twice.py": {
+            "Python: 5-07-buy_and_sell_stock_twice.py": {
                 "passed": 0,
                 "total": 402
             }
@@ -291,7 +291,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: alternating_array.py": {
+            "Python: 5-08-alternating_array.py": {
                 "passed": 0,
                 "total": 203
             }
@@ -305,7 +305,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 24
             },
-            "Python: prime_sieve.py": {
+            "Python: 5-09-prime_sieve.py": {
                 "passed": 0,
                 "total": 24
             }
@@ -319,7 +319,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 101
             },
-            "Python: apply_permutation.py": {
+            "Python: 5-10-apply_permutation.py": {
                 "passed": 0,
                 "total": 101
             }
@@ -333,7 +333,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 2001
             },
-            "Python: next_permutation.py": {
+            "Python: 5-11-next_permutation.py": {
                 "passed": 0,
                 "total": 2001
             }
@@ -347,7 +347,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 8
             },
-            "Python: offline_sampling.py": {
+            "Python: 5-12-offline_sampling.py": {
                 "passed": 0,
                 "total": 8
             }
@@ -361,7 +361,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 7
             },
-            "Python: online_sampling.py": {
+            "Python: 5-13-online_sampling.py": {
                 "passed": 0,
                 "total": 7
             }
@@ -375,7 +375,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 6
             },
-            "Python: random_permutation.py": {
+            "Python: 5-14-random_permutation.py": {
                 "passed": 0,
                 "total": 6
             }
@@ -389,7 +389,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 9
             },
-            "Python: random_subset.py": {
+            "Python: 5-15-random_subset.py": {
                 "passed": 0,
                 "total": 9
             }
@@ -403,7 +403,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10
             },
-            "Python: nonuniform_random_number.py": {
+            "Python: 5-16-nonuniform_random_number.py": {
                 "passed": 0,
                 "total": 10
             }
@@ -417,7 +417,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 745
             },
-            "Python: is_valid_sudoku.py": {
+            "Python: 5-17-is_valid_sudoku.py": {
                 "passed": 0,
                 "total": 745
             }
@@ -431,7 +431,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 51
             },
-            "Python: spiral_ordering.py": {
+            "Python: 5-18-spiral_ordering.py": {
                 "passed": 0,
                 "total": 51
             }
@@ -445,7 +445,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 51
             },
-            "Python: matrix_rotation.py": {
+            "Python: 5-19-matrix_rotation.py": {
                 "passed": 0,
                 "total": 51
             }
@@ -459,7 +459,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 35
             },
-            "Python: pascal_triangle.py": {
+            "Python: 5-20-pascal_triangle.py": {
                 "passed": 0,
                 "total": 35
             }
@@ -475,7 +475,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: is_string_palindromic.py": {
+            "Python: 6-00-is_string_palindromic.py": {
                 "passed": 0,
                 "total": 10000
             }
