@@ -16,7 +16,8 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
     # middle group: A[smaller:larger]
     # unclassified group: A[equal:larger]
     # top group: A[larger:]
-    smaller, equal, larger = 0, 0, len(A)
+    smaller, equal, larger = 0, 0, len(A)# reason we use len(A) instead of len(A) -1, because equal needs to go through all element
+    # in case, for example 3, [2,1,0,5,4,3] 
     #keep iterating as long as there is an unclassified element
     while equal < larger:
         # A[equal] is incoming unclassified element
@@ -30,6 +31,149 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
             A[equal], A[larger] = A[larger], A[equal]
     return A
 
+
+# variant 1
+"""
+Assuming that keys take one of the three values ...[1,2,3,2,3,1} =  [1,1,3,3,2,2] or [1,1,2,2,3,3]
+use O(n) time complexity and O(1) space
+"""
+
+def dutch_flag_partition_variant1(A):
+    left, equal, right = 0, 0, len(A)
+    left_element, right_element = A[left], None
+    while equal < right:
+        # A[equal] is incoming unclassified element
+        if A[equal] == left_element:
+            A[left], A[equal] = A[equal], A[left]
+            left, equal = left + 1, equal + 1
+        # elif right_element is None or A[equal] == A[right]:
+        elif right_element is None or A[equal] == right_element:
+            right = right - 1
+            A[right], A[equal] = A[equal], A[right]
+            right_element = A[right]
+        else: 
+            equal += 1
+    return A
+
+#testing
+dutch_flag_partition_variant1([1,2,3,2,3,1])
+dutch_flag_partition_variant1([1,2,3,1, 2, 3, 3, 2, 1, 1, 2,3,1])
+dutch_flag_partition_variant1([1,1,1,1,1,2,2,2,2])
+
+
+#Variant 2
+"""
+Keys appear together
+Assuming that keys take one of the 4 values ...[1,2,3,2,3,1,4, 3} =  [1,1,3,3,4,4, 2,2] or [1,4,1,4,2,2,3,3], partition them
+use O(n) time complexity and O(1) space
+https://gist.github.com/lopespm/81a336871ce6074f63f3cad349c3a95d
+The rationale behind it is to squeeze the forth value (middle right value) in between the middle-left 
+and middle-right sub-arrays. It defines the values as the algorithm progresses.
+"""
+
+def dutch_flag_partition_variant2(A):
+    left = A[0]
+    mid_left = None
+    right = None
+
+    left_i = 0
+    mid_left_i = 0
+    mid_right_i = len(A)
+    right_i = len(A)
+
+    while mid_left_i < right_i and mid_left_i < mid_right_i:
+        if (A[mid_left_i] == left):#first value
+            A[mid_left_i], A[left_i] = A[left_i], A[mid_left_i]
+            mid_left_i += 1
+            left_i += 1
+        elif (right is None or A[mid_left_i] == right): #second value
+            right_i -= 1
+            mid_right_i = right_i#this is important, you need to squeeze 4th element between mid_right_i and right_i, 
+            #to mid_right_i also should move along with right_i
+            A[mid_left_i], A[right_i] = A[right_i], A[mid_left_i]
+            right = A[right_i]
+        else:  # if it is a mid value
+            if (mid_left is None):#moving the third value
+                mid_left = A[mid_left_i]
+            if (A[mid_left_i] == mid_left):#same for third element again
+                mid_left_i += 1
+            else:#4th element, the squeeze
+                mid_right_i -= 1
+                A[mid_left_i], A[mid_right_i] = A[mid_right_i], A[mid_left_i]
+        print(A)
+        print(left_i, mid_left_i, mid_right_i, right_i)
+    return A
+
+print(dutch_flag_partition_variant2([1,1,3,3,4,3,2,2, 4]))
+print(dutch_flag_partition_variant2([1,2,3,4,2,3,1,3]))
+print(dutch_flag_partition_variant2([1,2,3,4,4]))
+print(dutch_flag_partition_variant2([0,1,2,5,5,2,2,0]))
+print(dutch_flag_partition_variant2([1,0,3,0,5,5]))
+print(dutch_flag_partition_variant2([1,0,3,0,0,0]))
+print(dutch_flag_partition_variant2([0,0,3,0,0,0]))
+
+
+
+# Variant 3
+"""
+Given array A of n bjects with boolean valued keys, reorder them, such that false value appears first.
+Same time compelxity as above
+"""
+
+def dutch_flag_partition_variant3(A):
+    left, equal, right = 0, 0, len(A)
+    # left_element = A[left]
+    # right_element = None
+    while equal < right:
+        if A[equal]:
+            right -= 1
+            A[right], A[equal] =  A[equal], A[right]
+        else:
+            A[left], A[equal] = A[equal], A[left]
+            left, equal = left + 1, equal + 1           
+    return A
+
+#testing
+dutch_flag_partition_variant3([True, True, True, False, False, False, True])
+dutch_flag_partition_variant3([True, True, True, True])
+dutch_flag_partition_variant3([True])
+dutch_flag_partition_variant3([False])
+
+# Variant 4
+
+"""
+Given an array A of n objects with Bool value keys, reorder, such that False appear first 
+and relative ordering of obejcts with key true should not change
+Same time and space complexity as above
+https://stackoverflow.com/questions/29723998/boolean-array-reordering-in-o1-space-and-on-time
+boolean array[n]; // The array
+int lastTrue = n;
+for (int i = n-1; i >= 0; --i) {
+  if (array[i]) {
+    swap(array[--lastTrue], array[i]);
+  }
+}
+After every iteration all elements after lastTrue are true. 
+No two true elements are swapped because if there was a true element between i and lastTrue 
+it would have been encountered already and moved behind lastTrue
+This programming is pushing False towards right, Ts order with respect to one another doesnt change
+only required criteria: the relative ordering among true values to be preserved
+"""
+
+def dutch_flag_partition_variant4(A):
+    lastTrue = len(A)
+    i = len(A) - 1
+    while i>=0:#have to start from the end, because I only need to push the False value towards right
+        if A[i]:
+            lastTrue -= 1
+            A[lastTrue], A[i] =  A[i], A[lastTrue]
+        i -= 1          
+    return A
+
+dutch_flag_partition_variant4([True, True, True, False, False, False, True])
+dutch_flag_partition_variant4([True, True, True, False, True])
+dutch_flag_partition_variant4([True, True, True, True])
+dutch_flag_partition_variant4([False, False, False, False])
 
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):

@@ -208,7 +208,7 @@ problem_mapping = {
                 "total": 505
             },
             "Python: 5-02-int_as_array_increment.py": {
-                "passed": 0,
+                "passed": 505,
                 "total": 505
             }
         },
@@ -222,7 +222,7 @@ problem_mapping = {
                 "total": 1000
             },
             "Python: 5-03-int_as_array_multiply.py": {
-                "passed": 0,
+                "passed": 1000,
                 "total": 1000
             }
         },
@@ -236,7 +236,7 @@ problem_mapping = {
                 "total": 2004
             },
             "Python: 5-04-advance_by_offsets.py": {
-                "passed": 0,
+                "passed": 2004,
                 "total": 2004
             }
         },
@@ -250,7 +250,7 @@ problem_mapping = {
                 "total": 2003
             },
             "Python: 5-05-sorted_array_remove_dups.py": {
-                "passed": 0,
+                "passed": 2003,
                 "total": 2003
             }
         },
@@ -264,7 +264,7 @@ problem_mapping = {
                 "total": 402
             },
             "Python: 5-06-buy_and_sell_stock.py": {
-                "passed": 0,
+                "passed": 402,
                 "total": 402
             }
         },
