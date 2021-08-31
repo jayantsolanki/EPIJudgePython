@@ -132,16 +132,16 @@ print(buy_and_sell_stock_twice_v3([12,11,13,9,12,8,14,13,15]))
 Variant: 1
 Solve above problem O(n) time complexity O(1) space complexity
 """
-def buy_and_sell_stock_twice_v4 (prices):
-
-# if __name__ == '__main__':
-#     exit(
-#         generic_test.generic_test_main('5-07-buy_and_sell_stock_twice.py',
-#                                        'buy_and_sell_stock_twice.tsv',
-#                                        buy_and_sell_stock_twice))
+# def buy_and_sell_stock_twice_v4 (prices):
 
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('5-07-buy_and_sell_stock_twice.py',
                                        'buy_and_sell_stock_twice.tsv',
-                                       buy_and_sell_stock_twice_v3))
+                                       buy_and_sell_stock_twice))
+
+# if __name__ == '__main__':
+#     exit(
+#         generic_test.generic_test_main('5-07-buy_and_sell_stock_twice.py',
+#                                        'buy_and_sell_stock_twice.tsv',
+#                                        buy_and_sell_stock_twice_v3))
