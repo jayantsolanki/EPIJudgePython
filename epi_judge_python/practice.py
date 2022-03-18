@@ -93,3 +93,13 @@ def dutch_flag_partition(pivot_index, A):
 #testing
 
 dutch_flag_partition(2, [5,7,3,6,3,2,0,1,9])
+
+
+# count bits
+
+def count_bits(x):
+    sum = 0
+    while x:
+        sum=sum + (x&1)
+        x >>=1
+    return sum

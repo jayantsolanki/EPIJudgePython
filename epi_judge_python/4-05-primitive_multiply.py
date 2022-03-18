@@ -1,6 +1,6 @@
 from test_framework import generic_test
 
-
+# add using bitwise operations, multiply using shift-and-add
 def multiply(x: int, y: int) -> int:
     # TODO - you fill in here.
     def add(a,b):

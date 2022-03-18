@@ -3,13 +3,13 @@ from test_framework import generic_test
 
 def parity(x: int) -> int:
     # TODO - you fill in here.
-    x = x ^ x >> 32
-    x = x ^ x >> 16
-    x = x ^ x >> 8
+    x = x ^ x >> 32 
+    x = x ^ x >> 16 # only last 16 digits important
+    x = x ^ x >> 8 # only last 8 digits important
     x = x ^ x >> 4
     x = x ^ x >> 2
     x = x ^ x >> 1
-    return x & 1
+    return x & 1 # mextracting the last digit, which contains the answer
 
 """
 Variants
@@ -37,7 +37,7 @@ def modulo(x, n):
 
 #testing 
 print("Modulo")
-print(modulo(77, 6))
+print(modulo(77, 8))
 print(modulo(77, 2))
 print(modulo(5, 2))
 
