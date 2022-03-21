@@ -103,3 +103,18 @@ def count_bits(x):
         sum=sum + (x&1)
         x >>=1
     return sum
+
+
+def odd_even(arr):
+    print(arr)
+    even, odd = 0, len(arr)-1
+
+    while even<=odd:
+        if arr[even]%2==0:
+            even = even+1
+        else:
+            arr[even], arr[odd] = arr[odd], arr[even]
+            odd = odd - 1
+    print(arr)
+
+odd_even([1,2,3,4,5,6,7])

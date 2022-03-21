@@ -9,7 +9,7 @@ Rect = collections.namedtuple('Rect', ('x', 'y', 'width', 'height'))
 def intersect_rectangle(r1: Rect, r2: Rect) -> Rect:
     # TODO - you fill in here.
     def is_intersect(r1, r2):
-        return (r1.x <= r2.x + r2.width and r1.x + r1.width >= r2.x
+        return (r1.x <= r2.x + r2.width and r1.x + r1.width >= r2.x#checking if the intervals overlap
                 and r1.y <= r2.y + r2.height and r1.y + r1.height >= r2.y)
 
     if not is_intersect(r1, r2):
