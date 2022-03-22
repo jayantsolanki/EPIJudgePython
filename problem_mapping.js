@@ -52,7 +52,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 4-03-reverse_bits.py": {
-                "passed": 10000,
+                "passed": 0,
                 "total": 10000
             }
         },
@@ -292,7 +292,7 @@ problem_mapping = {
                 "total": 203
             },
             "Python: 5-08-alternating_array.py": {
-                "passed": 0,
+                "passed": 203,
                 "total": 203
             }
         },
