@@ -8,6 +8,7 @@ WAP that takes an array denoting the daily stock price and returns the maximum p
 by buying and then selling on share of that stock. There is no need to buy if no profit is possible
 Example: [310, 315, 275, 295, 260, 270, 290, 230, 255, 250], so buy at 260 and sell at 290, profit of 30
 Logic: Focus on maximum difference, instead of min and max
+Logic: maxium profit can be made by selling on specifc day is determined  by the minimum of the stock prices over the previous days 
 Below algo has time complexity of O(n)
 """
 
@@ -15,11 +16,11 @@ Below algo has time complexity of O(n)
 def buy_and_sell_stock_once(prices: List[float]) -> float:
     min_price_so_far, max_profit = float('Inf'), 0.0
     # print("price, min_price_so_far, max_profit, max_profit_sell_today")
-    for price in prices:
+    for price in prices:#iterate thorugh days keeping track of minimum element seen thus far
         max_profit_sell_today = price - min_price_so_far
         max_profit = max(max_profit, max_profit_sell_today)
         min_price_so_far = min(min_price_so_far, price)
-        print(price, min_price_so_far, max_profit, max_profit_sell_today)
+        # print(price, min_price_so_far, max_profit, max_profit_sell_today)
     return max_profit
 
 print(buy_and_sell_stock_once([310, 315, 275, 295, 260, 270, 290, 230, 255, 250]))

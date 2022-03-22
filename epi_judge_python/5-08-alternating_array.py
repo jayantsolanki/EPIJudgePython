@@ -7,9 +7,13 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def rearrange(A: List[int]) -> None:
-    # TODO - you fill in here.
-    return
+    for i in range(len(A)):
+        A[i:i+2] = sorted(A[i:i+2], reverse = bool(i%2))
+    # print(A)
+    return 
 
+rearrange([1, 5, 4, 7, 1, 5, 1])
+rearrange([7, 7, 3, 1, 9, 2, 5, 6, 3])
 
 @enable_executor_hook
 def rearrange_wrapper(executor, A):
@@ -47,6 +51,6 @@ def rearrange_wrapper(executor, A):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('alternating_array.py',
+        generic_test.generic_test_main('5-08-alternating_array.py',
                                        'alternating_array.tsv',
                                        rearrange_wrapper))
