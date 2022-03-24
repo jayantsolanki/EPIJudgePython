@@ -8,14 +8,21 @@ from test_framework.random_sequence_checker import (
     compute_combination_idx, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
-
+"""
+Implement an algorithm that takes as input an array of distinct elements and a size, and returns a subet of the given 
+size and array elements
+All subsets should be equally likely. Return the result in input array itself
+Time: O(k), space: O(1 )
+"""
 def random_sampling(k: int, A: List[int]) -> None:
 
     for i in range(k):
         # Generate a random index in [i, len(A) - 1].
         r = random.randint(i, len(A) - 1)
         A[i], A[r] = A[r], A[i]
+    # return A[:k]
 
+random_sampling(2, [3,7,5,11])
 
 # Pythonic solution
 def random_sampling_pythonic(k, A):
@@ -51,6 +58,6 @@ def random_sampling_wrapper(executor, k, A):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('offline_sampling.py',
+        generic_test.generic_test_main('5-12-offline_sampling.py',
                                        'offline_sampling.tsv',
                                        random_sampling_wrapper))

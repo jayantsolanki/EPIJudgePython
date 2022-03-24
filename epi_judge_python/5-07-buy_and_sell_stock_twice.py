@@ -20,7 +20,7 @@ The time complexity of the above simple solution is O(n2)
 """
 
 """
-We can do this O(n) time complexity and O(n) sapce complexity, using the following Efficient Solution. 
+We can do this O(n) time complexity and O(n) space complexity, using the following Efficient Solution. 
 The idea is to store the maximum possible profit of every subarray and solve the problem in the following two phases.
 1) Create a table profit[0..n-1] and initialize all values in it 0.
 2) Traverse price[] from left to right and update profit[i] such that profit[i] stores maximum profit such that profit[i] 
@@ -38,7 +38,7 @@ In step 3, when we move backward, we keep track of sum of both profits: M[i] = B
 Since, the first profite should be taken a day earlier, hence i-1
 """
 
-
+# space and time complexity of O(n)
 def buy_and_sell_stock_twice(prices: List[float]) -> float:
 
     max_total_profit, min_price_so_far = 0.0, float('Inf')
@@ -46,18 +46,18 @@ def buy_and_sell_stock_twice(prices: List[float]) -> float:
     # forward phase,. For each day, we record maximum profit if we sell on that
     # day
     for i, price in enumerate(prices):
-        min_price_so_far = min(min_price_so_far, price)
+        min_price_so_far = min(min_price_so_far, price)#we for the current price use to sell , we look for minimum price
+        #in the past days to max out the profit
         max_total_profit = max(max_total_profit, price - min_price_so_far)
         first_buy_sell_profits[i] = max_total_profit
 
     # backward phase. For each day, find the maximum profit if we make the
     # second buy on that day
     max_price_so_far = float('-Inf')
-    for i, price in reversed(list(enumerate(prices[1:], 1))):
-    #for i, price in reversed(list(enumerate(prices[0:], 1))): this also works
+    for i, price in reversed(list(enumerate(prices[1:], 1))):# 1 under enumerate means indexing starts with 1
         # list(enumerate([11,12,13,14,15], 1))  = [(1, 11), (2, 12), (3, 13), (4, 14), (5, 15)]
         # list(enumerate([11,12,13,14,15])) = [(0, 11), (1, 12), (2, 13), (3, 14), (4, 15)]
-        max_price_so_far = max(max_price_so_far, price)
+        max_price_so_far = max(max_price_so_far, price)# finding max, because we sell at max of any proice after buying
         max_total_profit = max(
             max_total_profit,
             (max_price_so_far - price) + first_buy_sell_profits[i-1] # adding both profits
@@ -65,6 +65,7 @@ def buy_and_sell_stock_twice(prices: List[float]) -> float:
         )
     return max_total_profit
 
+# print(buy_and_sell_stock_twice([310, 315, 275, 295, 260, 270, 290, 230, 255, 250]))
 """
 Another take, easier to understand for my poor mind
 """
@@ -86,8 +87,8 @@ def buy_and_sell_stock_twice_v2(prices):
     # second buy on that day
     print(first_buy_sell_profits)
     max_price_so_far = float('-Inf')
-    # for i, price in reversed(list(enumerate(prices[1:]))):#had to use list, since you cannot reverse enumerate directlty
-    for i in range(len(prices)-1, 0, -1):#had to use list, since you cannot reverse enumerate directlty
+    # for i, price in reversed(list(enumerate(prices[1:]))):#had to use list, since you cannot reverse enumerate directly
+    for i in range(len(prices)-1, 0, -1):#had to use list, since you cannot reverse enumerate directly
         max_price_so_far = max(max_price_so_far, prices[i])
         max_total_profit2 = max(max_total_profit2, max_price_so_far - prices[i])
         print(prices[i], max_total_profit2, i)
@@ -124,15 +125,40 @@ def buy_and_sell_stock_twice_v3(prices):
     return max_total_profit
 
 print(buy_and_sell_stock_twice_v3([310, 315, 275, 295, 260, 270, 290, 230, 255, 250]))
-print(buy_and_sell_stock_twice([12,11,13,9,12,8,14,13,15]))
+print(buy_and_sell_stock_twice_v3([12,11,13,9,12,8,14,13,15]))
 print(buy_and_sell_stock_twice_v3([12,11,13,9,12,8,14,13,15]))
 
 
+#Variant for O(n) time and O(1) space
+
 """
-Variant: 1
-Solve above problem O(n) time complexity O(1) space complexity
+Let Pi denote the price of the stock on day i.
+
+Calculate maximum profit for 1st transaction by selling at or before day i the usual way i.e. by calculating Max(Pi−min[P0...Pi−1]). Call this max_total_profit_1stSell.
+If you had sold before day i you can buy again at day i. If you do so, you'll need to deduct day i's price from the 1st transaction's profit. Then, the maximum leftover profit at day i is Max(Pi−MaxProfit1i). Call this maxProfitLeftAfterSecondBuy.
+In the same vein, if you had bought the 2nd stock before day i, you can sell it at day i. If you do so, you add day i's price to the previous leftover profit to arrive at your profit at day i with 2 transactions. Then, the maximum profit at day i with 2 transactions is Max(Pi+MaxLeftOveri) - which is the final answer.
 """
-# def buy_and_sell_stock_twice_v4 (prices):
+'''
+Idea here is that you are calculating the net profit, so if you make a first sell, than you left with some money, then 
+after making a second buy, you will have profit-buy money left, you want to maximise it, so indirectly go for second buy
+which are next minimum, to find this you calculate max(max_total_profit_1stSell - price, maxProfitLeftAfterSecondBuy) 
+'''
+# https://cs.stackexchange.com/questions/60668/o1-space-on-complexity-algorithm-for-buy-and-sell-stock-twice-interview-que
+def buy_and_sell_stock_twice_v4(prices: List[float]) -> float:
+
+    max_total_profit_1stSell, max_total_profit_2ndSell, min_price_so_far = 0.0, 0.0, float('Inf')
+    maxProfitLeftAfterSecondBuy = float('-Inf')
+    first_buy_sell_profits = [0.0] * len(prices)
+
+    for i, price in enumerate(prices):
+        min_price_so_far = min(min_price_so_far, price)#we for the current price use to sell , we look for minimum price
+        max_total_profit_1stSell =  max(max_total_profit_1stSell, price - min_price_so_far)
+        maxProfitLeftAfterSecondBuy = max(max_total_profit_1stSell - price, maxProfitLeftAfterSecondBuy)
+        max_total_profit_2ndSell    = max(price + maxProfitLeftAfterSecondBuy, max_total_profit_2ndSell)
+
+    return max_total_profit_2ndSell
+# print(buy_and_sell_stock_twice_v4([12,11,13,9,12,8,14,13,15]))
+# print(buy_and_sell_stock_twice_v4([310, 315, 275, 295, 260, 270, 290, 230, 255, 250]))
 
 if __name__ == '__main__':
     exit(

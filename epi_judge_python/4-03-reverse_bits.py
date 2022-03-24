@@ -29,3 +29,6 @@ if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('4-03-reverse_bits.py', 'reverse_bits.tsv',
                                        reverse_bits))
+    # exit(
+    #     generic_test.generic_test_main('4-03-reverse_bits.py', 'reverse_bits.tsv',
+    #                                    reverse_bits))

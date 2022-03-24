@@ -1,6 +1,7 @@
 from test_framework import generic_test
 
-
+# add using bitwise operations, multiply using shift-and-add
+#using grade school algo
 def multiply(x: int, y: int) -> int:
     # TODO - you fill in here.
     def add(a,b):
@@ -10,8 +11,8 @@ def multiply(x: int, y: int) -> int:
         return a
         
     running_sum = 0
-    while x: # examines each bit of x
-        if x & 1:
+    while x: # examines each bit of x. You also have to shift right on every loop, grade school math, ok!
+        if x & 1:#check if the lsb is 1
             running_sum = add(running_sum, y)#adding 2^ky into the sum
         x, y, = x >> 1, y << 1 #indirectly 2^ky
     return running_sum

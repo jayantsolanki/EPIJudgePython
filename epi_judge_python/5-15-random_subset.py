@@ -1,5 +1,6 @@
 import functools
-from typing import List
+import random
+from typing import Dict, List
 
 from test_framework import generic_test
 from test_framework.random_sequence_checker import (
@@ -7,10 +8,23 @@ from test_framework.random_sequence_checker import (
     compute_combination_idx, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
+"""
+WAP that takes input positive integer n and a size k <=n, and returns a size-k subset of {0,1,2,3,4,...n-1}
+"""
+#you can use offline random sampling, but this could be O(n) for both time and space
+# in order to reduce it to the O(k) space, we n 
+#
+def random_subset(n: int, k: int) -> List[int]: 
 
-def random_subset(n: int, k: int) -> List[int]:
-    # TODO - you fill in here.
-    return []
+    changed_elements: Dict[int, int] = {}
+    for i in range(k):
+        # Generate a random index between i and n - 1, inclusive.
+        rand_idx = random.randrange(i, n)
+        rand_idx_mapped = changed_elements.get(rand_idx, rand_idx)
+        i_mapped = changed_elements.get(i, i)
+        changed_elements[rand_idx] = i_mapped
+        changed_elements[i] = rand_idx_mapped
+    return [changed_elements[i] for i in range(k)]
 
 
 @enable_executor_hook
@@ -34,5 +48,5 @@ def random_subset_wrapper(executor, n, k):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('random_subset.py', 'random_subset.tsv',
+        generic_test.generic_test_main('5-15-random_subset.py', 'random_subset.tsv',
                                        random_subset_wrapper))

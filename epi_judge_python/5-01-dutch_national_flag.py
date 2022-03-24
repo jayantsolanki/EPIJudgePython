@@ -7,7 +7,7 @@ from test_framework.test_utils import enable_executor_hook
 
 RED, WHITE, BLUE = range(3)
 
-
+#this is similar to odd-even problem we previously encountered
 def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
     # TODO - you fill in here.
     pivot = A[pivot_index]
@@ -19,6 +19,7 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
     smaller, equal, larger = 0, 0, len(A)# reason we use len(A) instead of len(A) -1, because equal needs to go through all element
     # in case, for example 3, [2,1,0,5,4,3] 
     #keep iterating as long as there is an unclassified element
+    #each iteration decreases the unclassifieds by one
     while equal < larger:
         # A[equal] is incoming unclassified element
         if A[equal] < pivot:
@@ -34,13 +35,14 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
 
 # variant 1
 """
-Assuming that keys take one of the three values ...[1,2,3,2,3,1} =  [1,1,3,3,2,2] or [1,1,2,2,3,3]
+Assuming that keys take one of the three values ...[1,2,3,2,3,1] =  [1,1,3,3,2,2] or [1,1,2,2,3,3]
 use O(n) time complexity and O(1) space
 """
 
 def dutch_flag_partition_variant1(A):
     left, equal, right = 0, 0, len(A)
     left_element, right_element = A[left], None
+    # we initialise the right element later because we dont know if there will be any element greater than middle
     while equal < right:
         # A[equal] is incoming unclassified element
         if A[equal] == left_element:
@@ -50,7 +52,7 @@ def dutch_flag_partition_variant1(A):
         elif right_element is None or A[equal] == right_element:
             right = right - 1
             A[right], A[equal] = A[equal], A[right]
-            right_element = A[right]
+            right_element = A[right]# this is tracking what in right
         else: 
             equal += 1
     return A
@@ -58,7 +60,7 @@ def dutch_flag_partition_variant1(A):
 #testing
 dutch_flag_partition_variant1([1,2,3,2,3,1])
 dutch_flag_partition_variant1([1,2,3,1, 2, 3, 3, 2, 1, 1, 2,3,1])
-dutch_flag_partition_variant1([1,1,1,1,1,2,2,2,2])
+dutch_flag_partition_variant1([1,1,1,1,1,2,2,2,2, 1])
 
 
 #Variant 2

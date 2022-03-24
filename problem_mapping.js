@@ -292,7 +292,7 @@ problem_mapping = {
                 "total": 203
             },
             "Python: 5-08-alternating_array.py": {
-                "passed": 0,
+                "passed": 203,
                 "total": 203
             }
         },
@@ -306,7 +306,7 @@ problem_mapping = {
                 "total": 24
             },
             "Python: 5-09-prime_sieve.py": {
-                "passed": 0,
+                "passed": 24,
                 "total": 24
             }
         },
@@ -320,7 +320,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: 5-10-apply_permutation.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             }
         },
@@ -334,7 +334,7 @@ problem_mapping = {
                 "total": 2001
             },
             "Python: 5-11-next_permutation.py": {
-                "passed": 0,
+                "passed": 2001,
                 "total": 2001
             }
         },
@@ -348,7 +348,7 @@ problem_mapping = {
                 "total": 8
             },
             "Python: 5-12-offline_sampling.py": {
-                "passed": 0,
+                "passed": 8,
                 "total": 8
             }
         },
@@ -362,7 +362,7 @@ problem_mapping = {
                 "total": 7
             },
             "Python: 5-13-online_sampling.py": {
-                "passed": 0,
+                "passed": 7,
                 "total": 7
             }
         },
@@ -390,7 +390,7 @@ problem_mapping = {
                 "total": 9
             },
             "Python: 5-15-random_subset.py": {
-                "passed": 0,
+                "passed": 9,
                 "total": 9
             }
         },

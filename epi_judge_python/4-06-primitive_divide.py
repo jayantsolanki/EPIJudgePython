@@ -3,7 +3,7 @@ from test_framework import generic_test
 
 def divide(x: int, y: int) -> int:
     # TODO - you fill in here.
-    result, power = 0, 32
+    result, power = 0, 32 # start with largest power and keep going down
     y_power = y << power # y*2^k, 2^k is the factor
     while x >= y:
         while y_power > x:
@@ -11,8 +11,10 @@ def divide(x: int, y: int) -> int:
             power -= 1
         
         result += 1 << power
-        x -= y_power
+        x -= y_power# essentially divison is the process of keep on subtracting until you start getting negative
     return result
+
+
 
 
 if __name__ == '__main__':

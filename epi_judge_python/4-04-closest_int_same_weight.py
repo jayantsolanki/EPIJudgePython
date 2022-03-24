@@ -1,13 +1,14 @@
 from test_framework import generic_test
 import sys
 
-
+# the correct approach is to swap two rightmost bits which differs
+#O(1)
 def closest_int_same_bit_count(x: int) -> int:
     # TODO - you fill in here.
     if x in (0, sys.maxsize):#0, 1111111111111111
         return "Can not be found"
     lowestsetBit = x & ~(x-1) #remember this technique always
-    lowestunSetbit = ~x & (x+1)
+    lowestunSetbit = ~x & (x+1) #remember this technique always
     if lowestunSetbit > lowestsetBit: # for cases like x = 7
         x |= lowestunSetbit
         x ^= lowestunSetbit>>1

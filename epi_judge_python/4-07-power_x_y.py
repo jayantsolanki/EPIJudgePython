@@ -6,8 +6,8 @@ def power(x: float, y: int) -> float:
     result, power = 1.0, y
     if y < 0: # this is used for negative powers
         power, x = -power, 1.0/x
-    while power: 
-        if power & 1: #checking if the last digit of power is 0 or 1
+    while power: #if zero it diurectly return result = 1
+        if power & 1: #checking if the last digit of power is 1
             result *= x
         x, power = x * x, power >> 1 # dividing the power by 2
     return result
