@@ -21,11 +21,10 @@ def delete_duplicates(A: List[int]) -> int:
     write_index = 1
     for i in range(1, len(A)):
         if A[write_index -1] != A[i]:#this updates the write_index only if there is no repetition
-            A[write_index] = A[i]
+            A[write_index] = A[i]#overwrite the value 
             write_index += 1
-    print(A[:write_index])
+    # print(A[:write_index])
     return write_index
-
 
 #test
 print(delete_duplicates([2,3,5,5,7,11,11,11,13]))
@@ -80,7 +79,7 @@ def minArray(A, m):
         if A[i-1] != A[i]:
             if count == m:
                 pos = pos - count + repeat#pull back the pos
-                count = 1
+                count = 1#reset the count now
             else:
                 count = 1
         else:

@@ -12,13 +12,14 @@ from test_framework import generic_test
 #time complexity O(n)
 def plus_one(A):
     A[-1] += 1
-    for i in reversed(range(1, len(A))):# like a school level addition, move the carry to next element
+    #for i in reversed(range(1, len(A))):# like a school level addition, move the carry to next element. Reversed is a iterator, actual array not reversed
+    for i in range(len(A)-1, 0, -1):# like a school level addition, move the carry to next element.
         # if A[i] != 10:
         #     break
         # A[i] = 0
         # A[i - 1] += 1
         # or
-        if A[i]==10:
+        if A[i]==10:#stabilise any carry, just checking for 10, since max will be 10 anyways haha
             A[i] = 0
             A[i-1] = A[i-1] + 1
         else:
@@ -42,20 +43,31 @@ plus_one([9, 9, 9])
 WAP which takes as input two strings s and t of bits encoding binary numbers Bs and Bt, respectively, and returns a new string of bits representing Bs + Bt
 """
 
-def plus_bits(Bs, Bt):
-    if len(Bs) > len(Bt):
-        Bt = '0'*(len(Bs) - len(Bt)) + Bt
-    elif len(Bs) < len(Bt):
-        Bs = '0'*(len(Bt) - len(Bs)) + Bs
-    C = 0
-    S = ""
-    for i in reversed(range(0, len(Bs))):
-        S = str(int(Bs[i]) ^ int(Bt[i]) ^ C) + S
-        C = (int(Bs[i]) & C) |  (int(Bt[i]) & C) | (int(Bt[i]) & int(Bs[i]))
+# def plus_bits(Bs, Bt):
+#     if len(Bs) > len(Bt):
+#         Bt = '0'*(len(Bs) - len(Bt)) + Bt#adding zeros in prefix to balance the bits
+#     elif len(Bs) < len(Bt):
+#         Bs = '0'*(len(Bt) - len(Bs)) + Bs
+#     C = 0
+#     S = ""
+#     for i in reversed(range(0, len(Bs))):
+#         S = str(int(Bs[i]) ^ int(Bt[i]) ^ C) + S
+#         C = (int(Bs[i]) & C) |  (int(Bt[i]) & C) | (int(Bt[i]) & int(Bs[i]))
 
-    if C:# adding this in the end
-        S = '1' + S
-    return (S)
+#     if C:# adding this in the end
+#         S = '1' + S
+#     return (S)
+
+#alternate
+def plus_bits(Bs, Bt):
+    Carry = 0
+    Bs = int(Bs, 2)
+    Bt = int(Bt, 2)
+    while(Bt):
+        Carry = Bs & Bt
+        Bs, Bt = Bs ^ Bt, Carry<<1
+
+    return ("{0:b}".format(Bs))
 
 plus_bits("1010", "0010")
 plus_bits("1000000000000000000000", "0010")
@@ -66,6 +78,7 @@ plus_bits("10", "0010")
 def plus_bits2(Bs, Bt):
     return bin(int(Bs,2) + int(Bt,2))[2:]
 
+plus_bits2("1010", "0010")
 plus_bits2("10", "0010")
 plus_bits2("1010100", "0010")
 

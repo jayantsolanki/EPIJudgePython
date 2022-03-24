@@ -81,33 +81,34 @@ def dutch_flag_partition_variant2(A):
     mid_right_i = len(A)
     right_i = len(A)
 
-    while mid_left_i < right_i and mid_left_i < mid_right_i:
+    while mid_left_i < right_i and mid_left_i < mid_right_i:# first fill left, then right, then equal(third), then the fourth value
         if (A[mid_left_i] == left):#first value
             A[mid_left_i], A[left_i] = A[left_i], A[mid_left_i]
             mid_left_i += 1
             left_i += 1
-        elif (right is None or A[mid_left_i] == right): #second value
+        elif (right is None or A[mid_left_i] == right): #second value, mid_left_i is the counter similar to equal in previous code
             right_i -= 1
             mid_right_i = right_i#this is important, you need to squeeze 4th element between mid_right_i and right_i, 
-            #to mid_right_i also should move along with right_i
+            #hence mid_right_i will be always reseted to right_i whenever there is item ==right found
+            #so mid_right_i also should move along with right_i
             A[mid_left_i], A[right_i] = A[right_i], A[mid_left_i]
             right = A[right_i]
         else:  # if it is a mid value
-            if (mid_left is None):#moving the third value
+            if (mid_left is None or A[mid_left_i] == mid_left):#same for third element again
                 mid_left = A[mid_left_i]
-            if (A[mid_left_i] == mid_left):#same for third element again
                 mid_left_i += 1
             else:#4th element, the squeeze
                 mid_right_i -= 1
                 A[mid_left_i], A[mid_right_i] = A[mid_right_i], A[mid_left_i]
-        print(A)
-        print(left_i, mid_left_i, mid_right_i, right_i)
+        # print(A)
+        # print(left_i, mid_left_i, mid_right_i, right_i)
     return A
 
 print(dutch_flag_partition_variant2([1,1,3,3,4,3,2,2, 4]))
 print(dutch_flag_partition_variant2([1,2,3,4,2,3,1,3]))
 print(dutch_flag_partition_variant2([1,2,3,4,4]))
 print(dutch_flag_partition_variant2([0,1,2,5,5,2,2,0]))
+print(dutch_flag_partition_variant2([0,1,1,2,5,1,5,2,2,0]))
 print(dutch_flag_partition_variant2([1,0,3,0,5,5]))
 print(dutch_flag_partition_variant2([1,0,3,0,0,0]))
 print(dutch_flag_partition_variant2([0,0,3,0,0,0]))
@@ -118,6 +119,7 @@ print(dutch_flag_partition_variant2([0,0,3,0,0,0]))
 """
 Given array A of n bjects with boolean valued keys, reorder them, such that false value appears first.
 Same time compelxity as above
+Similar to odd-even problem
 """
 
 def dutch_flag_partition_variant3(A):
@@ -125,7 +127,7 @@ def dutch_flag_partition_variant3(A):
     # left_element = A[left]
     # right_element = None
     while equal < right:
-        if A[equal]:
+        if A[equal]:#true goes to right side
             right -= 1
             A[right], A[equal] =  A[equal], A[right]
         else:
@@ -156,24 +158,41 @@ for (int i = n-1; i >= 0; --i) {
 After every iteration all elements after lastTrue are true. 
 No two true elements are swapped because if there was a true element between i and lastTrue 
 it would have been encountered already and moved behind lastTrue
-This programming is pushing False towards right, Ts order with respect to one another doesnt change
+This programming is pushing False towards left, Ts order with respect to one another doesnt change
 only required criteria: the relative ordering among true values to be preserved
 """
 
 def dutch_flag_partition_variant4(A):
     lastTrue = len(A)
     i = len(A) - 1
-    while i>=0:#have to start from the end, because I only need to push the False value towards right
+    while i>=0:#have to start from the end, because I only need to push the False value towards left
+        #you cannot move from index 0, since that will move true from right side to left, we want to push (not move) false from right side to left, hence decreasing order
+        #just like bubble sort
         if A[i]:
             lastTrue -= 1
-            A[lastTrue], A[i] =  A[i], A[lastTrue]
+            A[lastTrue], A[i] =  A[i], A[lastTrue]#keeps on mush false towards left
         i -= 1          
     return A
 
+#another way, moving any true towards left
+def dutch_flag_partition_variant4(A):
+    # lastFalse = None
+    lastTrue = 0
+    i = 0
+    while i<len(A):
+        if A[i]: #look for True
+            A[lastTrue], A[i] = A[i], A[lastTrue]
+            lastTrue +=1
+        i = i+1
+  
+    return A
+
 dutch_flag_partition_variant4([True, True, True, False, False, False, True])
+dutch_flag_partition_variant4([False, True, True, False, False, True, False, False, False, True])
 dutch_flag_partition_variant4([True, True, True, False, True])
 dutch_flag_partition_variant4([True, True, True, True])
 dutch_flag_partition_variant4([False, False, False, False])
+dutch_flag_partition_variant4([False, False, True, False, False])
 
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):

@@ -25,6 +25,7 @@ def multiply(num1, num2):
     #remove the leading zeroes.
     result = result[next((i for i , x in enumerate(result)#enumerate gives you index too
                         if x != 0), len(result)):] or [0]
+                        #this statement under next only runs once, that is it returns the first element from enumerator iterator satisfying x!=0
     """
     next(iterator[, default])
 

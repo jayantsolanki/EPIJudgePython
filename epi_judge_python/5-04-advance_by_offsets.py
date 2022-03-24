@@ -17,8 +17,8 @@ def can_reach_end(A: List[int]) -> bool:
     i = 0
     while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:
         furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
-        print(furthest_reach_so_far)
-        i += 1
+        print(i,furthest_reach_so_far)
+        i += 1 #if i or current index tobe evaluated > furthest reach so far, that means no further can be moved, deadend
 
     return furthest_reach_so_far >= last_index
 
@@ -28,6 +28,7 @@ print(can_reach_end([1, 1, 1, 1, 1, 1, 1])) # true
 
 """
 Variant: WAP to compute the minimum number of steps needed to advance to the last location
+ Minimum steps means mex reach to be find out for each point and have that only
 """
 
 def number_of_steps(A: List[int]) -> bool:
@@ -37,13 +38,14 @@ def number_of_steps(A: List[int]) -> bool:
     pathArray = []
     while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:
         # furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
-        if furthest_reach_so_far < (A[i] + i):
+        if furthest_reach_so_far < (A[i] + i):#this is indirectly finding the max
             furthest_reach_so_far = A[i] + i
             pathArray.append(A[i])
         i += 1
         # print(furthest_reach_so_far, i-1, A[i-1], i-1 + A[i-1])
     # print(pathArray)
     if furthest_reach_so_far >= last_index:
+        # print(pathArray)
         return len(pathArray)+1
     else:
         return -1
