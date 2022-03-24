@@ -3,15 +3,21 @@ import functools
 import math
 from typing import List
 
+import importlib  
+random_sampling = importlib.import_module("5-12-offline_sampling")
+# from '5-12-offline_sampling' import random_sampling
 from test_framework import generic_test
 from test_framework.random_sequence_checker import (
     check_sequence_is_uniformly_random, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
-
+#time O(n)
+#same as offline sampling, but we do it for whole n, instead of k
 def compute_random_permutation(n: int) -> List[int]:
-    # TODO - you fill in here.
-    return []
+
+    permutation = list(range(n))
+    random_sampling.random_sampling(n, permutation)
+    return permutation
 
 
 @enable_executor_hook

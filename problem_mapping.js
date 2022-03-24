@@ -52,7 +52,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 4-03-reverse_bits.py": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -334,7 +334,7 @@ problem_mapping = {
                 "total": 2001
             },
             "Python: 5-11-next_permutation.py": {
-                "passed": 0,
+                "passed": 2001,
                 "total": 2001
             }
         },
@@ -348,7 +348,7 @@ problem_mapping = {
                 "total": 8
             },
             "Python: 5-12-offline_sampling.py": {
-                "passed": 0,
+                "passed": 8,
                 "total": 8
             }
         },
@@ -362,7 +362,7 @@ problem_mapping = {
                 "total": 7
             },
             "Python: 5-13-online_sampling.py": {
-                "passed": 0,
+                "passed": 7,
                 "total": 7
             }
         },
@@ -390,7 +390,7 @@ problem_mapping = {
                 "total": 9
             },
             "Python: 5-15-random_subset.py": {
-                "passed": 0,
+                "passed": 9,
                 "total": 9
             }
         },
