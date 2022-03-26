@@ -49,6 +49,6 @@ def compute_random_permutation_wrapper(executor, n):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('random_permutation.py',
+        generic_test.generic_test_main('5-14-random_permutation.py',
                                        'random_permutation.tsv',
                                        compute_random_permutation_wrapper))
