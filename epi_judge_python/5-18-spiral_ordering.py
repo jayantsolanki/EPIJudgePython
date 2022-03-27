@@ -146,36 +146,69 @@ pair_spirals(11)
 write a program to compute spiral of mxn array
 """
 #easy for my weak mind lol
-#time: O(n^2)
+#time: O(m*n)
+#https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
 def matrix_in_spiral_order_mn(A):
     m = len(A)    
     n = len(A[0]) 
     spiral_ordering = []
-    def matrix_layer_in_clockwise(offset):
-        print(offset)
-        if (n - offset - 1) == offset: #checking if only one element left
-            spiral_ordering.append(A[offset][offset])#should be append, since we getting only element, not subarray
-            return
-        else:
-            spiral_ordering.extend(A[offset][offset:n-offset-1])#row elements
-        # if (n - offset - 1) == offset: #checking if only one element left
-        #     spiral_ordering.append(A[offset][offset])#should be append, since we getting only element, not subarray
-        #     return
-        # else:
+    k = 0
+    l = 0
+ 
+    ''' k - starting row index
+        m - ending row index
+        l - starting column index
+        n - ending column index
+        i - iterator 
+    '''
+ 
+    while (k < m and l < n):
+ 
+        # append the first row from
+        # the remaining rows
+        for i in range(l, n):
+            spiral_ordering.append(A[k][i])
+ 
+        k += 1
+ 
+        # append the last column from
+        # the remaining columns
+        for i in range(k, m):
+            spiral_ordering.append(A[i][n - 1])
+ 
+        n -= 1
+ 
+        # append the last row from
+        # the remaining rows
+        if (k < m):
+ 
+            for i in range(n - 1, (l - 1), -1):
+                spiral_ordering.append(A[m - 1][i])
+ 
+            m -= 1
+ 
+        # append the first column from
+        # the remaining columns
+        if (l < n):
+            for i in range(m - 1, k - 1, -1):
+                spiral_ordering.append(A[i][l])
+ 
+            l += 1
 
-               
-        # spiral_ordering.extend(A[offset][offset:size-offset-1])#row elements
-        # spiral_ordering.extend([col[size-offset - 1] for col in A[offset:size-offset-1][:]])#col elements
-        # spiral_ordering.extend(A[size-offset - 1][size-offset-1:offset:-1])#row elements reversed
-        # spiral_ordering.extend([col[offset] for col in A[size-offset-1:offset:-1][:]]) #col elements reversed
-        
-    for offset in range((max(m,n)+1) // 2): # + one needed, for n = 1
-        matrix_layer_in_clockwise(offset)
 
     return spiral_ordering
 
 matrix_in_spiral_order_mn([[1,2,3,4],[5,6, 7,8]])
-# matrix_in_spiral_order([[1,2,3,4,5],[6, 7,8,9,10],[11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]])
+matrix_in_spiral_order_mn([[1,2]])
+matrix_in_spiral_order_mn([[1], [2]])
+matrix_in_spiral_order_mn([[1,2,3,4],[5,6, 7,8], [9,10,11,12]])
+matrix_in_spiral_order_mn([[1,2,3,4],[5,6, 7,8], [9,10,11,12], [13,14,15,16]])
+matrix_in_spiral_order_mn([[1,2,3], [4,5,6]])
+matrix_in_spiral_order_mn([[1,2,3], [4,5,6], [7,8,9], [10,11,12]])
+matrix_in_spiral_order_mn([[1,2,3],[4,5,6],[7,8,9]])
+matrix_in_spiral_order_mn([[1,2,3,4,5],[6, 7,8,9,10],[11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]])
+
+
 
 
 if __name__ == '__main__':
