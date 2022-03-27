@@ -10,6 +10,6 @@ def generate_pascal_triangle(n: int) -> List[List[int]]:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('pascal_triangle.py',
+        generic_test.generic_test_main('5-20-pascal_triangle.py',
                                        'pascal_triangle.tsv',
                                        generate_pascal_triangle))
