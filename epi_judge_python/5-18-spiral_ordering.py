@@ -314,7 +314,19 @@ https://stackoverflow.com/questions/54774747/compute-the-kth-element-in-spiral-o
 #         x = ring
 #         y = height - (offset - width - height - width)
 #         return A[x][y]
-
+"""
+T1 = 2m + 2n - 4
+Tr = 2m + 2n -8r + 4 #r here is the ring
+Sr = (T1 + Tr)r/2 #sum of progression till ring r
+Solving:
+Sr = r(2m+2n-4+2m+2n-8r+4)/2
+Sr = r(4m +4n -8r)/2
+Sr = -4r^2 + (2m +2n)r #this is quadratic equation analogous to ax^2 + bx + c
+Since Sr is lower bound of k, lets solve it with respect to r and k
+-4r^2 + (2m +2n)r <= k
+-4r^2 + (2m +2n)r - k <= 0
+r = floor((-(m + n) + sqrt((m+n)^22 - 4*k)) /(-4))
+"""
 def kth_element_spiral(A, m, n, k):#k here starts with 1
     """
     inputs: A: array, m: rows, n: columns, k: position
