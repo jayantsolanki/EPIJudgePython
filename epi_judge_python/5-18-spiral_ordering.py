@@ -208,12 +208,169 @@ matrix_in_spiral_order_mn([[1,2,3], [4,5,6], [7,8,9], [10,11,12]])
 matrix_in_spiral_order_mn([[1,2,3],[4,5,6],[7,8,9]])
 matrix_in_spiral_order_mn([[1,2,3,4,5],[6, 7,8,9,10],[11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]])
 
-#variant 5
+#variant 5 and 6
 """
-Compute the last element in the spiral order for an mxn 2d array A in O(1) time
+Compute the kth element in the spiral order for an mxn 2d array A in O(R) time
+https://stackoverflow.com/questions/54774747/compute-the-kth-element-in-spiral-order-for-an-m-x-n-2d-array-a-in-o1-time
 """
+def find_kth_element(A, m, n, k):
+    if (k > m*n or k < 1):
+        return -1
+    if (m < 1 or n < 1):
+        return -1
+    if(m == 1):#Total elements formula not applicable in one-dimensional array
+        return A[0][k-1]
+    if(n == 1):
+        return A[k-1][0]
+    ring = 1
+    mod_m = m 
+    mod_n = n
+    if(k == m*n):
+        if m%2!=0 and n%2!=0:
+            return A[m//2][n//2]
+    while True:
+        Total_elements = 2*m + 2*n -8*(ring) + 4 #in that ring, use book notes to derive this formula, max elements that ring can have
+        # Total_elements = 2*mod_m + 2*mod_n - 4 #in that ring, use book notes to derive this formula
+        # print(Total_elements)
+        if k <= Total_elements:
+            offset = k
+            #check in first row
+            if offset <= mod_n:
+                x = ring - 1
+                y = ring - 1 + offset -1
+            #check in last column
+            elif offset <= (mod_n + mod_m - 1):
+                x = ring - 1 + offset - mod_n
+                y = n - ring
+            #check in last row
+            elif offset <= (mod_n + mod_m - 1 + mod_n - 1):
+                x = m - ring
+                y = ring-1 + mod_n - 1 - (offset - (mod_n + mod_m - 1))
+            #check in first column
+            elif offset <= (mod_n + mod_m - 1 + mod_n - 1 + mod_m-1):
+                x = ring - 1 + mod_m - 1 - (offset - (mod_n + mod_m-1 + mod_n - 1))
+                y = ring - 1
+            # print(x, y)
+            return A[x][y]
+        else:
+            mod_m = m - ring*2
+            mod_n = n - ring*2
+            ring = ring + 1
+            k = k - Total_elements
+            # print(mod_m, mod_n)
+
+        if(mod_m < 1 or mod_n < 1):
+            break
+
+find_kth_element([[1,2,3,4]], 1, 4, 3)
+find_kth_element([[1], [2], [3], [4]], 4, 1, 3)
+find_kth_element([[1,2,3,4], [5,6,7,8]], 2, 4, 8)
+find_kth_element([[1,2,3,4], [5,6,7,8], [9, 10, 11, 12], [13,14,15,16]], 4, 4, 13)
+find_kth_element([[1,2,3,4], [5,6,7,8], [9, 10, 11, 12], [13,14,15,16], [17,18,19,20]], 5, 4, 20)
+find_kth_element([[1,2,3,4], [5,6,7,8], [9, 10, 11, 12], [13,14,15,16], [17,18,19,20]], 5, 4, 20)
+find_kth_element([[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15]], 3, 5, 2)
+find_kth_element([[1,2,3], [4,5,6], [7,8,9]], 3, 3, 9)
+find_kth_element([[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]], 5, 5, 25)
 
 
+# Variant 5 and 6
+"""
+Compute the kth element in the spiral order for an mxn 2d array A in O(R) time
+https://stackoverflow.com/questions/54774747/compute-the-kth-element-in-spiral-order-for-an-m-x-n-2d-array-a-in-o1-time
+"""
+# def kth_element_spiral(A, m, n, k):#k here starts with 0
+#     # first_ring_max = 2 * (m-1) + 2 * (n - 1)
+#     first_ring_max = 2*m + 2*n - 4
+
+#     ring, ring_start_elements = None, None
+
+#     if (k < first_ring_max):
+#         ring = 0
+#         ring_start_elements = 0
+#     else:
+#         ring = int(math.floor((-(m + n) + math.sqrt((m+n)**2 - 4*k)) /(-4)))
+#         #arithmatic sum to find out how many elements covers before this ring started
+#         ring_start_elements = int((ring * (first_ring_max + 2 * (m-(1 + 2*(ring - 1))) + 2 * (n-(1 + 2*(ring - 1))))) / 2)
+
+#     offset = k - ring_start_elements
+
+#     width = (m - ring*2) - 1
+#     height = (n - ring*2) - 1
+
+#     if (offset <= width): # top
+#         x = ring + offset 
+#         y = ring
+#         return A[x][y]
+#     elif (offset <= width + height): # right
+#         x = m - ring - 1
+#         y = ring + (offset - width)
+#         print("I ran")
+#         return A[x][y]
+#     elif (offset <= width + height + width): # bottom
+#         x = width - (offset - width - height)
+#         y = n - ring - 1
+#         return A[x][y]
+#     else: # left
+#         x = ring
+#         y = height - (offset - width - height - width)
+#         return A[x][y]
+
+def kth_element_spiral(A, m, n, k):#k here starts with 1
+    """
+    inputs: A: array, m: rows, n: columns, k: position
+    output: Array element returned for position k
+    """
+    if k==0:
+        return(-1,-1)
+
+    first_ring_max = 2*m + 2*n - 4
+    ring, ring_start_elements = None, None #ring: rings elapsed to reach position k
+    if (k < first_ring_max):
+        ring = 0
+        ring_start_elements = 0
+    else:
+        ring = int(math.floor((-(m + n) + math.sqrt((m+n)**2 - 4*k)) /(-4)))
+        #arithmetic sum to find out how many elements covered in ring, ring-1 , .. 0
+        ring_start_elements = int(-4*(ring**2) + 2*ring*(m+n))
+    offset = k - ring_start_elements
+
+    #rows left in current ring, logic: after every ring top and bottom rows removed
+    mod_m = (m - ring*2)
+    # columns left in current ring, logic: after every ring left and right rows removed
+    mod_n = (n - ring*2)
+
+    if (offset <= mod_n): # top row in the current ring
+        x = ring
+        y = ring + offset - 1
+    elif (offset <= mod_n + mod_m - 1): # rightmost column in the current ring
+        x = ring + offset - mod_n
+        y = n - 1 - ring
+    elif (offset <= mod_n + mod_m - 1 + mod_n - 1): # bottom row in the current ring
+        x = m - 1 - ring
+        y = ring + mod_n - 1 - (offset - (mod_n + mod_m - 1))
+    elif offset <= mod_n + mod_m - 1 + mod_n - 1 + mod_m-1: # leftmost column in the current ring
+        x = ring + mod_m - 1 - (offset - (mod_n + mod_m-1 + mod_n - 1))
+        y = ring
+    else:
+        return(-1, -1)#not found
+    return A[x][y]    
+
+kth_element_spiral([[1,2,3,4]], 1, 4, 3)
+kth_element_spiral([[1], [2], [3], [4]], 4, 1, 3)
+kth_element_spiral([[1,2,3,4], [5,6,7,8]], 2, 4, 8)
+kth_element_spiral([[1,2,3,4], [5,6,7,8], [9, 10, 11, 12], [13,14,15,16]], 4, 4, 13)
+kth_element_spiral([[1,2,3,4], [5,6,7,8], [9, 10, 11, 12], [13,14,15,16], [17,18,19,20]], 5, 4, 16)
+kth_element_spiral([[1,2,3,4], [5,6,7,8], [9, 10, 11, 12], [13,14,15,16], [17,18,19,20]], 5, 4, 20)
+kth_element_spiral([[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15]], 3, 5, 2)
+kth_element_spiral([[1,2,3], [4,5,6], [7,8,9]], 3, 3,8)
+kth_element_spiral([[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]], 5, 5, 25)
+
+for i in range(1,10):
+    print(i, kth_element_spiral([[1,2,3], [4,5,6], [7,8,9]],3, 3, i))
+for i in range(1,9):
+    print(i, kth_element_spiral([[1,2,3,4], [5,6,7,8]],2, 4, i))
+for i in range(1,5):
+    print(i, kth_element_spiral([[1], [2], [3], [4]], 4, 1, i))
 
 if __name__ == '__main__':
     exit(
