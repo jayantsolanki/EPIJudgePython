@@ -460,7 +460,7 @@ problem_mapping = {
                 "total": 35
             },
             "Python: 5-20-pascal_triangle.py": {
-                "passed": 0,
+                "passed": 35,
                 "total": 35
             }
         }

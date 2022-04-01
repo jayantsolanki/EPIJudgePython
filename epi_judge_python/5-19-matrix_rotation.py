@@ -39,11 +39,53 @@ horizontal axis. Repeat same reflection along y-axis, the diagonal from top-left
 and diagonal top-right to bottom-left
 """
 
+def mirror_matrix_vertically(square_matrix):
+
+    matrix_size = len(square_matrix)
+    for i in range(matrix_size//2):
+        for j in range(matrix_size//2):
+            (square_matrix[i][j], square_matrix[~i][j],  square_matrix[i][~j], 
+            square_matrix[~i][~j])= (square_matrix[i][~j], 
+                                    square_matrix[~i][~j], 
+                                    square_matrix[i][j], 
+                                    square_matrix[~i][j])
+    return square_matrix
+
+mirror_matrix_vertically([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+
 def mirror_matrix_horizontally(square_matrix):
 
     matrix_size = len(square_matrix)
-    
+    for i in range(matrix_size//2):
+        for j in range(matrix_size//2):
+            (square_matrix[i][j], square_matrix[~i][j],  square_matrix[i][~j], 
+            square_matrix[~i][~j])= (square_matrix[~i][j],
+                                    square_matrix[i][j],
+                                    square_matrix[~i][~j],
+                                    square_matrix[i][~j])
+    return square_matrix
 
+mirror_matrix_horizontally([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+
+def mirror_matrix_left_diagonal(square_matrix):
+
+    matrix_size = len(square_matrix)
+    for i in range(matrix_size):
+        for j in range(i, matrix_size):
+            (square_matrix[i][j], square_matrix[j][i]) = (square_matrix[j][i], square_matrix[i][j])
+    return square_matrix
+
+mirror_matrix_left_diagonal([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+
+def mirror_matrix_right_diagonal(square_matrix):
+
+    matrix_size = len(square_matrix)
+    for i in range(matrix_size):
+        for j in range(matrix_size-i):
+            (square_matrix[i][j], square_matrix[~j][~i]) = (square_matrix[~j][~i], square_matrix[i][j])
+    return square_matrix
+
+mirror_matrix_right_diagonal([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 
 def rotate_matrix_wrapper(square_matrix):
     rotate_matrix(square_matrix)
