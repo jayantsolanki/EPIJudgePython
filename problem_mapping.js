@@ -476,7 +476,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 6-00-is_string_palindromic.py": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -489,8 +489,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 15002
             },
-            "Python: string_integer_interconversion.py": {
-                "passed": 0,
+            "Python: 6-01-string_integer_interconversion.py": {
+                "passed": 15002,
                 "total": 15002
             }
         },
@@ -503,8 +503,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 20001
             },
-            "Python: convert_base.py": {
-                "passed": 0,
+            "Python: 6-02-convert_base.py": {
+                "passed": 20001,
                 "total": 20001
             }
         },
@@ -517,7 +517,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: spreadsheet_encoding.py": {
+            "Python: 6-03-spreadsheet_encoding.py": {
                 "passed": 0,
                 "total": 10000
             }
@@ -531,8 +531,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 501
             },
-            "Python: replace_and_remove.py": {
-                "passed": 0,
+            "Python: 6-04-replace_and_remove.py": {
+                "passed": 501,
                 "total": 501
             }
         },
@@ -545,7 +545,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 305
             },
-            "Python: is_string_palindromic_punctuation.py": {
+            "Python: 6-05-is_string_palindromic_punctuation.py": {
                 "passed": 0,
                 "total": 305
             }
@@ -559,7 +559,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 103
             },
-            "Python: reverse_words.py": {
+            "Python: 6-06-reverse_words.py": {
                 "passed": 0,
                 "total": 103
             }
@@ -573,7 +573,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 40
             },
-            "Python: look_and_say.py": {
+            "Python: 6-07-look_and_say.py": {
                 "passed": 0,
                 "total": 40
             }
@@ -587,7 +587,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 3999
             },
-            "Python: roman_to_integer.py": {
+            "Python: 6-08-roman_to_integer.py": {
                 "passed": 0,
                 "total": 3999
             }
@@ -601,7 +601,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10008
             },
-            "Python: valid_ip_addresses.py": {
+            "Python: 6-09-valid_ip_addresses.py": {
                 "passed": 0,
                 "total": 10008
             }
@@ -615,7 +615,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 500
             },
-            "Python: snake_string.py": {
+            "Python: 6-10-snake_string.py": {
                 "passed": 0,
                 "total": 500
             }
@@ -629,7 +629,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 200
             },
-            "Python: run_length_compression.py": {
+            "Python: 6-11-run_length_compression.py": {
                 "passed": 0,
                 "total": 200
             }
@@ -643,7 +643,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 835
             },
-            "Python: substring_match.py": {
+            "Python: 6-12-substring_match.py": {
                 "passed": 0,
                 "total": 835
             }

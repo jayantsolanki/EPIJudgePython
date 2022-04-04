@@ -8,5 +8,5 @@ def look_and_say(n: int) -> str:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('look_and_say.py', 'look_and_say.tsv',
+        generic_test.generic_test_main('6-07-look_and_say.py', 'look_and_say.tsv',
                                        look_and_say))

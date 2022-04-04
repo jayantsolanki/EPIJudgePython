@@ -9,5 +9,5 @@ def is_palindrome(s: str) -> bool:
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'is_string_palindromic_punctuation.py',
+            '6-05-is_string_palindromic_punctuation.py',
             'is_string_palindromic_punctuation.tsv', is_palindrome))

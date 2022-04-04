@@ -22,5 +22,5 @@ def reverse_words_wrapper(executor, s):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('reverse_words.py', 'reverse_words.tsv',
+        generic_test.generic_test_main('6-06-reverse_words.py', 'reverse_words.tsv',
                                        reverse_words_wrapper))

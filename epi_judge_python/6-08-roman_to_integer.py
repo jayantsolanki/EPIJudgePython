@@ -8,6 +8,6 @@ def roman_to_integer(s: str) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('roman_to_integer.py',
+        generic_test.generic_test_main('6-08-roman_to_integer.py',
                                        'roman_to_integer.tsv',
                                        roman_to_integer))
