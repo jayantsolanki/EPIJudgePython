@@ -546,7 +546,7 @@ problem_mapping = {
                 "total": 305
             },
             "Python: 6-05-is_string_palindromic_punctuation.py": {
-                "passed": 0,
+                "passed": 305,
                 "total": 305
             }
         },
@@ -560,7 +560,7 @@ problem_mapping = {
                 "total": 103
             },
             "Python: 6-06-reverse_words.py": {
-                "passed": 0,
+                "passed": 103,
                 "total": 103
             }
         },
