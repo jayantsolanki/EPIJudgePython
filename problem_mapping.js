@@ -574,7 +574,7 @@ problem_mapping = {
                 "total": 40
             },
             "Python: 6-07-look_and_say.py": {
-                "passed": 0,
+                "passed": 40,
                 "total": 40
             }
         },
@@ -588,7 +588,7 @@ problem_mapping = {
                 "total": 3999
             },
             "Python: 6-08-roman_to_integer.py": {
-                "passed": 0,
+                "passed": 3999,
                 "total": 3999
             }
         },
@@ -616,7 +616,7 @@ problem_mapping = {
                 "total": 500
             },
             "Python: 6-10-snake_string.py": {
-                "passed": 0,
+                "passed": 500,
                 "total": 500
             }
         },
@@ -675,16 +675,16 @@ problem_mapping = {
                 "passed": 0,
                 "total": 505
             },
-            "Python: delete_from_list.py": {
-                "passed": 0,
+            "Python: 7-00-delete_from_list.py": {
+                "passed": 457,
                 "total": 457
             },
-            "Python: insert_in_list.py": {
-                "passed": 0,
+            "Python: 7-00-insert_in_list.py": {
+                "passed": 504,
                 "total": 504
             },
-            "Python: search_in_list.py": {
-                "passed": 0,
+            "Python: 7-00-search_in_list.py": {
+                "passed": 505,
                 "total": 505
             }
         },
@@ -697,8 +697,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 501
             },
-            "Python: sorted_lists_merge.py": {
-                "passed": 0,
+            "Python: 7-01-sorted_lists_merge.py": {
+                "passed": 501,
                 "total": 501
             }
         },
@@ -711,7 +711,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 210
             },
-            "Python: reverse_sublist.py": {
+            "Python: 7-02-reverse_sublist.py": {
                 "passed": 0,
                 "total": 210
             }
@@ -725,7 +725,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 102
             },
-            "Python: is_list_cyclic.py": {
+            "Python: 7-03-is_list_cyclic.py": {
                 "passed": 0,
                 "total": 102
             }
@@ -739,7 +739,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 106
             },
-            "Python: do_terminated_lists_overlap.py": {
+            "Python: 7-04-do_terminated_lists_overlap.py": {
                 "passed": 0,
                 "total": 106
             }
@@ -753,7 +753,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 120
             },
-            "Python: do_lists_overlap.py": {
+            "Python: 7-05-do_lists_overlap.py": {
                 "passed": 0,
                 "total": 120
             }
@@ -767,7 +767,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 512
             },
-            "Python: delete_node_from_list.py": {
+            "Python: 7-06-delete_node_from_list.py": {
                 "passed": 0,
                 "total": 512
             }
@@ -781,7 +781,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 306
             },
-            "Python: delete_kth_last_from_list.py": {
+            "Python: 7-07-delete_kth_last_from_list.py": {
                 "passed": 0,
                 "total": 306
             }
@@ -795,7 +795,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: remove_duplicates_from_sorted_list.py": {
+            "Python: 7-08-remove_duplicates_from_sorted_list.py": {
                 "passed": 0,
                 "total": 203
             }
@@ -809,7 +809,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 507
             },
-            "Python: list_cyclic_right_shift.py": {
+            "Python: 7-09-list_cyclic_right_shift.py": {
                 "passed": 0,
                 "total": 507
             }
@@ -823,7 +823,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 1015
             },
-            "Python: even_odd_list_merge.py": {
+            "Python: 7-10-even_odd_list_merge.py": {
                 "passed": 0,
                 "total": 1015
             }
@@ -837,7 +837,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: is_list_palindromic.py": {
+            "Python: 7-11-is_list_palindromic.py": {
                 "passed": 0,
                 "total": 203
             }
@@ -851,7 +851,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 208
             },
-            "Python: pivot_list.py": {
+            "Python: 7-12-pivot_list.py": {
                 "passed": 0,
                 "total": 208
             }
@@ -865,7 +865,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 2002
             },
-            "Python: int_as_list_add.py": {
+            "Python: 7-13-int_as_list_add.py": {
                 "passed": 0,
                 "total": 2002
             }

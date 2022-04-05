@@ -11,6 +11,6 @@ def even_odd_merge(L: ListNode) -> Optional[ListNode]:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('even_odd_list_merge.py',
+        generic_test.generic_test_main('7-10-even_odd_list_merge.py',
                                        'even_odd_list_merge.tsv',
                                        even_odd_merge))

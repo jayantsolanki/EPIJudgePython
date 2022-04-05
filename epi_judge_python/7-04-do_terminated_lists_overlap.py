@@ -39,6 +39,6 @@ def overlapping_no_cycle_lists_wrapper(executor, l0, l1, common):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('do_terminated_lists_overlap.py',
+        generic_test.generic_test_main('7-04-do_terminated_lists_overlap.py',
                                        'do_terminated_lists_overlap.tsv',
                                        overlapping_no_cycle_lists_wrapper))

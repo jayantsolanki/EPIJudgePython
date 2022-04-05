@@ -12,5 +12,5 @@ def reverse_sublist(L: ListNode, start: int,
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('reverse_sublist.py',
+        generic_test.generic_test_main('7-02-reverse_sublist.py',
                                        'reverse_sublist.tsv', reverse_sublist))

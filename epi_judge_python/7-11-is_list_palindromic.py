@@ -9,6 +9,6 @@ def is_linked_list_a_palindrome(L: ListNode) -> bool:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('is_list_palindromic.py',
+        generic_test.generic_test_main('7-11-is_list_palindromic.py',
                                        'is_list_palindromic.tsv',
                                        is_linked_list_a_palindrome))

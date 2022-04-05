@@ -12,6 +12,6 @@ def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('delete_kth_last_from_list.py',
+        generic_test.generic_test_main('7-07-delete_kth_last_from_list.py',
                                        'delete_kth_last_from_list.tsv',
                                        remove_kth_last))

@@ -60,6 +60,6 @@ def has_cycle_wrapper(executor, head, cycle_idx):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('is_list_cyclic.py',
+        generic_test.generic_test_main('7-03-is_list_cyclic.py',
                                        'is_list_cyclic.tsv',
                                        has_cycle_wrapper))
