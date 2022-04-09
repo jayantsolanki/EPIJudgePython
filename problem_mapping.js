@@ -712,7 +712,7 @@ problem_mapping = {
                 "total": 210
             },
             "Python: 7-02-reverse_sublist.py": {
-                "passed": 0,
+                "passed": 210,
                 "total": 210
             }
         },
