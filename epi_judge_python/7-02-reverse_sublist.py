@@ -1,6 +1,7 @@
 from typing import Optional
 
 from list_node import ListNode
+from SinglyLinkedList import *
 from test_framework import generic_test
 
 # this problem is concerned with reversing a sublist within a list
@@ -39,68 +40,70 @@ def reverse_sublist(L: ListNode, start: int,
         # and next attribute of node before start(sublist_head.next) points to node at finish
     return dummy_head.next
 
-def reverse_sublist_v2(L, start: int,
-                    finish: int):
-    if (finish-start<0 or L is None):
-        return None
-    head = currenthead = L
-    prev = None
-    next = None
-    for _ in range(1, start):#finding predecessor to node at start
-        prev = currenthead
-        currenthead = currenthead.next
-    head = prev
-    print(currenthead.data)
-    for _ in range(start, finish+1):
-        next = currenthead.next
-        currenthead.next = prev
-        prev = currenthead
-        currenthead = next
-    print(head.data, currenthead.data, prev.next.data)
-    head.next = next#point original head to node after node f
-    return prev # return head of node f    
+# def reverse_sublist_v2(L, start: int,
+#                     finish: int):
+#     if (finish-start<0 or L is None):
+#         return None
+#     head = currenthead = L
+#     prev = None
+#     next = None
+#     for _ in range(1, start):#finding predecessor to node at start
+#         prev = currenthead
+#         currenthead = currenthead.next
+#     head = prev
+#     print(currenthead.data, prev.data)
+#     for _ in range(start, finish+1):
+#         next = currenthead.next
+#         currenthead.next = prev
+#         prev = currenthead
+#         currenthead = next
+#     print(head.data, currenthead.data, prev.next.data)
+#     head.next.next  = currenthead
+#     head.next = prev#point original head to node after node f
+#     return L # return head of node f    
 # full implmentation
-class SinglyListNode:
-    def __init__(self, data=0, next=None):
-        self.data = data
-        self.next = next
+#import from SinlyLinkedList file
+# class SinglyListNode:
+#     def __init__(self, data=0, next=None):
+#         self.data = data
+#         self.next = next
 
-class SinglyLinkedList:
-    def __init__(self):
-        # Creates a placeholder for the result.
-        self.head = None
+# class SinglyLinkedList:
+#     def __init__(self):
+#         # Creates a placeholder for the result.
+#         self.head = None
 	
-    #  Insert new node at end position
-    def insert(self, value):
-        #  Create a node
-        node = SinglyListNode(data = value)#create node, assign the data
-        if (self.head == None):#chain it now
-            #  Add first node
-            self.head = node
-            return
-        #if list not empty
-        tail = self.head#create a tracker/tail and loop through list
-        #  Find last node
-        while (tail.next != None):#dont use tail!=None, you need to find the last node, hence using tail.next!= None
-            #  Visit to next node
-            tail = tail.next
+#     #  Insert new node at end position
+#     def insert(self, value):
+#         #  Create a node
+#         node = SinglyListNode(data = value)#create node, assign the data
+#         if (self.head == None):#chain it now
+#             #  Add first node
+#             self.head = node
+#             return
+#         #if list not empty
+#         tail = self.head#create a tracker/tail and loop through list
+#         #  Find last node
+#         while (tail.next != None):#dont use tail!=None, you need to find the last node, hence using tail.next!= None
+#             #  Visit to next node
+#             tail = tail.next
         
-        #  Add node at the end position
-        tail.next = node
+#         #  Add node at the end position
+#         tail.next = node
 	
-    #  Display node element of doubly linked list
-    def display(self):
-        if (self.head == None):
-            print("Empty Linked List")
-        else :
-            #  Get first node of linked list
-            tail = self.head
-            #  iterate linked list 
-            while (tail != None):
-                #  Display node value
-                print("  ", tail.data, end = "")
-                #  Visit to next node
-                tail = tail.next
+#     #  Display node element of doubly linked list
+#     def display(self):
+#         if (self.head == None):
+#             print("Empty Linked List")
+#         else :
+#             #  Get first node of linked list
+#             tail = self.head
+#             #  iterate linked list 
+#             while (tail != None):
+#                 #  Display node value
+#                 print("  ", tail.data, end = "")
+#                 #  Visit to next node
+#                 tail = tail.next
 
 def reverse_sublist_full(L: SinglyListNode, start: int,
                     finish: int):
@@ -283,8 +286,8 @@ def main_run():
     L1.insert(7)
     L1.insert(17)
     L1.insert(19)
-    L = reverse_sublist_v2(L1.head, 3, 5)
-    # L = reverse_list(L1) # variant 1
+    # L = reverse_sublist_v2(L1.head, 2, 6)
+    L = reverse_list(L1) # variant 1
     # L = reverse_sublist_knodes(L1, 4)
     # L = reverse_sublist_knodes_variant2(L1.head, 35) # variant 2
     #  Display all node
