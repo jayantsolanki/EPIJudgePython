@@ -740,7 +740,7 @@ problem_mapping = {
                 "total": 106
             },
             "Python: 7-04-do_terminated_lists_overlap.py": {
-                "passed": 0,
+                "passed": 106,
                 "total": 106
             }
         },
@@ -754,7 +754,7 @@ problem_mapping = {
                 "total": 120
             },
             "Python: 7-05-do_lists_overlap.py": {
-                "passed": 0,
+                "passed": 120,
                 "total": 120
             }
         },
@@ -768,7 +768,7 @@ problem_mapping = {
                 "total": 512
             },
             "Python: 7-06-delete_node_from_list.py": {
-                "passed": 0,
+                "passed": 512,
                 "total": 512
             }
         },
@@ -782,7 +782,7 @@ problem_mapping = {
                 "total": 306
             },
             "Python: 7-07-delete_kth_last_from_list.py": {
-                "passed": 0,
+                "passed": 306,
                 "total": 306
             }
         },
@@ -796,7 +796,7 @@ problem_mapping = {
                 "total": 203
             },
             "Python: 7-08-remove_duplicates_from_sorted_list.py": {
-                "passed": 0,
+                "passed": 203,
                 "total": 203
             }
         },
@@ -810,7 +810,7 @@ problem_mapping = {
                 "total": 507
             },
             "Python: 7-09-list_cyclic_right_shift.py": {
-                "passed": 0,
+                "passed": 507,
                 "total": 507
             }
         },
@@ -824,7 +824,7 @@ problem_mapping = {
                 "total": 1015
             },
             "Python: 7-10-even_odd_list_merge.py": {
-                "passed": 0,
+                "passed": 1015,
                 "total": 1015
             }
         },
@@ -838,7 +838,7 @@ problem_mapping = {
                 "total": 203
             },
             "Python: 7-11-is_list_palindromic.py": {
-                "passed": 0,
+                "passed": 203,
                 "total": 203
             }
         },

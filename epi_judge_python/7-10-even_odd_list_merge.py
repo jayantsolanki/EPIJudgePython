@@ -3,10 +3,22 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
-
+#time is: O(n)
 def even_odd_merge(L: ListNode) -> Optional[ListNode]:
-    # TODO - you fill in here.
-    return None
+
+    if L is None:
+        return L
+
+    even_dummy_head, odd_dummy_head = ListNode(0), ListNode(0)
+    tails, turn = [even_dummy_head, odd_dummy_head], 0
+    while L:
+        tails[turn].next = L#assign odd or even
+        L = L.next #move to next node in list
+        tails[turn] = tails[turn].next #move to assigned node
+        turn ^= 1  # Alternate between even and odd.
+    tails[1].next = None#marking odd tail as none#doing this for odd, since odd go to last
+    tails[0].next = odd_dummy_head.next#assigning odd to the tail of even
+    return even_dummy_head.next
 
 
 if __name__ == '__main__':

@@ -1,9 +1,10 @@
-class SinglyListNode:
-    def __init__(self, data=0, next=None):
+class DoublyListNode:
+    def __init__(self, data=0, prev = None, next=None):
         self.data = data
         self.next = next
+        self.prev = prev
 
-class SinglyLinkedList:
+class DoublyLinkedList:
     def __init__(self):
         # Creates a placeholder for the result.
         self.head = None
@@ -11,20 +12,21 @@ class SinglyLinkedList:
     #  Insert new node at end position
     def insert(self, value):
         #  Create a node
-        node = SinglyListNode(data = value)#create node, assign the data
-        if (self.head == None):#chain it now
+        node = DoublyListNode(data = value)
+        if (self.head == None):
             #  Add first node
             self.head = node
             return
         #if list not empty
-        tail = self.head#create a tracker/tail and loop through list
+        tail = self.head
         #  Find last node
-        while (tail.next != None):#dont use tail!=None, you need to find the last node, hence using tail.next!= None
+        while (tail.next != None):#not tail!=None, you need to find the last node, hence using tail.next!= None
             #  Visit to next node
             tail = tail.next
         
         #  Add node at the end position
         tail.next = node
+        node.prev = tail#since it is a doublelinkedList
 	
     #  Display node element of doubly linked list
     def display(self):
@@ -39,5 +41,3 @@ class SinglyLinkedList:
                 print("  ", tail.data, end = "")
                 #  Visit to next node
                 tail = tail.next
-
-
