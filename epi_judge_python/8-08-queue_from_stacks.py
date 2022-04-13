@@ -34,5 +34,5 @@ def queue_tester(ops):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('queue_from_stacks.py',
+        generic_test.generic_test_main('8-08-queue_from_stacks.py',
                                        'queue_from_stacks.tsv', queue_tester))

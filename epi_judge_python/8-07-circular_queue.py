@@ -44,5 +44,5 @@ def queue_tester(ops):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('circular_queue.py',
+        generic_test.generic_test_main('8-07-circular_queue.py',
                                        'circular_queue.tsv', queue_tester))

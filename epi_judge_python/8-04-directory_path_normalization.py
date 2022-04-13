@@ -8,6 +8,6 @@ def shortest_equivalent_path(path: str) -> str:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('directory_path_normalization.py',
+        generic_test.generic_test_main('8-04-directory_path_normalization.py',
                                        'directory_path_normalization.tsv',
                                        shortest_equivalent_path))

@@ -8,5 +8,5 @@ def evaluate(expression: str) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('evaluate_rpn.py', 'evaluate_rpn.tsv',
+        generic_test.generic_test_main('8-02-evaluate_rpn.py', 'evaluate_rpn.tsv',
                                        evaluate))

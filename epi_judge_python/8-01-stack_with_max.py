@@ -52,5 +52,5 @@ def stack_tester(ops):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('stack_with_max.py',
+        generic_test.generic_test_main('8-01-stack_with_max.py',
                                        'stack_with_max.tsv', stack_tester))
