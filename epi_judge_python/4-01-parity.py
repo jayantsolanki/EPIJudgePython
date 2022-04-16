@@ -64,7 +64,7 @@ print(checkPower(0))
 
 """
 right propogate the rightmost set bit , example, turn 01010000 to 01011111
-logic: subtract 1 from x and or it with x, O(1)
+logic: subtract 1 from x and or(|) it with x, O(1), subtracting 1 turns all zero before the rightmost 1 to 1
 """
 def rightProp(x):
     return (x | (x-1))

@@ -938,7 +938,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: 8-05-sunset_view.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             }
         },
@@ -952,7 +952,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 8-06-tree_level_order.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
