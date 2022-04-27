@@ -90,5 +90,5 @@ def queue_tester(ops):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('queue_with_max.py',
+        generic_test.generic_test_main('8-09-queue_with_max.py',
                                        'queue_with_max.tsv', queue_tester))

@@ -1,4 +1,5 @@
 import functools
+from operator import eq
 from typing import List
 
 from test_framework import generic_test
@@ -18,13 +19,14 @@ def delete_duplicates(A: List[int]) -> int:
     if not A:
         return 0
     
-    write_index = 1
-    for i in range(1, len(A)):
-        if A[write_index -1] != A[i]:#this updates the write_index only if there is no repetition
-            A[write_index] = A[i]#overwrite the value 
-            write_index += 1
+    current_index = 1#tracks the number of unique elements, by default at least one
+    for i in range(1, len(A)):# will scan from 0 to length - 1
+        if A[current_index -1] != A[i]:#this updates the write_index only if there is no repetition
+            A[current_index] = A[i]#copy the unqiue value to current index
+            current_index += 1
     # print(A[:write_index])
-    return write_index
+    return current_index
+
 
 #test
 print(delete_duplicates([2,3,5,5,7,11,11,11,13]))
@@ -80,11 +82,11 @@ def minArray(A, m):
             if count == m:
                 pos = pos - count + repeat#pull back the pos
                 count = 1#reset the count now
-            else:
+            else:#if new element then reset the count
                 count = 1
         else:
             count = count + 1
-        A[pos] = A[i]
+        A[pos] = A[i]#copy the elements to position at pos, pos is the pointer which keep accurate tracking
         pos += 1
 
     if count == m:#if number repeated is last in series

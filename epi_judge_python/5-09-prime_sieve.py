@@ -6,18 +6,18 @@ from test_framework import generic_test
 # It is a classical algo we use to do in school
 #improved one
 # Given n, return all primes up to and including n.
-# time to sieve foir each p is proportional to n/p, hence O(n/2 + n/5 + n/7 + n/11  + ..) yielding below
+# time to sieve for each p is proportional to n/p, hence O(n/2 + n/5 + n/7 + n/11  + ..) yielding below
 # time: O(nloglogn), space, O(n)
 def generate_primes(n: int) -> List[int]:
     primes = []
     # is_prime[p] represents if P is prime or not. Initially, set each to
     # true, expecting 0 and 1. Then use sieving to eliminate nonprimes.
-    is_prime = [False, False] + [True] * (n-1)
+    is_prime = [False, False] + [True] * (n-1)# first two for 0, 1
     for p in range(2, n+1):
-        if is_prime[p]:
+        if is_prime[p]:#only proceed when array at pos p is true
             primes.append(p)
-            #sieve p's mutliples.
-            for i in range(p*2, n+1, p):#next P+P+P+P... so on
+            #sieve p's multiples.
+            for i in range(p*2, n+1, p):#next P+P+P+P... so on, mark false for multiples of p
                 is_prime[i] = False
     return primes
 

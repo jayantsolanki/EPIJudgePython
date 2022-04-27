@@ -1,8 +1,7 @@
 from test_framework import generic_test
 
-
+#advantage of using 2^k is that it can be computed efficiently using shifting
 def divide(x: int, y: int) -> int:
-    # TODO - you fill in here.
     result, power = 0, 32 # start with largest power and keep going down
     y_power = y << power # y*2^k, 2^k is the factor
     while x >= y:

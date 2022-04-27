@@ -9,13 +9,13 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def zero_one_random():
-    return random.randrange(2)
+    return random.randrange(2)#returns 0 or 1
 
 
 def uniform_random(lower_bound: int, upper_bound: int) -> int:
     # TODO - you fill in here.
     number_of_outcomes = upper_bound - lower_bound + 1
-    iter = math.floor(math.log(number_of_outcomes, 2))+1 #iter gives the size of binary digits
+    iter = math.floor(math.log(number_of_outcomes, 2))+1 #iter gives the size of binary digits to get those outcomes
     while True:
         result = 0
         for i in range(iter):#construct a number which is three bits size

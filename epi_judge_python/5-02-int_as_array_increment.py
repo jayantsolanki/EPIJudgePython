@@ -11,7 +11,7 @@ from test_framework import generic_test
 #brute force
 #time complexity O(n)
 def plus_one(A):
-    A[-1] += 1
+    A[-1] += 1 # first add the number
     #for i in reversed(range(1, len(A))):# like a school level addition, move the carry to next element. Reversed is a iterator, actual array not reversed
     for i in range(len(A)-1, 0, -1):# like a school level addition, move the carry to next element.
         # if A[i] != 10:
@@ -76,7 +76,7 @@ plus_bits("10", "0010")
 
 #shortcut
 def plus_bits2(Bs, Bt):
-    return bin(int(Bs,2) + int(Bt,2))[2:]
+    return bin(int(Bs,2) + int(Bt,2))[2:]#ignore first two 0b
 
 plus_bits2("1010", "0010")
 plus_bits2("10", "0010")

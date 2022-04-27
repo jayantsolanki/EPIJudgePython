@@ -10,7 +10,7 @@ from test_framework.random_sequence_checker import (
 from test_framework.test_utils import enable_executor_hook
 
 """
-Design a program that takes as input a size k, and reds packets, continuously maintaining
+Design a program that takes as input a size k, and reads packets, continuously maintaining
 a uniform random subset of size k of the read packets
 Time: O(k), space: O(1)
 """

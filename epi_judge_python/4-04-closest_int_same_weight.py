@@ -18,6 +18,7 @@ def closest_int_same_bit_count(x: int) -> int:
     return x
 
 
+
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('4-04-closest_int_same_weight.py',

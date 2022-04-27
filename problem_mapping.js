@@ -278,7 +278,7 @@ problem_mapping = {
                 "total": 402
             },
             "Python: 5-07-buy_and_sell_stock_twice.py": {
-                "passed": 402,
+                "passed": 0,
                 "total": 402
             }
         },
@@ -390,7 +390,7 @@ problem_mapping = {
                 "total": 9
             },
             "Python: 5-15-random_subset.py": {
-                "passed": 9,
+                "passed": 3,
                 "total": 9
             }
         },
@@ -994,7 +994,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: 8-09-queue_with_max.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         }
@@ -1010,7 +1010,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-01-is_tree_balanced.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
