@@ -8,6 +8,7 @@ from test_framework import generic_test
 # Check if a partially filled matrix has any conflicts. Specifically check if no rows or 
 # columns contains duplicates
 # 0 value in the entry means its blank
+# we need to check 9 rows, 9 columns, and 9 sub squares
 """
 We need to check nine rows, nine colmns and 9 subgrids (those squares consisting of 9 cells), 
 to ensure no duplicates occurs
@@ -58,9 +59,9 @@ def is_valid_sudoku(partial_assignment: List[List[int]]) -> bool:
     n = len(partial_assignment)
     # Check row and column constraints.
     for i in range(n):
-        if has_duplicate([partial_assignment[i][j] for j in range(n)]):#row
+        if has_duplicate([partial_assignment[i][j] for j in range(n)]):#column
             return False
-        if has_duplicate([partial_assignment[j][i] for j in range(n)]):#column
+        if has_duplicate([partial_assignment[j][i] for j in range(n)]):#row
             return False
 
     # Check region constraints.
@@ -69,7 +70,7 @@ def is_valid_sudoku(partial_assignment: List[List[int]]) -> bool:
         for J in range(region_size):
             if has_duplicate([
                 partial_assignment[a][b]
-                for a in range(region_size * I, region_size * (I + 1))#going through each sub grid
+                for a in range(region_size * I, region_size * (I + 1))#going through each sub grid 0 - 2, 3-5, 6- 8
                 for b in range(region_size * J, region_size * (J + 1))
             ]):
                 return False

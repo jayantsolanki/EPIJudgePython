@@ -42,11 +42,11 @@ def matrix_in_spiral_order(square_matrix):
             return
                
         spiral_ordering.extend(square_matrix[offset][offset:size-offset-1])#row elements
-        spiral_ordering.extend([col[size-offset - 1] for col in square_matrix[offset:size-offset-1][:]])#col elements
+        spiral_ordering.extend([col[size-offset - 1] for col in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
         spiral_ordering.extend(square_matrix[size-offset - 1][size-offset-1:offset:-1])#row elements reversed
         spiral_ordering.extend([col[offset] for col in square_matrix[size-offset-1:offset:-1][:]]) #col elements reversed
         
-    for offset in range((len(square_matrix)+1) // 2): # + one needed, for n = 1
+    for offset in range((len(square_matrix)+1) // 2): # + one needed, for n = 1 -> (1+1)//2
     # for offset in range(math.ceil(len(square_matrix) / 2)): # + one needed, for n = 1
         matrix_layer_in_clockwise(offset, size)
 
@@ -344,7 +344,7 @@ def kth_element_spiral(A, m, n, k):#k here starts with 1
         ring = int(math.floor((-(m + n) + math.sqrt((m+n)**2 - 4*k)) /(-4)))
         #arithmetic sum to find out how many elements covered in ring, ring-1 , .. 0
         ring_start_elements = int(-4*(ring**2) + 2*ring*(m+n))
-    offset = k - ring_start_elements
+    offset = k - ring_start_elements#elements remaining to check for in the current ring, because k is upper boundary
 
     #rows left in current ring, logic: after every ring top and bottom rows removed
     mod_m = (m - ring*2)
@@ -355,7 +355,7 @@ def kth_element_spiral(A, m, n, k):#k here starts with 1
         x = ring
         y = ring + offset - 1
     elif (offset <= mod_n + mod_m - 1): # rightmost column in the current ring
-        x = ring + offset - mod_n
+        x = ring + (offset - mod_n)
         y = n - 1 - ring
     elif (offset <= mod_n + mod_m - 1 + mod_n - 1): # bottom row in the current ring
         x = m - 1 - ring

@@ -15,9 +15,9 @@ import numpy
 #time: O(n). space: O(1)
 def nonuniform_random_number_generation_naive(values: List[int],
                                         probabilities: List[float]) -> int:
-    r = random.random()
+    r = random.random()#first generate the random number, 
     p = 0
-    for i in range(len(probabilities)):
+    for i in range(len(probabilities)):#create pdf on the fly, then check where the value belongs
         p = p + probabilities[i]#making a pdf graph
         if r < p:#yes less than, instead of <=
             return values[i]
