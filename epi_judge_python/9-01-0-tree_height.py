@@ -14,7 +14,7 @@ class BinaryTreeNode:
 #The basic computation is to compute the height of the each node starting from leaves, and proceeding
 # upwards.
 def maxDepth(node):
-    if node is None:
+    if node is None:#as soon has leaf is encountered, start measuring the height
         return -1 ;#child of leaf is none, hence -1 for that. leaf is 0
  
     else :

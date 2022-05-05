@@ -15,6 +15,9 @@ BinaryTreeNode = Node #creating synonym
 #O(h) space and O(n) time
 # A binary tree is balanced, if, for every node, the heights of its left and right children differ by at most 1.
 #logic: so traverse in postorder, as soon as you get the false for any node, propogate that false all the way to root
+# Note
+#if recursive calls before conditional check, then its bottom up. If recursive call after conditional check, its top down
+# post order traversal indicates bottom up, pre order traversal indicates top down
 def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
 
     BalancedStatusWithHeight = collections.namedtuple(
@@ -28,9 +31,9 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
         #post order implemeentation
         left_result = check_balanced(tree.left)
         #if any left subtree is not height balanced we do not need to visit
-        # he corresponding right subtree
+        # the corresponding right subtree
         if not left_result.balanced:#only run when not height balanced, else return before visting the other side
-            return left_result#return false if not balanced
+            return left_result#return false if not balanced, propogate the result to the parent
 
         right_result = check_balanced(tree.right)
         if not right_result.balanced:#return false if not balanced
@@ -81,14 +84,30 @@ Logic: return 0 or 2, if 1 then not a full binary tree, exit then
 Idea here is to start from root, and check if contains left and right child together or not, if not then exit
 """
 
-def is_full_binary_tree(tree):
-    if tree is None:#leaf nodes
-        return True
+# def is_full_binary_tree(tree):
+#     if tree is None:#leaf nodes
+#         return True
 
-    count = (0 if not tree.left else 1) + (0 if not tree.right else 1)
-    print(count)
-    #go down to children only if current node as 0 or 2 else return false
-    return count!= 1 and is_full_binary_tree(tree.left) and is_full_binary_tree(tree.right)
+#     count = (0 if not tree.left else 1) + (0 if not tree.right else 1)
+#     print(count)
+#     #go down to children only if current node as 0 or 2 else return false
+#     return count!= 1 and is_full_binary_tree(tree.left) and is_full_binary_tree(tree.right)
+#use bfs
+def is_full_binary_tree(tree):
+    if not tree:
+        return True
+    node_deque = collections.deque([tree])#insert the root
+    while node_deque:
+        current_node = node_deque.popleft()
+        if (not current_node.left and current_node.right) or (current_node.left and not current_node.right):#check if the current node has only one child:
+            return False
+        if current_node.left and current_node.right:
+            node_deque.append(current_node.left)
+            node_deque.append(current_node.right)
+    return True
+
+
+
 root = BinaryTreeNode(1)
 root.left = BinaryTreeNode(2)
 root.right = BinaryTreeNode(3)
@@ -102,44 +121,18 @@ root.left.left.right = BinaryTreeNode(9)
 print(is_full_binary_tree(root))
 print(root)
 
-#variant 1
-"""
-Write a program that returns the size of larg: est subtree that is complete
-Complete tree: A complete binary tree is a binary tree where nodes are filled in from left to right.
-A complete binary tree is a binary tree in which all the levels are completely filled 
-except the last level, and all the nodes are as far left as possible
-https://www.programiz.com/dsa/complete-binary-tree
-https://www.interviewcake.com/concept/java/complete-binary-tree
-Logic: Simply look for subtree where only leftmost leaves are there, and caluclate their max depth
-"""
-# return (is_complete, max_height_so_far, is_perfect)
-def is_complete_tree(node):
-    # null
-    if not node:
-        return (True, -1, True)
-
-    left_subtree = is_complete_tree(node.left)
-    right_subtree = is_complete_tree(node.right)
-
-    # if any of subtrees isn't complete, current tree is not complete
-    if not left_subtree[0] or not right_subtree[0]:
-        return (False, max(left_subtree[1], right_subtree[1]), False)
-
-    # if both subtrees are complete, there are 2 cases in order for current tree to be complete
-    # case 1: subtrees with same height
-    # left subtree must be perfect
-    if left_subtree[1] == right_subtree[1] and left_subtree[2]:
-        return (True, left_subtree[1] + 1, right_subtree[2])
-
-    # case 2: left subtree taller by 1
-    # right subtree must be perfect
-    if left_subtree[1] == right_subtree[1] + 1 and right_subtree[2]:
-        return (True, left_subtree[1] + 1, False)
-
-    # otherwise not complete
-    return (False, max(left_subtree[1], right_subtree[1]), False)
-
-#test, below is a complete binary tree
+def is_complete_binary_tree(tree):
+    if not tree:
+        return True
+    node_deque = collections.deque([tree])#insert the root
+    while node_deque:
+        current_node = node_deque.popleft()
+        if (not current_node.left and current_node.right):#check if the current node has only one child:
+            return False
+        if current_node.left and current_node.right:
+            node_deque.append(current_node.left)
+            node_deque.append(current_node.right)
+    return True
 root = BinaryTreeNode(1)
 root.left = BinaryTreeNode(2)
 root.right = BinaryTreeNode(3)
@@ -150,11 +143,37 @@ root.left.right = BinaryTreeNode(5)
 root.left.left.left = BinaryTreeNode(8)
 root.left.left.right = BinaryTreeNode(9)
 root.left.right.left = BinaryTreeNode(10)
-# root.left.left.left.right = BinaryTreeNode(9)
-print(is_complete_tree(root))
+print(is_complete_binary_tree(root))
 print(root)
 
-#test, below is not a complete binary tree
+
+#variant 1
+"""
+Write a program that returns the size of largest subtree that is complete
+Complete tree: A complete binary tree is a binary tree where nodes are filled in from left to right.
+A complete binary tree is a binary tree in which all the levels are completely filled 
+except the last level, and all the nodes are as far left as possible
+https://stackoverflow.com/questions/33842493/largest-complete-subtree-in-a-binary-tree
+https://www.geeksforgeeks.org/find-the-largest-complete-subtree-in-a-given-binary-tree/
+Logic: IF a node at depth L is incomplete, than it must be complete at L - 1. IF doing this in BFS
+So, keep on enquing and as soon as you find anamalous node stop
+"""
+# return (is_complete, max_height_so_far, is_perfect)
+def complete_subtree_depth(tree):
+    if not tree:
+        return 0
+    depth = 1
+    node_deque = collections.deque([(depth, tree)])#insert the root
+    while node_deque:
+        depth, current_node = node_deque.popleft()
+        if (not current_node.left and current_node.right):#check if the current node has only one child:
+            return depth
+        if current_node.left and current_node.right:
+            node_deque.append((depth + 1, current_node.left))
+            node_deque.append((depth + 1, current_node.right))
+    return depth - 1
+
+
 root = BinaryTreeNode(1)
 root.left = BinaryTreeNode(2)
 root.right = BinaryTreeNode(3)
@@ -162,10 +181,58 @@ root.right.left = BinaryTreeNode(6)
 root.right.right = BinaryTreeNode(7)
 root.left.left = BinaryTreeNode(4)
 root.left.right = BinaryTreeNode(5)
-root.left.right.left = BinaryTreeNode(10)
-# root.left.left.left.right = BinaryTreeNode(9)
-print(is_complete_tree(root))
+root.left.left.left = BinaryTreeNode(8)
+root.left.left.right = BinaryTreeNode(9)
+root.left.right.right = BinaryTreeNode(10)
+print(complete_subtree_depth(root))
 print(root)
+
+## Variant 2 k balanced tree
+"""
+Return the node whose subtree is hieght balanced
+"""
+def is_kth_balanced_binary_tree(tree: BinaryTreeNode, k: int) -> bool:
+
+    BalancedStatusWithHeight = collections.namedtuple(
+        'BalancedStatusWithHeight', ('node', 'balanced', 'height')) # this is important
+
+    def check_balanced(tree):
+        if not tree:
+            return BalancedStatusWithHeight(node = None, balanced=True, height=-1)#children of leaves are always None hence set to -1
+        #post order implemeentation
+        left_result = check_balanced(tree.left)
+        if not left_result.balanced:
+            return left_result
+
+        right_result = check_balanced(tree.right)
+        if not right_result.balanced:#return false if not balanced
+            return right_result
+
+        is_balanced = abs(left_result.height - right_result.height) != k#break when k value encountered
+        height = max(left_result.height, right_result.height) + 1 # you have to always pick the max height
+        return BalancedStatusWithHeight(tree, is_balanced, height)
+
+    return check_balanced(tree).node.val
+root = BinaryTreeNode(314)
+root.left = BinaryTreeNode(6)
+root.right = BinaryTreeNode(6)
+root.right.left = BinaryTreeNode(2)
+root.right.right = BinaryTreeNode(271)
+root.left.left = BinaryTreeNode(271)
+root.left.right = BinaryTreeNode(561)
+root.left.left.left = BinaryTreeNode(28)
+root.left.left.right = BinaryTreeNode(0)
+root.left.right.right = BinaryTreeNode(3)
+root.left.right.right.left = BinaryTreeNode(17)
+root.right.right.right = BinaryTreeNode(28)
+root.right.left.right = BinaryTreeNode(1)
+root.right.left.right.left = BinaryTreeNode(401)
+root.right.left.right.right = BinaryTreeNode(257)
+root.right.left.right.left.right = BinaryTreeNode(641)
+# print(root)
+print(is_kth_balanced_binary_tree(root, 3))
+
+
 
 if __name__ == '__main__':
     exit(
