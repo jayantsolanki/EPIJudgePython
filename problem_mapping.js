@@ -1024,7 +1024,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-02-is_tree_symmetric.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1038,7 +1038,7 @@ problem_mapping = {
                 "total": 948
             },
             "Python: 9-03-lowest_common_ancestor.py": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1052,7 +1052,7 @@ problem_mapping = {
                 "total": 948
             },
             "Python: 9-04-lowest_common_ancestor_with_parent.py": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1066,7 +1066,7 @@ problem_mapping = {
                 "total": 3849
             },
             "Python: 9-05-sum_root_to_leaf.py": {
-                "passed": 0,
+                "passed": 3849,
                 "total": 3849
             }
         },
@@ -1080,7 +1080,7 @@ problem_mapping = {
                 "total": 7690
             },
             "Python: 9-06-path_sum.py": {
-                "passed": 0,
+                "passed": 7690,
                 "total": 7690
             }
         },

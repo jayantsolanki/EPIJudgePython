@@ -1,6 +1,15 @@
 from logging import RootLogger
 
+"""
+https://en.wikipedia.org/wiki/Tree_traversal
+pre-order traversal is actually a form of Depth-First-Search (DFS) traversal. There are three different forms of DFS, namely:
 
+Pre-Order
+In-Order
+Post-Order
+
+https://stackoverflow.com/questions/55243105/breadth-first-search-traversal-vs-pre-order-traversal-vs-depth-first-search-trav#:~:text=pre%2Dorder%20DFS%20technique%20is%20generally%20used%20in%20graph%20traversal%20.&text=BFS%20is%20a%20level%20order,you%20will%20find%20out%20difference.
+"""
 class BinaryTreeNode:
     def __init__(self, data = None, left = None, right = None) -> None:
         self.data = data
