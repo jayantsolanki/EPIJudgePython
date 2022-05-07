@@ -13,12 +13,38 @@ class BinaryTreeNode:
         self.right = right
         self.size = size
 
-
+#uses size to fine numbers of child nodes in current node
 def find_kth_node_binary_tree(tree: BinaryTreeNode,
                               k: int) -> Optional[BinaryTreeNode]:
-    # TODO - you fill in here.
-    return None
 
+    while tree:
+        left_size = tree.left.size if tree.left else 0
+        if left_size + 1 < k:  # k-th node must be in right subtree of tree.
+            k -= left_size + 1
+            tree = tree.right
+        elif left_size == k - 1:  # k-th is iter itself.
+            return tree
+        else:  # k-th node must be in left subtree of iter.
+            tree = tree.left
+    return None  # If k is between 1 and the tree size, this is unreachable.
+
+#naive solution, doesn use size, time: O(k)
+def find_kth_node_binary_tree_naive(tree: BinaryTreeNode,
+                              k: int) -> Optional[BinaryTreeNode]:
+    counter = 0
+    in_process = [(tree, False)]#initial node
+    while in_process:#run while stack is not empty
+        node, left_subtree_traversed = in_process.pop()
+        if node:
+            if left_subtree_traversed:#if node just popped is not False then add it to result
+                counter = counter + 1
+                if counter == k:
+                    return node
+            else:
+                in_process.append((node.right, False))
+                in_process.append((node, True))
+                in_process.append((node.left, False))
+    return None
 
 @enable_executor_hook
 def find_kth_node_binary_tree_wrapper(executor, tree, k):
@@ -40,6 +66,6 @@ def find_kth_node_binary_tree_wrapper(executor, tree, k):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('kth_node_in_tree.py',
+        generic_test.generic_test_main('9-08-kth_node_in_tree.py',
                                        'kth_node_in_tree.tsv',
                                        find_kth_node_binary_tree_wrapper))
