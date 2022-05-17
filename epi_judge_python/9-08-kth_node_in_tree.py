@@ -12,7 +12,9 @@ class BinaryTreeNode:
         self.left = left
         self.right = right
         self.size = size
-
+"""
+Write a prgoram to compute kth node appearing in inordeer
+"""
 #uses size to fine numbers of child nodes in current node
 def find_kth_node_binary_tree(tree: BinaryTreeNode,
                               k: int) -> Optional[BinaryTreeNode]:
@@ -34,9 +36,9 @@ def find_kth_node_binary_tree_naive(tree: BinaryTreeNode,
     counter = 0
     in_process = [(tree, False)]#initial node
     while in_process:#run while stack is not empty
-        node, left_subtree_traversed = in_process.pop()
+        node, children_added = in_process.pop()
         if node:
-            if left_subtree_traversed:#if node just popped is not False then add it to result
+            if children_added:#if node just popped is not False then add it to result
                 counter = counter + 1
                 if counter == k:
                     return node

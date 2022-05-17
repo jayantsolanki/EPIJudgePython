@@ -1122,7 +1122,7 @@ problem_mapping = {
                 "total": 948
             },
             "Python: 9-09-successor_in_tree.py": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1136,7 +1136,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-10-tree_with_parent_inorder.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
