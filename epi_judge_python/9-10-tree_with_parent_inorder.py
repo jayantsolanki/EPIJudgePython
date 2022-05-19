@@ -1,6 +1,10 @@
 from typing import List
 
-from binary_tree_with_parent_prototype import BinaryTreeNode
+# from binary_tree_with_parent_prototype import BinaryTreeNode
+
+from binarytree import Node
+BinaryTreeNode = Node #creating synonym
+
 from test_framework import generic_test
 
 """
@@ -71,6 +75,58 @@ def inorder_traversal_alt(tree: BinaryTreeNode) -> List[int]:
         if not successNode:
             break
         tree = successNode
+    return result
+
+"""
+Variant 1, perform preorder iteratively using O(1) space
+"""
+
+def preorder_traversal(tree: BinaryTreeNode) -> List[int]:
+
+    prev, result = None, []
+    while tree:
+        if prev is tree.parent:
+            result.append(tree.data)
+            # next = tree.left or tree.right
+            # We came down to tree from prev.
+            if tree.left:  # Keep going left.
+                next = tree.left
+            else:
+                next = tree.right or tree.parent#left most node can also have a right child, so we need to visit that
+        elif tree.left is prev:#inorder is like left, root, right
+            # We came up to tree(parent) from its left child.
+            # result.append(tree.data)#puts the parent in the result
+            # Done with left, so go right if right is not empty. Otherwise, go
+            # up.
+            next = tree.right or tree.parent
+        else:  # Done with both children, so move up.
+            next = tree.parent
+
+        prev, tree = tree, next
+    return result
+
+"""
+Variant 2, perform postorder iteratively using O(1) space
+"""
+
+def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
+
+    prev, result = None, []
+    while tree:
+        if prev is tree.parent:
+            # next = tree.left or tree.right
+            # We came down to tree from prev.
+            if tree.left:  # Keep going left.
+                next = tree.left
+            else:
+                result.append(tree.data)
+                next = tree.right or tree.parent#left most node can also have a right child, so we need to visit that
+        elif tree.left is prev:#
+            next = tree.right or tree.parent
+        else:  # Done with both children, so move up.
+            result.append(tree.data)
+            next = tree.parent
+        prev, tree = tree, next
     return result
 
 

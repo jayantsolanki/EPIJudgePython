@@ -1150,7 +1150,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-11-tree_from_preorder_inorder.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1164,7 +1164,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-12-tree_from_preorder_with_null.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1178,7 +1178,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-13-tree_connect_leaves.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1192,7 +1192,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-14-tree_exterior.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1206,7 +1206,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: 9-15-tree_right_sibling.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         }

@@ -42,7 +42,7 @@ def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
     curr_depth_nodes = [tree] #get root
     while curr_depth_nodes:
         result.append([curr.data for curr in curr_depth_nodes])#get the value of nodes at current level
-        #enclosing above in an sepearate list, since each separate list defines the level (depth)
+        #enclosing above in an separate list, since each separate list defines the level (depth)
         #now fetch the nodes at next level
         children = []
         for curr in curr_depth_nodes:
