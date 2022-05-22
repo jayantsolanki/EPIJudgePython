@@ -518,7 +518,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 6-03-spreadsheet_encoding.py": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -1221,8 +1221,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 152
             },
-            "Python: sorted_arrays_merge.py": {
-                "passed": 0,
+            "Python: 10-01-sorted_arrays_merge.py": {
+                "passed": 152,
                 "total": 152
             }
         },
@@ -1235,8 +1235,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: sort_increasing_decreasing_array.py": {
-                "passed": 0,
+            "Python: 10-02-sort_increasing_decreasing_array.py": {
+                "passed": 203,
                 "total": 203
             }
         },
@@ -1249,8 +1249,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 101
             },
-            "Python: sort_almost_sorted_array.py": {
-                "passed": 0,
+            "Python: 10-03-sort_almost_sorted_array.py": {
+                "passed": 101,
                 "total": 101
             }
         },
@@ -1263,7 +1263,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 51
             },
-            "Python: k_closest_stars.py": {
+            "Python: 10-04-k_closest_stars.py": {
                 "passed": 0,
                 "total": 51
             }
@@ -1277,7 +1277,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 55
             },
-            "Python: online_median.py": {
+            "Python: 10-05-online_median.py": {
                 "passed": 0,
                 "total": 55
             }
@@ -1291,7 +1291,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 102
             },
-            "Python: k_largest_in_heap.py": {
+            "Python: 10-06-k_largest_in_heap.py": {
                 "passed": 0,
                 "total": 102
             }
@@ -1307,7 +1307,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 314
             },
-            "Python: search_first_key.py": {
+            "Python: 11-01-search_first_key.py": {
                 "passed": 0,
                 "total": 314
             }
@@ -1321,7 +1321,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 501
             },
-            "Python: search_entry_equal_to_index.py": {
+            "Python: 11-02-search_entry_equal_to_index.py": {
                 "passed": 0,
                 "total": 501
             }
@@ -1335,7 +1335,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 307
             },
-            "Python: search_shifted_sorted_array.py": {
+            "Python: 11-03-search_shifted_sorted_array.py": {
                 "passed": 0,
                 "total": 307
             }
@@ -1349,7 +1349,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 2000
             },
-            "Python: int_square_root.py": {
+            "Python: 11-04-int_square_root.py": {
                 "passed": 0,
                 "total": 2000
             }
@@ -1363,7 +1363,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 11003
             },
-            "Python: real_square_root.py": {
+            "Python: 11-05-real_square_root.py": {
                 "passed": 0,
                 "total": 11003
             }
@@ -1377,7 +1377,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 194
             },
-            "Python: search_row_col_sorted_matrix.py": {
+            "Python: 11-06-search_row_col_sorted_matrix.py": {
                 "passed": 0,
                 "total": 194
             }
@@ -1391,7 +1391,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 501
             },
-            "Python: search_for_min_max_in_array.py": {
+            "Python: 11-07-search_for_min_max_in_array.py": {
                 "passed": 0,
                 "total": 501
             }
@@ -1405,7 +1405,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 503
             },
-            "Python: kth_largest_in_array.py": {
+            "Python: 11-08-kth_largest_in_array.py": {
                 "passed": 0,
                 "total": 503
             }
@@ -1419,7 +1419,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 100
             },
-            "Python: absent_value_array.py": {
+            "Python: 11-09-absent_value_array.py": {
                 "passed": 0,
                 "total": 100
             }
@@ -1433,7 +1433,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 50
             },
-            "Python: search_for_missing_element.py": {
+            "Python: 11-10-search_for_missing_element.py": {
                 "passed": 0,
                 "total": 50
             }

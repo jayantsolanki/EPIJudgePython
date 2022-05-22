@@ -11,7 +11,7 @@ def k_largest_in_binary_heap(A: List[int], k: int) -> List[int]:
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'k_largest_in_heap.py',
+            '10-06-k_largest_in_heap.py',
             'k_largest_in_heap.tsv',
             k_largest_in_binary_heap,
             comparator=test_utils.unordered_compare))

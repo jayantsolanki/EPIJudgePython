@@ -49,6 +49,6 @@ def find_closest_k_stars_wrapper(executor, stars, k):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('k_closest_stars.py',
+        generic_test.generic_test_main('10-04-k_closest_stars.py',
                                        'k_closest_stars.tsv',
                                        find_closest_k_stars_wrapper, comp))

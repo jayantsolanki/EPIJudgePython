@@ -4,8 +4,9 @@ import string
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
+#not supposed to use int and stgr
 #logic: extract each digit using %10 and /10 then
-# approach is to add each extract digit to the end, and then reverse it
+# approach is to add each extracted digit to the end, and then reverse it
 def int_to_string(x: int) -> str:
 
     is_negative = False
