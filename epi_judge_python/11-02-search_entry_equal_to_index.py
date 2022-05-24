@@ -26,6 +26,6 @@ def search_entry_equal_to_its_index_wrapper(executor, A):
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'search_entry_equal_to_index.py',
+            '11-02-search_entry_equal_to_index.py',
             'search_entry_equal_to_index.tsv',
             search_entry_equal_to_its_index_wrapper))

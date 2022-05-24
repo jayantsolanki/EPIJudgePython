@@ -8,5 +8,5 @@ def square_root(k: int) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('int_square_root.py',
+        generic_test.generic_test_main('11-04-int_square_root.py',
                                        'int_square_root.tsv', square_root))

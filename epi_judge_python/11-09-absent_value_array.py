@@ -20,6 +20,6 @@ def find_missing_element_wrapper(stream):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('absent_value_array.py',
+        generic_test.generic_test_main('11-09-absent_value_array.py',
                                        'absent_value_array.tsv',
                                        find_missing_element_wrapper))

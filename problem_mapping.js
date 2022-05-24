@@ -1449,7 +1449,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 9
             },
-            "Python: anagrams.py": {
+            "Python: 12-00-anagrams.py": {
                 "passed": 0,
                 "total": 9
             }
@@ -1463,7 +1463,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 305
             },
-            "Python: is_string_permutable_to_palindrome.py": {
+            "Python: 12-01-is_string_permutable_to_palindrome.py": {
                 "passed": 0,
                 "total": 305
             }
@@ -1477,7 +1477,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 212
             },
-            "Python: is_anonymous_letter_constructible.py": {
+            "Python: 12-02-is_anonymous_letter_constructible.py": {
                 "passed": 0,
                 "total": 212
             }
@@ -1491,7 +1491,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 101
             },
-            "Python: lru_cache.py": {
+            "Python: 12-03-lru_cache.py": {
                 "passed": 0,
                 "total": 101
             }
@@ -1505,7 +1505,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 948
             },
-            "Python: lowest_common_ancestor_close_ancestor.py": {
+            "Python: 12-04-lowest_common_ancestor_close_ancestor.py": {
                 "passed": 0,
                 "total": 948
             }
@@ -1519,7 +1519,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 505
             },
-            "Python: nearest_repeated_entries.py": {
+            "Python: 12-05-nearest_repeated_entries.py": {
                 "passed": 0,
                 "total": 505
             }
@@ -1533,7 +1533,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 904
             },
-            "Python: smallest_subarray_covering_set.py": {
+            "Python: 12-06-smallest_subarray_covering_set.py": {
                 "passed": 0,
                 "total": 904
             }
@@ -1547,7 +1547,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 629
             },
-            "Python: smallest_subarray_covering_all_values.py": {
+            "Python: 12-07-smallest_subarray_covering_all_values.py": {
                 "passed": 0,
                 "total": 629
             }
@@ -1561,7 +1561,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 987
             },
-            "Python: longest_subarray_with_distinct_values.py": {
+            "Python: 12-08-longest_subarray_with_distinct_values.py": {
                 "passed": 0,
                 "total": 987
             }
@@ -1575,7 +1575,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: longest_contained_interval.py": {
+            "Python: 12-09-longest_contained_interval.py": {
                 "passed": 0,
                 "total": 203
             }
@@ -1589,7 +1589,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 171
             },
-            "Python: string_decompositions_into_dictionary_words.py": {
+            "Python: 12-10-string_decompositions_into_dictionary_words.py": {
                 "passed": 0,
                 "total": 171
             }
@@ -1603,7 +1603,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 7
             },
-            "Python: collatz_checker.py": {
+            "Python: 12-11-collatz_checker.py": {
                 "passed": 0,
                 "total": 7
             }

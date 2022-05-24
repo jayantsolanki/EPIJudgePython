@@ -10,6 +10,6 @@ def search_first_of_k(A: List[int], k: int) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('search_first_key.py',
+        generic_test.generic_test_main('11-01-search_first_key.py',
                                        'search_first_key.tsv',
                                        search_first_of_k))

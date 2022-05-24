@@ -13,6 +13,6 @@ def find_kth_largest(k: int, A: List[int]) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('kth_largest_in_array.py',
+        generic_test.generic_test_main('11-08-kth_largest_in_array.py',
                                        'kth_largest_in_array.tsv',
                                        find_kth_largest))

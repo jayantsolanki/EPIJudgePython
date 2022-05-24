@@ -23,7 +23,7 @@ def res_printer(prop, value):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('search_for_min_max_in_array.py',
+        generic_test.generic_test_main('11-07-search_for_min_max_in_array.py',
                                        'search_for_min_max_in_array.tsv',
                                        find_min_max,
                                        res_printer=res_printer))
