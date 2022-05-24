@@ -1,7 +1,5 @@
-from email import iterators
 import heapq
 import itertools
-from re import L
 from typing import Iterator, List
 
 from test_framework import generic_test
@@ -16,6 +14,7 @@ Below probelm will efficiently sort those
 Logic: To solve this problem in general setting, we need to store the k+1 numbers in a min-heap, that will enable to 
 extract min number efficiently, and add new number efficiently. We add additional numbers to minheap and extract 
 minimum from the min heap. When  we run out of new number we simple starts to just extract
+Time: O(nlogk), space O(k)
 """
 def sort_approximately_sorted_array_v2(sequence: Iterator[int],
                                     k: int) -> List[int]:
