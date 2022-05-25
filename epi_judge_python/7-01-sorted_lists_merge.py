@@ -11,7 +11,7 @@ def merge_two_sorted_lists(L1: Optional[ListNode], L2: Optional[ListNode]) -> Op
 
     # Creates a placeholder for the result.
     dummy_head = tail = ListNode()#you will use head to access the whole list
-    #above is unnecessarily creating a new node
+    #above is a sentinel node, removes us from the burden to check if a list is empty
     #you only move the tail, head will remain as it is, the start of the node
     while L1 and L2:#if either of these are None or become None then stop the loop
         if L1.data <= L2.data:
