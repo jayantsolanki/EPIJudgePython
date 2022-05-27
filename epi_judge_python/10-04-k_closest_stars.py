@@ -52,7 +52,7 @@ def find_closest_k_stars(stars: Iterator[Star], k: int) -> List[Star]:
             #hence, below line will eventually kick it, so any further max start automatically gets kicked out
             # deletion always occurs at the root, and the mx is only stored at the top
             heapq.heappop(max_heap)
-        #so once the k max-heap goes thorugh all the star, it will only contains k max stars.
+        #so once the k max-heap goes thorugh all the star, it will only contains k max(negative) stars.
 
     # Iteratively extract from the max-heap, which yields the stars sorted
     # according from furthest to closest.# actually it is opposite, closest to further
@@ -77,7 +77,7 @@ def kth_largest_element(elements:  Iterator[int], k: int):
     min_heap = []
     for element in elements:
         heapq.heappush(min_heap, element)
-        if len(min_heap) == k + 1:
+        if len(min_heap) == k + 1:#i think it should k not k + 1
             print(heapq.heappop(min_heap))
     
 kth_largest_element(iter([1,2,3,4,5,6,7,8,9]), 3)

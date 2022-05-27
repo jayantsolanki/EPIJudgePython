@@ -11,7 +11,7 @@ from test_framework import generic_test
     next element of the array whose element was picked up. You can do this by using a index tracker, hence the use of 
     tuple
     Go on until heap runs out
-    Time: O(nlogk), where k is the size of array count
+    Time: O(nlogk), where k is the size of array count, or depth(size) of heap used
     Space: Space: O(k), size of heap used
 """
 def merge_sorted_arrays_v2(sorted_arrays: List[List[int]]) -> List[int]:

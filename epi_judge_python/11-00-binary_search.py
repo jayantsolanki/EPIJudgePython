@@ -1,3 +1,15 @@
+# Easy heuristic:
+
+# if you discard mid for the next iteration (i.e. l = mid+1 or r = mid-1) then use while (l <= r).
+# if you keep mid for the next iteration (i.e. l = mid or r = mid) then use while (l < r)
+# https://leetcode.com/problems/single-element-in-a-sorted-array/solution/1155561
+
+# Another
+
+# if you are returning from inside the loop, use left <= right
+# if you are reducing the search space, use left < right and finally return a[left]
+# https://leetcode.com/problems/single-element-in-a-sorted-array/solution/670414
+
 #binary search
 import bisect
 from typing import List
@@ -7,7 +19,6 @@ def binarySearch(t: int, A: List[int]) -> int:
 
     while left <= right:#equal to sign important
         mid = left + (right - left)//2 # instead of (left + right)//2, prevents overflow
-        print('i ran', mid)
         if A[mid] == t:
             return mid
         elif A[mid] < t:

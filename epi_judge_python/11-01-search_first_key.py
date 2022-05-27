@@ -3,6 +3,19 @@ from typing import List
 
 from test_framework import generic_test
 
+# Easy heuristic:
+
+# if you discard mid for the next iteration (i.e. l = mid+1 or r = mid-1) then use while (l <= r).
+# if you keep mid for the next iteration (i.e. l = mid or r = mid) then use while (l < r)
+# https://leetcode.com/problems/single-element-in-a-sorted-array/solution/1155561
+
+# Another
+
+# if you are returning from inside the loop, use left <= right
+# if you are reducing the search space, use left < right and finally return a[left]
+# https://leetcode.com/problems/single-element-in-a-sorted-array/solution/670414
+
+
 """
 Write a program that takes a sorted array and a key and returns the index of first occurrence of that key, 
 otherwise returns -1 if key not found in the array.
@@ -35,6 +48,7 @@ def search_first_of_k_pythonic(A, k):
 # variant 1
 """
 Design an efficient algorithm that takes a sorted array and a key, and finds the index of the first occurence of an element greater that that key
+Logic: Find the rightmost k and its index and return iondex + 1
 """
 
 def find_gt(A: List[int], k: int):
@@ -48,25 +62,28 @@ def find_gt(A: List[int], k: int):
             result = mid
         else:
             right = mid - 1
-    return (result + 1) if (result > -1 and result < len(A) - 1) else -1
+    #return (result + 1) if (result > -1 and result < len(A) - 1) else -1
+    return (result + 1) if (result !=len(A) - 1) else -1
 
 #pythonic solution
 # https://docs.python.org/3.9/library/bisect.html
 def find_gt_pythonic(A: List[int], k: int):
-    result = -1
+
     i = bisect.bisect_right(A, k)
     # if i != len(A):
     #     # result = i if A[i] != k else i - 1 , same result
     #     return i
-    return i if i != len(A) else result
+    return i if i != len(A) else -1
 
 
 
-find_gt([-14, -10, 2, 108, 108, 243, 285, 285, 285, 401], -14)
-find_gt_pythonic([-14, -10, 2, 108, 108, 243, 285, 285, 285, 401], -14)
+find_gt([-14, -10, 2, 108, 108, 243, 285, 285, 285, 401], 401)
+find_gt_pythonic([-14, -10, 2, 108, 108, 243, 285, 285, 285, 401], 401)
 
 # variant 2
 """
+https://www.youtube.com/watch?v=HtSuA80QTyo&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=4&ab_channel=MITOpenCourseWare
+https://leetcode.com/problems/find-peak-element/submissions/
 http://www.dsalgo.com/2013/03/find-local-minima-in-array.html
 Explanation: 
     First we need to understand that if in an array of unique(important) integers first two numbers are decreasing and last two 
@@ -76,13 +93,16 @@ Explanation:
     less than 3rd number and so on and so forth. So the numbers in the array will have to be in decreasing order. 
     Which violates the constraint of last two numbers being in increasing order. This proves by negation that there 
     need to be a local minima.
-Let A be an unsorted array of n integers, with A[0] >= A[1] and A[n-2] <= A[n-1]. Call an index i a local minimum if A[i] 
+
+    We can prove this in some other way also. Suppose we represent the array as a 2-D graph where the index of the numbers in the array represents the x-coordinate. and the number represents the y-coordinate. Now for the first two numbers, derivative will be negative, and for last two numbers derivative will be positive. So at some point the derivative line will have to cross the x axis. As the array contains only unique elements there cannot be a derivative point on the x axis. Because that will mean that two consecutive index having same number. So for any intersection of x axis by the derivative line will be a local minima.
+
+Let A be an unsorted array of n unique integers, with A[0] >= A[1] and A[n-2] <= A[n-1]. Call an index i a local minimum if A[i] 
 is less than or equal to its neighbours, i.e.,  A[i -1] > A[i] < A[i + 1]. How would you efficiently find a local minimum, 
 if one exists?
 Logic: 
     look at the middle element of the array. If it's a local minimum, return it. Otherwise, at least one adjacent value must be smaller than this one. Recurse in the half of the array containing that smaller element (but not the middle).
 """
-def local_min(A):#size will be at least three
+def local_min(A):#size will be at least three, #this is for a special case
     #check for validity
     if A[0] < A[1] or A[-2] > A[-1]:
         return "Not a valid array, A[0] >= A[1] and A[n-2] <= A[n-1]"
@@ -93,7 +113,7 @@ def local_min(A):#size will be at least three
         if A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]:
             result = mid
             break
-        elif A[mid] >= A[mid + 1]:
+        elif A[mid] > A[mid + 1]:#move towards descending series
             left = mid + 1
         else:
             right = mid - 1
@@ -104,6 +124,73 @@ local_min([9,7,2,8,5,6,7,8]) # 2, 5, 3 are the answers
 local_min([700,699, 122,82, 83, 500]) # 2 is the answer
 local_min([10, 9, 8, 10])
 local_min([9,7,2,8,9,4,3,8]) # 2, 5, 3 are the answers
+
+#find local valley
+def findValleyElement(A: List[int]) -> int:
+    if len(A) == 1:
+        return 0
+    # if A[0] > A[1] or A[-2] < A[-1]:
+    #     return -1
+    left, mid, right = 0, 0, len(A) - 1
+    result = -1
+    while left <= right:
+        mid = left + (right - left)//2
+        # if A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]:
+        if (mid == 0 and A[mid] < A[mid + 1]) or (mid == len(A) -1 and A[mid] < A[mid - 1]) or (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]):
+            result = mid
+            break
+        elif A[mid] > A[mid + 1]:##go for descending
+            left = mid + 1
+        else:##go for ascending
+            right = mid - 1
+
+    return result
+
+#find local peak, facebook, array elements are not distinct, and no boundary condition
+# https://leetcode.com/problems/find-peak-element/submissions/
+def findPeakElement(A: List[int]) -> int:#local peak or local maxima
+    if len(A) == 1:
+        return 0
+    # if A[0] > A[1] or A[-2] < A[-1]:
+    #     return -1
+    left, mid, right = 0, 0, len(A) - 1
+    result = -1
+    while left <= right:
+        mid = left + (right - left)//2
+        # if A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]:
+        if (mid == 0 and A[mid] > A[mid + 1]) or (mid == len(A) -1 and A[mid] > A[mid - 1]) or (A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]):
+            result = mid
+            break
+        #If this element happens to be lying in a descending sequence of numbers. or a local falling slope
+        #(found by comparing nums[i] to its right neighbour), it means that the peak will always lie towards the left 
+        # of this element and vice versa
+        #If the middle element, midmid lies in an ascending sequence of numbers, or a rising slope
+        # (found by comparing nums[i] to its right neighbour), it obviously implies that the peak lies towards 
+        #the right of this element
+        elif A[mid] < A[mid + 1]:#ascending
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+#find maxima
+# https://leetcode.com/problems/peak-index-in-a-mountain-array/solution/
+# Also a variant in Problem 11-03
+#there wont be two maximas
+def peakIndexInMountainArray(arr: List[int]) -> int:
+    if len(arr) < 3:
+        return False
+    left, right, mid = 0, len(arr) -1, 0
+    while left <= right:
+        mid = left + (right - left) // 2
+        if arr[mid] > arr[mid + 1] and arr[mid] > arr[mid - 1]:
+            return mid
+        elif arr[mid] < arr[mid + 1]:#go towards ascending
+            left = mid + 1
+        else:
+            right = mid
+    return -1
+
 
 #variant 3
 """

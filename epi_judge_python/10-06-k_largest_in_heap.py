@@ -6,8 +6,8 @@ from test_framework import generic_test, test_utils
 """
 Find k largest elements in a Max-heap without modifying the existing heap
 HInt: Use array representation of i, 2i + 1 and 2i + 2, to find parent, and its respective children
-Second hint: parent is always equal to greter than is two children, so start constructing the result array from parent at index 0
-Third hint: use a temprorary maxheap to procure the store elements from hiven heap and also to get max element encountered till now
+Second hint: parent is always equal to greater than its two children, so start constructing the result array from parent at index 0
+Third hint: use a temporary maxheap to procure the stored elements from given heap and also to get max element encountered till now
 Time: O(klogk), space O(k)
 """
 def k_largest_in_binary_heap_v2(A: List[int], k: int) -> List[int]:
@@ -18,7 +18,7 @@ def k_largest_in_binary_heap_v2(A: List[int], k: int) -> List[int]:
     # Stores the (-value, index)-pair in candidate_max_heap. This heap is
     # ordered by value field. Uses the negative of value to get the effect of
     # a max heap.
-    candidate_max_heap = []# heap is needed becuae children of the children in one subtree may or may not be larger th
+    candidate_max_heap = []# heap is needed because children of the children in one subtree may or may not be larger than
     #an the children of the children in other subtree. Hence we keep pushing those children found into the max heap 
     # and popping the max out of them
     # The largest element in A is at index 0.

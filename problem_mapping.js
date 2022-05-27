@@ -1322,7 +1322,7 @@ problem_mapping = {
                 "total": 501
             },
             "Python: 11-02-search_entry_equal_to_index.py": {
-                "passed": 0,
+                "passed": 501,
                 "total": 501
             }
         },
@@ -1336,7 +1336,7 @@ problem_mapping = {
                 "total": 307
             },
             "Python: 11-03-search_shifted_sorted_array.py": {
-                "passed": 0,
+                "passed": 307,
                 "total": 307
             }
         },
