@@ -11,6 +11,6 @@ def find_all_substrings(s: str, words: List[str]) -> List[int]:
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'string_decompositions_into_dictionary_words.py',
+            '12-10-string_decompositions_into_dictionary_words.py',
             'string_decompositions_into_dictionary_words.tsv',
             find_all_substrings))

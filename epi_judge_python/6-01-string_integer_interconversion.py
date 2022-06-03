@@ -1,11 +1,9 @@
-import functools
-import string
-
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-#not supposed to use int and stgr
-#logic: extract each digit using %10 and /10 then
+#not supposed to use int and str
+#   logic: extract each digit using %10 and /10 then
+#   Use ord and chr
 # approach is to add each extracted digit to the end, and then reverse it
 def int_to_string(x: int) -> str:
 
@@ -14,7 +12,7 @@ def int_to_string(x: int) -> str:
         x, is_negative = -x, True
 
     s = []
-    while True:
+    while True: #cant use x here, it will fail for x == 0
         s.append(chr(ord('0') + x % 10))#get ord value than add the number then convert to character
         x //= 10
         if x == 0:

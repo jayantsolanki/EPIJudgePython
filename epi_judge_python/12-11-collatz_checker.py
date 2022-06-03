@@ -8,6 +8,6 @@ def test_collatz_conjecture(n: int) -> bool:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('collatz_checker.py',
+        generic_test.generic_test_main('12-11-collatz_checker.py',
                                        'collatz_checker.tsv',
                                        test_collatz_conjecture))

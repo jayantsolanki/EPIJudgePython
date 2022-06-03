@@ -231,6 +231,7 @@ Mappings for:
     <td><a href="https://leetcode.com/problems/search-a-2d-matrix-ii/">11.6</a>, <a href="">11.7</a></td>
     </tr>
             <tr>
+    <td><a href="https://leetcode.com/problems/group-anagrams/">12.0</a></td>
     <td><a href="https://leetcode.com/problems/ransom-note/">12.2</a></td>
     <td><a href="">12.3</a>, <a href="">12.5</a></td>
     <td><a href="https://leetcode.com/problems/palindrome-permutation">12.1</a>, <a href="">12.5</a></td>
@@ -437,6 +438,7 @@ Mappings for:
 
 | Problem | LeetCode |
 |---------|----------|
+| 12.0       | [49. Anagrams](https://leetcode.com/problems/group-anagrams/) |
 | 12.1       | [266. Palindrome Permutation](https://leetcode.com/problems/palindrome-permutation) |
 | 12.2 | [383. Ransom Note](https://leetcode.com/problems/ransom-note/) |
 | 12.3 | []() |

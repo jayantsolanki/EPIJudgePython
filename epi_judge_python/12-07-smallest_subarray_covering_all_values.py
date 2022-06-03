@@ -42,6 +42,6 @@ def find_smallest_sequentially_covering_subset_wrapper(executor, paragraph,
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'smallest_subarray_covering_all_values.py',
+            '12-07-smallest_subarray_covering_all_values.py',
             'smallest_subarray_covering_all_values.tsv',
             find_smallest_sequentially_covering_subset_wrapper))

@@ -94,9 +94,9 @@ def mountain_peak(A: List[int]) -> int:
         mid  = left + (right + left) // 2
         if A[mid] > A[mid + 1] and A[mid] > A[mid - 1]:
             return A[mid]
-        elif A[mid] < A[mid + 1]:
+        elif A[mid] < A[mid + 1]:#follow the ascending order, move right
             left = mid + 1
-        else:
+        else:#follow the ascending order, move left
             right = mid - 1 # here mid - 1 because if A[mid] < A[mid - 1], then that mid cant be the asnwer
 
     return -1
@@ -174,11 +174,11 @@ Logic:
 
     1- take the middle and compare with target, if matches return.
     2- if middle is smaller than right side, it means mid - right is sorted & Binary search can be applied on right side.
-    2a- if [mid] < target <= [right] then do recursion with mid + 1 (left), right
-    2b- (mid - right) side is sorted, but target not in here, search on left right side {left, mid - 1(right)} => Here one is NOT claiming that left side is sorted. We are NOT applying binary search here per-se. We are just reducing our search space since we are sure that element is NOT in the part 2a. The next iteration in this method would try to figure out which part of the subarray needs to be looked into.
+        2a- if [mid] < target <= [right] then do recursion with mid + 1 (left), right
+        2b- (mid - right) side is sorted, but target not in here, search on left right side {left, mid - 1(right)} => Here one is NOT claiming that left side is sorted. We are NOT applying binary search here per-se. We are just reducing our search space since we are sure that element is NOT in the part 2a. The next iteration in this method would try to figure out which part of the subarray needs to be looked into.
     3- if middle is greater than right side, it means left side (left - mid) is sorted
-    3a- if [left] <= target < [mid] then do recursion with left , mid - 1 (right)
-    3b- left side is sorted, but target not in here, search on right side i.e. {mid  + 1(left) (right)} => Here one is NOT claiming that right side is sorted. We are NOT applying binary search here per-se. We are just reducing our search space since we are sure that element is NOT in the part 3a. The next iteration in this method would try to figure out which part of the subarray needs to be looked into.
+        3a- if [left] <= target < [mid] then do recursion with left , mid - 1 (right)
+        3b- left side is sorted, but target not in here, search on right side i.e. {mid  + 1(left) (right)} => Here one is NOT claiming that right side is sorted. We are NOT applying binary search here per-se. We are just reducing our search space since we are sure that element is NOT in the part 3a. The next iteration in this method would try to figure out which part of the subarray needs to be looked into.
 """
 def search_k_in_cyclic_array_method_2(A: List[int], k: int) -> int:
     if len(A) == 1:

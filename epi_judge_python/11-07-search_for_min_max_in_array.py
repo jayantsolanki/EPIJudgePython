@@ -6,10 +6,27 @@ from test_framework.test_failure import PropertyName
 
 MinMax = collections.namedtuple('MinMax', ('smallest', 'largest'))
 
-
+#time is O(n)
 def find_min_max(A: List[int]) -> MinMax:
-    # TODO - you fill in here.
-    return MinMax(0, 0)
+    def min_max(a, b):
+        return MinMax(a, b) if a < b else MinMax(b, a)
+
+    if len(A) <= 1:
+        return MinMax(A[0], A[0])
+
+    global_min_max = min_max(A[0], A[1])
+    # Process two elements at a time.
+    for i in range(2, len(A) - 1, 2):#this would leave out the last element if array length is odd
+        local_min_max = min_max(A[i], A[i + 1])
+        global_min_max = MinMax(
+            min(global_min_max.smallest, local_min_max.smallest),
+            max(global_min_max.largest, local_min_max.largest))
+    # If there is odd number of elements in the array, we still need to
+    # compare the last element with the existing answer.
+    if len(A) % 2:
+        global_min_max = MinMax(min(global_min_max.smallest, A[-1]),
+                                max(global_min_max.largest, A[-1]))
+    return global_min_max
 
 
 def res_printer(prop, value):
