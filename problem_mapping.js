@@ -278,7 +278,7 @@ problem_mapping = {
                 "total": 402
             },
             "Python: 5-07-buy_and_sell_stock_twice.py": {
-                "passed": 402,
+                "passed": 0,
                 "total": 402
             }
         },
@@ -390,7 +390,7 @@ problem_mapping = {
                 "total": 9
             },
             "Python: 5-15-random_subset.py": {
-                "passed": 9,
+                "passed": 3,
                 "total": 9
             }
         },
@@ -490,7 +490,7 @@ problem_mapping = {
                 "total": 15002
             },
             "Python: 6-01-string_integer_interconversion.py": {
-                "passed": 15002,
+                "passed": 201,
                 "total": 15002
             }
         },
@@ -518,7 +518,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 6-03-spreadsheet_encoding.py": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -980,7 +980,7 @@ problem_mapping = {
                 "total": 65
             },
             "Python: 8-08-queue_from_stacks.py": {
-                "passed": 0,
+                "passed": 65,
                 "total": 65
             }
         },
@@ -994,7 +994,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: 8-09-queue_with_max.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         }
@@ -1010,7 +1010,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-01-is_tree_balanced.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1024,7 +1024,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-02-is_tree_symmetric.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1038,7 +1038,7 @@ problem_mapping = {
                 "total": 948
             },
             "Python: 9-03-lowest_common_ancestor.py": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1052,7 +1052,7 @@ problem_mapping = {
                 "total": 948
             },
             "Python: 9-04-lowest_common_ancestor_with_parent.py": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1066,7 +1066,7 @@ problem_mapping = {
                 "total": 3849
             },
             "Python: 9-05-sum_root_to_leaf.py": {
-                "passed": 0,
+                "passed": 3849,
                 "total": 3849
             }
         },
@@ -1080,7 +1080,7 @@ problem_mapping = {
                 "total": 7690
             },
             "Python: 9-06-path_sum.py": {
-                "passed": 0,
+                "passed": 7690,
                 "total": 7690
             }
         },
@@ -1094,7 +1094,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-07-tree_inorder.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1108,7 +1108,7 @@ problem_mapping = {
                 "total": 3851
             },
             "Python: 9-08-kth_node_in_tree.py": {
-                "passed": 0,
+                "passed": 3851,
                 "total": 3851
             }
         },
@@ -1122,7 +1122,7 @@ problem_mapping = {
                 "total": 948
             },
             "Python: 9-09-successor_in_tree.py": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1136,7 +1136,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-10-tree_with_parent_inorder.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1150,7 +1150,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-11-tree_from_preorder_inorder.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1164,7 +1164,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-12-tree_from_preorder_with_null.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1178,7 +1178,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-13-tree_connect_leaves.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1192,7 +1192,7 @@ problem_mapping = {
                 "total": 3852
             },
             "Python: 9-14-tree_exterior.py": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             }
         },
@@ -1206,7 +1206,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: 9-15-tree_right_sibling.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         }
@@ -1221,8 +1221,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 152
             },
-            "Python: sorted_arrays_merge.py": {
-                "passed": 0,
+            "Python: 10-01-sorted_arrays_merge.py": {
+                "passed": 152,
                 "total": 152
             }
         },
@@ -1235,8 +1235,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: sort_increasing_decreasing_array.py": {
-                "passed": 0,
+            "Python: 10-02-sort_increasing_decreasing_array.py": {
+                "passed": 203,
                 "total": 203
             }
         },
@@ -1249,8 +1249,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 101
             },
-            "Python: sort_almost_sorted_array.py": {
-                "passed": 0,
+            "Python: 10-03-sort_almost_sorted_array.py": {
+                "passed": 101,
                 "total": 101
             }
         },
@@ -1263,8 +1263,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 51
             },
-            "Python: k_closest_stars.py": {
-                "passed": 0,
+            "Python: 10-04-k_closest_stars.py": {
+                "passed": 51,
                 "total": 51
             }
         },
@@ -1277,8 +1277,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 55
             },
-            "Python: online_median.py": {
-                "passed": 0,
+            "Python: 10-05-online_median.py": {
+                "passed": 55,
                 "total": 55
             }
         },
@@ -1291,8 +1291,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 102
             },
-            "Python: k_largest_in_heap.py": {
-                "passed": 0,
+            "Python: 10-06-k_largest_in_heap.py": {
+                "passed": 102,
                 "total": 102
             }
         }
@@ -1307,8 +1307,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 314
             },
-            "Python: search_first_key.py": {
-                "passed": 0,
+            "Python: 11-01-search_first_key.py": {
+                "passed": 314,
                 "total": 314
             }
         },
@@ -1321,8 +1321,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 501
             },
-            "Python: search_entry_equal_to_index.py": {
-                "passed": 0,
+            "Python: 11-02-search_entry_equal_to_index.py": {
+                "passed": 501,
                 "total": 501
             }
         },
@@ -1335,8 +1335,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 307
             },
-            "Python: search_shifted_sorted_array.py": {
-                "passed": 0,
+            "Python: 11-03-search_shifted_sorted_array.py": {
+                "passed": 307,
                 "total": 307
             }
         },
@@ -1349,8 +1349,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 2000
             },
-            "Python: int_square_root.py": {
-                "passed": 0,
+            "Python: 11-04-int_square_root.py": {
+                "passed": 2000,
                 "total": 2000
             }
         },
@@ -1363,8 +1363,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 11003
             },
-            "Python: real_square_root.py": {
-                "passed": 0,
+            "Python: 11-05-real_square_root.py": {
+                "passed": 11003,
                 "total": 11003
             }
         },
@@ -1377,8 +1377,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 194
             },
-            "Python: search_row_col_sorted_matrix.py": {
-                "passed": 0,
+            "Python: 11-06-search_row_col_sorted_matrix.py": {
+                "passed": 194,
                 "total": 194
             }
         },
@@ -1391,8 +1391,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 501
             },
-            "Python: search_for_min_max_in_array.py": {
-                "passed": 0,
+            "Python: 11-07-search_for_min_max_in_array.py": {
+                "passed": 501,
                 "total": 501
             }
         },
@@ -1405,8 +1405,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 503
             },
-            "Python: kth_largest_in_array.py": {
-                "passed": 0,
+            "Python: 11-08-kth_largest_in_array.py": {
+                "passed": 503,
                 "total": 503
             }
         },
@@ -1419,8 +1419,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 100
             },
-            "Python: absent_value_array.py": {
-                "passed": 0,
+            "Python: 11-09-absent_value_array.py": {
+                "passed": 100,
                 "total": 100
             }
         },
@@ -1433,8 +1433,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 50
             },
-            "Python: search_for_missing_element.py": {
-                "passed": 0,
+            "Python: 11-10-search_for_missing_element.py": {
+                "passed": 50,
                 "total": 50
             }
         }
@@ -1449,8 +1449,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 9
             },
-            "Python: anagrams.py": {
-                "passed": 0,
+            "Python: 12-00-anagrams.py": {
+                "passed": 9,
                 "total": 9
             }
         },
@@ -1463,8 +1463,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 305
             },
-            "Python: is_string_permutable_to_palindrome.py": {
-                "passed": 0,
+            "Python: 12-01-is_string_permutable_to_palindrome.py": {
+                "passed": 305,
                 "total": 305
             }
         },
@@ -1477,8 +1477,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 212
             },
-            "Python: is_anonymous_letter_constructible.py": {
-                "passed": 0,
+            "Python: 12-02-is_anonymous_letter_constructible.py": {
+                "passed": 212,
                 "total": 212
             }
         },
@@ -1491,8 +1491,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 101
             },
-            "Python: lru_cache.py": {
-                "passed": 0,
+            "Python: 12-03-lru_cache.py": {
+                "passed": 101,
                 "total": 101
             }
         },
@@ -1505,8 +1505,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 948
             },
-            "Python: lowest_common_ancestor_close_ancestor.py": {
-                "passed": 0,
+            "Python: 12-04-lowest_common_ancestor_close_ancestor.py": {
+                "passed": 948,
                 "total": 948
             }
         },
@@ -1519,8 +1519,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 505
             },
-            "Python: nearest_repeated_entries.py": {
-                "passed": 0,
+            "Python: 12-05-nearest_repeated_entries.py": {
+                "passed": 505,
                 "total": 505
             }
         },
@@ -1533,8 +1533,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 904
             },
-            "Python: smallest_subarray_covering_set.py": {
-                "passed": 0,
+            "Python: 12-06-smallest_subarray_covering_set.py": {
+                "passed": 904,
                 "total": 904
             }
         },
@@ -1547,7 +1547,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 629
             },
-            "Python: smallest_subarray_covering_all_values.py": {
+            "Python: 12-07-smallest_subarray_covering_all_values.py": {
                 "passed": 0,
                 "total": 629
             }
@@ -1561,7 +1561,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 987
             },
-            "Python: longest_subarray_with_distinct_values.py": {
+            "Python: 12-08-longest_subarray_with_distinct_values.py": {
                 "passed": 0,
                 "total": 987
             }
@@ -1575,7 +1575,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 203
             },
-            "Python: longest_contained_interval.py": {
+            "Python: 12-09-longest_contained_interval.py": {
                 "passed": 0,
                 "total": 203
             }
@@ -1589,7 +1589,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 171
             },
-            "Python: string_decompositions_into_dictionary_words.py": {
+            "Python: 12-10-string_decompositions_into_dictionary_words.py": {
                 "passed": 0,
                 "total": 171
             }
@@ -1603,7 +1603,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 7
             },
-            "Python: collatz_checker.py": {
+            "Python: 12-11-collatz_checker.py": {
                 "passed": 0,
                 "total": 7
             }

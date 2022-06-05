@@ -3,7 +3,7 @@ from typing import List
 from test_framework import generic_test
 
 """
-Write a function that takes as input an nxn 2d array , and roates the array by 90 degree clockwise
+Write a function that takes as input an nxn 2d array , and rotates the array by 90 degree clockwise
 time: O(n^2), space O(1)
 Logic:
 first insight is that we can perform the rotation  in place, in a layer-by-layer fashion
@@ -16,9 +16,9 @@ So, identify each postitions to be exchanges, one on the left of equation will t
 example, 1 will take 4th element, 2 will take 1st element, 3 will take 2nd element, 4th will take 3rd element in outer layer
 """
 def rotate_matrix(square_matrix: List[List[int]]) -> None:
-    matrix_size = len(square_matrix) - 1
-    for i in range(len(square_matrix) // 2):#go until half of it, since in the second loop you are capturing other half too
-        for j in range(i, matrix_size - i):
+    matrix_size = len(square_matrix) - 1 # sse this, this make sure the the second loop doesnt access the last element in each of four section
+    for i in range(len(square_matrix) // 2):#this tackles the layer, 
+        for j in range(i, matrix_size - i):#second loop you are capturing elements in that layer
             # Perform a 4-way exchange. Note that A[~i] for i in [0, len(A) - 1]
             # is A[-(i + 1)].
         #in every inner loop iteration change postition of 1st, last, then second, second last, then third, third last, so on
@@ -39,11 +39,11 @@ horizontal axis. Repeat same reflection along y-axis, the diagonal from top-left
 and diagonal top-right to bottom-left
 """
 
-def mirror_matrix_vertically(square_matrix):
+def mirror_matrix_vertically(square_matrix):# this is left to right switch
 
     matrix_size = len(square_matrix)
-    for i in range(matrix_size//2):
-        for j in range(matrix_size//2):
+    for i in range((matrix_size+1)//2):#left 
+        for j in range((matrix_size+1)//2):
             (square_matrix[i][j], square_matrix[~i][j],  square_matrix[i][~j], 
             square_matrix[~i][~j])= (square_matrix[i][~j], 
                                     square_matrix[~i][~j], 
@@ -56,8 +56,8 @@ mirror_matrix_vertically([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 def mirror_matrix_horizontally(square_matrix):
 
     matrix_size = len(square_matrix)
-    for i in range(matrix_size//2):
-        for j in range(matrix_size//2):
+    for i in range((matrix_size+1)//2):#left 
+        for j in range((matrix_size+1)//2):
             (square_matrix[i][j], square_matrix[~i][j],  square_matrix[i][~j], 
             square_matrix[~i][~j])= (square_matrix[~i][j],
                                     square_matrix[i][j],

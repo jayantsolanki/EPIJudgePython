@@ -1,15 +1,27 @@
+from typing import List
+
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-
+# eseentialy use two stacks, one for enqueue and other for dequeue
+#once dequeue is empty, transfer content of first stack to dequeue to stack
+# this approach takes O(m) time for m operations, each element is push and popped not more then two times
 class Queue:
+    def __init__(self) -> None:
+        self._enq: List[int] = []
+        self._deq: List[int] = []
+
     def enqueue(self, x: int) -> None:
-        # TODO - you fill in here.
-        return
+
+        self._enq.append(x)
 
     def dequeue(self) -> int:
-        # TODO - you fill in here.
-        return 0
+
+        if not self._deq:#in case empty
+            # Transfers the elements in _enq to _deq.
+            while self._enq:#you are inserting my popping first, becasue you need to reverse
+                self._deq.append(self._enq.pop())
+        return self._deq.pop()
 
 
 def queue_tester(ops):

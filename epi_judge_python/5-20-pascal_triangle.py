@@ -12,11 +12,16 @@ of j and j-1 entry in (i-1)th row (row above it).
 """
 def generate_pascal_triangle(n: int) -> List[List[int]]:
 
-    result = [[1] * (i + 1) for i in range(n)]
-    for i in range(n):
-        for j in range(1, i):
-            # Sets this entry to the sum of the two above adjacent entries.
-            result[i][j] = result[i - 1][j - 1] + result[i - 1][j]
+    result = [[1] * (i + 1) for i in range(n)]#first create the template using 1s
+    # for i in range(n):#accesses row
+    #     for j in range(1, i): ##access column, and alwasy start j with one
+    #         # Sets this entry to the sum of the two above adjacent entries.
+    #         result[i][j] = result[i - 1][j - 1] + result[i - 1][j]
+    # return result
+    #or you could directly start form row 3
+    for i in range(2, n):
+        for j in range(1, i):#start doing from row 2
+            result[i][j] = result[i-1][j-1] + result[i-1][j]
     return result
 
 

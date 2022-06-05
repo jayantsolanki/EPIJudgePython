@@ -3,7 +3,7 @@ import math
 
 def is_palindrome_number(x: int) -> bool:
     # TODO - you fill in here.
-    if x <= 0:
+    if x <= 0:#only for positives
         return x == 0
     num_digits = math.floor(math.log10(x)) + 1 # get the number of digits#this is crucial
     msd_mask = 10**(num_digits-1)#-1 since 1 is also part of digit, for 5 digit number 10000

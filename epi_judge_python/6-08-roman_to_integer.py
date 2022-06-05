@@ -9,13 +9,13 @@ I = 1
 V = 5
 X = 10
 L = 50
-C = 100
+C = 100 (Century)
 D = 500
 M = 1000
 Exceptions allowed:
-- I can immediately precide V and X
-- X can immediately proceed L and C
-- C can immediately proceeed D and M
+- I can immediately precede V and X #precede means minus
+- X can immediately precede L and C
+- C can immediately precede D and M
 Back to back exceptions not allowed, eg: IXC is invalid as is CDM
 Logic: Start from right to left. If the symbol after(right) the current one is greater than it, we subtract the current symbol
 It does not check that when a smaller symbol appears to the left of a larger one that it is one of the six allowed excption
@@ -31,12 +31,12 @@ def roman_to_integer_original(s: str) -> int:
         reversed(range(len(s) - 1)), T[s[-1]])
 
 #for my simple mind
-def roman_to_integer(s: str) -> int:
+def roman_to_integer_simple(s: str) -> int:
 
     T = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
     val = 0
     for i in range(len(s)-1, -1, -1):
-        if i+1 < len(s) and T[s[i]] < T[s[i+1]]:
+        if i+1 < len(s) and T[s[i]] < T[s[i+1]]:# if the symbol after(right) the current one is greater than it, we subtract
             val = val - T[s[i]]
         else:
             val = val + T[s[i]]
@@ -48,6 +48,26 @@ def roman_to_integer(s: str) -> int:
 
 # roman_to_integer('LIX')
 # roman_to_integer_simple('LIX')
+
+#practice 22MAY2022
+def roman_to_integer(s: str) -> int:
+    val = 0
+    T = {
+        'I' : 1,
+        'V' : 5,
+        'X' : 10,
+        'L' : 50,
+        'C' : 100,
+        'D' : 500,
+        'M' : 1000
+    }
+
+    for i in range(len(s) - 1, -1, -1):
+        if i + 1 < len(s) and T[s[i]] < T[s[i + 1]]:
+            val = val - T[s[i]]
+        else:
+            val = val + T[s[i]]
+    return val
 
 #variant
 """
@@ -82,6 +102,7 @@ def ValidationOfRomanNumerals(s):
      
     # Searching the input string in expression and
     # returning the boolean value
+    #regex is in non increasing pattern
     print(bool(re.search(r"^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$",s)))#using three exceptions
 
 ValidationOfRomanNumerals("MCCXXXVIII")
@@ -94,8 +115,10 @@ ValidationOfRomanNumerals("MCXCC")# correct is MCXC
 
 # variant 2
 """
+https://leetcode.com/problems/integer-to-roman/
 write a program that takes as input a positive integer n and returns a shortest valid roman number in string form
 Logic: create val and syb which will be use for mapping int values to roman values. after that take int values one by one and check how many of those will fit in input value, and add that amount of roman nums to result, and remove the added value from input and repeat the process until zero.
+Actual range 1 - 3999
 """
 def int_to_Roman(num):# this also gives the shortest one
    val = (1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1)# rest others not in here will be repeated, like III
@@ -106,6 +129,8 @@ def int_to_Roman(num):# this also gives the shortest one
       count = int(num / val[i])#will be zero if num less than val[i]
       roman_num += syb[i] * count# nice
       num -= val[i] * count
+    #   if num == 0:
+    #       break
    return roman_num
 
 int_to_Roman(59)

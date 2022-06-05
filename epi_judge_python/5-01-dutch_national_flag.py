@@ -69,7 +69,7 @@ Keys appear together
 Assuming that keys take one of the 4 values ...[1,2,3,2,3,1,4, 3} =  [1,1,3,3,4,4, 2,2] or [1,4,1,4,2,2,3,3], partition them
 use O(n) time complexity and O(1) space
 https://gist.github.com/lopespm/81a336871ce6074f63f3cad349c3a95d
-The rationale behind it is to squeeze the forth value (middle right value) in between the middle-left 
+The rationale behind it is to squeeze the fourth value (middle right value) in between the middle-left 
 and middle-right sub-arrays. It defines the values as the algorithm progresses.
 """
 
@@ -119,7 +119,7 @@ print(dutch_flag_partition_variant2([0,0,3,0,0,0]))
 
 # Variant 3
 """
-Given array A of n bjects with boolean valued keys, reorder them, such that false value appears first.
+Given array A of n objects with boolean valued keys, reorder them, such that false value appears first.
 Same time compelxity as above
 Similar to odd-even problem
 """
@@ -147,7 +147,7 @@ dutch_flag_partition_variant3([False])
 
 """
 Given an array A of n objects with Bool value keys, reorder, such that False appear first 
-and relative ordering of obejcts with key true should not change
+and relative ordering of objects with key true should not change
 Same time and space complexity as above
 https://stackoverflow.com/questions/29723998/boolean-array-reordering-in-o1-space-and-on-time
 boolean array[n]; // The array

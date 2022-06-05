@@ -13,6 +13,7 @@ Implement an algorithm that takes as input an array of distinct elements and a s
 size and array elements
 All subsets should be equally likely. Return the result in input array itself
 Time: O(k), space: O(1 )
+Logic: build one index at a time, than replace that index with index at 0, then go on
 """
 def random_sampling(k: int, A: List[int]) -> None:
 
@@ -20,7 +21,7 @@ def random_sampling(k: int, A: List[int]) -> None:
         # Generate a random index in [i, len(A) - 1].
         r = random.randint(i, len(A) - 1)
         A[i], A[r] = A[r], A[i]
-    # return A[:k]
+    return A[:k]
 
 random_sampling(2, [3,7,5,11])
 

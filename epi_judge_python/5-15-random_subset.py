@@ -11,18 +11,20 @@ from test_framework.test_utils import enable_executor_hook
 """
 WAP that takes input positive integer n and a size k <=n, and returns a size-k subset of {0,1,2,3,4,...n-1}
 """
-#you can use offline random sampling, but this could be O(n) for both time and space
-# in order to reduce it to the O(k) space, we n 
+#you can use offline random sampling, but this could be O(n) for both time and space, since the original array needs to be generated first
+# in order to reduce it to the O(k)  
 #
 def random_subset(n: int, k: int) -> List[int]: 
 
     changed_elements: Dict[int, int] = {}
-    for i in range(k):
+    for i in range(k):#no need to create an array, unlike in problem 5.12
         # Generate a random index between i and n - 1, inclusive.
         rand_idx = random.randrange(i, n)
-        rand_idx_mapped = changed_elements.get(rand_idx, rand_idx)
-        i_mapped = changed_elements.get(i, i)
-        changed_elements[rand_idx] = i_mapped
+        #now try to get the index which has been mapped to this random number
+        rand_idx_mapped = changed_elements.get(rand_idx, rand_idx)#second parameter is default value, in case index doesnt exist
+        #now see if curernt index is mapped or not, return the value of random number if mapped
+        i_mapped = changed_elements.get(i, i)# initially A[i] = i, these are untouchd ones
+        changed_elements[rand_idx] = i_mapped # this makes sure if the number is repeated it wont get stored again
         changed_elements[i] = rand_idx_mapped
     return [changed_elements[i] for i in range(k)]
 

@@ -9,6 +9,7 @@ def reverse(x: int) -> int:
         x_remaining //=10
     return -result if x < 0 else result
 
+reverse(1534236469)
 
 if __name__ == '__main__':
     exit(

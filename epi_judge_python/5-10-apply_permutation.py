@@ -3,11 +3,13 @@ from typing import List
 from test_framework import generic_test
 
 #time: O(n), space: O(n)
+# Given a array A of n elements and a permutation P, apply P to A
+#logic: keep on swapping untill p[i] = i. then move to next index in A, thast is i + 1
 def apply_permutation(perm: List[int], A: List[int]) -> None:
     for i in range(len(A)):
         while perm[i] != i:#if perm[i] == i, then it means that this is the actual place itself, no change or swapping needed
             A[perm[i]], A[i] = A[i], A[perm[i]] # swapping array elements
-            perm[perm[i]], perm[i] = perm[i], perm[perm[i]] # swapping permuation array elements
+            perm[perm[i]], perm[i] = perm[i], perm[perm[i]] # swapping permutation array elements
     return
 
 #variant 1 NOT WORKING
@@ -39,8 +41,8 @@ https://math.stackexchange.com/questions/2999320/how-can-i-find-the-inverse-of-a
 0 is at 1, 1 is at 0, 2 is at 4, 3 is at 2, 4 is at 3, hence [1, 0, 4, 2, 3]
 """
 def find_inverse_permutation(A) -> None:
-    pos = {}
-    for key, val in enumerate(A):
+    pos = {}#its a dictionary
+    for key, val in enumerate(A):#first get the positions
         pos[val] = key
     A.sort()
     for key, val in enumerate(A):

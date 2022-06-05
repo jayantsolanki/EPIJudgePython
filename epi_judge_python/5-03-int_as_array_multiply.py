@@ -18,18 +18,28 @@ def multiply(num1, num2):
     for i in reversed(range(len(num1))):
         for j in reversed(range(len(num2))):
             result[i + j + 1] += num1[i] * num2[j]
+            #for carry
             result[i + j] += result[i + j + 1] // 10
             result[i + j + 1] %= 10
             # print(f'i: {i}, j: {j}, sum: {i+j+1}, array: {result}')
 
     #remove the leading zeroes.
-    result = result[next((i for i , x in enumerate(result)#enumerate gives you index too
-                        if x != 0), len(result)):] or [0]
+    # result = result[next((i for i , x in enumerate(result)#enumerate gives you index too
+    #                     if x != 0), len(result)):] or [0]
+                        #next function gets the subsequent value one at a time
                         #this statement under next only runs once, that is it returns the first element from enumerator iterator satisfying x!=0
+    # this or above
+    index = len(result)
+    for i in range(len(result)):
+        if result[i]!=0:
+            index = i
+            break
+    result = result[index:] or [0]#return [0] if None
+
     """
     next(iterator[, default])
 
-    Return the next item from the iterator. If default is given and the iterator
+    Return the next item from the iterator. If default is given when the iterator
     is exhausted, it is returned instead of raising StopIteration.
     hence if all are zero, then it will be returned as [len(result):] which is [], [] or [0] becomes [0]
     """

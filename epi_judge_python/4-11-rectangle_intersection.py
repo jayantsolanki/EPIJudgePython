@@ -14,6 +14,7 @@ def intersect_rectangle(r1: Rect, r2: Rect) -> Rect:
 
     if not is_intersect(r1, r2):
         return Rect(0, 0, -1, -1)  # No intersection.
+    #The width is positive when min(rec1[2], rec2[2]) > max(rec1[0], rec2[0]), that is when the smaller of (the largest x-coordinates) is larger than the larger of (the smallest x-coordinates). The height is similar.
     return Rect(max(r1.x, r2.x), max(r1.y, r2.y),
                 min(r1.x + r1.width, r2.x + r2.width) - max(r1.x, r2.x),
                 min(r1.y + r1.height, r2.y + r2.height) - max(r1.y, r2.y))

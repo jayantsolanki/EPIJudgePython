@@ -12,6 +12,7 @@ from test_framework import generic_test
 We identify the start of sublist  by using iteration to get the sth node and its predecessor.
 Once we reach the sth node, we start the process of reversing the links and keep counting.
 When we reach the fth node, we stop the reversion, and link the reverted section with unreverted section
+Time: O(f)
 """
 def reverse_sublist(L: ListNode, start: int,
                     finish: int) -> Optional[ListNode]:
@@ -25,6 +26,11 @@ def reverse_sublist(L: ListNode, start: int,
     sublist_iter = sublist_head.next #getting the node at position s
     #in the end of loop sublist_head.next points to node at position f and node s (sublist_iter) points to node after f
     for _ in range(finish - start):#basically track two consecutive nodes, point the next of second node to first node, then move ahead
+        #folllow is analogy
+        # next_temp = curr.next , curr is sublist_iter, next_temp is temp, prev is sublist_head
+        # curr.next = prev
+        # prev = curr
+        # curr = next_temp
         temp = sublist_iter.next#getting node next to position s
         #in below code sublist_iter.next is pointing to one node ahead, temp.next point to one node behind, sublist_head.next 
         #point to temp

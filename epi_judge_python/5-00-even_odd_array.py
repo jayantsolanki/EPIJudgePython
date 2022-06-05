@@ -6,7 +6,7 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
-
+#even values appear first
 def even_odd(Arr: List[int]) -> None:
     # TODO - you fill in here.
     next_even, next_odd = 0, len(Arr)-1
