@@ -1548,7 +1548,7 @@ problem_mapping = {
                 "total": 629
             },
             "Python: 12-07-smallest_subarray_covering_all_values.py": {
-                "passed": 0,
+                "passed": 629,
                 "total": 629
             }
         },
