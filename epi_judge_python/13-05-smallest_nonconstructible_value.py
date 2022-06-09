@@ -10,6 +10,6 @@ def smallest_nonconstructible_value(A: List[int]) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('smallest_nonconstructible_value.py',
+        generic_test.generic_test_main('13-05-smallest_nonconstructible_value.py',
                                        'smallest_nonconstructible_value.tsv',
                                        smallest_nonconstructible_value))

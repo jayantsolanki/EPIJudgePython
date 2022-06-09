@@ -35,6 +35,6 @@ def valid_placement_exists_wrapper(executor, team0, team1, expected_01,
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('is_array_dominated.py',
+        generic_test.generic_test_main('13-10-is_array_dominated.py',
                                        'is_array_dominated.tsv',
                                        valid_placement_exists_wrapper))

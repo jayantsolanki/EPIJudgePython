@@ -35,7 +35,7 @@ def res_printer(prop, value):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('interval_add.py',
+        generic_test.generic_test_main('13-07-interval_add.py',
                                        'interval_add.tsv',
                                        add_interval_wrapper,
                                        res_printer=res_printer))

@@ -37,6 +37,6 @@ def comp(expected, result):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('remove_duplicates.py',
+        generic_test.generic_test_main('13-04-remove_duplicates.py',
                                        'remove_duplicates.tsv',
                                        eliminate_duplicate_wrapper, comp))

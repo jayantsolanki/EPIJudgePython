@@ -10,6 +10,6 @@ def find_salary_cap(target_payroll: int, current_salaries: List[int]) -> float:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('find_salary_threshold.py',
+        generic_test.generic_test_main('13-12-find_salary_threshold.py',
                                        'find_salary_threshold.tsv',
                                        find_salary_cap))

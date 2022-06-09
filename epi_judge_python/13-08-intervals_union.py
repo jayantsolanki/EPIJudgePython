@@ -29,6 +29,6 @@ def union_of_intervals_wrapper(executor, intervals):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('intervals_union.py',
+        generic_test.generic_test_main('13-08-intervals_union.py',
                                        'intervals_union.tsv',
                                        union_of_intervals_wrapper))

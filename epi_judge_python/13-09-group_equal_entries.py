@@ -45,6 +45,6 @@ def group_by_age_wrapper(executor, people):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('group_equal_entries.py',
+        generic_test.generic_test_main('13-09-group_equal_entries.py',
                                        'group_equal_entries.tsv',
                                        group_by_age_wrapper))

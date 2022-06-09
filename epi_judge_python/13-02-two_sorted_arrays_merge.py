@@ -16,6 +16,6 @@ def merge_two_sorted_arrays_wrapper(A, m, B, n):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('two_sorted_arrays_merge.py',
+        generic_test.generic_test_main('13-02-two_sorted_arrays_merge.py',
                                        'two_sorted_arrays_merge.tsv',
                                        merge_two_sorted_arrays_wrapper))

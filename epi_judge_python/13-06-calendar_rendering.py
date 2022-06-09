@@ -23,6 +23,6 @@ def find_max_simultaneous_events_wrapper(executor, events):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('calendar_rendering.py',
+        generic_test.generic_test_main('13-06-calendar_rendering.py',
                                        'calendar_rendering.tsv',
                                        find_max_simultaneous_events_wrapper))
