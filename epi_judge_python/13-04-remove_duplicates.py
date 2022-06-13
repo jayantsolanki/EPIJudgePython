@@ -1,24 +1,58 @@
 import functools
+import itertools
 from typing import List
 
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-
+"""
+Write a program for removing all first-name duplicates from an array.
+Note that here the String array is a complex object
+https://learnpython.com/blog/python-custom-sort-function/
+Logic:
+    Sort the array, then remove duplicates
+    You will have to write you own comparison method for sorting, create a custom class for this, then override the  < operator
+    using  __lt__
+    https://www.tutorialsteacher.com/python/magic-methods-in-python
+Time O(nlogn)    
+"""
+# Custom class created to store string Array
 class Name:
     def __init__(self, first_name: str, last_name: str) -> None:
         self.first_name, self.last_name = first_name, last_name
 
+    def __eq__(self, other) -> bool:
+        return self.first_name == other.first_name
+    #magic methods
+    #we override the < sign
     def __lt__(self, other) -> bool:
-        return (self.first_name < other.first_name
-                if self.first_name != other.first_name else
-                self.last_name < other.last_name)
+        # return (self.first_name < other.first_name
+        #         if self.first_name != other.first_name else
+        #         self.last_name < other.last_name)
+        return (self.first_name < other.first_name) #this also fine
+
+    # def __repr__(self):
+    #     return '%s %s' % (self.first_name, self.last_name)
 
 
 def eliminate_duplicate(A: List[Name]) -> None:
-    # TODO - you fill in here.
-    return
 
+    A.sort()  # Makes identical elements become neighbors.
+    write_idx = 1
+    for cand in A[1:]:
+        if cand != A[write_idx - 1]: ##uses __eq__
+            A[write_idx] = cand
+            write_idx += 1
+    del A[write_idx:]
+
+
+def eliminate_duplicate_pythonic(A: List[Name]) -> None:
+    A.sort()
+    write_idx = 0
+    for cand, _ in itertools.groupby(A):
+        A[write_idx] = cand
+        write_idx += 1
+    del A[write_idx:]
 
 @enable_executor_hook
 def eliminate_duplicate_wrapper(executor, names):
