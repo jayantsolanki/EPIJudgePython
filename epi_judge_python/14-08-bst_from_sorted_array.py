@@ -27,5 +27,5 @@ def build_min_height_bst_from_sorted_array_wrapper(executor, A):
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'bst_from_sorted_array.py', 'bst_from_sorted_array.tsv',
+            '14-08-bst_from_sorted_array.py', 'bst_from_sorted_array.tsv',
             build_min_height_bst_from_sorted_array_wrapper))

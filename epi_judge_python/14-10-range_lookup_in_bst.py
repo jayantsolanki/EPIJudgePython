@@ -18,6 +18,6 @@ def range_lookup_in_bst_wrapper(tree, i):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('range_lookup_in_bst.py',
+        generic_test.generic_test_main('14-10-range_lookup_in_bst.py',
                                        'range_lookup_in_bst.tsv',
                                        range_lookup_in_bst_wrapper))

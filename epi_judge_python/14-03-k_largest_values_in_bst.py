@@ -11,7 +11,7 @@ def find_k_largest_in_bst(tree: BstNode, k: int) -> List[int]:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('k_largest_values_in_bst.py',
+        generic_test.generic_test_main('14-03-k_largest_values_in_bst.py',
                                        'k_largest_values_in_bst.tsv',
                                        find_k_largest_in_bst,
                                        test_utils.unordered_compare))

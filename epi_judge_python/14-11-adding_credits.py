@@ -53,6 +53,6 @@ def client_credits_info_tester(ops):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('adding_credits.py',
+        generic_test.generic_test_main('14-11-adding_credits.py',
                                        'adding_credits.tsv',
                                        client_credits_info_tester))

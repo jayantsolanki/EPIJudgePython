@@ -1704,7 +1704,7 @@ problem_mapping = {
                 "total": 103
             },
             "Python: 13-07-interval_add.py": {
-                "passed": 0,
+                "passed": 103,
                 "total": 103
             }
         },
@@ -1718,7 +1718,7 @@ problem_mapping = {
                 "total": 191
             },
             "Python: 13-08-intervals_union.py": {
-                "passed": 0,
+                "passed": 191,
                 "total": 191
             }
         },
@@ -1732,7 +1732,7 @@ problem_mapping = {
                 "total": 33
             },
             "Python: 13-09-group_equal_entries.py": {
-                "passed": 0,
+                "passed": 33,
                 "total": 33
             }
         },
@@ -1746,7 +1746,7 @@ problem_mapping = {
                 "total": 105
             },
             "Python: 13-10-is_array_dominated.py": {
-                "passed": 0,
+                "passed": 105,
                 "total": 105
             }
         },
@@ -1760,7 +1760,7 @@ problem_mapping = {
                 "total": 209
             },
             "Python: 13-11-sort_list.py": {
-                "passed": 0,
+                "passed": 209,
                 "total": 209
             }
         },
@@ -1774,7 +1774,7 @@ problem_mapping = {
                 "total": 1005
             },
             "Python: 13-12-find_salary_threshold.py": {
-                "passed": 0,
+                "passed": 1005,
                 "total": 1005
             }
         }
@@ -1790,7 +1790,7 @@ problem_mapping = {
                 "total": 955
             },
             "Python: 14-00-search_in_bst.py": {
-                "passed": 0,
+                "passed": 955,
                 "total": 955
             }
         },
@@ -1804,7 +1804,7 @@ problem_mapping = {
                 "total": 3139
             },
             "Python: 14-01-is_tree_a_bst.py": {
-                "passed": 0,
+                "passed": 3139,
                 "total": 3139
             }
         },

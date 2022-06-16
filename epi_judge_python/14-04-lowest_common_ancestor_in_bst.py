@@ -26,6 +26,6 @@ def lca_wrapper(executor, tree, s, b):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('lowest_common_ancestor_in_bst.py',
+        generic_test.generic_test_main('14-04-lowest_common_ancestor_in_bst.py',
                                        'lowest_common_ancestor_in_bst.tsv',
                                        lca_wrapper))

@@ -30,6 +30,6 @@ def pair_includes_ancestor_and_descendant_of_m_wrapper(executor, tree,
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'descendant_and_ancestor_in_bst.py',
+            '14-09-descendant_and_ancestor_in_bst.py',
             'descendant_and_ancestor_in_bst.tsv',
             pair_includes_ancestor_and_descendant_of_m_wrapper))
