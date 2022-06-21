@@ -1818,7 +1818,7 @@ problem_mapping = {
                 "total": 949
             },
             "Python: 14-02-search_first_greater_value_in_bst.py": {
-                "passed": 0,
+                "passed": 949,
                 "total": 949
             }
         },
@@ -1832,7 +1832,7 @@ problem_mapping = {
                 "total": 949
             },
             "Python: 14-03-k_largest_values_in_bst.py": {
-                "passed": 0,
+                "passed": 949,
                 "total": 949
             }
         },
@@ -1846,7 +1846,7 @@ problem_mapping = {
                 "total": 951
             },
             "Python: 14-04-lowest_common_ancestor_in_bst.py": {
-                "passed": 0,
+                "passed": 951,
                 "total": 951
             }
         },
@@ -1860,7 +1860,7 @@ problem_mapping = {
                 "total": 950
             },
             "Python: 14-05-bst_from_preorder.py": {
-                "passed": 0,
+                "passed": 950,
                 "total": 950
             }
         },
@@ -1874,7 +1874,7 @@ problem_mapping = {
                 "total": 51
             },
             "Python: 14-06-minimum_distance_3_sorted_arrays.py": {
-                "passed": 0,
+                "passed": 51,
                 "total": 51
             }
         },
@@ -1888,7 +1888,7 @@ problem_mapping = {
                 "total": 13
             },
             "Python: 14-07-a_b_sqrt2.py": {
-                "passed": 0,
+                "passed": 13,
                 "total": 13
             }
         },
@@ -1902,7 +1902,7 @@ problem_mapping = {
                 "total": 87
             },
             "Python: 14-08-bst_from_sorted_array.py": {
-                "passed": 0,
+                "passed": 87,
                 "total": 87
             }
         },
@@ -1916,7 +1916,7 @@ problem_mapping = {
                 "total": 958
             },
             "Python: 14-09-descendant_and_ancestor_in_bst.py": {
-                "passed": 0,
+                "passed": 958,
                 "total": 958
             }
         },
@@ -1930,7 +1930,7 @@ problem_mapping = {
                 "total": 954
             },
             "Python: 14-10-range_lookup_in_bst.py": {
-                "passed": 0,
+                "passed": 954,
                 "total": 954
             }
         },

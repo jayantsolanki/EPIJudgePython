@@ -90,6 +90,7 @@ def is_binary_tree_bst_inorder(tree):
 Doing check at depth level, BFS
 Logic:
     We pop node and check for contraint, and pass down new contraints interval for left and right child in the queue
+Time and Space O(n)
 """
 #book
 def is_binary_tree_bst(tree: BinaryTreeNode) -> bool:
