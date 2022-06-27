@@ -22,10 +22,11 @@ def overlapping_lists(l0: ListNode, l1: ListNode) -> Optional[ListNode]:
         # One list has cycle, one list has no cycle.
         return None
     # Both lists have cycles.
-    temp = root1
-    while temp:
+    temp = root1 
+    while temp:#doesnt matter if you choose root1 or root2, if you imagine an overlap in two cyclical list, the starting nodes will
+        #eventually lead to common starting node
         temp = temp.next
-        if temp is root0 or temp is root1:
+        if temp is root0 or temp is root1:#we will have top breal anyways, because loop will be infinite
             break
 
     return root1 if temp is root0 else None

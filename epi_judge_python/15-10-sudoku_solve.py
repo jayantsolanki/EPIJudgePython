@@ -60,5 +60,5 @@ def solve_sudoku_wrapper(executor, partial_assignment):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('sudoku_solve.py', 'sudoku_solve.tsv',
+        generic_test.generic_test_main('15-10-sudoku_solve.py', 'sudoku_solve.tsv',
                                        solve_sudoku_wrapper))

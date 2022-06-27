@@ -12,7 +12,7 @@ from test_framework import generic_test
 #time: O(n)
 def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
 
-    dummy_head = ListNode(0, L)
+    dummy_head = ListNode(0, L)#this is an extra node, hence k + 1
     first = dummy_head.next
     for _ in range(k):#advance by k nodes
         first = first.next 

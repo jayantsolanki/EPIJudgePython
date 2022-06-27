@@ -34,6 +34,6 @@ def generate_all_binary_trees_wrapper(executor, num_nodes):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('enumerate_trees.py',
+        generic_test.generic_test_main('15-09-enumerate_trees.py',
                                        'enumerate_trees.tsv',
                                        generate_all_binary_trees_wrapper))

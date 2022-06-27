@@ -15,6 +15,6 @@ def comp(a, b):
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'enumerate_palindromic_decompositions.py',
+            '15-08-enumerate_palindromic_decompositions.py',
             'enumerate_palindromic_decompositions.tsv',
             palindrome_decompositions, comp))

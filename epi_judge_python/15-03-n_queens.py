@@ -14,5 +14,5 @@ def comp(a, b):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('n_queens.py', 'n_queens.tsv', n_queens,
+        generic_test.generic_test_main('15-03-n_queens.py', 'n_queens.tsv', n_queens,
                                        comp))

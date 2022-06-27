@@ -35,5 +35,5 @@ def gray_code_wrapper(executor, num_bits):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('gray_code.py', 'gray_code.tsv',
+        generic_test.generic_test_main('15-11-gray_code.py', 'gray_code.tsv',
                                        gray_code_wrapper))

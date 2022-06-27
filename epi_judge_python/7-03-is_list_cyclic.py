@@ -22,7 +22,7 @@ For explanation https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linke
 """
 # Floyd’s Cycle-Finding Algorithm 
 def has_cycle_original(head: ListNode) -> Optional[ListNode]:
-    def cycle_len(end):#count the  number of nodes before ending up back at that node
+    def cycle_len(end):#count the  number of nodes before ending up back at that node, that is length of cycle
         start, step = end, 0
         while True:
             step += 1
@@ -37,12 +37,14 @@ def has_cycle_original(head: ListNode) -> Optional[ListNode]:
             #the slow iterator will equal the fast iterator in next steps
             # Finds the start of the cycle.
             cycle_len_advanced_iter = head
+            #move this pointer to the
             for _ in range(cycle_len(slow)):#the number of nodes in the range function
                 cycle_len_advanced_iter = cycle_len_advanced_iter.next#gets the node responsible for causing the cycle
-            
+            # cycle_len_advanced_iter = slow # this will also work, no need to find the cycle length 
+            #above loop brings the point to position of slow pointer, below pointer it start from head
             it = head
-            # Both iterators advance in tandem.
-            while it is not cycle_len_advanced_iter:
+            # Both iterators(pointers) advance in tandem.
+            while it is not cycle_len_advanced_iter:#break as soon as both meet again, m = n - k
                 it = it.next
                 cycle_len_advanced_iter = cycle_len_advanced_iter.next
             return it  # iter is the start of cycle.
@@ -53,16 +55,14 @@ https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
 1. If a loop is found, initialize a slow pointer to head, let fast pointer be at its position. 
 2. Move both slow and fast pointers one node at a time. 
 3. The point at which they meet is the start of the loop.
-Key here is moving at twice the speed. Think ofr formula 1 track, faster car will cover race twice while slower car
-covers track one time. assume m is 0, then k is also zero
-m + k is always integer multiple of loop length l
-m + k = intMulti*l
-you can subtract k from both side to get analogy of formula one track. since equation still stands
+Key here is moving at twice the speed.  Now if consider movements of slow and fast pointers, we can notice that distance between them (from slow to fast) increase by one after every step. After one step (of slow = next of slow and fast = next of next of fast), distance between slow and fast becomes x+1, after two iterations, x+2, and so on. When distance becomes n, they meet because they are moving in a cycle of length l
+For example, we can see in below diagram, initial distance is 2. After one iteration, distance becomes 3, after 2 iterations, it becomes 4. After 3 iterations, it becomes 5 which is distance 0. And they meet.
+https://media.geeksforgeeks.org/wp-content/uploads/Floyd-Proof.jpg
 """
 # https://www.youtube.com/watch?v=apIw0Opq5nk&ab_channel=IDeserve
 def has_cycle(head: ListNode) -> Optional[ListNode]:
     fast = slow= head
-    while fast and fast.next and fast.next.next:
+    while fast and fast.next:
         slow, fast = slow.next, fast.next.next
         if slow is fast:#cycle present
             #tries to find the start of the cycle

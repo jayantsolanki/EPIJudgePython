@@ -1960,7 +1960,7 @@ problem_mapping = {
                 "total": 10034
             },
             "Python: 15-00-euclidean_gcd.py": {
-                "passed": 0,
+                "passed": 10034,
                 "total": 10034
             }
         },
@@ -1974,7 +1974,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: 15-01-hanoi.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         },
