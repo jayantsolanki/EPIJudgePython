@@ -278,7 +278,7 @@ problem_mapping = {
                 "total": 402
             },
             "Python: 5-07-buy_and_sell_stock_twice.py": {
-                "passed": 0,
+                "passed": 402,
                 "total": 402
             }
         },
@@ -390,7 +390,7 @@ problem_mapping = {
                 "total": 9
             },
             "Python: 5-15-random_subset.py": {
-                "passed": 3,
+                "passed": 9,
                 "total": 9
             }
         },
@@ -852,7 +852,7 @@ problem_mapping = {
                 "total": 208
             },
             "Python: 7-12-pivot_list.py": {
-                "passed": 0,
+                "passed": 208,
                 "total": 208
             }
         },
@@ -866,7 +866,7 @@ problem_mapping = {
                 "total": 2002
             },
             "Python: 7-13-int_as_list_add.py": {
-                "passed": 0,
+                "passed": 2002,
                 "total": 2002
             }
         }
@@ -1988,7 +1988,7 @@ problem_mapping = {
                 "total": 102
             },
             "Python: 15-02-phone_number_mnemonic.py": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             }
         },
@@ -2002,7 +2002,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: 15-03-n_queens.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         },
@@ -2016,7 +2016,7 @@ problem_mapping = {
                 "total": 8
             },
             "Python: 15-04-permutations.py": {
-                "passed": 0,
+                "passed": 8,
                 "total": 8
             }
         },

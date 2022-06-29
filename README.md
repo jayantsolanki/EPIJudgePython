@@ -254,10 +254,10 @@ Mappings for:
     </tr>
             <tr>
     <td><a href="">15.1</a></td>
-    <td><a href="https://leetcode.com/problems/n-queens/">15.2</a></td>
-    <td><a href="https://leetcode.com/problems/permutations/">15.3</a></td>
-    <td><a href="https://leetcode.com/problems/subsets/">15.4</a>, <a href="https://leetcode.com/problems/sudoku-solver">15.9</a></td>
-    <td><a href="">15.6</a>, <a href="https://leetcode.com/problems/gray-code/">15.10</a></td>
+    <td><a href="https://leetcode.com/problems/n-queens/">15.3</a></td>
+    <td><a href="https://leetcode.com/problems/permutations/">15.4</a></td>
+    <td><a href="https://leetcode.com/problems/subsets/">15.5</a>, <a href="https://leetcode.com/problems/sudoku-solver">15.10</a></td>
+    <td><a href="">15.7</a>, <a href="https://leetcode.com/problems/gray-code/">15.11</a></td>
     </tr>
     <tr>
     <td><a href="">16.1</a></td>
@@ -489,16 +489,17 @@ Mappings for:
 
 | Problem | LeetCode |
 |---------|----------|
-| 15.1       | []() |
-| 15.2 | [51. N-Queens](https://leetcode.com/problems/n-queens/) |
-| 15.3 | [46. Permutations](https://leetcode.com/problems/permutations/) |
-| 15.4 | [78. Subsets](https://leetcode.com/problems/subsets/) |
-| 15.5 | []() |
-| 15.6 | [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses) |
-| 15.7 | [131. Palindrome Partioning](https://leetcode.com/problems/palindrome-partitioning/) |
-| 15.8 | []() |
-| 15.9 | [37. Sudoku Solver](https://leetcode.com/problems/sudoku-solver) |
-| 15.10 | [89. Gray Code](https://leetcode.com/problems/gray-code/) |
+| 15.1 | []() |
+| 15.2 | [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) |
+| 15.3 | [51. N-Queens](https://leetcode.com/problems/n-queens/) |
+| 15.4 | [46. Permutations](https://leetcode.com/problems/permutations/) |
+| 15.5 | [78. Subsets](https://leetcode.com/problems/subsets/) |
+| 15.6 | []() |
+| 15.7 | [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses) |
+| 15.8 | [131. Palindrome Partioning](https://leetcode.com/problems/palindrome-partitioning/) |
+| 15.9 | []() |
+| 15.10 | [37. Sudoku Solver](https://leetcode.com/problems/sudoku-solver) |
+| 15.11 | [89. Gray Code](https://leetcode.com/problems/gray-code/) |
 
 # Dynamic Programming
 
