@@ -9,6 +9,9 @@ from test_framework import generic_test
 #numbering begins from 1, do not allocate additional node
 #focus on successor field which have to be updated
 """
+https://leetcode.com/problems/reverse-linked-list-ii/ 
+92. Reverse Linked List II
+
 We identify the start of sublist  by using iteration to get the sth node and its predecessor.
 Once we reach the sth node, we start the process of reversing the links and keep counting.
 When we reach the fth node, we stop the reversion, and link the reverted section with unreverted section

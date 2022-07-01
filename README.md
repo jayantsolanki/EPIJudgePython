@@ -494,7 +494,7 @@ Mappings for:
 | 15.3 | [51. N-Queens](https://leetcode.com/problems/n-queens/) |
 | 15.4 | [46. Permutations](https://leetcode.com/problems/permutations/) |
 | 15.5 | [78. Subsets](https://leetcode.com/problems/subsets/) |
-| 15.6 | []() |
+| 15.6 | [77. Combinations](https://leetcode.com/problems/combinations/) |
 | 15.7 | [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses) |
 | 15.8 | [131. Palindrome Partioning](https://leetcode.com/problems/palindrome-partitioning/) |
 | 15.9 | []() |

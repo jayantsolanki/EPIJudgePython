@@ -1,5 +1,5 @@
 from test_framework import generic_test
-
+#https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
 
 def swap_bits(x, i, j):
     # TODO - you fill in here.

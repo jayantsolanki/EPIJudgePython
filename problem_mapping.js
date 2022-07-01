@@ -2030,7 +2030,7 @@ problem_mapping = {
                 "total": 15
             },
             "Python: 15-05-power_set.py": {
-                "passed": 0,
+                "passed": 15,
                 "total": 15
             }
         },
@@ -2044,7 +2044,7 @@ problem_mapping = {
                 "total": 120
             },
             "Python: 15-06-combinations.py": {
-                "passed": 0,
+                "passed": 120,
                 "total": 120
             }
         },
@@ -2058,7 +2058,7 @@ problem_mapping = {
                 "total": 11
             },
             "Python: 15-07-enumerate_balanced_parentheses.py": {
-                "passed": 0,
+                "passed": 11,
                 "total": 11
             }
         },

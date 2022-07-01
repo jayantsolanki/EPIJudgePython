@@ -1,6 +1,6 @@
 from test_framework import generic_test
 
-
+#https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
 def parity(x: int) -> int:
     # TODO - you fill in here.
     x = x ^ x >> 32 

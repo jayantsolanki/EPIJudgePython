@@ -5,6 +5,7 @@ from test_framework import generic_test
 
 """
 Traverse the two lists, always choosing the node containing the smaller key to continue traversing
+Get the sentinel tail, and start moving it based on the smallest node found
 Time: O(m+n)
 """
 def merge_two_sorted_lists(L1: Optional[ListNode], L2: Optional[ListNode]) -> Optional[ListNode]:
