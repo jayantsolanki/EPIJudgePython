@@ -70,7 +70,7 @@ def is_valid_sudoku(partial_assignment: List[List[int]]) -> bool:
         for J in range(region_size):
             if has_duplicate([
                 partial_assignment[a][b]
-                for a in range(region_size * I, region_size * (I + 1))#going through each sub grid 0 - 2, 3-5, 6- 8
+                for a in range(region_size * I, region_size * (I + 1))#going through each sub grid 0 - 2, 3-5, 6- 8, top is 0 - 2
                 for b in range(region_size * J, region_size * (J + 1))
             ]):
                 return False

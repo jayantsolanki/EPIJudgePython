@@ -2071,8 +2071,8 @@ problem_mapping = {
                 "passed": 0,
                 "total": 522
             },
-            "Python: 15-09-enumerate_palindromic_decompositions.py": {
-                "passed": 0,
+            "Python: 15-08-enumerate_palindromic_decompositions.py": {
+                "passed": 522,
                 "total": 522
             }
         },
@@ -2100,7 +2100,7 @@ problem_mapping = {
                 "total": 400
             },
             "Python: 15-10-sudoku_solve.py": {
-                "passed": 0,
+                "passed": 400,
                 "total": 400
             }
         },
@@ -2114,7 +2114,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: 15-11-gray_code.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         }

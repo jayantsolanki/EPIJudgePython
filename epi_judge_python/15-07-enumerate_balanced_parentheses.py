@@ -28,7 +28,7 @@ def generate_balanced_parentheses_ori(num_pairs: int) -> List[str]:
                                                   num_pairs,
                                                   valid_prefix='')
 
-#my take
+#############my take###################
 """
 Idea is simple, you generate combination just like for subsets problem, key is to prune wrong branches and
 make sure you are not going above the n parenthesis, that is for n, there will be n open parenthesis and n closed parenthesis
@@ -65,7 +65,6 @@ def generate_balanced_parentheses(n):#slight change in the way string generated,
     mapping_count = {'(': 0, ')': 0}
     result = []
     def backtrack(curr, total):
-        # print(curr)
         if len(curr) == n * 2 and total == 0:#total will be zero for a balanced parenthesis group, and you need total 2n parenthesis
             result.append("".join(curr))
             return
@@ -75,11 +74,8 @@ def generate_balanced_parentheses(n):#slight change in the way string generated,
             if mapping_count[value] > n: #pruning non needed branches, makin sure you dont cross n limit per parenthesis
                 continue
             mapping_count[value] += 1
-            curr.append(value)
             backtrack(curr + value, total + key)
-            curr.pop()
             mapping_count[value] -= 1
-    curr = []
     backtrack("", 0)
     return result
 # generateParenthesis

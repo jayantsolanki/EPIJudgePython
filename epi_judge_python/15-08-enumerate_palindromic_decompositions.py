@@ -8,7 +8,16 @@ Leetcode: https://leetcode.com/problems/palindrome-partitioning/
 
 Compute all the palindromic decomposition of a given string. For example, for string = "aab"
 there can be many ways it can be decomposed, all decomposition are [['a', 'a', 'b'], ['a', 'ab'], ['aa', 'b'], ['aab']] but,
-only [["a","a","b"],["aa","b"]] are plaindromic decompositions.
+only [["a","a","b"],["aa","b"]] are palindromic decompositions.
+
+example = "abc"
+For n size string there are n-1 slots to choose from for partition boundary
+for string of size n = 3, there are 3-1 slots to put partition, we can have partition/decomposition (|) at a|bc or ab|c, 
+here we are putting only | at a time = total ways=  2c1 = 2
+for string of size n =3, we have partition/decomposition (|) at a|b|c, here we are putting only 2 at a time, total = 2c2 = 1
+for string of size n =3, we have partition/decomposition (|) at abc, here we are putting only 0 at a time 2c0 = 1
+Total ways to parition = 2c1 + 2c2 + 2c0 or 2c0 + 2c1 + 2c2 = 2^2
+Generalizing for n size string = (n-1)C0 + (n-1)C1 + (n-1)C2 + ... (n-1)C(n-1) = 2^(n-1) ways to partition
 
 Logic:
     First thing is that you should know how to decompose a string correctly, below code (decompositions) does that.
