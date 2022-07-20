@@ -22,5 +22,5 @@ def optimum_subject_to_capacity_wrapper(executor, items, capacity):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('knapsack.py', 'knapsack.tsv',
+        generic_test.generic_test_main('16-06-knapsack.py', 'knapsack.tsv',
                                        optimum_subject_to_capacity_wrapper))

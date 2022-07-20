@@ -11,5 +11,5 @@ def minimum_path_weight(triangle: List[List[int]]) -> int:
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'minimum_weight_path_in_a_triangle.py',
+            '16-08-minimum_weight_path_in_a_triangle.py',
             'minimum_weight_path_in_a_triangle.tsv', minimum_path_weight))

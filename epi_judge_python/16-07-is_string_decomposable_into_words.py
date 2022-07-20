@@ -33,6 +33,6 @@ def decompose_into_dictionary_words_wrapper(executor, domain, dictionary,
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main(
-            'is_string_decomposable_into_words.py',
+            '16-07-is_string_decomposable_into_words.py',
             'is_string_decomposable_into_words.tsv',
             decompose_into_dictionary_words_wrapper))

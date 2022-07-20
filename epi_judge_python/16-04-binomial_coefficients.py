@@ -8,6 +8,6 @@ def compute_binomial_coefficient(n: int, k: int) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('binomial_coefficients.py',
+        generic_test.generic_test_main('16-04-binomial_coefficients.py',
                                        'binomial_coefficients.tsv',
                                        compute_binomial_coefficient))

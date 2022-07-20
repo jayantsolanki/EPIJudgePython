@@ -10,6 +10,6 @@ def minimum_messiness(words: List[str], line_length: int) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('pretty_printing.py',
+        generic_test.generic_test_main('16-11-pretty_printing.py',
                                        'pretty_printing.tsv',
                                        minimum_messiness))

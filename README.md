@@ -505,7 +505,7 @@ Mappings for:
 
 | Problem | LeetCode |
 |---------|----------|
-| 16.1       | []() |
+| 16.1       | [518. Coin Change 2](https://leetcode.com/problems/coin-change-2) |
 | 16.2 | [72. Edit Distance](https://leetcode.com/problems/edit-distance/) |
 | 16.3 | [62. Unique Paths](https://leetcode.com/problems/unique-paths/) |
 | 16.4 | []() |

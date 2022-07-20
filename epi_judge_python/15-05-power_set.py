@@ -5,7 +5,7 @@ from test_framework import generic_test, test_utils
 """
 Leetcode: 78. Subsets https://leetcode.com/problems/subsets/
 Write a function that takes as input a set and returns its powerset
-A set can have 2^n subsets. Set of all subsets is called a Power setm, including null
+A set can have 2^n subsets. Set of all subsets is called a Power set, including null
 {a,b,c} will have 2^3 subsets = 8 powersets
 
 A recursive algorithm is used to generate the power set P(S) of any finite set S.
@@ -116,8 +116,8 @@ Third approach, using binary, non recursive approach
 The idea is that we map each subset to a bitmask of length n, where 1 on the ith position in bitmask means the presence of nums[i] in the subset, and 0 means its absence. https://leetcode.com/problems/subsets/Figures/78/bitmask4.png
 For instance, the bitmask 0..00 (all zeros) corresponds to an empty subset, and the bitmask 1..11 (all ones) corresponds to the entire input array.
 Same Time and Space complexities
-So, how to generate binaries, simple either cerate a binary function or use bin function. Since there are 2^n subsets
-for n= 3, it iwll be 8. so generate binaries for 0, 1, 2, 3...., 7
+So, how to generate binaries, simple either create a binary function or use bin function. Since there are 2^n subsets
+for n= 3, it will be 8. so generate binaries for 0, 1, 2, 3...., 7
 Step:
     Generate all possible binary bitmasks of length n.
     Map a subset to each bitmask: 1 on the ith position in bitmask means the presence of nums[i] in the subset, and 0 means its absence.
@@ -162,7 +162,7 @@ def generate_power_set_dups(input_set: List[int]) -> List[List[int]]:
     return power_set
 
 generate_power_set_dups([2, 2, 3, 0])
-#qanother solution
+#another solution
 def generate_power_set_dups(input_set: List[int]) -> List[List[int]]:
     def backtrack(start = 0, curr = []): #this is important
         # if the combination is done
