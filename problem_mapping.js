@@ -2170,7 +2170,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: 16-02-levenshtein_distance.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2184,7 +2184,7 @@ problem_mapping = {
                 "total": 1775
             },
             "Python: 16-03-number_of_traversals_matrix.py": {
-                "passed": 0,
+                "passed": 1775,
                 "total": 1775
             }
         },
