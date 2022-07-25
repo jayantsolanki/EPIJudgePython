@@ -2212,7 +2212,7 @@ problem_mapping = {
                 "total": 186
             },
             "Python: 16-05-is_string_in_matrix.py": {
-                "passed": 0,
+                "passed": 186,
                 "total": 186
             }
         },
@@ -2226,7 +2226,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: 16-06-knapsack.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2240,7 +2240,7 @@ problem_mapping = {
                 "total": 41
             },
             "Python: 16-07-is_string_decomposable_into_words.py": {
-                "passed": 0,
+                "passed": 41,
                 "total": 41
             }
         },
