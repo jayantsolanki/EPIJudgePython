@@ -111,7 +111,7 @@ def decompose_into_dictionary_words(s: str, wordDict: List[str]) -> bool:
 
 #variant 2:
 """
-May be we can use leetcode 647. Palindromic Substrings and then check for each palindrome if they can we decompased into given dictionary
+May be we can use leetcode 647. Palindromic Substrings and then check for each palindrome if they can we decompose into given dictionary
 https://leetcode.com/problems/palindromic-substrings/
 """
 

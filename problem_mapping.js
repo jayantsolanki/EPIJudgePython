@@ -2254,7 +2254,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: 16-08-minimum_weight_path_in_a_triangle.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             }
         },
@@ -2268,7 +2268,7 @@ problem_mapping = {
                 "total": 162
             },
             "Python: 16-09-picking_up_coins.py": {
-                "passed": 0,
+                "passed": 162,
                 "total": 162
             }
         },
@@ -2282,7 +2282,7 @@ problem_mapping = {
                 "total": 546
             },
             "Python: 16-10-number_of_traversals_staircase.py": {
-                "passed": 0,
+                "passed": 546,
                 "total": 546
             }
         },
@@ -2296,7 +2296,7 @@ problem_mapping = {
                 "total": 102
             },
             "Python: 16-11-pretty_printing.py": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             }
         },
@@ -2310,7 +2310,7 @@ problem_mapping = {
                 "total": 200
             },
             "Python: 16-12-longest_nondecreasing_subsequence.py": {
-                "passed": 0,
+                "passed": 200,
                 "total": 200
             }
         }
