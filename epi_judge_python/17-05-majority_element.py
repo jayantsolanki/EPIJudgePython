@@ -14,6 +14,6 @@ def majority_search_wrapper(stream):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('majority_element.py',
+        generic_test.generic_test_main('17-05-majority_element.py',
                                        'majority_element.tsv',
                                        majority_search_wrapper))

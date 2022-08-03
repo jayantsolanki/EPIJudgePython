@@ -10,6 +10,6 @@ def get_max_trapped_water(heights: List[int]) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('max_trapped_water.py',
+        generic_test.generic_test_main('17-07-max_trapped_water.py',
                                        'max_trapped_water.tsv',
                                        get_max_trapped_water))

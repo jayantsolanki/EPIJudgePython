@@ -524,7 +524,7 @@ Mappings for:
 |---------|----------|
 | 17.1       | []() |
 | 17.2 | []() |
-| 17.3 | []() |
+| 17.3 | [452. Minimum Number of Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) |
 | 17.4 | [15. 3Sum](https://leetcode.com/problems/3sum) |
 | 17.5 | [169. Majority Element](https://leetcode.com/problems/majority-element/) |
 | 17.6 | [134. Gas Station](https://leetcode.com/problems/gas-station/) |

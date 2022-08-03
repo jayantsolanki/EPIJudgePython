@@ -30,6 +30,6 @@ def find_ample_city_wrapper(executor, gallons, distances):
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('refueling_schedule.py',
+        generic_test.generic_test_main('17-06-refueling_schedule.py',
                                        'refueling_schedule.tsv',
                                        find_ample_city_wrapper))
