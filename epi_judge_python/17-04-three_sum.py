@@ -60,7 +60,7 @@ Solve the problem  when three elements must be distinct.
 Example:  [5, 2, 3, 4, 3] and t = 9, aceeptable answ = [2, 3, 4] or [2, 4, 3]
 """
 def two_sum_distinct(A, t, l):
-    i, j = 0, len(A) - 1
+    i, j = l + 1, len(A) - 1
 
     while i < j: 
         if A[i] + A[j] == t and i != l and j != l:
@@ -83,7 +83,135 @@ has_three_sum_distinct([5, 2, 3, 4, 3], 9)
 
 #variant 2
 """
+Leetcode: 18. 4Sum
+https://leetcode.com/problems/4sum/
+Logic:
+    Just use backtrack, and to speed up, use 2-sum method for k == 2
+Time: O(n^k - 1) or O(n^3) for 4-sum problem
+Space: O(k)
 """
+def kSum(nums: List[int], target: int, k) -> List[List[int]]:
+    nums.sort()#important
+    m = len(nums)
+    count = k
+    result = set()
+    # @cache
+    def twoSum(nums: List[int], target: int, curr) -> List[List[int]]:
+        i, j = 0, len(nums) - 1 #start from l + 1
+
+        while i < j: 
+            if nums[i] + nums[j] > target or ( j < len(nums) - 1 and nums[j + 1] == nums[j]):
+                j -= 1  
+
+            elif nums[i] + nums[j] < target or ( i > 0 and nums[i - 1] == nums[i]):
+                i += 1
+            else:
+                result.add(tuple(sorted(curr + [nums[i], nums[j]])))
+                i += 1
+                j -= 1
+        return
+    def backtrack(i, curr, S):
+        # if S == target and len(curr) == count:
+        #     result.add(tuple(sorted(curr)))
+        #     return
+        if  count - len(curr) == 2:
+            twoSum(nums[i:], target - S, curr)
+            return
+        elif i == m:
+            return
+        else:
+
+            for j in range(i, m):
+
+                if nums[j] >= 0 and target < 0 and S + nums[j] > target:
+                    break
+                backtrack(j + 1, curr + [nums[j]], S + nums[j])
+        return
+    backtrack(0, [], 0)
+    return result
+kSum([1,0,-1,0,-2,2], 0, 4)
+
+#variant 3
+"""
+Leetcode 16. 3Sum Closest
+https://leetcode.com/problems/3sum-closest/
+Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is 
+closest to target, abs(T - (A[p] + A[q] + A[r]) and A[p] <= A[q] <= A[r]). p, q and r should be distinct.
+In the program i am returning SUM intead of array items, meaning is same
+"""
+#two pointer O(n^2) time
+#cant use hash here, because we need to find the smallest diff
+#we will track the smallest absolute difference between the sum and the target
+def threeSumClosest(nums: List[int], target: int) -> int:
+    closest_sum = float('Inf')
+    min_diff = float('Inf')
+    nums.sort()
+    for l in range(len(nums)):
+        i, j = l + 1, len(nums) - 1 #start from l + 1
+        while i < j: 
+            if min_diff > abs(target - (nums[i] + nums[j] + nums[l])):
+                min_diff = abs(target - (nums[i] + nums[j] + nums[l]))
+                closest_sum = nums[i] + nums[j] + nums[l]
+                print(closest_sum, min_diff)
+            if nums[i] + nums[j] + nums[l] > target:
+                j -= 1
+            elif  nums[i] + nums[j] + nums[l]< target:
+                i += 1
+            else:
+                return  nums[i] + nums[j] + nums[l]
+    return closest_sum    
+
+#variant 4
+"""
+Leedtcode: 259. 3Sum Smaller
+https://leetcode.com/problems/3sum-smaller/
+Write a proghram  that takes an array if integers A and and target T, and returns the numbers of 3-tuples
+such that A[p] + A[q] + A[r] <= T and A[p] <= A[q] <= A[r].
+"""
+#sliding window problem
+#you start scanning
+def threeSumSmaller_slow(nums: List[int], target: int) -> int:
+    nums.sort()
+    count = 0
+    print(nums)
+    for l in range(len(nums)):
+        # if nums[l] > target:
+        #     break
+        i, j = l + 1,  l + 2 #start from l + 1
+        while i < j and j < len(nums): 
+            while j < len(nums) and nums[i] + nums[j] + nums[l] < target:
+                count += 1
+                j = j + 1
+            i = i + 1
+            j = i + 1
+    return count    
+#optimized
+#inspired from top
+"""
+    if nums[i] + nums[j] + nums[l] < target then
+        nums[i] + nums[j-1] + nums[l] < target
+        nums[i] + nums[j-2] + nums[l] < target
+        nums[i] + nums[j-3] + nums[l] < target
+        ....
+        nums[i] + nums[i + 1] + nums[l] < target
+        aka count += j - i
+        Since array is sorted.Above is first batch of count, now we increament i = i + 1 and do the same process again
+"""
+def threeSumSmaller(nums: List[int], target: int) -> int:
+    nums.sort()
+    count = 0
+    print(nums)
+    for l in range(len(nums)):
+        # if nums[l] > target:
+        #     break
+        i, j = l + 1,  len(nums) - 1 #start from l + 1
+        while i < j: 
+            if nums[i] + nums[j] + nums[l] < target:
+                count += j - i#important
+                i = i + 1
+            else:
+                j = j - 1
+    return count
 
 if __name__ == '__main__':
     exit(
