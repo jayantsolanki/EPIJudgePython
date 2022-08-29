@@ -7,17 +7,18 @@ from test_framework.test_utils import enable_executor_hook
 
 class GraphVertex:
     def __init__(self) -> None:
-        self.d = -1
         self.edges: List[GraphVertex] = []
+        # Set max_distance = 0 to indicate unvisitied vertex.
+        self.max_distance = 0
 
 
-def is_any_placement_feasible(graph: List[GraphVertex]) -> bool:
+def find_largest_number_teams(graph: List[GraphVertex]) -> int:
     # TODO - you fill in here.
-    return True
+    return 0
 
 
 @enable_executor_hook
-def is_any_placement_feasible_wrapper(executor, k, edges):
+def find_largest_number_teams_wrapper(executor, k, edges):
     if k <= 0:
         raise RuntimeError('Invalid k value')
     graph = [GraphVertex() for _ in range(k)]
@@ -27,11 +28,11 @@ def is_any_placement_feasible_wrapper(executor, k, edges):
             raise RuntimeError('Invalid vertex index')
         graph[fr].edges.append(graph[to])
 
-    return executor.run(functools.partial(is_any_placement_feasible, graph))
+    return executor.run(functools.partial(find_largest_number_teams, graph))
 
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('is_circuit_wirable.py',
-                                       'is_circuit_wirable.tsv',
-                                       is_any_placement_feasible_wrapper))
+        generic_test.generic_test_main('18-08-max_teams_in_photograph.py',
+                                       'max_teams_in_photograph.tsv',
+                                       find_largest_number_teams_wrapper))

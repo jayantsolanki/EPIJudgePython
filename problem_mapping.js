@@ -2408,7 +2408,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: 17-05-majority_element.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         },
@@ -2422,7 +2422,7 @@ problem_mapping = {
                 "total": 202
             },
             "Python: 17-06-refueling_schedule.py": {
-                "passed": 0,
+                "passed": 202,
                 "total": 202
             }
         },
@@ -2436,7 +2436,7 @@ problem_mapping = {
                 "total": 204
             },
             "Python: 17-07-max_trapped_water.py": {
-                "passed": 0,
+                "passed": 204,
                 "total": 204
             }
         },
@@ -2466,7 +2466,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: 18-01-search_maze.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             }
         },
@@ -2480,7 +2480,7 @@ problem_mapping = {
                 "total": 50
             },
             "Python: 18-02-matrix_connected_regions.py": {
-                "passed": 0,
+                "passed": 50,
                 "total": 50
             }
         },
@@ -2494,7 +2494,7 @@ problem_mapping = {
                 "total": 51
             },
             "Python: 18-03-matrix_enclosed_regions.py": {
-                "passed": 0,
+                "passed": 51,
                 "total": 51
             }
         },
@@ -2508,7 +2508,7 @@ problem_mapping = {
                 "total": 71
             },
             "Python: 18-04-deadlock_detection.py": {
-                "passed": 0,
+                "passed": 71,
                 "total": 71
             }
         },
@@ -2522,7 +2522,7 @@ problem_mapping = {
                 "total": 91
             },
             "Python: 18-05-graph_clone.py": {
-                "passed": 0,
+                "passed": 91,
                 "total": 91
             }
         },
@@ -2563,7 +2563,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 69
             },
-            "Python: 18-0-8max_teams_in_photograph.py": {
+            "Python: 18-08-max_teams_in_photograph.py": {
                 "passed": 0,
                 "total": 69
             }

@@ -537,9 +537,9 @@ Mappings for:
 |---------|----------|
 | 18.1       | [505. The Maze II](https://leetcode.com/problems/the-maze-ii) note: shortest path instead of any path |
 | 18.2 | [733. Flood Fill](https://leetcode.com/problems/flood-fill/) |
-| 18.3 | [1020. Number of Enclaves](https://leetcode.com/problems/number-of-enclaves/) |
-| 18.4 | []() |
-| 18.5 | []() |
+| 18.3 | [130. Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)[1020. Number of Enclaves](https://leetcode.com/problems/number-of-enclaves/) |
+| 18.4 | [Leetcode: 261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/solution/)[Leetcode: 207. Course Schedule](https://leetcode.com/problems/course-schedule/) |
+| 18.5 | [133. Clone Graph](https://leetcode.com/problems/clone-graph/solution/) |
 | 18.6 | []() |
 | 18.7 | []() |
 | 18.8 | []() |

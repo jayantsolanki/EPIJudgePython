@@ -10,6 +10,6 @@ def transform_string(D: Set[str], s: str, t: str) -> int:
 
 if __name__ == '__main__':
     exit(
-        generic_test.generic_test_main('string_transformability.py',
+        generic_test.generic_test_main('18-07-string_transformability.py',
                                        'string_transformability.tsv',
                                        transform_string))
