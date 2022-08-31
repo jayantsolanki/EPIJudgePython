@@ -2536,7 +2536,7 @@ problem_mapping = {
                 "total": 85
             },
             "Python: 18-06-is_circuit_wirable.py": {
-                "passed": 0,
+                "passed": 85,
                 "total": 85
             }
         },
@@ -2550,7 +2550,7 @@ problem_mapping = {
                 "total": 48
             },
             "Python: 18-07-string_transformability.py": {
-                "passed": 0,
+                "passed": 48,
                 "total": 48
             }
         },
@@ -2564,7 +2564,7 @@ problem_mapping = {
                 "total": 69
             },
             "Python: 18-08-max_teams_in_photograph.py": {
-                "passed": 0,
+                "passed": 69,
                 "total": 69
             }
         }
