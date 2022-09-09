@@ -7,7 +7,11 @@ time complexity: O(nm)
 from typing import List
 
 from test_framework import generic_test
-
+ 
+"""
+Leetcode: 43. Multiply Strings
+https://leetcode.com/problems/multiply-strings/
+"""
 
 def multiply(num1, num2):
     # TODO - you fill in here.
@@ -15,7 +19,7 @@ def multiply(num1, num2):
     num1[0], num2[0], = abs(num1[0]), abs(num2[0])
 
     result = [0] *(len(num1) + len(num2)) #atmost m+n, can be m+n-1 too, but m+n is safe bet
-    for i in reversed(range(len(num1))):
+    for i in reversed(range(len(num1))):#ith number is being multiplied repeatedly by 0 to j numbers
         for j in reversed(range(len(num2))):
             result[i + j + 1] += num1[i] * num2[j]
             #for carry
@@ -28,7 +32,8 @@ def multiply(num1, num2):
     #                     if x != 0), len(result)):] or [0]
                         #next function gets the subsequent value one at a time
                         #this statement under next only runs once, that is it returns the first element from enumerator iterator satisfying x!=0
-    # this or above
+    # this or above 
+    # #discard any beginning zeroes
     index = len(result)
     for i in range(len(result)):
         if result[i]!=0:

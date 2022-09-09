@@ -1,7 +1,16 @@
 from test_framework import generic_test
 
 #https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
+
+# O(n)
 def parity(x: int) -> int:
+    is_parity = 0
+    while x:
+        is_parity ^= x & 1 #get the last bit value and XOR it with is_parity
+        x >>= 1
+    return is_parity
+
+def parity_logn(x: int) -> int:
     # TODO - you fill in here.
     x = x ^ x >> 32 
     x = x ^ x >> 16 # only last 16 digits important

@@ -1,3 +1,4 @@
+from asyncore import write
 import functools
 from operator import eq
 from typing import List
@@ -15,7 +16,7 @@ has appeared already (A[i]) == A[i-1]. We move just one element, rather than ent
 
 
 # Returns the number of valid entries after deletion.
-def delete_duplicates(A: List[int]) -> int:
+def delete_duplicates_or(A: List[int]) -> int:
     if not A:
         return 0
     
@@ -27,14 +28,27 @@ def delete_duplicates(A: List[int]) -> int:
     # print(A[:write_index])
     return current_index
 
+#alternate, we just use the write idx to store the newly discovered non duplicate element
+def delete_duplicates(A: List[int]) -> int:
+    if not A:
+        return 0
+    write_index = 0
+    for i in range(1, len(A)):
+        if A[write_index] != A[i]:
+            write_index += 1
+            A[write_index] = A[i]
+        else:
+            pass
+    return write_index + 1
+
 
 #test
-print(delete_duplicates([2,3,5,5,7,11,11,11,13]))
+# print(delete_duplicates([2,3,5,5,7,11,11,11,13]))
 
 """
 Variant 1:
-WAP that takes an array and a key, and updates the array so that all occurences of the key have been removed, and the remaining
-elements have been shifted left to fill the empty indices. Return the number of remaining elements. No requirements for number stored after last
+WAP that takes an array (sorted) and a key, and updates the array so that all occurences of the key have been removed, and the remaining elements have been shifted left to fill the empty indices. Return the number of remaining elements. 
+No requirements for number stored after last
 valid element
 This can be also done using list comprehension, just saying
 """
@@ -42,13 +56,13 @@ This can be also done using list comprehension, just saying
 def removeKey(A, key):
     if not A:
         return 0
-    pos = 0
+    write_index = 0
     for i in range(len(A)):
         if A[i]!= key:
-            A[pos] = A[i]
-            pos = pos + 1
-    print(A[:pos])
-    return pos
+            A[write_index] = A[i]
+            write_index = write_index + 1
+    print(A[:write_index])
+    return write_index
 
 def removeKeyV2(A, key):
     return len([val for val in A if val!=key] )

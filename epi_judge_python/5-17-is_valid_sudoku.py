@@ -59,19 +59,19 @@ def is_valid_sudoku(partial_assignment: List[List[int]]) -> bool:
     n = len(partial_assignment)
     # Check row and column constraints.
     for i in range(n):
-        if has_duplicate([partial_assignment[i][j] for j in range(n)]):#column
+        if has_duplicate([partial_assignment[i][j] for j in range(n)]):#row
             return False
-        if has_duplicate([partial_assignment[j][i] for j in range(n)]):#row
+        if has_duplicate([partial_assignment[j][i] for j in range(n)]):#column
             return False
 
     # Check region constraints.
     region_size = int(math.sqrt(n))
-    for I in range(region_size):
-        for J in range(region_size):
+    for I in range(region_size): #decides row-wise subgrid blocks to process
+        for J in range(region_size): #decides columns wise subgrid blocks to process
             if has_duplicate([
                 partial_assignment[a][b]
                 for a in range(region_size * I, region_size * (I + 1))#going through each sub grid 0 - 2, 3-5, 6- 8, top is 0 - 2
-                for b in range(region_size * J, region_size * (J + 1))
+                for b in range(region_size * J, region_size * (J + 1))#visit each cell in that subgrid
             ]):
                 return False
     return True

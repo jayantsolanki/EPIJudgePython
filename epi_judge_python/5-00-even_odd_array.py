@@ -10,7 +10,7 @@ from test_framework.test_utils import enable_executor_hook
 def even_odd(Arr: List[int]) -> None:
     # TODO - you fill in here.
     next_even, next_odd = 0, len(Arr)-1
-    while next_even<next_odd:
+    while next_even < next_odd:
         if Arr[next_even]%2==0:
             next_even+=1
         else:

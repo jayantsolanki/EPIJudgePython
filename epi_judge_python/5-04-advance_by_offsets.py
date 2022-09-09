@@ -11,7 +11,7 @@ It is a greedy algo
 """
 
 
-def can_reach_end(A: List[int]) -> bool:
+def can_reach_end_ori(A: List[int]) -> bool:
     # TODO - you fill in here.
     furthest_reach_so_far, last_index = 0, len(A) - 1
     i = 0
@@ -23,15 +23,32 @@ def can_reach_end(A: List[int]) -> bool:
 
     return furthest_reach_so_far >= last_index
 
+#another way
+def can_reach_end(A: List[int]) -> bool:
+    # TODO - you fill in here.
+    furthest_reach_so_far, last_index = 0, len(A) - 1
+    i = 0
+    while furthest_reach_so_far < last_index:#stop is i more than furthest distance reached so far, 
+        #or furthest distances more than length of array
+        furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
+        if furthest_reach_so_far >= len(A)  - 1: #early stop
+                return True
+        if i >= furthest_reach_so_far: 
+            return False
+        # print(i,furthest_reach_so_far)
+        i += 1 #if i or current index tobe evaluated > furthest reach so far, that means no further can be moved, deadend
+
+    return True
+
 print(can_reach_end([3, 3, 1, 0, 2, 0, 1])) # [3, 3, 1, 0, 2, 0, 1]	true	A valid advance sequence is: 0->1->4->6->6
 print(can_reach_end([3, 2, 0, 0, 2, 0, 1])) # [3, 2, 0, 0, 2, 0, 1]	False
 print(can_reach_end([1, 1, 1, 1, 1, 1, 1])) # true	
 
 """
 Variant: WAP to compute the minimum number of steps needed to advance to the last location
- Minimum steps means mex reach to be find out for each point and have that only
+Minimum steps means max reach to be find out for each point and have that only
 """
-
+#wrong program
 def number_of_steps(A: List[int]) -> bool:
     # TODO - you fill in here.
     furthest_reach_so_far, last_index = 0, len(A) - 1
@@ -43,10 +60,8 @@ def number_of_steps(A: List[int]) -> bool:
             furthest_reach_so_far = A[i] + i
             pathArray.append(A[i])
         i += 1
-        # print(furthest_reach_so_far, i-1, A[i-1], i-1 + A[i-1])
-    # print(pathArray)
     if furthest_reach_so_far >= last_index:
-        # print(pathArray)
+        print(pathArray)
         return len(pathArray)+1
     else:
         return -1
@@ -54,6 +69,7 @@ def number_of_steps(A: List[int]) -> bool:
 print(number_of_steps([3, 3, 1, 0, 2, 0, 1])) # [3, 3, 1, 0, 2, 0, 1]	true	A valid advance sequence is: 0->1->4->6->6
 print(number_of_steps([3, 2, 0, 0, 2, 0, 1])) # [3, 2, 0, 0, 2, 0, 1]	False
 print(number_of_steps([1, 1, 1, 1, 1, 1, 1])) # true	
+print(number_of_steps([7,0,9,6,9,6,1,7,9,0,1,2,9,0,3]))
 
 if __name__ == '__main__':
     exit(

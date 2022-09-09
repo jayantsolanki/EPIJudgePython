@@ -26,7 +26,8 @@ def online_random_sample(stream: Iterator[int], k: int) -> List[int]:
         # Generate a random number in [0, num_seen_so_far - 1], and if this
         # number is in [0, k - 1], we replace that element from the sample with
         # x.
-        idx_to_replace = random.randrange(num_seen_so_far)
+        idx_to_replace = random.randrange(num_seen_so_far) ##Return a random integer N such that a <= N < b
+        # idx_to_replace = random.randint(0, num_seen_so_far - 1) #Return a random integer N such that a <= N <= b
         if idx_to_replace < k:
             running_sample[idx_to_replace] = x
     return running_sample

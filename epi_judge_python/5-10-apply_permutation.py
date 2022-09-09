@@ -4,7 +4,7 @@ from test_framework import generic_test
 
 #time: O(n), space: O(n)
 # Given a array A of n elements and a permutation P, apply P to A
-#logic: keep on swapping untill p[i] = i. then move to next index in A, thast is i + 1
+#logic: keep on swapping untill p[i] = i. then move to next index in A, that is i + 1
 def apply_permutation(perm: List[int], A: List[int]) -> None:
     for i in range(len(A)):
         while perm[i] != i:#if perm[i] == i, then it means that this is the actual place itself, no change or swapping needed

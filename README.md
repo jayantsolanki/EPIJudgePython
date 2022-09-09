@@ -319,7 +319,7 @@ Mappings for:
 |---------|----------|
 | 5.1       | [75. Sort Colors](https://leetcode.com/problems/sort-colors/) |
 | 5.2       | [66. Plus One](https://leetcode.com/problems/plus-one/) |
-| 5.3       | []() |
+| 5.3       | [43. Multiply Strings](https://leetcode.com/problems/multiply-strings/) |
 | 5.4       | [55. Jump Game](https://leetcode.com/problems/jump-game/) |
 | 5.5       | [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) |
 | 5.6       | [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) |

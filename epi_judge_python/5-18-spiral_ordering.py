@@ -11,6 +11,7 @@ elements of last column, then n-1 elements of last row(in reversed) then n-1 ele
 in reversed. After this we are left with n-2 x n-2 matrix, hence process goes on
 Odd n will have corner case of a center element, else even n will be a center matrix
 Above becomes an iterative process of getting elements in nxn, (n-2)x(n-2), (n-4)x(n-4)m,,,,2d arrays
+#divide and Conquer
 """
 def matrix_in_spiral_order_original(square_matrix: List[List[int]]) -> List[int]:
     def matrix_layer_in_clockwise(offset):
@@ -73,7 +74,7 @@ def spiral_to_matrix(spiral):
     mat= [[0 for i in range(d)] for j in range(d)];
     index = 0
     for offset in range((d+1) // 2):
-        if offset == d - offset - 1:
+        if offset == d - offset - 1: #odd sized
             mat[offset][offset] = spiral[index]
             break
 
@@ -152,8 +153,8 @@ def matrix_in_spiral_order_mn(A):
     m = len(A)    
     n = len(A[0]) 
     spiral_ordering = []
-    k = 0
-    l = 0
+    k = 0 #for controlling row offset
+    l = 0 #for controlling column offset
  
     ''' k - starting row index
         m - ending row index
@@ -180,7 +181,7 @@ def matrix_in_spiral_order_mn(A):
  
         # append the last row from
         # the remaining rows
-        if (k < m):
+        if (k < m): #make sure there is  not a single row array left
  
             for i in range(n - 1, (l - 1), -1):
                 spiral_ordering.append(A[m - 1][i])

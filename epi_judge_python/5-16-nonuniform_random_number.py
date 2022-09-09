@@ -27,8 +27,8 @@ def nonuniform_random_number_generation_naive(values: List[int],
 def nonuniform_random_number_generation(values: List[int],
                                         probabilities: List[float]) -> int:
 
-    prefix_sum_of_probabilities = list(itertools.accumulate(probabilities)) # space and time O(n)
-    interval_idx = bisect.bisect(prefix_sum_of_probabilities, random.random()) #time: O(logn)
+    prefix_sum_of_probabilities = list(itertools.accumulate(probabilities)) # space and time O(n), cumulative additions
+    interval_idx = bisect.bisect(prefix_sum_of_probabilities, random.random()) #time: O(logn) #similar to bisect.bisect_right, gives the right side of limit
     return values[interval_idx]
 
 

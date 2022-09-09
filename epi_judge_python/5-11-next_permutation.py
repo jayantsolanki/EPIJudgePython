@@ -14,9 +14,10 @@ Define permutation p to appear before permutation q if in the first place where 
 representation, starting from index 0 the corresponding entry for p is less than that for q
 Start from the right and look at the longest decreasing series. We cannot get the next permutation just by modifying this
 series, since it is already at maximum.
-We want to create the permutation just larger than the current one. Therefore, we need to replace the number at k with the number which is just larger than itself among the numbers lying to its right section.
+We want to create the permutation just larger than the current one. Therefore, we need to replace the number at k with 
+the number which is just larger than itself among the numbers lying to its right section.
 Steps:
-1 - find k such that p[k] < p[k+1] and entries after index k appear in decreasing order (important)
+1 - find index k such that p[k] < p[k+1] and entries after index k appear in decreasing order (important)
 2 - find the small p[l] in the decreasing entries which is greater tha p[k]
 3 - swap p[k], p[l]
 4 -  reverse the entries sequence after position k
@@ -54,7 +55,8 @@ def next_permutation(perm: List[int]) -> List[int]:
 
     # Entries in perm must appear in decreasing order after inversion_point,
     # so we simply reverse these entries to get the smallest dictionary order.
-    perm[inversion_point + 1:] = reversed(perm[inversion_point + 1:])
+    # perm[inversion_point + 1:] = reversed(perm[inversion_point + 1:])
+    perm[inversion_point + 1:] = perm[inversion_point + 1:][:: -1]
     return perm
 
 
@@ -66,9 +68,11 @@ print(next_permutation([6,2,5,5,4,3,0]))
 
 #variant1
 '''
+Leetcode 60. Permutation Sequence
+https://leetcode.com/problems/permutation-sequence/
 Compute the kth permutation under dictionary ordering, starting from the identity permutation; smallest in the permutation
 that is the first permutation in dictionary ordering
-Logic: I think I should repetedly call previous function for kth times
+Logic: I think I should repeatedly call previous function for kth times
 '''
 
 def kth_permute(A, n):
@@ -86,6 +90,8 @@ print(kth_permute([1, 2, 3], 5))
 
 #variant2
 """
+
+
 Given a permutation p, return the permutation corrsponding to the previous permutation of p
 Logic: I think we just need to retrace the steps backward
 """

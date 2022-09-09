@@ -16,6 +16,9 @@ def divide(x: int, y: int) -> int:
 
 
 
+
+
+
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('4-06-primitive_divide.py',

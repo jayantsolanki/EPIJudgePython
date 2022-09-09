@@ -16,7 +16,7 @@ Max profit with at most two transactions =
 i varies from 0 to n-1.
 Maximum possible using one transaction can be calculated using the following O(n) algorithm 
 The maximum difference between two elements such that the larger element appears after the smaller number
-The time complexity of the above simple solution is O(n2)
+The time complexity of the above simple solution is O(n^2)
 """
 
 """
@@ -54,10 +54,10 @@ def buy_and_sell_stock_twice(prices: List[float]) -> float:
     # backward phase. For each day, find the maximum profit if we make the
     # second buy on that day
     max_price_so_far = float('-Inf')
-    for i, price in reversed(list(enumerate(prices[1:], 1))):# 1 under enumerate means indexing starts with 1
-        # list(enumerate([11,12,13,14,15], 1))  = [(1, 11), (2, 12), (3, 13), (4, 14), (5, 15)]
-        # list(enumerate([11,12,13,14,15])) = [(0, 11), (1, 12), (2, 13), (3, 14), (4, 15)]
-        max_price_so_far = max(max_price_so_far, price)# finding max, because we sell at max of any proice after buying
+    # for i, price in reversed(list(enumerate(prices[1:], 1))):# 1 under enumerate means indexing starts with 1
+    for i in range(len(prices) - 1, 0, -1):
+        price = prices[i]
+        max_price_so_far = max(max_price_so_far, price)# finding max, because we sell at max of any price after buying
         max_total_profit = max(
             max_total_profit,
             (max_price_so_far - price) + first_buy_sell_profits[i-1] # adding both profits
@@ -148,7 +148,7 @@ def buy_and_sell_stock_twice_v4(prices: List[float]) -> float:
 
     max_total_profit_1stSell, max_total_profit_2ndSell, min_price_so_far = 0.0, 0.0, float('Inf')
     maxProfitLeftAfterSecondBuy = float('-Inf')
-    first_buy_sell_profits = [0.0] * len(prices)
+    # first_buy_sell_profits = [0.0] * len(prices)
 
     for i, price in enumerate(prices):
         min_price_so_far = min(min_price_so_far, price)#we for the current price use to sell , we look for minimum price

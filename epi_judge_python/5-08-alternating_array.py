@@ -23,7 +23,7 @@ if the next element is greater than the current element, swap both elements.
 At the end of the loop, we will get the desired array that satisfies given constraints
 Basically you are comparing a triplet, center element has to be greater than left or right side
 a<=b>=c<=d>=e<=f
-lets say d is not > c, but since c is already <b, swapping c with d wont break comparison with b
+lets say d is < c, but since c is already < b, swapping c with d wont break comparison with b
 O(n)
 """
 # Function to rearrange the list such that every second element

@@ -25,7 +25,7 @@ def random_subset(n: int, k: int) -> List[int]:
         #now see if curernt index is mapped or not, return the value of random number if mapped
         i_mapped = changed_elements.get(i, i)# initially A[i] = i, these are untouchd ones
         changed_elements[rand_idx] = i_mapped # this makes sure if the number is repeated it wont get stored again
-        changed_elements[i] = rand_idx_mapped
+        changed_elements[i] = rand_idx_mapped #map to whatever rand_ids was previously mapped
     return [changed_elements[i] for i in range(k)]
 
 

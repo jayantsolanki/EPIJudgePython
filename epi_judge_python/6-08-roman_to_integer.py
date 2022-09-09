@@ -92,7 +92,7 @@ M{0,4} specifies the thousands section and basically restrains it to between 0 a
  
 (XC|XL|L?X{0,3}) is for the tens place and covers all the possibilities , 00, 10, 20, 30, ,,, 90
  
-Finally, (IX|IV|V?I{0,3}) is the units section. 0, 1, 2, 3,4,5,6,7,8,9
+Finally, (IX|IV|V?I{0,3}) is the units section. 0, 1, 2, 3,4,5,6,7,8,9 , ? same as{0,1}
 """
 def ValidationOfRomanNumerals(s):
     if len(s) == 0:
@@ -103,7 +103,7 @@ def ValidationOfRomanNumerals(s):
     # Searching the input string in expression and
     # returning the boolean value
     #regex is in non increasing pattern
-    print(bool(re.search(r"^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$",s)))#using three exceptions
+    print(bool(re.search(r"^M{0,4}(CM|CD|D{0,1}C{0,3})(XC|XL|L{0,1}X{0,3})(IX|IV|V{0,1}I{0,3})$",s)))#using three exceptions
 
 ValidationOfRomanNumerals("MCCXXXVIII")
 ValidationOfRomanNumerals("MXCCXXXVIII") 

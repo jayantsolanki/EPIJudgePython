@@ -2,7 +2,7 @@ from test_framework import generic_test
 
 """
 Check if a string is palindrome when all the non alphanumeric characters are removed
-    Logic
+Logic
     Use two indices to travel, forward and backward, and skip the non alphanumeric characters
     Return false if mismatch, if indices croiss each other then report palindrome
 """

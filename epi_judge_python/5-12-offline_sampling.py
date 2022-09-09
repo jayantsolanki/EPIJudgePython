@@ -9,7 +9,7 @@ from test_framework.random_sequence_checker import (
 from test_framework.test_utils import enable_executor_hook
 
 """
-Implement an algorithm that takes as input an array of distinct elements and a size, and returns a subet of the given 
+Implement an algorithm that takes as input an array of distinct elements and a size, and returns a subset of the given 
 size and array elements
 All subsets should be equally likely. Return the result in input array itself
 Time: O(k), space: O(1 )
@@ -19,7 +19,8 @@ def random_sampling(k: int, A: List[int]) -> None:
 
     for i in range(k):
         # Generate a random index in [i, len(A) - 1].
-        r = random.randint(i, len(A) - 1)
+        # r = random.randint(i, len(A) - 1) # Return a random integer N such that a <= N <= b
+        r = random.randrange(i, len(A)) #this and above are same
         A[i], A[r] = A[r], A[i]
     return A[:k]
 

@@ -28,6 +28,7 @@ def convert_base_original(num_as_string: str, b1: int, b2: int) -> str:
 #for my simple mind
 def convert_base_simple(num_as_string: str, b1: int, b2: int) -> str:
 
+    #recursion
     def construct_from_base(num_as_int, base):#extract last digit and work up
         if num_as_int == 0:#stop case
             return ""
@@ -37,8 +38,13 @@ def convert_base_simple(num_as_string: str, b1: int, b2: int) -> str:
     is_negative = num_as_string[0] == '-'
     #first converting into decimal format
     num_as_int = 0
-    for digit in num_as_string[num_as_string[0] in '-+':]:
-        num_as_int = num_as_int*b1 + string.hexdigits.index(digit.lower())# had to use this, since ord('A') = 65, ord('9') = 57
+    # for digit in num_as_string[num_as_string[0] in '-+':]:
+    #     num_as_int = num_as_int*b1 + string.hexdigits.index(digit.lower())# had to use this, since ord('A') = 65, ord('9') = 57
+    #you can also use this
+    power = 1
+    for i in range(len(num_as_string) -1, (num_as_string[0] in '-+') - 1, -1):
+        num_as_int += power * (string.hexdigits.index(num_as_string[i].lower())) #similar to binary to decimal conversion
+        power *= b1
 
     return ('-' if is_negative else '') + ('0' if num_as_int == 0 else
                                            construct_from_base(num_as_int, b2))

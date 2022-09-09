@@ -78,10 +78,10 @@ def dutch_flag_partition_variant2(A):
     mid_left = None
     right = None
 
-    left_i = 0
+    left_i = 0 #for tracking left element
     mid_left_i = 0
     mid_right_i = len(A)
-    right_i = len(A)
+    right_i = len(A)#counter for tracking rightmost element
 
     while mid_left_i < right_i and mid_left_i < mid_right_i:# first fill left, then right, then equal(third), then the fourth value
         if (A[mid_left_i] == left):#first value
@@ -95,10 +95,10 @@ def dutch_flag_partition_variant2(A):
             #so mid_right_i also should move along with right_i
             A[mid_left_i], A[right_i] = A[right_i], A[mid_left_i]
             right = A[right_i]
-        else:  # if it is a mid value
+        else:  # if it is a mid value that is neither left or right value, could be third or 4th key
             if (mid_left is None or A[mid_left_i] == mid_left):#same for third element again
                 mid_left = A[mid_left_i]
-                mid_left_i += 1
+                mid_left_i += 1 #similar to equal ++
             else:#4th element, the squeeze
                 mid_right_i -= 1
                 A[mid_left_i], A[mid_right_i] = A[mid_right_i], A[mid_left_i]
@@ -120,7 +120,7 @@ print(dutch_flag_partition_variant2([0,0,3,0,0,0]))
 # Variant 3
 """
 Given array A of n objects with boolean valued keys, reorder them, such that false value appears first.
-Same time compelxity as above
+Same time complexity as above
 Similar to odd-even problem
 """
 
@@ -165,14 +165,14 @@ only required criteria: the relative ordering among true values to be preserved
 """
 
 def dutch_flag_partition_variant4(A):
-    lastTrue = len(A)
+    lastTrue = len(A)#tracker for storing True moved by i
     i = len(A) - 1
     while i>=0:#have to start from the end, because I only need to push the False value towards left
         #you cannot move from index 0, since that will move true from right side to left, we want to push (not move) false from right side to left, hence decreasing order
         #just like bubble sort
         if A[i]:
             lastTrue -= 1
-            A[lastTrue], A[i] =  A[i], A[lastTrue]#keeps on mush false towards left
+            A[lastTrue], A[i] =  A[i], A[lastTrue]#i is the tracker which moves towards left and sends back any True found
         i -= 1          
     return A
 

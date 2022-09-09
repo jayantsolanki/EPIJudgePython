@@ -6,6 +6,9 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 """
+Leetcode: 1136. Parallel Courses
+https://leetcode.com/problems/parallel-courses/
+
 Topological Sort, assuming no cycle in these questions
 Team Photo Day - 2
 How would you generalize this problem for multiple team rows:
@@ -64,6 +67,25 @@ def find_largest_number_teams_ori(graph: List[GraphVertex]) -> int:
 # # find_largest_number_teams_ori(graph)
 # find_largest_number_teams(graph)
 
+#variant 1:
+"""
+310. Minimum Height Trees
+https://leetcode.com/problems/minimum-height-trees/
+1136. Parallel Courses
+https://leetcode.com/problems/parallel-courses/
+Task Scheduling
+Similar to Minimum Height Trees problem in Leetcode
+Let T = {T0, T1, T2, ...., Tn-1} be a set of tasks. Each task runs on a single generic server.
+Task Ti has a duration of pi, and a set Pi (possibly empty) of tasks that must be completed before Ti can be
+started. The set is feasible if there dies not exist a sequence of tasks <T0, T1, ..., Tn-1, T0> starting and ending at the same 
+task such that for each consecutive pair of tasks, the first task must be completed before the second task can begin.
+
+Given an instance of the task scheduling problem,, compute the least amount of time in which all the tasks can be performed,
+assuming an unlimited number of servers. Explicitly check that the system is feasible.
+Logic:
+    Just follow the sequence of tasks using DFS in the Parallel Courses, the max depth will be the answer
+    Or, us the Topological sort using Kahn algo
+"""
 
 @enable_executor_hook
 def find_largest_number_teams_wrapper(executor, k, edges):

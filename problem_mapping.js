@@ -66,7 +66,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 4-04-closest_int_same_weight.py": {
-                "passed": 10000,
+                "passed": 2,
                 "total": 10000
             }
         },
@@ -490,7 +490,7 @@ problem_mapping = {
                 "total": 15002
             },
             "Python: 6-01-string_integer_interconversion.py": {
-                "passed": 201,
+                "passed": 15002,
                 "total": 15002
             }
         },
@@ -602,7 +602,7 @@ problem_mapping = {
                 "total": 10008
             },
             "Python: 6-09-valid_ip_addresses.py": {
-                "passed": 0,
+                "passed": 10008,
                 "total": 10008
             }
         },
@@ -630,7 +630,7 @@ problem_mapping = {
                 "total": 200
             },
             "Python: 6-11-run_length_compression.py": {
-                "passed": 0,
+                "passed": 200,
                 "total": 200
             }
         },
@@ -644,7 +644,7 @@ problem_mapping = {
                 "total": 835
             },
             "Python: 6-12-substring_match.py": {
-                "passed": 0,
+                "passed": 835,
                 "total": 835
             }
         }

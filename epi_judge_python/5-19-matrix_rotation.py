@@ -34,7 +34,7 @@ def rotate_matrix(square_matrix: List[List[int]]) -> None:
 
 #variant 1
 """
-Implement an algorithm  to reflect array A, assum it is nxn 2d array. , about the 
+Implement an algorithm  to reflect array A, assuming it is nxn 2d array. , about the 
 horizontal axis. Repeat same reflection along y-axis, the diagonal from top-left to bottom-right
 and diagonal top-right to bottom-left
 """
