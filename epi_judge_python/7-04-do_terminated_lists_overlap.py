@@ -10,7 +10,7 @@ Write a program that takes two cycle-free linked lists and determines
 if there exists a node that is common to both lists.
 Brute force: store one list in a hash map and iterate the other to find out common node
 Better:
-The lists overlaps if and only if both ahve same tail node.; once the lists converge at a node
+The lists overlaps if and only if both have same tail node.; once the lists converge at a node
 they cannot diverge at a later node. Thus finding the tail node will be sufficient
 To find the first overlapping node, we first compute the length of each list.
 The first overlapping node is determined by advancing through the longer list by the difference in lengths,

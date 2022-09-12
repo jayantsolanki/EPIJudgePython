@@ -46,12 +46,15 @@ def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
         #now fetch the nodes at next level
         children = []
         for curr in curr_depth_nodes:
-            children = children + [child for child in (curr.left, curr.right) if child]
+            # children = children + [child for child in (curr.left, curr.right) if child]
+            children.extend([child for child in (curr.left, curr.right) if child])#above is also fine
         curr_depth_nodes = children
     return result
 
+
 #variant 1
 #alternate left-right or right-left order
+# Look at https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 def binary_tree_depth_order_alt(tree: BinaryTreeNode) -> List[List[int]]:
 
     result = []
@@ -77,7 +80,7 @@ def binary_tree_depth_order_alt(tree: BinaryTreeNode) -> List[List[int]]:
 
 #variant 2
 #write a program which takes as input a binary tree and returns the keys in a bottom up, left-to-right order
-#just reverse the first program result array or use deque
+#just reverse the first program result array or use deque's appendleft function
 #using deque
 def binary_tree_depth_order_bottomup(tree: BinaryTreeNode) -> List[List[int]]:
 
@@ -87,7 +90,7 @@ def binary_tree_depth_order_bottomup(tree: BinaryTreeNode) -> List[List[int]]:
 
     curr_depth_nodes = [tree]
     while curr_depth_nodes:
-        result.append([curr.data for curr in curr_depth_nodes])#get the value of current nodes
+        # result.append([curr.data for curr in curr_depth_nodes])#get the value of current nodes
         result.appendleft([curr.data for curr in curr_depth_nodes])#get the value of current nodes
         curr_depth_nodes = [#this line gets the children of current node
             child for curr in curr_depth_nodes
@@ -95,7 +98,7 @@ def binary_tree_depth_order_bottomup(tree: BinaryTreeNode) -> List[List[int]]:
         ]
     return result #or use list(result)
 #variant3
-# write a program to calcuate of nodes at each depth
+# write a program to calcuate average of nodes at each depth
 def binary_tree_depth_order_avg(tree: BinaryTreeNode) -> List[List[int]]:
 
     result: List[List[int]] = []

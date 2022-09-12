@@ -19,7 +19,7 @@ class Queue:
 
         if not self._deq:#in case empty
             # Transfers the elements in _enq to _deq.
-            while self._enq:#you are inserting my popping first, becasue you need to reverse
+            while self._enq:#you are inserting by popping first, becasue you need to reverse
                 self._deq.append(self._enq.pop())
         return self._deq.pop()
 

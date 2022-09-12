@@ -27,7 +27,7 @@ class Queue:
             # self._entries = self._entries * 2 # this also fine
             self._entries += [0] * len(self._entries) # this too
         self._entries[self._tail] = x
-        self._tail = (self._tail + 1) % len(self._entries)#interesting, makes sure if it breaches the boundary, it goes to start
+        self._tail = (self._tail + 1) % len(self._entries)#interesting, makes sure when it breaches the boundary, it goes to start
         self._num_queue_elements += 1
 
     def dequeue(self) -> int:

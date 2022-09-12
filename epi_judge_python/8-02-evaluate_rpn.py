@@ -1,6 +1,6 @@
 from typing import List
 from test_framework import generic_test
-
+import math
 """
 Write a program to evaluate postfix expression (Reverse Polish Notation)
 Example: "1729", "3,4,+,2,*,1,+", "1,1,+,-2,*", "-641, 6, /, 28, /"
@@ -11,11 +11,12 @@ def evaluate(expression: str) -> int:
 
     intermediate_results: List[int] = []
     delimiter = ','
-    operators = {
-        '+': lambda y, x: x + y,
+    operators = {#nice way to organize multiple function
+        '+': lambda y, x: x + y,#notice the order of x and y here, importnt
         '-': lambda y, x: x - y,
         '*': lambda y, x: x * y,
-        '/': lambda y, x: x // y
+        # '/': lambda y, x: x // y
+        '/': lambda y, x: math.ceil(x / y) if (x / y) < 0  else math.floor(x / y) # use this
     }
 
     for token in expression.split(delimiter):# comma
@@ -30,7 +31,7 @@ def evaluate(expression: str) -> int:
 """
 program for evaluating prefix expression
 eg: "-,/,*,20,*,50,+,3,6,300,2"
-Logic: read it backwards and start putting it into stack aand evaluate
+Logic: read it backwards and start putting it into stack and evaluate
 """
 def prefix_evaluate(expression: str) -> int:
 
@@ -114,7 +115,7 @@ def infixToPostfix(infixexpr):
             while topToken != '(':
                 postfixList.append(topToken)
                 topToken = opStack.pop()
-        else:
+        else:#other operators
             while (not opStack.empty()) and \
                (prec[opStack.peek()] >= prec[token]):
                   postfixList.append(opStack.pop())

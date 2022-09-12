@@ -32,7 +32,8 @@ def examine_buildings_with_sunset(sequence: Iterator[int]) -> List[int]: #return
         while candidates and building_height >= candidates[-1][1]:# need to keep track of both height and indices
             candidates.pop()
         candidates.append((building_idx, building_height)) #0 has index, 1 has height
-    return [c[0] for c in reversed(candidates)]#returning the index in reverse, i dont know whey reverse
+    return [c[0] for c in reversed(candidates)]#returning the index in reverse, because we moved from east to west, so westside build
+    # needs to e printed last
 
 # print(examine_buildings_with_sunset_v2([1,2,3,4,5,6]))
 # print(examine_buildings_with_sunset_v2([6,5,4,3,2,1]))

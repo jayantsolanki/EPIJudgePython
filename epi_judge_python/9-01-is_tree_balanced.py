@@ -13,12 +13,13 @@ from binarytree import Node
 BinaryTreeNode = Node #creating synonym
 
 #O(h) space and O(n) time
+#postorder needed, becasue you need to check left and right subtree, before going up
 # A binary tree is balanced, if, for every node, the heights of its left and right children differ by at most 1.
 #logic: so traverse in postorder, as soon as you get the false for any node, propogate that false all the way to root
 # Note
 #if recursive calls before conditional check, then its bottom up. If recursive call after conditional check, its top down
 # post order traversal indicates bottom up, pre order traversal indicates top down
-def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
+def is_balanced_binary_treed(tree: BinaryTreeNode) -> bool:
 
     BalancedStatusWithHeight = collections.namedtuple(
         'BalancedStatusWithHeight', ('balanced', 'height')) # this is important
@@ -44,6 +45,26 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
         return BalancedStatusWithHeight(is_balanced, height)
 
     return check_balanced(tree).balanced
+#simple one, without named tuple
+def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
+    def check_balanced(tree):
+        if not tree:
+            return (True, -1)#node of leaves are always None hence set to -1
+        #post order implemeentation
+        left_result = check_balanced(tree.left)
+        #if any left subtree is not height balanced we do not need to visit
+        # he corresponding right subtree
+        if not left_result[0]:#only run when not height balanced, else return before visting the other side
+            return left_result#return false if not balanced, propogate the result to the parent
+
+        right_result = check_balanced(tree.right)
+        if not right_result[0]:#return false if not balanced
+            return right_result
+
+        is_balanced = abs(left_result[1] - right_result[1]) <= 1
+        height = max(left_result[1], right_result[1]) + 1 # you have to always pick the max height
+        return (is_balanced, height)
+    return check_balanced(tree)[0]
 
 root = BinaryTreeNode(1)
 root.left = BinaryTreeNode(2)
@@ -149,6 +170,7 @@ print(root)
 
 #variant 1
 """
+Note: Main root has to be part of the subtree
 Write a program that returns the size of largest subtree that is complete
 Complete tree: A complete binary tree is a binary tree where nodes are filled in from left to right.
 A complete binary tree is a binary tree in which all the levels are completely filled 
@@ -156,7 +178,7 @@ except the last level, and all the nodes are as far left as possible
 https://stackoverflow.com/questions/33842493/largest-complete-subtree-in-a-binary-tree
 https://www.geeksforgeeks.org/find-the-largest-complete-subtree-in-a-given-binary-tree/
 Logic: IF a node at depth L is incomplete, than it must be complete at L - 1. IF doing this in BFS
-So, keep on enquing and as soon as you find anamalous node stop
+So, keep on enquing and as soon as you find anomalous node stop
 """
 # return (is_complete, max_height_so_far, is_perfect)
 def complete_subtree_depth(tree):
@@ -208,7 +230,7 @@ def is_kth_balanced_binary_tree(tree: BinaryTreeNode, k: int) -> bool:
         if not right_result.balanced:#return false if not balanced
             return right_result
 
-        is_balanced = abs(left_result.height - right_result.height) != k#break when k value encountered
+        is_balanced = abs(left_result.height - right_result.height) < k#break when k value encountered
         height = max(left_result.height, right_result.height) + 1 # you have to always pick the max height
         return BalancedStatusWithHeight(tree, is_balanced, height)
 
@@ -229,7 +251,7 @@ root.right.left.right = BinaryTreeNode(1)
 root.right.left.right.left = BinaryTreeNode(401)
 root.right.left.right.right = BinaryTreeNode(257)
 root.right.left.right.left.right = BinaryTreeNode(641)
-# print(root)
+print(root)
 print(is_kth_balanced_binary_tree(root, 3))
 
 

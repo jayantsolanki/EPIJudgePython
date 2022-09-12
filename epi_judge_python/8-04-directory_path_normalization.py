@@ -25,7 +25,7 @@ def shortest_equivalent_path(path: str) -> str:
             if not path_names or path_names[-1] == '..': # example: ../../local
                 path_names.append(token)
             else: #if path list not empty then pop the last element
-                if path_names[-1] == '/':#edge cases
+                if path_names[-1] == '/':#edge cases , not needed though, since assuming path will be error free
                     raise ValueError('Path error')
                 path_names.pop()
         else:  # Must be a name.

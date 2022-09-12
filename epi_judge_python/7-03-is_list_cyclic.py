@@ -7,17 +7,42 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 """
- Floyd’s Cycle-Finding Algorithm 
+Floyd's Cycle-Finding Algorithm 
 Write a program that takes the head of a singly linked list and returns null if there does not exist
 a cycle, and returns the node at the start of the cycle in case the cycle is there
 
 Simplest approach is to explore the nodes via a next field starting from head, and storing the visited nodes 
-ian a hash table. Space complexity is O(n).
+in a hash table. Space complexity is O(n).
 If space is an issue then go with below code
 Logic: Slow iterator and fast iterator ( Floyd’s Cycle-Finding Algorithm )
+    So if we start moving both pointers again at the same speed such that one pointer (say slow) begins from the head 
+    node of the linked list and other pointers (say fast) begins from the meeting point. When the slow pointer reaches 
+    the beginning of the loop (has made m steps), the fast pointer would have made also moved m steps as they 
+    are now moving the same pace. Since m+k is a multiple of n and fast starts from k, they would meet at the beginning. 
+
+
 https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190621160855/Detect-loop-in-a-linked-list.png
 Time: Let F be number of nodes to the start of the Cycle, C be the number of nodes in the Cycle, and n the total nodes. 
 Then time = O(F) + O(C) = O(n) - O(F)"
+If there are n nodes, the slow pointer is guaranteed to travel no more than n steps before the fast 
+pointer either meets the slow pointer or finds an end to the list. That means you do O(n) work 
+advancing the slow pointer, and you advance the fast pointer about twice that, which is also O(n). 
+Thus, the whole algorithm is O(n)
+    If there's a cycle, then once both pointers are in the cycle, the fast pointer "catches up" by one 
+    step on every iteration. The distance it needs to "catch up" is at most the length of the cycle, 
+    so the slow pointer can't start a second lap around the cycle before the fast pointer catches up.
+
+Another https://stackoverflow.com/questions/47193225/runtime-complexity-of-floyds-cycle-detection
+    If the list has N nodes, then in <= N steps, either the fast pointer will find the end of the list,
+     or there is a loop and the slow pointer will be in the loop.
+
+    Lets say the loop is of length M <= N: Once the slow pointer is in the loop, both the fast and slow
+     pointers will be stuck in the loop forever. Each step, the distance between the fast and the slow
+      pointers will increase by 1. When the distance is divisible by M, then the fast and slow pointers
+       will be on the same node and the algorithm terminates. The distance will reach a number divisible by M in <= M steps.
+
+    So, getting the slow pointer to the loop, and then getting the fast and slow pointers to meet 
+    takes <= N + M <= 2N steps, and that is in O(N)
 For explanation https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
 """
 # Floyd’s Cycle-Finding Algorithm 

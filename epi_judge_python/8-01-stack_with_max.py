@@ -126,7 +126,7 @@ class Stack:#simple
     def pop(self):
         if self.empty():#check if empty
             return
-        if self.mainStackLen == self.trackMaxIndex[-1] + 1:
+        if self.mainStackLen == self.trackMaxIndex[-1] + 1:#update the tracker for max index, if length same as tracker's last index
             self.trackMaxIndex.pop()
         self.mainStackLen -= 1
         return(self.mainStack.pop())

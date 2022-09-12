@@ -17,7 +17,7 @@ Once we reach the sth node, we start the process of reversing the links and keep
 When we reach the fth node, we stop the reversion, and link the reverted section with unreverted section
 Time: O(f)
 """
-def reverse_sublist(L: ListNode, start: int,
+def reverse_sublist_or(L: ListNode, start: int,
                     finish: int) -> Optional[ListNode]:
 
     dummy_head = sublist_head = ListNode(0, L)
@@ -28,8 +28,9 @@ def reverse_sublist(L: ListNode, start: int,
     #start reversing the link from position s untill position f, then relink the node before s to node on f, and node s to node after f
     sublist_iter = sublist_head.next #getting the node at position s
     #in the end of loop sublist_head.next points to node at position f and node s (sublist_iter) points to node after f
+    # for _ in range(start, finish): #this also works
     for _ in range(finish - start):#basically track two consecutive nodes, point the next of second node to first node, then move ahead
-        #folllow is analogy
+        #follow this analogy
         # next_temp = curr.next , curr is sublist_iter, next_temp is temp, prev is sublist_head
         # curr.next = prev
         # prev = curr
@@ -37,8 +38,8 @@ def reverse_sublist(L: ListNode, start: int,
         temp = sublist_iter.next#getting node next to position s
         #in below code sublist_iter.next is pointing to one node ahead, temp.next point to one node behind, sublist_head.next 
         #point to temp
-        #basically the loop needs to remap sublist head.next to node at f and node at s next should be mapped to node after f
-        #sublist_iter moves from one node to another
+        #basically the loop needs to remap sublist head.next to node at f and sublist_iter.next should be mapped to node after f
+        #sublist_iter.next moves from one node to another
         # sublist_head.next tracks the node behind temp
         sublist_iter.next, temp.next, sublist_head.next = (temp.next,
                                                            sublist_head.next,
@@ -47,6 +48,30 @@ def reverse_sublist(L: ListNode, start: int,
         # that is stored in sublist_head.next, then sublist_head.next moves to temp
         # at the end of the loop next attribute of node at start (sublist_iter.next) points to node after finish
         # and next attribute of node before start(sublist_head.next) points to node at finish
+    return dummy_head.next
+#a bit simple
+def reverse_sublist(L: ListNode, start: int,
+                    finish: int) -> Optional[ListNode]:
+
+    dummy_head = sublist_head = ListNode(0, L)
+    for _ in range(1, start):#finding predecessor to node at start
+        sublist_head = sublist_head.next
+
+    # Reverses sublist.
+    #start reversing the link from position s untill position f, then relink the node before s to node on f, and node s to node after f
+    # sublist_iter = sublist_head.next #getting the node at position s
+    #in the end of loop sublist_head.next points to node at position f and node s (sublist_iter) points to node after f
+    # for _ in range(start, finish): #this also works
+    # prev = sublist_head
+    prev = curr = sublist_head.next
+    #idea is to get the second node and point it towards previous node, and have the sublist_head.next point towars the node after f
+    for _ in range(finish - start):#basically track two consecutive nodes, point the next of second node to first node, then move ahead
+        temp = curr.next
+        curr.next = temp.next
+        temp.next = prev
+        prev = temp
+        sublist_head.next = prev
+
     return dummy_head.next
 
 # def reverse_sublist_v2(L, start: int,
@@ -166,6 +191,13 @@ def reverse(L):
         current.next = prev
         prev = current
         current = next
+    return prev
+#more better
+def reverse_v2(head: ListNode) -> ListNode:
+    current = head
+    prev = None
+    while current:
+        current.next, current, prev= prev, current.next, current
     return prev
 
 # variant 2

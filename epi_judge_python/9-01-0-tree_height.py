@@ -13,6 +13,7 @@ class BinaryTreeNode:
 # farthest leaf node
 #The basic computation is to compute the height of the each node starting from leaves, and proceeding
 # upwards.
+#this is bottom up DFS approach, why bottom up? because we are calculating height from leaves
 def maxDepth(node):
     if node is None:#as soon has leaf is encountered, start measuring the height
         return -1 ;#child of leaf is none, hence -1 for that. leaf is 0
@@ -24,10 +25,12 @@ def maxDepth(node):
         rDepth = maxDepth(node.right)
  
         # Use the larger one
-        if (lDepth > rDepth):
-            return lDepth+1
-        else:
-            return rDepth+1
+        # if (lDepth > rDepth):
+        #     return lDepth+1
+        # else:
+        #     return rDepth+1
+        #or use this
+        return max(lDepth, rDepth) + 1
  
  
 # Driver program to test above function
