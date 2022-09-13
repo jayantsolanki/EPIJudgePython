@@ -23,9 +23,12 @@ def has_path_sum(tree: BinaryTreeNode, remaining_weight: int) -> bool:
 
 #variant 1
 """
+https://leetcode.com/problems/path-sum/
+112. Path Sum
 Write a progrm which takes the sam inputs as in above problem and returns all the paths to leaves whose weight equals s.
+Type of recursion
 """
-def has_path_sum_variant(node: BinaryTreeNode, weight: int):
+def has_path_sum_variant_v1(node: BinaryTreeNode, weight: int):
     paths = []
     path = []
     def has_path_sum(tree: BinaryTreeNode, remaining_weight: int) -> bool:
@@ -45,6 +48,22 @@ def has_path_sum_variant(node: BinaryTreeNode, weight: int):
         path.pop()#pop the current node since backtracking now
         # return False
     has_path_sum(node, weight)
+    return paths
+
+def has_path_sum_variant(node: BinaryTreeNode, weight: int):
+    paths = []
+    def has_path_sum(tree: BinaryTreeNode, remaining_weight: int, path) -> bool:
+
+        if not tree:
+            return #dead end
+        if not tree.left and not tree.right:  # Leaf. check if the leaf adds up to the sum or not
+            if remaining_weight == tree.val:
+                paths.append(path + [tree.val])
+            return
+        # Non-leaf.
+        has_path_sum(tree.left, remaining_weight - tree.val, path + [tree.val])
+        has_path_sum(tree.right, remaining_weight - tree.val, path + [tree.val])
+    has_path_sum(node, weight, [])
     return paths
 
 root = BinaryTreeNode(314)

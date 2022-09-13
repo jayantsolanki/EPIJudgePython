@@ -394,19 +394,20 @@ Mappings for:
 | 9.1       | [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) |
 | 9.2 | [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/) |
 | 9.3 | [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) |
-| 9.4 | []() |
+| 9.4 | [1650. Lowest Common Ancestor of a Binary Tree III](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/) |
 | 9.5 | [129. Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/) |
 | 9.6 | [112. Path Sum](https://leetcode.com/problems/path-sum/) |
 | 9.7 | [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) note: solve without recursion |
-| 9.8 | [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/) note: solve without recursion |
-| 9.9 | []() |
+| 9.7.2 | [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/) note: solve without recursion |
+| 9.8 | []() |
+| 9.9 | [510. Inorder Successor in BST II](https://leetcode.com/problems/inorder-successor-in-bst-ii/) |
 | 9.10 | []() |
-| 9.11 | [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) note: solve with constant space |
-| 9.12 | [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) |
-| 9.13 | [1028. Recover a Tree From Preorder Traversal](https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/) |
-| 9.14 | []() |
-| 9.15 | [545. Boundary of Binary Tree](https://leetcode.com/problems/boundary-of-binary-tree) |
-| 9.16 | []() |
+| 9.11 | []() |
+| 9.11 | [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) |
+| 9.12 | [1028. Recover a Tree From Preorder Traversal](https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/) |
+| 9.13 | []() |
+| 9.14 | [545. Boundary of Binary Tree](https://leetcode.com/problems/boundary-of-binary-tree) |
+| 9.15 | [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/) |
 
 # Heaps
 

@@ -22,8 +22,10 @@ def exterior_binary_tree(tree: BinaryTreeNode) -> List[BinaryTreeNode]:
         exterior.append(subtree)
         if subtree.left:
             left_boundary(subtree.left)
-        else:#sometime moving left, you may find the path chanign towards rightusb c to hdmi
+        elif subtree.right: #this is  also fine or below one
             left_boundary(subtree.right)
+        # else:#sometime moving left, you may find the path chanign towards rightusb c to hdmi
+        #     left_boundary(subtree.right)
 
     # Computes the nodes from the rightmost leaf to the root.
     def right_boundary(subtree):
@@ -51,7 +53,7 @@ def exterior_binary_tree(tree: BinaryTreeNode) -> List[BinaryTreeNode]:
     exterior = [tree]
     left_boundary(tree.left)
     leaves(tree.left)
-    leaves(tree.right)
+    leaves(tree.right)# had to do it, becasue what if tree.left doesnt exists
     right_boundary(tree.right)
     return exterior
 

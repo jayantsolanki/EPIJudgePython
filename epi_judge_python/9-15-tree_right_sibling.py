@@ -18,19 +18,22 @@ We need to ensure that we process nodes level-by-level, left to right traversing
 the level_next field is set is trivial. When we complete that level, next level is starting node's left child.
 Remember: level traversing can be done only using loops
 """
-def construct_right_sibling(tree: BinaryTreeNode) -> None:
+def construct_right_siblingd(tree: BinaryTreeNode) -> None:
     def populate_children_next_field(start_node):
-        while start_node and start_node.left:# we need to assume that it is perfect binary tree, hence startting from left
+        #second condition is redundant
+        #iterate using next attribute
+        while start_node and start_node.left:# we need to assume that it is perfect binary tree, hence starting from left
             # Populate left child's next field.
             start_node.left.next = start_node.right
             # Populate right child's next field if start_node is not the last
             # node of level.
-            start_node.right.next = start_node.next and start_node.next.left#fist condition makes sure that next exist for start node
+            start_node.right.next = start_node.next and start_node.next.left#first condition makes sure that next exist for start node
             #before accessing next property, else error will be thrown when exising left, for example root node doesnt 
             # has next property node
             start_node = start_node.next#now move to the next node in the same level using the next property of that node
 
-    while tree and tree.left:
+    while tree and tree.left:#we do it level by level, current level does the next  linking for below level. Hence we go down until one level
+        #above the leaf
         populate_children_next_field(tree)
         tree = tree.left
 
@@ -38,18 +41,19 @@ def construct_right_sibling(tree: BinaryTreeNode) -> None:
 # Use this for Variant 2 also. I dont care about space
 # time: O(n), space O(n)
 from collections import deque
-def construct_right_sibling_brute(tree):
+#using BFS
+def construct_right_sibling(tree):
     if not tree:
         return None
-    node_deque = deque([(tree, 0)])
+    node_deque = deque([tree])
     # last = None
     #you can do by level ordering
-    while node_deque:
+    while node_deque:#done using single queue
         # result.append([])
         last = None
         queu_len = len(node_deque)
         for i in range(queu_len):
-            node, depth = node_deque.popleft()
+            node = node_deque.popleft()
             # if len(result[depth]):#do the linking here
             #     result[depth][-1].next = node
             if last:
@@ -57,9 +61,9 @@ def construct_right_sibling_brute(tree):
             last = node
             # result[depth].append(node)
             if node.left:
-                node_deque.append((node.left, depth+1))
+                node_deque.append(node.left)
             if node.right:
-                node_deque.append((node.right, depth+1))
+                node_deque.append(node.right)
     #now linking the items
     # for items in result:
     #     for i in range(0, len(items) - 1):

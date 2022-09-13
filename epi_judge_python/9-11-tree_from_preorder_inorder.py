@@ -1,13 +1,21 @@
 from typing import List
 import importlib  
 # from binary_tree_node import BinaryTreeNode
-bt= importlib.import_module("9-00-tree_traversal")
-BinaryTreeNode = bt.BinaryTreeNode
+# bt= importlib.import_module("9-00-tree_traversal.py")
+# BinaryTreeNode = bt.BinaryTreeNode
 from test_framework import generic_test
 
+class BinaryTreeNode:
+    def __init__(self, data = None, left = None, right = None) -> None:
+        self.data = data
+        self.left = left
+        self.right = right
+# from binarytree import Node
+# BinaryTreeNode = Node #creating synonym
 """
 Given inorder and preorder traversal of a binary tree having unique nodes, write a program to
 reconstruct the tree.
+Divide and Conquer
 Logic:
     The two key observations are:
 
@@ -36,6 +44,7 @@ def binary_tree_from_preorder_inorder_v2(preorder: List[int],
 
     # Builds the subtree with preorder[preorder_start:preorder_end] and
     # inorder[inorder_start:inorder_end].
+    #below you calcualte the subsets for preorder and inorder to be worked by the recusion function to calcualte subtrees
     def binary_tree_from_preorder_inorder_helper(preorder_start, preorder_end,
                                                  inorder_start, inorder_end):
         if preorder_end <= preorder_start or inorder_end <= inorder_start:
@@ -89,9 +98,13 @@ def binary_tree_from_preorder_inorder(preorder: List[int], inorder: List[int]) -
 
         return root
 
+    return array_to_tree(0, len(inorder) - 1)
 
-
-    return array_to_tree(0, len(preorder) - 1)
+if __name__ == '__main__':
+    exit(
+        generic_test.generic_test_main('9-11-tree_from_preorder_inorder.py',
+                                       'tree_from_preorder_inorder.tsv',
+                                       binary_tree_from_preorder_inorder))
 
 # Variant 1, solve the problem using inorder and a postorder
 """
@@ -123,6 +136,8 @@ def binary_tree_from_postorder_inorder(self, inorder: List[int], postorder: List
     # build a hashmap value -> its index
     idx_map = {val:idx for idx, val in enumerate(inorder)} 
     return helper(0, len(inorder) - 1)
+
+
 
 #variant 2
 """
@@ -165,20 +180,26 @@ print(constructMaximumBinaryTree([3,2,0, 1 ,6,5]))
 
     If stack is empty, we push the node into stack and continue
     If new value is smaller than the node value on top of the stack, we append TreeNode as the right node of top of stack.
-    If new value is larger, we keep poping from the stack until the stack is empty OR top of stack node value is greater than the new value. During the pop, we keep track of the last node being poped.
+    If new value is larger, we keep poping from the stack until the stack is empty OR top of stack node value is greater than 
+    the new value. During the pop, we keep track of the last node being popped.
     After step 2, we either in the situation of 0, or 1, either way, we append last node as left node of the new node.
     After traversing, the bottom of stack is the root node because the bottom is always the largest value we have seen so far (during the traversing of list).
 """
 """
-Anology is like this, since index to the left of max belongs to left and index to the right belongs to right, so as we move
-in the given array list, we keep looking for the max, but working backwards, as in first local max , than next greater max, then next so on until we find the largest max. The reason i said working bacwards because, in the orginal question we need to find first largest max then second largest max then third so on. Based on the original question, elements to the left of local max goes left child and right goes right child. Stack mackes sure we can keep popping the last element to find the max encountered so far. 
-Below is bottom up approach. The O(n2) one is top down appraoch
+    Analogy is like this, since index to the left of max belongs to left and index to the right belongs to right, 
+    so as we move
+    in the given array list, we keep looking for the max, but working backwards, as in first local max , than next 
+    greater max, then next so on until we find the largest max. The reason i said working backwards because, in the 
+    orginal question we need to find first largest max then second largest max then third so on. Based on the original 
+    question, elements to the left of local max goes left child and right goes right child. Stack makes sure we can 
+    keep popping the last element to find the max encountered so far. 
+    Below is bottom up approach. The O(n^2) one is top down appraoch
 """
-def constructMaximumBinaryTree(nums): # it is similar to max Stack API
+def constructMaximumBinaryTree(nums): # 
     stk = [BinaryTreeNode(nums[0])]
     for num in nums[1:]:
         node = BinaryTreeNode(num)
-        if num<stk[-1].val:
+        if num < stk[-1].val:
             stk[-1].right = node
         else:
             while stk and stk[-1].val < num:#pop out every element less than current node and move it to left of node
@@ -189,8 +210,3 @@ def constructMaximumBinaryTree(nums): # it is similar to max Stack API
         stk.append(node)
     return stk[0]
 print(constructMaximumBinaryTree([3,2,1,6,0,5]))
-if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main('9-11-tree_from_preorder_inorder.py',
-                                       'tree_from_preorder_inorder.tsv',
-                                       binary_tree_from_preorder_inorder))

@@ -34,7 +34,7 @@ def reconstruct_preorder_v2(preorder: List[int]) -> BinaryTreeNode:
 #a bit simple
 # from binarytree import Node
 # BinaryTreeNode = Node #creating synonym
-def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
+def reconstruct_preorder_v3(preorder: List[int]) -> BinaryTreeNode:
     def reconstruct_preorder_helper(preorder_iter):
         subtree_key = next(preorder_iter) #using iter, interesting
         if subtree_key is None:
@@ -49,10 +49,10 @@ def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
 
     return reconstruct_preorder_helper(iter(preorder))
 
-print(reconstruct_preorder(['H', 'B', 'F', None, None, 'E', 'A', None, None, None, 'C', None, 'C', None, 'G', 'I', None, None, None]))
+# print(reconstruct_preorder(['H', 'B', 'F', None, None, 'E', 'A', None, None, None, 'C', None, 'C', None, 'G', 'I', None, None, None]))
 
 # this without iterator
-def reconstruct_preorder_v3(preorder: List[int]) -> BinaryTreeNode:
+def reconstruct_preorder_v4(preorder: List[int]) -> BinaryTreeNode:
     def reconstruct_preorder_helper(preorder_iter, index): # you need to make sure that index is kept trac, because subtrees can go deep and deep
         # subtree_key = next(preorder_iter) #using iter, interesting
         index = index + 1
@@ -68,6 +68,27 @@ def reconstruct_preorder_v3(preorder: List[int]) -> BinaryTreeNode:
         return node, index
 
     return reconstruct_preorder_helper(preorder, -1)[0]
+# better
+def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
+    index = -1
+    def reconstruct_preorder_helper(): # you need to make sure that index is kept trac, because subtrees can go deep and deep
+        nonlocal index
+        index = index + 1
+        # subtree_key = next(preorder_iter) #using iter, interesting
+        subtree_key = preorder[index]
+        if subtree_key is None:
+            # index = index + 1
+            return None
+
+        # Note that reconstruct_preorder_helper updates preorder_iter. So the
+        # order of following two calls are critical.
+        node = BinaryTreeNode(subtree_key)
+        # index = index + 1
+        node.left = reconstruct_preorder_helper()
+        node.right  = reconstruct_preorder_helper()
+        return node
+    return reconstruct_preorder_helper()
+
 
 # variant 1, do it now with postorder
 """

@@ -10,6 +10,7 @@ from test_framework.test_utils import enable_executor_hook
 
 """
 Leaves should appear in left to right order
+#form of inorder where you only need to append the leaves
 Time: O(n)
 """
 def create_list_of_leaves_v2(tree: BinaryTreeNode) -> List[BinaryTreeNode]:

@@ -8,6 +8,7 @@ BinaryTreeNode = Node #creating synonym
 from test_framework import generic_test
 
 """
+#Note that nodes have Parent field
 Write a program to get inorder in constant space:
 One way is to use previous program, start from the left_most node and keep calling
 that program on each successive node.
@@ -15,7 +16,7 @@ Below program's logic:
     We need to know when we return to a parent if the just completed subtree was
     the parent's left child (then we need to visit the parent and then traverse the right subtree)
     or a right subtree (in which case we have completed trasversing the parent). Weachieve this by recording
-    the subtree's root before we move to parent. We can compare the subtree's rtoot with the parent's left child.
+    the subtree's root before we move to parent. We can compare the subtree's root with the parent's left child.
 """
 def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
 
@@ -30,16 +31,18 @@ def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
                 # Done with left, so go right if right is not empty. Otherwise,
                 # go up.
                 next = tree.right or tree.parent#left most node can also have a right child, so we need to visit that
-        elif tree.left is prev:#inorder is like left, root, right
+        elif tree.left is prev:# moved up from left side
+            #inorder is like left, root, right
             # We came up to tree(parent) from its left child.
             result.append(tree.data)#puts the parent in the result
             # Done with left, so go right if right is not empty. Otherwise, go
             # up.
             next = tree.right or tree.parent
-        else:  # Done with both children, so move up.
+        else:  # moved up from right child
+            #Done with both children, so move up.
             next = tree.parent
 
-        prev, tree = tree, next
+        prev, tree = tree, next #storing parent
     return result
 
 #alternative solution
@@ -93,7 +96,7 @@ def preorder_traversal(tree: BinaryTreeNode) -> List[int]:
                 next = tree.left
             else:
                 next = tree.right or tree.parent#left most node can also have a right child, so we need to visit that
-        elif tree.left is prev:#inorder is like left, root, right
+        elif tree.left is prev:
             # We came up to tree(parent) from its left child.
             # result.append(tree.data)#puts the parent in the result
             # Done with left, so go right if right is not empty. Otherwise, go
@@ -123,7 +126,8 @@ def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
                 next = tree.right or tree.parent#left most node can also have a right child, so we need to visit that
         elif tree.left is prev:#
             next = tree.right or tree.parent
-        else:  # Done with both children, so move up.
+        else: #coming up from right
+            # Done with both children, add the tree node (parent) to result and move up.
             result.append(tree.data)
             next = tree.parent
         prev, tree = tree, next

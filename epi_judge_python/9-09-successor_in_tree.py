@@ -9,7 +9,7 @@ from test_framework.test_utils import enable_executor_hook
 """
 Write a program to compute inorder successor of node in a binary tree
 Time: O(h)
-Logic: Understand the concept of inorder trasversing,  next node to a current node is always towards its right child tree.
+Logic: Understand the concept of inorder traversing,  next node to a current node is always towards its right child tree.
 For extreme cases, such as having no right subtree, then you will have to back track on following situation,
 1 -  if current node is someone's left child (parent), then that parent is the successor
 2 - if the current node is someone's right child then we already have visited the parent, hence, then to find next node we keep visiting parent's parent until we encounter a parent when we move up from a left child. that parent is the successor
@@ -24,7 +24,7 @@ def find_successor_v2(node: BinaryTreeNode) -> Optional[BinaryTreeNode]:
         return node
     #exceptions
     # Find the closest ancestor whose left subtree contains node.
-    while node.parent and node.parent.right is node:
+    while node.parent and node.parent.right is node:#this loop will break coz of 1 - either node reaches top, or 2- node == node.parent.left
         node = node.parent
 
     # A return value of None means node does not have successor, i.e., node is

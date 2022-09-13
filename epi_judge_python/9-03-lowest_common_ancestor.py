@@ -8,35 +8,38 @@ from test_framework.binary_tree_utils import must_find_node, strip_parent_link
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
-#compared to one on the leetcode, this one has O(h) space complexity. I prefer that leetcode one, but leetcode has p!=q
-# def lca(tree: BinaryTreeNode, node0: BinaryTreeNode,
-#         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+#compared to one on the leetcode, this one has O(h) space complexity. I prefer that leetcode one, but leetcode has p!=q (node0 != node1)
+#below approach go for postorder, makes sence, becasue we need to check for both side first
+#here p can be same as q
+def lca_ori(tree: BinaryTreeNode, node0: BinaryTreeNode,
+        node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
 
-#     Status = collections.namedtuple('Status', ('num_target_nodes', 'ancestor'))
+    Status = collections.namedtuple('Status', ('num_target_nodes', 'ancestor'))
 
-#     # Returns an object consisting of an int and a node. The int field is 0,
-#     # 1, or 2 depending on how many of {node0, node1} are present in tree. If
-#     # both are present in tree, when ancestor is assigned to a non-null value,
-#     # it is the LCA.
-#     def lca_helper(tree, node0, node1):
-#         if tree is None:
-#             return Status(num_target_nodes=0, ancestor=None)
+    # Returns an object consisting of an int and a node. The int field is 0,
+    # 1, or 2 depending on how many of {node0, node1} are present in tree. If
+    # both are present in tree, when ancestor is assigned to a non-null value,
+    # it is the LCA.
+    def lca_helper(tree, node0, node1):
+        if tree is None:
+            return Status(num_target_nodes=0, ancestor=None)
 
-#         left_result = lca_helper(tree.left, node0, node1)
-#         if left_result.num_target_nodes == 2:
-#             # Found both nodes in the left subtree.
-#             return left_result
-#         right_result = lca_helper(tree.right, node0, node1)
-#         if right_result.num_target_nodes == 2:
-#             # Found both nodes in the right subtree.
-#             return right_result
-#         num_target_nodes = (left_result.num_target_nodes +
-#                             right_result.num_target_nodes +
-#                             (node0, node1).count(tree)) #(node0, node1).count(tree) checks if current node (tree) is same node0 or node1 or both, if both value will be two, if eith of them then 1
-#         return Status(num_target_nodes,
-#                       tree if num_target_nodes == 2 else None)
+        left_result = lca_helper(tree.left, node0, node1)
+        if left_result.num_target_nodes == 2:
+            # Found both nodes in the left subtree.
+            return left_result
+        right_result = lca_helper(tree.right, node0, node1)
+        if right_result.num_target_nodes == 2:
+            # Found both nodes in the right subtree.
+            return right_result
+        #check if left_result 0, 1, or 2, same for right_result, and also check if root(tree) is same as p or q or both
+        num_target_nodes = (left_result.num_target_nodes +
+                            right_result.num_target_nodes +
+                            (node0, node1).count(tree)) #(node0, node1).count(tree) checks if current node (tree) is same node0 or node1 or both, if both value will be two, if with of them then 1, since node0 can be same as node1
+        return Status(num_target_nodes,
+                      tree if num_target_nodes == 2 else None)
 
-#     return lca_helper(tree, node0, node1).ancestor
+    return lca_helper(tree, node0, node1).ancestor
 
 def lca(tree: BinaryTreeNode, node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
