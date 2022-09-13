@@ -7,7 +7,7 @@ from test_framework import generic_test
     logic:
     create a min heap of size of numbers of arrays
     iteratively pick first elements from each array and put into heap
-    Once done, start the processof picking smallest number from heap, and replace the number lost in heap with the 
+    Once done, start the process of picking smallest number from heap, and replace the number lost in heap with the 
     next element of the array whose element was picked up. You can do this by using a index tracker, hence the use of 
     tuple
     Go on until heap runs out
@@ -48,7 +48,7 @@ def merge_sorted_arrays(sorted_arrays: List[List[int]]) -> List[int]:
         element = next(array, None)
         if element is not None:
             heapq.heappush(min_heap, (element, i))
-    #now starting the insertion, untill the heap runs out 
+    #now starting the insertion, until the heap runs out 
     while min_heap:
         smallest_element, smallest_element_index = heapq.heappop(min_heap)
         result.append(smallest_element)

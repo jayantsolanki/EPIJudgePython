@@ -27,9 +27,9 @@ def k_largest_in_binary_heap_v2(A: List[int], k: int) -> List[int]:
     for _ in range(k):
         candidate_idx = candidate_max_heap[0][1]
         result.append(-heapq.heappop(candidate_max_heap)[0])
-
+    #now get the children and put them to temp heap
         left_child_idx = 2 * candidate_idx + 1
-        if left_child_idx < len(A):
+        if left_child_idx < len(A): #important, make sure the left_child exists
             heapq.heappush(candidate_max_heap,
                            (-A[left_child_idx], left_child_idx))
         right_child_idx = 2 * candidate_idx + 2

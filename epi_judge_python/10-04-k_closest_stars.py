@@ -7,7 +7,7 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 """
-Rememeber there is O(n) solution using Quickselect
+Remember there is O(n) solution using Quickselect
 write a program to find k nearest stars in terms of distance to earth (0, 0, 0)
     Logic:
         Well first add the initial k stars from the input in to heap, this time a max heap
@@ -38,7 +38,7 @@ class Star:
         return math.isclose(self.distance, rhs.distance)#interesting
 
 
-def find_closest_k_stars(stars: Iterator[Star], k: int) -> List[Star]:
+def find_closest_k_stars_v1(stars: Iterator[Star], k: int) -> List[Star]:
 
     # max_heap to store the closest k stars seen so far.
     max_heap: List[Tuple[float, Star]] = []
@@ -57,6 +57,32 @@ def find_closest_k_stars(stars: Iterator[Star], k: int) -> List[Star]:
     # Iteratively extract from the max-heap, which yields the stars sorted
     # according from furthest to closest.# actually it is opposite, closest to further
     return [s[1] for s in heapq.nlargest(k, max_heap)]
+    # return [s[1] for s in max_heap] #this also works
+
+#this also works
+def find_closest_k_stars(stars: Iterator[Star], k: int) -> List[Star]:
+
+    # max_heap to store the closest k stars seen so far.
+    max_heap: List[Tuple[float, Star]] = []
+    for star in stars:
+        # Add each star to the max-heap. If the max-heap size exceeds k, remove
+        # the maximum element from the max-heap.
+        # As python has only min-heap, insert tuple (negative of distance, star)
+        # to sort in reversed distance order.
+        if len(max_heap) == k:
+             heapq.heappushpop(max_heap, (-star.distance, star))
+        else:
+            heapq.heappush(max_heap, (-star.distance, star)) # see the negative sign
+        # if len(max_heap) == k + 1:#kinda counter intuitive, but remember, if the insert star is max, it will be at root then
+        #     #hence, below line will eventually kick it, so any further max start automatically gets kicked out
+        #     # deletion always occurs at the root, and the mx is only stored at the top
+        #     heapq.heappop(max_heap)
+        #so once the k max-heap goes thorugh all the star, it will only contains k max(negative) stars.
+
+    # Iteratively extract from the max-heap, which yields the stars sorted
+    # according from furthest to closest.# actually it is opposite, closest to further
+    return [s[1] for s in heapq.nlargest(k, max_heap)]
+    # return [s[1] for s in max_heap] #this also works
 
 
 #variant 1
@@ -66,7 +92,7 @@ prints the kth largest element read up to that point. The length of sequence is 
 cannot use more than  O(k) additional storage. 
 What are the worst-case inputs for your algo.
     Logic: kth largest element upto that point means print the smallest element encountered so far.
-    Since after reading the first k elements, min heap will keep the smllest at the top aka the kth largest element
+    Since after reading the first k elements, min heap will keep the smallest at the top aka the kth largest element
     After that start printing the root, then insert the next, pop the root. Pop the root because we want to remove that
     smallest element read so far
     Check with [1,2,3,4,5,6,7,8,9], k = 3, it should print 1, 2, 3, 4, 5, 6 once all the inputs are read

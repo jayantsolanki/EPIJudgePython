@@ -156,12 +156,17 @@ from typing import Iterator, List
 Time: O(nlogk)
 """
 #bootcamp for k longest strings
+"""
+Logic:
+    How to decide which type of heap to use. When using minheap, we will need to kickout smallest string in order to make way for elements after 
+    size k. Smallest string sits at the top. Where as for maxheap we will need to kick out largest string sitting at the top. Since we need to preserve largest string. We will have to use minheap
+"""
 def top_k(k : int, stream: Iterator[str]) -> List[str]:
     # Entries are compared by their lengths
     # Heap elements can be tuples. This is useful for assigning comparison values (such as task priorities) 
     # alongside the main record being tracked
     min_heap = [(len(s), s) for s in itertools.islice(stream, k)]
-    #use below or above portion, remeber to pass list as iterator first
+    #use below or above portion, remember to pass list as iterator first
     # min_heap = []
     # for i in range(k):
     #     s = next(stream)

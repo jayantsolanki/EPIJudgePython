@@ -413,7 +413,7 @@ Mappings for:
 
 | Problem | LeetCode |
 |---------|----------|
-| 10.1       | []() |
+| 10.1 | [23. Merge k Sorted Lists (But a linked List instead of List)](https://leetcode.com/problems/merge-k-sorted-lists) |
 | 10.2 | []() |
 | 10.3 | []() |
 | 10.4 | [973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) |

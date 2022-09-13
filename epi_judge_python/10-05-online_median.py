@@ -16,7 +16,7 @@ Logic:
     sorted is not a requirement
     We could maintain two heaps in the following way:
     1 - A max-heap to store the smaller half of the input numbers, this heap will store largest value of this half at root
-    2 - A min-heap to store the larger half of the input numbers, this heap will store smalles value of this half at root
+    2 - A min-heap to store the larger half of the input numbers, this heap will store smaller value of this half at root
     If the following conditions are met:
 
     1 - Both the heaps are balanced (or nearly balanced)
@@ -45,7 +45,7 @@ def online_median_v2(sequence: Iterator[int]) -> List[float]:
         # Ensure min_heap and max_heap have equal number of elements if an even
         # number of elements is read; otherwise, min_heap must have one more
         # element than max_heap.
-        # we store the extra one value in min_heap when both heaps are balanced
+        # we store the extra one value in min_heap when both heaps are unbalanced, balanced as in  0 == 0 also
         if len(max_heap) > len(min_heap):#checks if even or odd number of values read
             heapq.heappush(min_heap, -heapq.heappop(max_heap)) #  min_heap keep getting the larger numbers
 
@@ -75,10 +75,11 @@ def online_median(sequence: Iterator[int]) -> List[float]:
     count  = 1
     for x in sequence:
         if count % 2 == 0:#even
-            #max, only minimum numbers from min_heap can be stored into max_heap, this makes sure minheap contains smaller 
+            #max, only minimum numbers from min_heap can be stored into max_heap, this makes sure maxheap contains smaller 
             # first half
             heapq.heappush(max_heap, -heapq.heappushpop(min_heap, x))
         else:#odd, #only max numbers from max_heap can be stored into min_heap, this makes sure minheap contains larger second half
+            #when odd ( aka unbalanced), min heap needs to have largest element from maxheap
             heapq.heappush(min_heap, -heapq.heappushpop(max_heap, -x))
         count += 1
 
