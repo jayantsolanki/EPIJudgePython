@@ -20,8 +20,11 @@ from test_framework.test_utils import enable_executor_hook
 Design an algo which returns the index i where i == A[i], provided that A is a sorted array of distinct numbers
 If there are multiple same A[i] == i, just return one
 Logic:
+    Since array is sorted and has unique element, both i and A[i] will be increasing if we move from left to right. So,
+    i - A[i]  will be also increasing, hence we just use binary search on i - A[i]] values. For this directly use those or create secondary
+    array to store these value on run binary search on this array
     Use binary search
-    Lok for boundaries A[i] > i and A[i] < i. Only search withinn this boundaries
+    Look for boundaries A[i] > i and A[i] < i. Only search withinn this boundaries
     Alternatively, calculate a secondary array whose elements are A[i] - i and and check for zeroes.
     difference will be always increasing or at worst may remain same, since array is sorted.
 Time: O(logn)

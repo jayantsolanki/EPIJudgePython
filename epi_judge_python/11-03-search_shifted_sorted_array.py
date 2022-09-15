@@ -19,20 +19,20 @@ from test_framework import generic_test
 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 Design an algo  for finding the position of the smallst element in a cyclically sorted array.
 Intuition for shifted sorted array: Example: A = [378, 478, 550, 631, 103, 203, 220, 234, 279, 368]
-    Since it is  shifted, the max element is not at the last position. 631 is is max, so every element
+    Since it is  shifted, the max element is not at the last position. 631 is max, so every element
     on or before 630 will always be greater than A[n - 1](last element). Hence to find the smaller element we need to 
     search in towards right, excluding that element itself, hence left = mid + 1. Conversely, since it is shifted, and we find a element 
     smaller than A[n-1], then rest of smaller elements will be always on or left to that element. Hence to find smaller element
-    we need to search towards left including that element too, since that my be the smallest., hence right = mid
-there is a point in the array at which you would notice a change. This is the point which would help us in this question. We call this the Inflection Point.
+    we need to search towards left including that element too, since that may be the smallest., hence right = mid
+There is a point in the array at which you would notice a change. This is the point which would help us in this question. We call this the Inflection Point(Answer)
 All the elements to the left of inflection point > first element of the array.
 All the elements to the right of inflection point < first element of the array.
 Assume all elements are distinct
 Time: O(logn)
-Note: problem cannot be solved in log n time if elemetns repeated
+Note: problem cannot be solved in log n time if elements repeated
 Logic:  
     for any mid, if A[mid] > A[n-1], n-1 being last index, then the minimum value must be the index after mid, in range [mid+1, n-1], here left becomes mid + 1. Conversely, if A[mid] < A [n  - 1], then no value can be in range [mid + 1, n - 1], here 
-    right becomes mid
+    right becomes mid and acts as the boundary for new subarray
 Ex: [378, 478, 550, 631, 103, 203, 220, 234, 279, 368], answ = index 4
 """
 def search_smallest_v2(A: List[int]) -> int:
@@ -40,14 +40,14 @@ def search_smallest_v2(A: List[int]) -> int:
     left, right = 0, len(A) - 1
     while left < right:
         mid = (left + right) // 2
-        if A[mid] > A[right]:
+        if A[mid] > A[right]: #right is acts like n - 1 index of that subarray
             # Minimum must be in A[mid + 1:right + 1].
             left = mid + 1
         else:  # A[mid] < A[right].
             # Minimum cannot be in A[mid + 1:right + 1] so it must be in A[left:mid + 1].
             right = mid
     # Loop ends when left == right.
-    return left
+    return left#inflection point
 
 #for my simple mind, i will stick to left<= right, and return result from while loop
 def search_smallest(A: List[int]) -> int:
@@ -62,14 +62,15 @@ def search_smallest(A: List[int]) -> int:
         mid == len(A) - 1 and A[mid] < A[mid - 1]: if the smallest element is towards rightmost
         A[mid] < A[mid + 1] and A[mid] < A[mid - 1]: if smallest element is in between
         """
-        if (mid == 0  and  A[mid] < A[mid + 1]) or (mid == len(A) - 1 and A[mid] < A[mid - 1]) or (A[mid] < A[mid + 1] and A[mid] < A[mid - 1]):
+        #inflection point
+        if (mid == 0 and A[-1] > A[mid] < A[mid + 1]) or (mid == len(A) - 1 and A[mid - 1] > A[mid] < A[0]) or (A[mid - 1] > A[mid] < A[mid + 1]):
             return mid
         elif A[mid] > A[right]:
             # Minimum must be in A[mid + 1:right + 1] since A[left] - A[mid] is already sorted without rotation
             left = mid + 1
         else:  # A[mid] < A[right].
             # Minimum cannot be in A[mid + 1:right + 1] so it must be in A[left:mid].
-            right = mid -1
+            right = mid - 1
     # Loop ends when left == right.
     return -1
 
@@ -114,6 +115,7 @@ Design an algo O(logn) for finding the position of an element k in cyclically so
 Logic: 
     Two binary searches
     Find the inflexion point or the smallest value
+    Then use the samllest value to corectly determine in what range the k sits, and run binary search in that range
 """
 def search_k_in_cyclic_array(A: List[int], k: int) -> int:
     if len(A) == 1:
@@ -128,7 +130,7 @@ def search_k_in_cyclic_array(A: List[int], k: int) -> int:
         mid == len(A) - 1 and A[mid] < A[mid - 1]: if the smallest element is towards rightmost
         A[mid] < A[mid + 1] and A[mid] < A[mid - 1]: if smallest element is in between
         """
-        if (mid == 0  and  A[mid] < A[mid + 1]) or (mid == len(A) - 1 and A[mid] < A[mid - 1]) or (A[mid] < A[mid + 1] and A[mid] < A[mid - 1]):
+        if (mid == 0 and A[-1] > A[mid] < A[mid + 1]) or (mid == len(A) - 1 and A[mid - 1] > A[mid] < A[0]) or (A[mid - 1] > A[mid] < A[mid + 1]):
             smallest = mid
             break
         elif A[mid] > A[right]:
@@ -136,7 +138,7 @@ def search_k_in_cyclic_array(A: List[int], k: int) -> int:
             left = mid + 1
         else:  # A[mid] < A[right].
             # Minimum cannot be in A[mid + 1:right + 1] so it must be in A[left:mid + 1].
-            right = mid
+            right = mid - 1
     
     #Now check if target lies in that A[smallest] and A[-1] then check binary search here
     # else binary serach in other A[0] - A[smallest - 1]
@@ -207,6 +209,14 @@ search_k_in_cyclic_array_method_2([378, 478, 550, 631, 103, 203, 220, 234, 279, 
 search_k_in_cyclic_array_method_2([7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6], 4)
 search_k_in_cyclic_array_method_2([1, 2, 3, 4, 5, 6], 6)
 search_k_in_cyclic_array_method_2([2, 3, 4, 5, 6, 1], 1)
+
+
+# Variant 2-mod:
+"""
+81. Search in Rotated Sorted Array II
+Given the array nums after the rotation and an integer target, return true if target is in nums, or false if it is not in nums.
+"""
+# https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 
 if __name__ == '__main__':
     exit(

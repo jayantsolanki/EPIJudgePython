@@ -47,8 +47,8 @@ def search_first_of_k_pythonic(A, k):
 
 # variant 1
 """
-Design an efficient algorithm that takes a sorted array and a key, and finds the index of the first occurence of an element greater that that key
-Logic: Find the rightmost k and its index and return iondex + 1
+Design an efficient algorithm that takes a sorted array and a key, and finds the index of the first occurence of an element greater than that key
+Logic: Find the rightmost k and its index and return index + 1
 """
 
 def find_gt(A: List[int], k: int):
@@ -58,12 +58,14 @@ def find_gt(A: List[int], k: int):
         if A[mid] < k:
             left = mid + 1
         elif A[mid] == k:
-            left = mid + 1
             result = mid
+            left = mid + 1
+            
         else:
             right = mid - 1
     #return (result + 1) if (result > -1 and result < len(A) - 1) else -1
-    return (result + 1) if (result !=len(A) - 1) else -1
+    # return (result + 1) if (result !=len(A) - 1) else -1
+    return (result + 1) if (result !=len(A)) else -1
 
 #pythonic solution
 # https://docs.python.org/3.9/library/bisect.html
@@ -88,7 +90,7 @@ http://www.dsalgo.com/2013/03/find-local-minima-in-array.html
 Explanation: 
     First we need to understand that if in an array of unique(important) integers first two numbers are decreasing and last two 
     numbers are increasing there ought to be a local minima. Why so? We can prove it in two ways. First we will do it 
-    by negation. If first two numbers are decreasing, and there is no local minima, that means 3rd number is less than 
+    by negation (contradiction). If first two numbers are decreasing, and there is no local minima, that means 3rd number is less than 
     2nd number. otherwise 2nd number would have been local minima. Following the same logic 4th number will have to be 
     less than 3rd number and so on and so forth. So the numbers in the array will have to be in decreasing order. 
     Which violates the constraint of last two numbers being in increasing order. This proves by negation that there 
@@ -96,12 +98,15 @@ Explanation:
 
     We can prove this in some other way also. Suppose we represent the array as a 2-D graph where the index of the numbers in the array represents the x-coordinate. and the number represents the y-coordinate. Now for the first two numbers, derivative will be negative, and for last two numbers derivative will be positive. So at some point the derivative line will have to cross the x axis. As the array contains only unique elements there cannot be a derivative point on the x axis. Because that will mean that two consecutive index having same number. So for any intersection of x axis by the derivative line will be a local minima.
 
+    We will solve this problem in O(log n) time by divide and conquer method. We will first check the mid index of the array. If it is smaller than its left and right, then it is the answer. If it is bigger than the left number then from start to left we have a subproblem, and as we proved already that starting with decreasing and ending with increasing sequence array will have to have a local minima, we can safely go to the left subarray. Otherwise if mid is bigger than its right, then we go to the right subarray. This way we guarantee a O(log n) algorithm to find any of the local minima present in the array.
+
 Let A be an unsorted array of n unique integers, with A[0] >= A[1] and A[n-2] <= A[n-1]. Call an index i a local minimum if A[i] 
 is less than or equal to its neighbours, i.e.,  A[i -1] > A[i] < A[i + 1]. How would you efficiently find a local minimum, 
 if one exists?
 Logic: 
     look at the middle element of the array. If it's a local minimum, return it. Otherwise, at least one adjacent value must be smaller than this one. Recurse in the half of the array containing that smaller element (but not the middle).
 """
+#Answer is always there
 def local_min(A):#size will be at least three, #this is for a special case
     #check for validity
     if A[0] < A[1] or A[-2] > A[-1]:
@@ -110,12 +115,13 @@ def local_min(A):#size will be at least three, #this is for a special case
     result = -1
     while left <= right:
         mid = left + (right - left)//2
+        print(mid)
         if A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]:
             result = mid
             break
-        elif A[mid] > A[mid + 1]:#move towards descending series
+        elif A[mid - 1] > A[mid] > A[mid + 1]:#move towards descending series
             left = mid + 1
-        else:
+        else:#A[mid - 1] < A[mid] < A[mid + 1] or A[mid - 1] < A[mid] > A[mid + 1] 
             right = mid - 1
     
     return A[result] if result!= -1 else result
@@ -123,7 +129,10 @@ def local_min(A):#size will be at least three, #this is for a special case
 local_min([9,7,2,8,5,6,7,8]) # 2, 5, 3 are the answers
 local_min([700,699, 122,82, 83, 500]) # 2 is the answer
 local_min([10, 9, 8, 10])
-local_min([9,7,2,8,9,4,3,8]) # 2, 5, 3 are the answers
+local_min([9,7,2,8,9,4,3,11]) # 2, 5, 3 are the answers
+local_min([10, 9, 11])
+local_min([10, 9, 11, 7, 20])
+local_min([12, 11, 7, 20])
 
 #find local valley
 def findValleyElement(A: List[int]) -> int:
@@ -139,9 +148,11 @@ def findValleyElement(A: List[int]) -> int:
         if (mid == 0 and A[mid] < A[mid + 1]) or (mid == len(A) -1 and A[mid] < A[mid - 1]) or (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]):
             result = mid
             break
-        elif A[mid] > A[mid + 1]:##go for descending
+        # when (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]) is false, if below is true or 
+        elif A[mid] > A[mid + 1]:##go for descending,  A[mid] > A[ mid + 1]
             left = mid + 1
-        else:##go for ascending
+        # when (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]) is false, if below is true
+        else:##go for ascending #A[mid] > A[mid - 1]
             right = mid - 1
 
     return result
@@ -167,10 +178,13 @@ def findPeakElement(A: List[int]) -> int:#local peak or local maxima
         #If the middle element, midmid lies in an ascending sequence of numbers, or a rising slope
         # (found by comparing nums[i] to its right neighbour), it obviously implies that the peak lies towards 
         #the right of this element
-        elif A[mid] < A[mid + 1]:#ascending
+        #above (A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]) will be false when  A[mid] < A[ mid + 1], so below elsif will run
+        elif A[mid] < A[mid + 1]:#ascending 
             left = mid + 1
-        else:
+        #above (A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]) will be false when  A[mid -] > A[ mid], so below else will run
+        else:#descending
             right = mid - 1
+
 
     return result
 #find maxima
@@ -241,6 +255,8 @@ Design an algo which tests if p is the prefix of string in an array of sorted st
 A = ["ab", "abd", "abdf", "abz"]
 P = "abd"
 This requires custom comparator
+Logic:
+    Since, strings are sorted, directly compare them like number (lexicographically), use binary search concept
 """
 
 def check_prefix(A: List[str], p: str):
