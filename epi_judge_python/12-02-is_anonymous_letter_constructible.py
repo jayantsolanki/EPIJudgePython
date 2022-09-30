@@ -28,9 +28,9 @@ def is_letter_constructible_from_magazine(letter_text: str,
             char_frequency_for_letter[c] -= 1
             if char_frequency_for_letter[c] == 0:
                 del char_frequency_for_letter[c]
-                if not char_frequency_for_letter:
-                    # All characters for letter_text are matched.
-                    return True
+            if not char_frequency_for_letter: #important, early stop
+                # All characters for letter_text are matched.
+                return True
 
     # Empty char_frequency_for_letter means every char in letter_text can be
     # covered by a character in magazine_text.
@@ -38,6 +38,7 @@ def is_letter_constructible_from_magazine(letter_text: str,
 
 # Pythonic solution that exploits collections.Counter. Note that the
 # subtraction only keeps keys with positive counts.
+#nice
 def is_letter_constructible_from_magazine_pythonic(letter_text: str,
                                                    magazine_text: str) -> bool:
     # you can actually add or subtract two or more counters, check page 174

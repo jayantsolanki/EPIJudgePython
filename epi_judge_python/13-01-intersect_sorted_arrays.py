@@ -3,6 +3,13 @@ from typing import List
 from test_framework import generic_test
 import bisect
 
+"""
+https://leetcode.com/problems/intersection-of-three-sorted-arrays/solution/
+1213. Intersection of Three Sorted Arrays
+
+https://leetcode.com/problems/intersection-of-two-arrays-ii/
+350. Intersection of Two Arrays II
+"""
 
 #this one has  Time complexity O(mn)
 def intersect_two_sorted_arrays_one(A: List[int], B: List[int]) -> List[int]:
@@ -57,7 +64,8 @@ def intersect_two_sorted_arrays(A: List[int], B: List[int]) -> List[int]:
     while i < len(A) and j < len(B):
         if A[i] == B[j]:
             #check for duplicate
-            if i == 0 or A[i] != A[i - 1]:
+            # if i == 0 or A[i] != A[i - 1]:
+            if i == 0 or len(result) == 0 or A[i] != result[-1]:
                 result.append(A[i])
             i += 1 #imp
             j += 1 #imp

@@ -10,7 +10,7 @@ Subarray = collections.namedtuple('Subarray', ('start', 'end'))
 
 """
 Write a program that takes two arrays of strings, and return the indices of the starting and ending index of a 
-shortest subarray of the first srray that 'sequentially covers' all the strings of the keywords array. 
+shortest subarray of the first array that 'sequentially covers' all the strings of the keywords array. 
 Assume all strings are disctict in keyword array.
 Logic:
     Create two hashmaps, one (keyword_to_idx) for tracking the relative position of strings in keywords, i.e., their index numbers in keywords
@@ -23,7 +23,7 @@ Logic:
 
 
 
-    only the shortest_subarray_length[-1] is used for finidng the overall shortest size of subarray
+    only the shortest_subarray_length[-1] is used for finding the overall shortest size of subarray
 Time: O(n), space: O(m), m is the number strings in keywords
 """
 def find_smallest_sequentially_covering_subset_original(paragraph: List[str],
@@ -84,13 +84,13 @@ def find_smallest_sequentially_covering_subset(paragraph: List[str],
     for index, word in enumerate(paragraph):
         if word in keywords_to_idx:
             key_index = keywords_to_idx[word]
-
+            latest_location_keywords[key_index] =  index
             if key_index == 0:
                 subarray_length_per_keyword[key_index] = 1
             elif subarray_length_per_keyword[key_index - 1] != float('Inf'): #check to make sure that previous key was encountered
                 distance_to_key = index - latest_location_keywords[key_index - 1]
                 subarray_length_per_keyword[key_index] = distance_to_key + subarray_length_per_keyword[key_index - 1]
-            latest_location_keywords[key_index] =  index
+            
             if (key_index == len(keywords) - 1 and 
                 subarray_length_per_keyword[-1] < shortest_subarray):
                 shortest_subarray = subarray_length_per_keyword[-1]

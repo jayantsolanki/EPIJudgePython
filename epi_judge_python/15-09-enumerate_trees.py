@@ -13,27 +13,27 @@ from test_framework.test_utils import enable_executor_hook
 #Bottom up approach
 def generate_all_binary_trees(num_nodes: int
                               ) -> List[Optional[BinaryTreeNode]]:
-    print(num_nodes)
+    # print(num_nodes)
     if num_nodes == 0:  # Empty tree, add as a None.
         return [None]
 
     result: List[Optional[BinaryTreeNode]] = []
     for num_left_tree_nodes in range(num_nodes):
-        num_right_tree_nodes = num_nodes - 1 - num_left_tree_nodes
+        num_right_tree_nodes = num_nodes - 1 - num_left_tree_nodes #1 less, since there is always a default root node
         left_subtrees = generate_all_binary_trees(num_left_tree_nodes)
-        print("left", left_subtrees)
+        # print("left", left_subtrees)
         right_subtrees = generate_all_binary_trees(num_right_tree_nodes)
-        print("right", right_subtrees)
+        # print("right", right_subtrees)
         # Generates all combinations of left_subtrees and right_subtrees.
         result += [
             BinaryTreeNode(0, left, right) for left in left_subtrees
-            for right in right_subtrees
+            for right in right_subtrees#these are returning subtrees, mentally run for node == 0, 1, 2
         ]
     return result
 
-    
+#run node 0 in your mind
 generate_all_binary_trees(3)
-for i in generate_all_binary_trees(2):
+for i in generate_all_binary_trees(3):
     print(i)
 
 def serialize_structure(tree):

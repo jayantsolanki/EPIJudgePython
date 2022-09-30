@@ -21,7 +21,7 @@ Time: Sort takes O(nlogn), scanning takes O(n), overall O(nlogn)
 """
 Event = collections.namedtuple('Event', ('start', 'finish'))
 
-def find_max_simultaneous_events(A: List[Event]) -> int:
+def find_max_simultaneous_events_ori(A: List[Event]) -> int:
 
     # Endpoint is a tuple (start_time, 0) or (end_time, 1) so that if times, True is 1, False is 0
     # are equal, start_time comes first
@@ -36,7 +36,7 @@ def find_max_simultaneous_events(A: List[Event]) -> int:
     # start times before end times.
     # https://docs.python.org/3.8/howto/sorting.html
     # https://stackoverflow.com/questions/4233476/sort-a-list-by-multiple-attributes
-    #python can sort using multiple keys, you need to priovdfe them using tuples
+    #python can sort using multiple keys, you need to provide them using tuples
     # https://stackoverflow.com/questions/18595686/how-do-operator-itemgetter-and-sort-work
     E.sort(key=lambda e: (e.time, not e.is_start))
     # Track the number of simultaneous events, record the maximum number of
@@ -68,12 +68,37 @@ def find_max_simultaneous_events_alt(A: List[Event]) -> int:
     #python can sort using multiple keys, you need to priovdfe them using tuples
     # https://stackoverflow.com/questions/18595686/how-do-operator-itemgetter-and-sort-work
     # E.sort(key=lambda e: (e.time, not e.is_start))
-    E.sort(key = operator.attrgetter('time', 'is_start')) # thsi also works E.sort(key = operator.itemgetter(0, 1))
+    E.sort(key = operator.attrgetter('time', 'is_start')) # this also works E.sort(key = operator.itemgetter(0, 1))
     # Track the number of simultaneous events, record the maximum number of
     # simultaneous events.
     max_num_simultaneous_events, num_simultaneous_events = 0, 0
     for e in E:
         if e.is_start == 0:
+            num_simultaneous_events += 1
+            max_num_simultaneous_events = max(num_simultaneous_events,
+                                              max_num_simultaneous_events)
+        else:
+            num_simultaneous_events -= 1
+    return max_num_simultaneous_events
+
+#simple way
+def find_max_simultaneous_events(A: List[Event]) -> int:
+    # are equal, start_time comes first
+    # Builds an array of all endpoints.
+    E = [
+        p for event in A
+        for p in ((event.start, 0), (event.finish, 1)) # giving high precendece to start by giving 0
+    ]
+    # Sorts the endpoint array according to the time, breaking ties by putting
+    # start times before end times.
+    E.sort() #below also works
+    # E.sort(key=lambda e: (e[0], e[1]))
+
+    # Track the number of simultaneous events, record the maximum number of
+    # simultaneous events.
+    max_num_simultaneous_events, num_simultaneous_events = 0, 0
+    for e in E:
+        if e[1] == 0:
             num_simultaneous_events += 1
             max_num_simultaneous_events = max(num_simultaneous_events,
                                               max_num_simultaneous_events)

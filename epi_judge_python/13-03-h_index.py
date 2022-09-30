@@ -11,7 +11,7 @@ Logic:
 Time: O(nlogn)
 """
 
-def h_index_ori(citations: List[int]) -> int:
+def h_index(citations: List[int]) -> int:
 
     citations.sort()
     n = len(citations)
@@ -57,7 +57,7 @@ sk  	5	5	4	3	1	1
 The observation h index is limited by both citation and paper count gives us the idea of counting/bucket sort. 
 Imagine above as a histgram of each paper count, bar height at value x is the value that is equal how many papers which has count x
 """
-def h_index(citations: List[int]) -> int:
+def h_indexs(citations: List[int]) -> int:
     n = len(citations)
     citationCounts = [0] * (n + 1)  # citationCounts[i] is the number of papers with i citations.
     for c in citations:#each citation becomes the index

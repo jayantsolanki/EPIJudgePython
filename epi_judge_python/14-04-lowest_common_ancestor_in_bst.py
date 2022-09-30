@@ -9,7 +9,7 @@ from test_framework.test_utils import enable_executor_hook
 
 """
 Design an algo to find lowest common ancestor in a BST of the given two nodes. Assume all the keys are distinct
-Rememebr an LCA in binary key has this property : s <= node <= b. s and b are two nodes and node is the LCA
+Remember an LCA in binary key has this property : s <= node <= b. s and b are two nodes and node is the LCA
 So basically we strive to find this interval, by moving left or right based on the value of s and b
 Exploit the property of BST
 Logic:
@@ -40,9 +40,9 @@ def find_lca(tree: BstNode, s: BstNode, b: BstNode) -> Optional[BstNode]:
     while True:
         if s.data <=  tree.data <= b.data:
             break
-        if tree.data < s.data:
+        elif tree.data < s.data:#since tree.data is < then s.data, then it will be always < b.data, since s.data < b.data
             tree = tree.right
-        if tree.data > b.data:
+        else:# tree.data > b.data:
             tree = tree.left
     return tree
 

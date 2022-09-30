@@ -19,10 +19,10 @@ def find_k_largest_in_bst(tree: BstNode, k: int) -> List[int]:
             inorder_reverse(subtree.right)
             if len(result) < k: #only append if length not achieved
                 result.append(subtree.data) #now proceed
-                # inorder_reverse(subtree.left)
-            else:
-                return
-            inorder_reverse(subtree.left)
+                inorder_reverse(subtree.left)
+            # else:
+            #     return
+            # inorder_reverse(subtree.left)
             
     inorder_reverse(tree)
     return result
@@ -33,7 +33,6 @@ def find_k_largest_ins_bst(tree: BstNode, k: int) -> List[int]:
         # Perform reverse inorder traversal.
         if tree and len(k_largest_elements) < k:
             find_k_largest_in_bst_helper(tree.right)
-            print(tree.data)
             if len(k_largest_elements) < k:
                 k_largest_elements.append(tree.data)
                 find_k_largest_in_bst_helper(tree.left)

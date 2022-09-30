@@ -19,8 +19,8 @@ An n-bit gray code sequence is a sequence of 2n integers where:
 
 the answer for n = 3 will be [0,1,3,2,6,7,5,4] # [000, 001, 011, 010, 110, 111, 101, 100], 2^n total items
 Logic:
-We build the series inrecemntally, adding a value only if it is distinct from all other currently in the series and 
-    differs in exactly one place with the previous value. For last palce , we have to check that it differs with first value
+We build the series incrementally, adding a value only if it is distinct from all other currently in the series and 
+    differs in exactly one place with the previous value. For last place , we have to check that it differs with first value
     in one place.
 
     We begin wil zero 000, next we try changing the bit at 0th position, if the new value not in series, add it
@@ -86,7 +86,7 @@ Concatenate G(3a) and G(3b) to get the Gray code sequence for n = 3 (G(3)) : [00
 
 
 Time: T(n) = T(n-1) + O(2^(n-1)), O(2^n)
-Space complexity: O(n), We start from nn and continue our recursive function call until our base condition n = 0n=0 is reached. 
+Space complexity: O(n), We start from n and continue our recursive function call until our base condition n = 0n=0 is reached. 
 Thus, the depth of the function call stack will be O(n). The space occupied by the output result is not 
 considered in the space complexity analysis. All 2^n numbers are added to the same list. At every function call, we iterate over the list, and at each iteration, we add a new number to the sequence. Thus, the size of the list result at the end of a function call is twice its size at the previous function call.
 
@@ -98,7 +98,7 @@ def gray_code_recursion2(num_bits: int) -> List[int]:
         return [0]
     
     # These implicitly begin with 0 at bit_index (num_bits -1)
-    gray_code_num_bits_minus_1 = gray_code(num_bits - 1)
+    gray_code_num_bits_minus_1 = gray_code_recursion2(num_bits - 1)
     # now, add a 1 at bit -index (num_bits - 1) to all entries in gray_code_num_bits_minus_1
     leading_bit_one = 1 << (num_bits - 1)
     # Process in reverse order to achieve reflection of gray_code_num_bits_minus_1
@@ -106,7 +106,9 @@ def gray_code_recursion2(num_bits: int) -> List[int]:
         leading_bit_one | i for i in reversed(gray_code_num_bits_minus_1)
     ]  
 
-#my take, simpl to understand,  my favorite, top down
+gray_code_recursion2(2)
+
+#my take, simple to understand,  my favorite, top down
 def gray_code(num_bits: int) -> List[int]:
     def gray_code_gen(n, result):
         if n == num_bits:
@@ -115,14 +117,14 @@ def gray_code(num_bits: int) -> List[int]:
         return gray_code_gen(n+1, result)
     return gray_code_gen(0, [0])
 
-gray_code(2)
+gray_code(1)
 
 #method 3, my favorite
 #list compehrehension
 # Time and space complexity: O(2 ^ n)
 def gray_codde(num_bits: int) -> List[int]:
     results = [0]
-    for i in range(num_bits):#at every ith bit, result size becomes twice
+    for i in range(num_bits):#at every ith bit, result size becomes twice, size doubles for every bit, hence Time comeplxity = 2^n
         results += [x | (1 << i) for x in reversed(results)]#here i am simply adding one to msb
     return results
 

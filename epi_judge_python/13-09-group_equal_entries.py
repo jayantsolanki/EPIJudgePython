@@ -8,6 +8,7 @@ from test_framework.test_utils import enable_executor_hook
 
 
 """
+#Counting Sort, Important
 You are given an array of student objects. Each student has an integer -valued age field that is to be treated as a key.
 Rearrange the elements of the array, so that student with same age appear together. The order of ages dont matter. 
 How would your solution change if agges have to be appear in sorted order?
@@ -23,12 +24,12 @@ Logic:
     USe two hastables to track subarrays. one for offsets, other for its size. As soon as subarray is empty, we remove it.
     Key is that we swap
     Tldr: get the first age key from offset hash,, find the index(from_idx) where it should have belonged, then get the actual element
-    currently present there, find its index(to_idx) where it should haver actually belonged, now swap the elements at those two indices
+    currently present there, find its index(to_idx) where it should have actually belonged, now swap the elements at those two indices
     , update the counter and offset hash maps for element at to_idx
 
 If not sorted:
     Time: O(n), has tables O(m), m is distinct ages
-    If ordered required, use BST, Chapter 14, Time O(n + mlogm). Use BST fro mapping ages to counts. Then process it
+    If ordered required, use BST, Chapter 14, Time O(n + mlogm). Use BST for mapping ages to counts. Then process it
 """
 
 Person = collections.namedtuple('Person', ('age', 'name'))
@@ -41,7 +42,7 @@ def group_by_age(people: List[Person]) -> None:
     for age, count in age_to_count.items():#creating offsets
         age_to_offset[age] = offset
         offset += count
-    while age_to_offset:
+    while age_to_offset:#complete all the offsets
         from_age = next(iter(age_to_offset))# this keeps on returning the same first value until it is deleted in the last line, 
         # then it return next first value
         # print(from_age)

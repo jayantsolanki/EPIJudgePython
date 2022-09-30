@@ -7,12 +7,12 @@ from test_framework.test_utils import enable_executor_hook
 
 #Test if three BST nodes are totally ordered; all keys unique
 """
-Write a program which takes two nodes in a bst and a third node, the iddle, and determines if one of the two nodes is 
+Write a program which takes two nodes in a bst and a third node, the middle, and determines if one of the two nodes is 
 a proper ancestor of the middle and the other is proper descendent of the middle. ( proper means given nodes are not 
 equal to middle nodes)
 Logic:
-    Brute force is to check for middle via traversing from given nodes, checking if one is acenstor and other is descendent, 
-    if both returns true then overall is true, fi false, then swap and check for descendent for first and ancestor for second.
+    Brute force is to check for middle via traversing from given nodes, checking if one is ancestor and other is descendent, 
+    if both returns true then overall is true, if false, then swap and check for descendent for first and ancestor for second.
     In above as soon as we confirm ancestor, we start from middle to confirm the descendent. Also doing vice versa, overall 
     three max searches. Since if one fails we will swap and again start.
     In worst case time is O(h), since if we start from wrong node in confirming the ancestor, we will reach to the 
@@ -21,8 +21,8 @@ Logic:
     To prevent above wrong node start search, we interleave searches, we one place in the search interchangeably for 
     both given nodes, looking for the middle node from them. As soon as we get the middle node, we start searching 
     for descendent.
-    Time: O(d), d is difference between depth of ancestor and descendent (or distance between ancestor and descendent). I
-    f the middle node doesnt ahve those two nodes as ancestor or descendent, then it will be O(h)
+    Time: O(d), d is difference between depth of ancestor and descendent (or distance between ancestor and descendent). 
+    If the middle node doesnt have those two nodes as ancestor or descendent, then it will be O(h)
 
 """
 def pair_includes_ancestor_and_descendant_of_m(possible_anc_or_desc_0: BstNode,
@@ -49,15 +49,16 @@ def pair_includes_ancestor_and_descendant_of_m(possible_anc_or_desc_0: BstNode,
     # or from possible_anc_or_desc_1 to possible_anc_or_desc_0 without seeing
     # middle, middle cannot lie between possible_anc_or_desc_0 and
     # possible_anc_or_desc_1.
-    # if ((search_0 is not middle and search_1 is not middle) #return False if both of them not middle, or either of them reached other node
-    #         or search_0 is possible_anc_or_desc_1
-    #         or search_1 is possible_anc_or_desc_0):
-    #     return False
-    #same as above
-    if (not (search_0 is middle or search_1 is  middle) #return False if both of them not middle, or either of them reached other node
+    if ((search_0 is not middle and search_1 is not middle) #return False if both of them not middle, or either of them reached other node
             or search_0 is possible_anc_or_desc_1
             or search_1 is possible_anc_or_desc_0):
         return False
+    #same as above
+    # if (not (search_0 is middle or search_1 is  middle) #return False if both of them not middle, or either of them reached other node
+    #         or search_0 is possible_anc_or_desc_1
+    #         or search_1 is possible_anc_or_desc_0):
+    #     return False
+        
 
     def search_target(source, target):
         while source and source is not target:

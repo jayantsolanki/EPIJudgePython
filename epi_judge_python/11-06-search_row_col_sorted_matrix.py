@@ -9,14 +9,16 @@ A normal binary search for each row and overall will take O(mlogn)
 Technique also called Search Space Reduction
 Logic:
     A good rule for design is to look for extreme cases
+    #Column rejection rule
     1 - Compare search element x with A[0][n - 1] top-right corner
         a - if x > A[0][n-1] then x is greater than every elements in Row 0
-        b - if x < A[0][n-1] then x is smaller than every elements in column n -1, hence move one place in that column
+        b - if x < A[0][n-1] then x is smaller than every elements in column n -1, hence move one place in that column (that is new column limit will be n - 1 - 1)
+    Row Rejection rule
     2 - Compare search element x with A[m -1][0] bottom-left corner
         a - if x > A[m -1][0] then x is greater than every elements in Column 0
-        b - if x < A[m -1][0] then x is smaller than every elements in Row m - 1, , hence move one place in that row
+        b - if x < A[m -1][0] then x is smaller than every elements in Row m - 1, , hence move one place up in that row
     You may use either 1 or 2 for your logic
-Time: O(m + n), each iteration removes a row or column, so at max we inspedct m+n-1 elements
+Time: O(m + n), each iteration removes a row or column, so at max we inspect m+n-1 elements
 """
 def matrix_search(A: List[List[int]], x: int) -> bool:
 

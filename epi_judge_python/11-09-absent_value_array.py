@@ -13,7 +13,7 @@ Since IP address is made up of 32 bits, use first half of bits (2^16 bits) to fi
 Store first 16 bits in the form of 0 - 2^16 - 1 size array. 
 Logic:
     Divide the IP series repsentation into first 16 bits half and second 16 bits half
-    Use the first hald to get the total combination of IP series found. 
+    Use the first half to get the total combination of IP series found. 
         For this create an array called counter, of size 0 - 2^16 - 1, each index represents the first half of IP numbers ( xxx-xxx-???-???)
         Each index at ideal will count to 2^16, since lower 16 bit half can have 2^16 combinations
         So some indices representing IP series will have lower count, so identify them
@@ -37,7 +37,7 @@ def find_missing_element(stream: Iterator[int]) -> int:
     #                         if c < bucket_capacity)#first 16bit in integer
     # below or top both are fine
     candidate_bucket = [i for i, c in enumerate(counter)#bascially get the index of those have less ip count, index is actually
-                            if c < bucket_capacity][0]#Only finding one missing IP address shall be fine
+                            if c < bucket_capacity][0]#Only finding one missing IP address shall be fine, Important
     # Finds all IP addresses in the stream whose first 16 bits are equal to
     # candidate_bucket.
     

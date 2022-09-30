@@ -74,6 +74,22 @@ def decompositions(text: str) -> List[List[str]]:
 
 decompositions("abcd")
 
+#another way
+#no sepearate need of having a curr append and pop
+def decompositions_v2(text):
+    result = []
+    m = len(text)
+    def split_str(start, curr):
+        if start == m:
+            result.append(curr.copy())
+            return
+        else:
+            for end in range(start, m):
+                split_str(end + 1, curr + [text[start: end + 1]])
+
+    split_str(0, [])
+    return result
+decompositions_v2("abcd")
 #my take
 #helper
 def is_palindromic(s: str) -> bool:

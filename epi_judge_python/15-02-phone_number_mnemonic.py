@@ -34,7 +34,7 @@ def phone_mnemonic_ori(phone_number: str) -> List[str]:
     return mnemonics
 
 #my take
-def phone_mnemonic(phone_number: str) -> List[str]:
+def phone_mnemonic_mytake(phone_number: str) -> List[str]:
     mnemonics: List[str] = []
     def phone_mnemonic_helper(numbers, partial_mnemonic) -> None:
         if len(numbers) == 0:
@@ -45,7 +45,19 @@ def phone_mnemonic(phone_number: str) -> List[str]:
                 phone_mnemonic_helper(numbers[1:], partial_mnemonic + c)
     phone_mnemonic_helper(phone_number, "")
     return mnemonics
-
+#another take, just use the index to track the current character
+def phone_mnemonic(phone_number: str) -> List[str]:
+    m = len(phone_number)
+    mnemonics: List[str] = []
+    def phone_mnemonic_helper(index, partial_mnemonic) -> None:
+        if index == m:
+            mnemonics.append(partial_mnemonic)
+        else:
+            char = phone_number[index]
+            for c in MAPPING[int(char)]:
+                phone_mnemonic_helper(index + 1, partial_mnemonic + c)
+    phone_mnemonic_helper(0, "")
+    return mnemonics
 # phone_mnemonic("23")
 
 # Pythonic solution
@@ -96,7 +108,7 @@ def phone_mnemonic_var(phone_number: str) -> List[str]:
     stack.append("")
     
     while len(stack) > 0:
-        current = stack.pop()
+        current = stack.pop()#pop out the partial mnemonic
         
         if len(current) == num_length:#stop building it further once decided length reached
             answer.append(current)

@@ -8,7 +8,7 @@ from test_framework.test_utils import enable_executor_hook
 """
 https://www.mathsisfun.com/games/towerofhanoi.html
 The only way to solve the puzzle was to build interim towers on the different pegs
-ou start at the bottom, not the top! Here’s how it works. If all the disks are on Peg A at the left, and you need to move them all to Peg C on the right, then you need to move the bottom disk, the largest one, to Peg C. Obviously.
+ou start at the bottom, not the top! Here's how it works. If all the disks are on Peg A at the left, and you need to move them all to Peg C on the right, then you need to move the bottom disk, the largest one, to Peg C. Obviously.
 Only way you can release nth disk is by building a n-1 disk tower on the empty area.
 
 To do that, you need to build an interim tower on Peg B with the next largest disk at the bottom. And to do that, you need to build an interim tower on Peg C with the next largest disk.
@@ -28,8 +28,7 @@ You have the following constraints:
 
 (1) Only one disk can be moved at a time.
 (2) A disk is slid off the top of one tower onto another tower.
-(3) A disk cannot be placed on top of a smaller disk. Write a program to move the disks from the first tower to the
-last using Stacks.
+(3) A disk cannot be placed on top of a smaller disk. Write a program to move the disks from the first tower to the last using Stacks.
 
 The pattern here is :
  - Shift 'n-1' disks from 'origin' to 'buffer', using destination.

@@ -33,6 +33,7 @@ Logic:
     right child in range [w, l]. Range percolates downward .
 Time: O(n), Space: O(h), h is the height of the tree
 """
+#using dfs technique
 def is_binary_tree_bst_original(tree: BinaryTreeNode) -> bool:
     def are_keys_in_range(tree,
                           low_range=float('-inf'),
@@ -42,7 +43,7 @@ def is_binary_tree_bst_original(tree: BinaryTreeNode) -> bool:
         elif not (low_range <= tree.data <= high_range):
             return False
         return (are_keys_in_range(tree.left, low_range, tree.data)
-                and are_keys_in_range(tree.right, tree.data, high_range))
+                and are_keys_in_range(tree.right, tree.data, high_range)) #shortcircuiting
 
     return are_keys_in_range(tree)
 
@@ -66,7 +67,7 @@ def is_binary_tree_bst_amateur(tree: BinaryTreeNode) -> bool:
 
 """
 Inorder traversal: this traversal gives sorted array, which is definitely a bst
-We keep on checking current element with previous element encountereed during traversal, and exit if current < previous
+We keep on checking current element with previous element encountered during traversal, and exit if current < previous
 Time and Space O(n)
 """
 #using inorder

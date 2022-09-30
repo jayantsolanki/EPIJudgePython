@@ -5,6 +5,9 @@ from test_framework.test_failure import TestFailure
 
 
 """
+146. LRU Cache
+https://leetcode.com/problems/lru-cache/
+
 Create a cache for looking up prices of books identified by their ISBN. You must implement inset, lookup, and erase
 Use  LRU (Least Recently Used) policy for cache eviction (deletion) in case size get contrained
 
@@ -12,6 +15,7 @@ Logic:
     Use Hash table for quickly looking up books using ISBN as key. For each key we store price and timestamp, which is 
     count corresponding to when that isbn was most recently looked up
     Use Queue to implement LRU or MRU, with least one at the end and most recently one at the start. Use linked list for this
+    because we may need to find the isbn in the middle of queue and need to bring it to front
     In case cache is full or deletion is required for inserting new one, we just remove entry from the end of Queue and also
     delete that entry from hashtable
 
@@ -26,12 +30,17 @@ class LruCache:
         #  The primary goal was to have efficient maintenance of order even for severe workloads such as that 
         # imposed by the lru_cache which frequently alters order without touching the underlying dict
         # If you insert a new item into an existing ordered dictionary, then the item is added to the 
+        # end of the dictionary
         # If you delete an item from an existing ordered dictionary and insert that same item again, 
         # then the new instance of the item is placed at the end of the dictionary
-        # end of the dictionary
         # https://realpython.com/python-ordereddict/
         # self._isbn_price_table: collections.OrderedDict[
         #     int, int] = collections.OrderedDict()
+        # OrderedDict
+        # If an item is overwritten in the OrderedDict, it’s position is maintained.
+        # If an item is deleted and added again, then it moves to the last.
+        # OrderedDict popitem removes the items in FIFO order. It accepts a boolean argument last, 
+        # if it’s set to True then items are returned in LIFO order.
         self._isbn_price_table = collections.OrderedDict()
 
         self._capacity = capacity
@@ -40,23 +49,32 @@ class LruCache:
 
         if isbn not in self._isbn_price_table:
             return -1
+        #popping is one way of deleting the key
         price = self._isbn_price_table.pop(isbn)#popping makes sure that item is moved to top when inserting in the second line
         self._isbn_price_table[isbn] = price
         return price
 
     def insert(self, isbn: int, price: int) -> None:
-
+        # below we check two thing, first if key exists then delete it and readd it back to move the key to MRU, also do not use the price pa
+        #parameter, since we need to preserve older price
+        #else if not exists and capacity reched then deleted last item (LRU) using popitem false
+        #finally add the key
         # We add the value for key only if key is not present - we don't update
         # existing values.
         if isbn in self._isbn_price_table:
-            price = self._isbn_price_table.pop(isbn)
+            price = self._isbn_price_table.pop(isbn) #delete first
         elif len(self._isbn_price_table) == self._capacity:
             self._isbn_price_table.popitem(last=False) #remove least recently used, popitem
-        self._isbn_price_table[isbn] = price
+        self._isbn_price_table[isbn] = price#moving to last entry (most recently used), note ORderedDict is LIFO, so most recently used is at end
 
     def erase(self, isbn: int) -> bool:
-
-        return self._isbn_price_table.pop(isbn, None) is not None
+        if isbn in self._isbn_price_table:
+            self._isbn_price_table.pop(isbn)
+            return True
+        else:
+            False
+        #above same as below
+        # return self._isbn_price_table.pop(isbn, None) is not None
 
 
 def lru_cache_tester(commands):

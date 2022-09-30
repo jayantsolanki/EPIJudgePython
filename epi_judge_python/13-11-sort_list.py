@@ -11,7 +11,7 @@ from list_node import ListNode
 from test_framework import generic_test
 
 """
-Implement a routine which sorts lists efficiently. It should be a stable sort that is, the reltive positions of equal 
+Implement a routine which sorts lists efficiently. It should be a stable sort that is, the relative positions of equal 
 elements must remain unchanged.
 """
 #first method 
@@ -35,11 +35,12 @@ def insertion_sort(L: ListNode) -> ListNode:
         # you simply squeeze the target node before that node. Then point the L.next to target.next, and target.next to node (pre.next)
         if L.data > L.next.data:
             target, pre = L.next, dummy_head
+            L.next = target.next #move the pointer to target's next node
             #below loop finds which node is greater than target node, condition makes sure that stablity is maintained, hence we omitted <=
+            #start searching from beginning for node greater than target
             while pre.next.data < target.data:
                 pre = pre.next
-            temp, pre.next, L.next = pre.next, target, target.next
-            target.next = temp
+            target.next, pre.next = pre.next, target
         else:
             L = L.next
     return dummy_head.next
@@ -77,7 +78,7 @@ def merge_two_sorted_lists(L1: Optional[ListNode], L2: Optional[ListNode]) -> Op
 def stable_sort_list(L: ListNode) -> Optional[ListNode]:
 
     # Base cases: L is empty or a single node, nothing to do.
-    if L is None or L.next is None:
+    if L is None or L.next is None: #if only one node left or none left
         return L
 
     # Find the midpoint of L using a slow and a fast pointer.

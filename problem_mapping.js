@@ -1562,7 +1562,7 @@ problem_mapping = {
                 "total": 987
             },
             "Python: 12-08-longest_subarray_with_distinct_values.py": {
-                "passed": 987,
+                "passed": 2,
                 "total": 987
             }
         },
@@ -2058,7 +2058,7 @@ problem_mapping = {
                 "total": 11
             },
             "Python: 15-07-enumerate_balanced_parentheses.py": {
-                "passed": 11,
+                "passed": 2,
                 "total": 11
             }
         },

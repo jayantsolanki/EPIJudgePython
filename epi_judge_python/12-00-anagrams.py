@@ -6,10 +6,19 @@ import functools
 
 #string_hash
 def string_hash(s: str, modulus: int) -> int:
-    mult = 997
+    mult = 997 # prime number
     return functools.reduce(lambda v, c: (v * mult + ord(c)) % modulus, s, 0)
+#SAME
+def string_hash_alt(s: str, modulus: int) -> int:
+    mult = 997 # prime number
+    hashVal = 0
+    for char in s:
+        hashVal = hashVal * mult + ord(char)
+    return hashVal % modulus
+    # return functools.reduce(lambda v, c: (v * mult + ord(c)) % modulus, s, 0)
 
-string_hash("jayant", 10)
+string_hash("jayantS", 10)
+string_hash_alt("jayantS", 10)
 
 """
 Write a program to group words into their anagrams
@@ -33,7 +42,7 @@ def find_anagrams_v2(dictionary: List[str]) -> List[List[str]]:
         # Sorts the string, uses it as a key, and then appends the original
         # string as another value into hash table.
         # https://towardsdatascience.com/python-pro-tip-start-using-python-defaultdict-and-counter-in-place-of-dictionary-d1922513f747
-        https://realpython.com/python-defaultdict/
+        #https://realpython.com/python-defaultdict/
         sorted_string_to_anagrams[''.join(sorted(s))].append(s)
 
     return [
@@ -62,11 +71,13 @@ def find_anagrams_simple(dictionary: List[str]) -> List[List[str]]:
 
 #Variant 1, find anagrams in O(nm)
 """
-Create key independent of sorted values, i think use the custom hash function created in previous algo\
+Since we only need to calculate hashvalue, we can have same hash value or a string, even if characters in that string are in any order
+. We need to modify general technique for calcualting the hash vale, by assigning unique prime value to each character. 
+Create key independent of sorted values, i think use the custom hash function created in previous algo
     Logic:
         With prime mapping 2 strings are guaranteed to have different factors.
         https://stackoverflow.com/questions/18781106/generate-same-unique-hash-code-for-all-anagrams
-        Pick a set of prime numbers (26 ofr alphabets, and one for space), as small as you like, the same size as your character set, and build a fast mapping function from your chars to that. Then for a given word, map each character into the matching prime, and multiply. finally, hash using the result.
+        Pick a set of prime numbers (26 of alphabets, and one for space), as small as you like, the same size as your character set, and build a fast mapping function from your chars to that. Then for a given word, map each character into the matching prime, and multiply. finally, hash using the result.
 """
 
 def find_anagrams_v1(dictionary: List[str]) -> List[List[str]]:
@@ -76,15 +87,14 @@ def find_anagrams_v1(dictionary: List[str]) -> List[List[str]]:
         primes_chrs_map = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131]
         key = 1
         for char in s:
-            if char != ' ':
+            if char != ' ': # we need to multiply not add * important, since multiply will need to unique value
                 key = key * primes_chrs_map[ord(char)- ord('a')]
             else:
                 key = key * primes_chrs_map[-1]#assigning last prime for whitespace
         return key
 
     for s in dictionary:
-        # Sorts the string, uses it as a key, and then appends the original
-        # string as another value into hash table.
+
         temp = string_hash_v2(s)
         if temp not in sorted_string_to_anagrams:
             sorted_string_to_anagrams[temp] = [s]

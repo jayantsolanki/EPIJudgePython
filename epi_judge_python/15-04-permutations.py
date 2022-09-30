@@ -6,13 +6,13 @@ from test_framework import generic_test, test_utils
 Write a program which takes as input an array of distinct integers and generates all permutations of that array. 
 No permutation of the array may appear more that once.
 Logic:
-    Start by A[0] element, then recurse on A[1:] and so on, the trick is ince the A[i] element is selected, swap it
+    Start by A[0] element, then recurse on A[1:] and so on, the trick is once the A[i] element is selected, swap it
     so that it wont come again in further recrsion of A[i+1:]
     Computing all permutations beginiing  with A[0] entails computing all permutations of A[1, n-1], which suggests
     the use of recursion. To compute all permutations beginning with A[1] we swap A[0] with A[1] and copute all permutations
     of the updated A[1, n-1]. We then restore the originla state before embarking on computing all permutation beginning A[2].
 
-    More simple reasoning for swapping: Let A = [7, 3, 5], when we need to fill position 0, we can pick 7 or 3 or 5. If wwe pick 
+    More simple reasoning for swapping: Let A = [7, 3, 5], when we need to fill position 0, we can pick 7 or 3 or 5. If we pick 
     7, whose index is 0, we then move to number rest of set availble to pick for position 1, in thos 7 wont be encounted again since 0 < 1,2. Now,  when 3 is selected for position 0, and then we move to position 1, we need to swap it before we move to position 2,
     because 3 will be encounted again, since its index is 1. Hence we recursing we always swap value at current fill position with
     value at index decided by for loop. But once we return from recursio and move to next index decided by for loop, we need to restore the swap. Overall if A is 3 length, then position at 0 will be swapped 3 times, position at 1 will be swapped 2 times and so on.
@@ -28,7 +28,7 @@ def permutations_ori(A: List[int]) -> List[List[int]]:
 
         # Try every possibility for A[i].
         for j in range(i, len(A)): #this takes O(factorial(n))
-            A[i], A[j] = A[j], A[i]
+            A[i], A[j] = A[j], A[i]#swapping is important, because we dont want the same number to be encountered
             # Generate all permutations for A[i + 1:].
             directed_permutations(i + 1)
             A[i], A[j] = A[j], A[i]

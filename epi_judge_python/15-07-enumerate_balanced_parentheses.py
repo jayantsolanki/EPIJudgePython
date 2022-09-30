@@ -69,9 +69,9 @@ def generate_balanced_parentheses(n):#slight change in the way string generated,
             result.append("".join(curr))
             return
         for key, value in mapping.items():
-            if total + key < 0 or total + key > n:#pruning non needed branches, 
+            if total + key < 0 or total + key > n:#pruning unneeded branches, 
                 continue
-            if mapping_count[value] > n: #pruning non needed branches, makin sure you dont cross n limit per parenthesis
+            if mapping_count[value] > n: #pruning unneeded branches, makin sure you dont cross n limit per parenthesis
                 continue
             mapping_count[value] += 1
             backtrack(curr + value, total + key)
@@ -108,6 +108,7 @@ if __name__ == '__main__':
                                        generate_balanced_parentheses,
                                        test_utils.unordered_compare))
 
+#using DFS
 def generateParenthesis(n) -> List[str]:
     ans = []
     def backtrack(S = [], left = 0, right = 0):
@@ -118,11 +119,11 @@ def generateParenthesis(n) -> List[str]:
             S.append("(")
             backtrack(S, left+1, right)
             S.pop()
-        if right < left:
+        if right < left:#important
             S.append(")")
             backtrack(S, left, right+1)
             S.pop()
     backtrack()
     return ans
 
-generateParenthesis(3)
+generateParenthesis(3) #['((()))', '(()())', '(())()', '()(())', '()()()']

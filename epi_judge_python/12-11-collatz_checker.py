@@ -4,7 +4,7 @@ from test_framework import generic_test
 
 """
 Test collatz conjecture for first n positive integers
-    1 - if a number is odd thaen update it with a value calculated by multiply by three and add one
+    1 - if a number is odd then update it with a value calculated by multiply by three and add one
     2 - if even; update it with its half
     Keep doing 1 or 2 until 1 is reached
 Logic:

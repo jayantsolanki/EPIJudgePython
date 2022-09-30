@@ -11,7 +11,7 @@ from test_framework import generic_test
 Design an algorithm for efficiently computing the k smallest numbers of the form a + b*sqroot(2) for nonnegative integers a and b.
 Logic:
     Use bST to find min a + b* sqroot(2), then insert (a+1) + b*sqroot(2) and a + (b+1)*sqroot(root). 
-    Keep on popping min and inserting two nexct numbers. until result has k numbers.
+    Keep on popping min and inserting two next numbers. until result has k numbers.
 In each iteration we perform a deletion and two insertion. There are k insertions, so the time complexity is O(klogk)
 Space is O(k).
 """

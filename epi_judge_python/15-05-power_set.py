@@ -22,7 +22,7 @@ Logic:
 Example [0, 1, 2]
     First recursion method goes onto individual elements, and second recursion method goes on to joining
     Remember: unlike in permutation where we have to try combinations, here the order is important, if 1 comes before 2, we 
-    cant joing both as [2,1], we have to join them as [1, 2]
+    cant join both as [2,1], we have to join them as [1, 2]
     So trick is to separate out to the last element and join (union) them in the second recursion
     Below is the order of output
     [[], [2], [1], [1,2], [0], [0,2], [0,1], [0,1,2]]
@@ -70,7 +70,7 @@ def generate_power_set_loop(input_set: List[int]) -> List[List[int]]:
 
 
 
-# generate_power_set([1,2,3])
+generate_power_set_loop([0, 1, 2])
 
 
 
@@ -127,17 +127,31 @@ Time complexity: O(N x 2^N) to generate all subsets and then copy them into outp
 Space:  O(N x 2^N), overall time is really fast in practice
 """
 import math
-def generate_power_setd(input_set: List[int]) -> List[List[int]]:
+def generate_power_set(input_set: List[int]) -> List[List[int]]:
     power_set = []
     for int_for_subset in range(1 << len(input_set)):#same as 2^n
         bit_array = int_for_subset
         subset = []
 
         while bit_array:#faster than the one in leetcode
-            subset.append(input_set[int(math.log2(bit_array & ~(bit_array - 1)))])
+            subset.append(input_set[int(math.log2(bit_array & ~(bit_array - 1)))])#getting the index in terms of power where that 1 is location 
             bit_array &= (bit_array - 1) #removes lsb bit one by one
         power_set.append(subset) #O(n) here
     return power_set
+
+#another
+def generate_power_set2(nums: List[int]) -> List[List[int]]:
+    n = len(nums)
+    output = []
+    
+    for i in range(2**n, 2**(n + 1)):
+        # generate bitmask, from 0..00 to 1..11
+        bitmask = bin(i)[3:]#return value is string
+        
+        # append subset corresponding to that bitmask
+        output.append([nums[j] for j in range(n) if bitmask[j] == '1'])
+    
+    return output
 
 #variant 1
 """

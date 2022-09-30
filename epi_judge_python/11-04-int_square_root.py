@@ -21,7 +21,7 @@ def square_root_v2(k: int) -> int:
 
 
 #more simple
-def square_root_binary(k: int) -> int:
+def square_root(k: int) -> int:
     left, right = 0, k
     if k == 1:
         return k
@@ -30,8 +30,13 @@ def square_root_binary(k: int) -> int:
         mid = left + (right - left) // 2
 
         #if (mid * mid == k) or (mid * mid < k and k < (mid + 1) * (mid + 1)):# you have to just find the closest digit
-        if (mid * mid == k) or (mid * mid < k < (mid + 1) * (mid + 1)):# you have to just find the closest digit, above line also correct
+        #if (mid * mid == k) or (mid * mid < k < (mid + 1) * (mid + 1)):# you have to just find the closest digit, above line also correct
+        if (mid * mid == k):
             return mid
+        elif (mid * mid < k < (mid + 1) * (mid + 1)):
+            return mid
+        elif ((mid -1) * (mid - 1) < k < (mid) * (mid)):
+            return mid - 1
         elif mid * mid > k:
             right = mid - 1
         else:# mid * mid < x
@@ -41,10 +46,16 @@ def square_root_binary(k: int) -> int:
 
 #newton method of finding square root of a function
 #see notes in the book
-def square_root(k: int) -> int:
+"""
+Logic:
+    We start with a number larger than sqaure root of k, hence k//2, then keep on decreasing it using Newton method
+    Once the new x  is reasched, check if its square is less then k, if yes, then return that x.
+"""
+# Time: O(logk)
+def square_root_(k: int) -> int:
     if k == 1:
         return k
-    x = k // 2 # seed or the starting guessed x
+    x = k // 2 # seed or the starting guessed x, start with a larger number, whose square root is definitely greater than k
     while True:
         if x * x <= k:
             return x

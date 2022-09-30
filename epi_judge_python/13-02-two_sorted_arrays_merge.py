@@ -3,7 +3,7 @@ from typing import List
 from test_framework import generic_test
 
 """
-Write a program which taskes as inpit two sorted arrays of integers, and updates the fiorst array to the 
+Write a program which takes as inpit two sorted arrays of integers, and updates the fiorst array to the 
 combined entries of the two arrays in sorted order. Assum the first array has enough empty entries 
 at its end to hold the result.
 Logic:
@@ -22,7 +22,7 @@ def merge_two_sorted_arrays(A: List[int], m: int, B: List[int],
             A[write_idx] = B[b]
             b -= 1
         write_idx -= 1
-    while b >= 0:#we have assuemd that array has to be stored in A
+    while b >= 0:#we have assumed that array has to be stored in A
         A[write_idx] = B[b]
         write_idx, b = write_idx - 1, b - 1
     #this also same

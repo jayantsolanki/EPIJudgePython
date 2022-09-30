@@ -3,7 +3,7 @@ from typing import List
 from test_framework import generic_test
 
 """
-Design an algorithm for comuting the salary cap. Given that existing slaries and the target payroll (sum of all the salaries)
+Design an algorithm for computing the salary cap. Given that existing salaries and the target payroll (sum of all the salaries)
 Logic:
     First sort the array
     Let the salary cap be c and given target payroll be T. Condition is that if any salary is >=  C, that will be capped to c.
@@ -18,10 +18,11 @@ def find_salary_cap(target_payroll: int, current_salaries: List[int]) -> float:
 
     current_salaries.sort()
     unadjusted_salary_sum = 0.0
+    #find the first salary which makes the total payroll surpass target_payroll, that salary and heereafter will be capped
     for i, current_salary in enumerate(current_salaries):
         adjusted_people = len(current_salaries) - i #(n - k)
         adjusted_salary_sum = current_salary * adjusted_people #here current salary is being treated as cap
-        if unadjusted_salary_sum + adjusted_salary_sum >= target_payroll:
+        if unadjusted_salary_sum + adjusted_salary_sum >= target_payroll:#find the first total payroll which exceeds the target
             return (target_payroll - unadjusted_salary_sum) / adjusted_people
         unadjusted_salary_sum += current_salary
     # No solution, since target_payroll > existing payroll.

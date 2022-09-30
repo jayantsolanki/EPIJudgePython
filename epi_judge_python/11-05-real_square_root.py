@@ -29,8 +29,8 @@ square_root(23)
 def square_root_v2(x: float) -> float:
 
     # Decides the search range according to x's value relative to 1.0.
-    left, right = (x, 1.0) if x < 1.0 else (1.0, x)
-
+    left, right = (x, 1.0) if x < 1.0 else (1.0, x)#if x is < 1 then its sqaure root will be always < 1
+    
     # Keeps searching as long as left != right.
     while not math.isclose(left, right): # math.isclose(2,2.00000001) is false, math.isclose(2,2.000000001) is true
         mid = 0.5 * (left + right)

@@ -22,7 +22,7 @@ Logic:
 # The numbering starts from one, i.e., if A = [3, 1, -1, 2]
 # find_kth_largest(1, A) returns 3, find_kth_largest(2, A) returns 2,
 # find_kth_largest(3, A) returns 1, and find_kth_largest(4, A) returns -1.
-#worst case scenario is O(n^2), possible only when randomly seldcted pivot is smllaest or the largest value in current subarray
+#worst case scenario is O(n^2), possible only when randomly selected pivot is smallest or the largest value in current subarray
 #probabilty of worst case decreases exponentially on longer array, hence the randomization have almost certain O(n) time 
 # of algo
 # #Time: O(n), derivation: T(n) = O(n) + (n/2)= this solves to O(n)
@@ -40,7 +40,7 @@ def find_kth_largest(k: int, A: List[int]) -> int:
         #
         """
             technique:
-            1- copy the pivotValue ina variable and then exchange the pivot value at pivot index to rightmost index value
+            1- copy the pivotValue in variable and then exchange the pivot value at pivot index to rightmost index value
             2 - initial newpivotindex = left, this new index will store the correct position of pivot value after partitioning
             3 - iterate from left to right - 1 index
                 3a- check if the current value is greater than pivot, if true then swap A[left] A[newPivotindex]
@@ -51,7 +51,7 @@ def find_kth_largest(k: int, A: List[int]) -> int:
             new_pivot_idx = left
             A[pivot_idx], A[right] = A[right], A[pivot_idx]
             for i in range(left, right):
-                if comp(A[i], pivot_value):
+                if comp(A[i], pivot_value):#this moves larger value to the left
                     A[i], A[new_pivot_idx] = A[new_pivot_idx], A[i]
                     new_pivot_idx += 1
             A[right], A[new_pivot_idx] = A[new_pivot_idx], A[right]
@@ -228,6 +228,12 @@ Repeat until kth value is found.
 
 So, get the first element, update counter = 1, now get the last position of that element using binary search than return the
 index + 1 to get the second element, update counter = 2, keep doing for next and next
+
+Approach 2[A better approach]:
+The elements may be duplicated right. So, check for unique elements by comparing with its previous elements & stop if unique variables found so far counts to k.
+Time complexity: O(N)
+Space complexity: O(1)
+
 """
 
 
@@ -297,6 +303,9 @@ def postbox_median(A):
 
 
 postbox_median([(2, 10), (1, 5), (3, 2), (10, 3), (5, 5), (4, 3), (8, 2)])
+
+#Check this problem for custom sort
+# https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/
 
 if __name__ == '__main__':
     exit(

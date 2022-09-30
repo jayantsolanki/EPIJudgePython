@@ -19,7 +19,7 @@ Logic:
     Repeat start and end adjustment until you reach the end of array. Then return the smallest window found.
 Time: O(n)
 """
-#this only look into unique member of the set, no repetition
+#works for duplicates too, also in leetcode 76
 Subarray = collections.namedtuple('Subarray', ('start', 'end'))
 def find_smallest_subarray_covering_set_v2(paragraph: List[str],
                                         keywords: Set[str]) -> Subarray:
@@ -30,8 +30,8 @@ def find_smallest_subarray_covering_set_v2(paragraph: List[str],
     left = 0
     for right, p in enumerate(paragraph):
         if p in keywords:#keyword is a set, lookup is O(1)
-            keywords_to_cover[p] -= 1
-            if keywords_to_cover[p] >= 0: ##this is very important, because same word can be encountered many times
+            keywords_to_cover[p] -= 1 
+            if keywords_to_cover[p] >= 0: ##this is very important, because same word can be encountered many times, dont update if counter is negative
                 # so lower the cover count when it goes to zero,  if it is negative then no need
                 remaining_to_cover -= 1 #if p is covered, then reduce the size
 
@@ -126,7 +126,7 @@ def find_smallest_subarray_covering_set(paragraph: List[str],
 Given an array A, find a shortest subarray A[i, j] such that each distinct value present in A is also present in the subarray
 Logic:
     Basically the keyword set consists of all the unique characters of A, then redo the first problem
-    YOu need to cerate the keyword
+    YOu need to create the keyword list from A itself
 """
 
 # def find_shortest_subarray(A: List[str]):
@@ -186,7 +186,7 @@ Expected time complexity is O(n) where n is length of input string.
 Logic:
     https://leetcode.com/problems/rearrange-string-k-distance-apart/discuss/83222/Straightforward-Python-Solution-98
     The idea is simple: we only worry about the most frequent character(s).
-    For example aaaabbbbcccddefg, ais the most frequent letter, so we start with a structure like
+    For example aaaabbbbcccddefg, a is the most frequent letter, so we start with a structure like
     a [] a [] a [] a []
     and we just pad other letters in between the a's. Only letters with the same highest frequency can go in to the last []. and we don't care about any letters with lower frequencies, we just scatter them among the paddings. So we end up with
     a [bcdf] a [bcdg] a [bce] a [b].
@@ -208,7 +208,7 @@ def rearrangeString(string, k):
     
     count, char = heapq.heappop(max_heap)  # get most frequent character
     # count = -1 * count
-    lst = [[char] for _ in range(-1 * count)]
+    lst = [[char] for _ in range(-1 * count)] #this contains the  buckets
 
     # take care of the letters with same highest freq
     # while max_heap and max_heap[0][0] == count:
@@ -221,6 +221,7 @@ def rearrangeString(string, k):
     while max_heap:
         charCount , char = heapq.heappop(max_heap)
         charCount = -1 * charCount
+        #now start dispersing those characters, but fill the buckets evenly
         for _ in range(charCount):
             # special case, this char has the same count as max_count, so must spread it evently. Must use the last bucket.
             if charCount == count: #same as max count encountered
@@ -236,13 +237,13 @@ def rearrangeString(string, k):
     #     if 
     #     lst[i % (len(lst)-1)].append(r)
 
-    for l in lst[:-1]:#each bucket should be of length k or more
+    for l in lst[:-1]:#each bucket should be of length k or more, except last one
         if len(l) < k:
             return ''
 
     return ''.join(''.join(l) for l in lst)
 
-#subvariant 3, characters and their duplicates excatlky d distance away
+#subvariant 3, characters and their duplicates excatly d distance away
 """
 https://www.geeksforgeeks.org/rearrange-a-string-so-that-all-same-characters-become-at-least-d-distance-away/
 The approach to solving this problem is to count frequencies of all characters and consider the most frequent character first and place all occurrences of it as close as possible. After the most frequent character is placed, repeat the same process for the remaining characters.

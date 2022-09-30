@@ -4,14 +4,14 @@ from typing import List
 from test_framework import generic_test
 
 """
-Wite a program which takes an array of positive integers, and retyurns the smalles number which can be 
+Write a program which takes an array of positive integers, and retyurns the smalles number which can be 
 the sum of a subset of elements of the array
 Logic:
     Trick is to play with smaller arrays and check the max sum, lower bound (minimum change that can be constructed) and then go for larger
     arrays
     Remember you are tasked with finding smallest number that the sum can produce, this makes thing easy
     Sort the array first
-    Let V be the total sum encounterd, and u be the next number to be checkedl
+    Let V be the total sum encounterd, and u be the next number to be checked
         if u <= V+ 1, add it to V and proceed for next number
         else V+ 1 is the answer
 Time: O(nlogn)

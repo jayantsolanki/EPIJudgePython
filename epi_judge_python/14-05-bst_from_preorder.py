@@ -60,13 +60,13 @@ rebuild_bst_from_preorder_ori([43, 23, 37, 29, 31, 41, 47, 53])
 
 #method two
 """
-We directly recuse on the array with the lower and upper constraints, this will help us to filter out elements
+We directly recurse on the array with the lower and upper constraints, this will help us to filter out elements
 which doesnt belong in those subtrees.
 Time: Worst case O(n)
 Mentally run the following preorder example: [43, 23, 37, 29, 31, 41, 47, 53]
 Tree is build from the leaves first (bottom up approach)
 """
-def rebuild_bst_from_preorder(preorder_sequence: List[int]
+def rebuild_bst_from_preorder_or(preorder_sequence: List[int]
                               ) -> Optional[BstNode]:
     def rebuild_bst_from_preorder_on_value_range(lower_bound, upper_bound):
         if root_idx[0] == len(preorder_sequence):#leaves reached
@@ -87,6 +87,28 @@ def rebuild_bst_from_preorder(preorder_sequence: List[int]
     root_idx = [0] #tracks current subtree, it goes from first node to last node, globally shared with left and right subtrees
     return rebuild_bst_from_preorder_on_value_range(float('-Inf'), float('Inf'))
 
+#a bit simpler
+def rebuild_bst_from_preorder(preorder_sequence: List[int]
+                              ) -> Optional[BstNode]:
+    def rebuild_bst_from_preorder_on_value_range(lower_bound, upper_bound):
+        if root_idx[0] == len(preorder_sequence):#all nodes exhausted, return
+            return None
+        
+        root = preorder_sequence[root_idx[0]]#get the node
+        #check the node if it belongs under valid lower and upper contraints
+        if not (lower_bound <= root <= upper_bound):
+            return None #this node cannot be a root node for any subtree
+        #constraints passed
+        #increament the index for new root position
+        root_idx[0] += 1
+
+        return BstNode(root, 
+            left = rebuild_bst_from_preorder_on_value_range(lower_bound, root),
+            right=rebuild_bst_from_preorder_on_value_range(root, upper_bound))
+
+
+    root_idx = [0] #tracks current subtree, it goes from first node to last node, globally shared with left and right subtrees
+    return rebuild_bst_from_preorder_on_value_range(float('-Inf'), float('Inf'))
 #variants 1:
 #postorder traversal
 """
@@ -95,6 +117,7 @@ A reverse preordering is the reverse of a preordering, i.e. a list of the vertic
 [31, 29, 41, 37, 23, 53, 47, 43] postorder
 """
 # method 1
+#average O(nlogn), worst O(n^2)
 def rebuild_bst_from_postorder_simple(postorder_sequence: List[int]
                               ) -> Optional[BstNode]:
 

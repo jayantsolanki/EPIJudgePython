@@ -7,12 +7,12 @@ from test_framework.test_failure import PropertyName
 from test_framework.test_utils import enable_executor_hook
 
 """
-Write a program which takes as input an array of disjoint closed intervals with integerts endpoints which are sorted by 
+Write a program which takes as input an array of disjoint closed intervals with integers endpoints which are sorted by 
 increasing order of left endpoint, and an interncval to be added, and returns the union of the intervals in the array 
-and the added intervals. Result should be expressed as the unior of disjoint intervals sorted by left endpoint.
+and the added intervals. Result should be expressed as the union of disjoint intervals sorted by left endpoint.
 Logic:
-    Use the sroted proprty of the intervals
-    We process the sroted intervals in three stages
+    Use the sorted proprty of the intervals
+    We process the sorted intervals in three stages
     1 - We add those intervals which appear completely before the given disjoint interval, into the result
     2- As soon as we encounter the interval in the array that intersects the interval, compute its union.
         the union itself becomes new interval. We iterate through subsequent intervals, as long they intersect 
@@ -66,6 +66,14 @@ def add_interval(disjoint_intervals: List[Interval],
     # https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964#325964
     # while (i < len(disjoint_intervals)
     #        and new_interval.right >= disjoint_intervals[i].left):
+    #why we need both conditions, because given interval could be ahead of interval at ith position
+    #     _                        |---- interval at ith ------|
+    # |---given interval -----|                          _
+    # (True if StartA > EndB)
+     # or given interval could be later than ith
+    #  |---- DateRange A -----|                        _ 
+    #_                          |---Date Range B ----|
+    # (True if EndA < StartB)
     while (i < len(disjoint_intervals)
            and new_interval.right >= disjoint_intervals[i].left and disjoint_intervals[i].right >= new_interval.left):
         # If [a, b] and [c, d] overlap, union is [min(a, c), max(b, d)].

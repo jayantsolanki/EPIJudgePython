@@ -44,19 +44,21 @@ def find_all_substrings_original(s: str, words: List[str]) -> List[int]:
 # find_all_substrings('amanaplanacanalanacanapl', ['can', 'apl', 'ana'])
 
 #practice:
-
+#basically you
 def find_all_substrings(s: str, words: List[str]) -> List[int]:
     result = []
     def find_substring_index(start):
         current_word_count = collections.Counter()
         #go until the size of the total words array (as in total characters, step size each word length)
+        #you only search until total character length of words
         for index in range(start, start + len(words) * word_length, word_length):
             word = s[index:index+word_length]
             needed_count = word_counter[word]#counter returns zero if that word didnt exist in the word_counter
             # if needed_count == 0: #this is not needed
             #     return False
             current_word_count[word] += 1 
-            if current_word_count[word] > needed_count:
+            #for nonmatched prefix, it will be always zero, the needed count, hence loop will break if prefix not matched
+            if current_word_count[word] > needed_count:#important, if it crosses, return False
                 return False #either the word doesnt exist given array or it exceeded the total required count
         return True  
 
@@ -68,8 +70,8 @@ def find_all_substrings(s: str, words: List[str]) -> List[int]:
             result.append(index)
     
     return result
-# find_all_substrings('amanaplanacanal', ['can', 'apl', 'ana'])
-# find_all_substrings('amanaplanacanalanacanapl', ['can', 'apl', 'ana'])
+find_all_substrings('amanaplanacanal', ['can', 'apl', 'ana'])
+find_all_substrings('amanaplanacanalanacanapl', ['can', 'apl', 'ana'])
 
 if __name__ == '__main__':
     exit(

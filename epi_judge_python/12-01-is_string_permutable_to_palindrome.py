@@ -4,7 +4,7 @@ import collections
 
 #check if a string can have a pallindrome
 #Time O(n), space O(c), c is distinct characters
-def can_form_palindrome(s: str) -> bool:
+def can_form_palindrome_ori(s: str) -> bool:
     #so if strings is of size n is even, than count of all character occurrence should be even
     if len(s) == 0:
         return True
@@ -16,8 +16,25 @@ def can_form_palindrome(s: str) -> bool:
         return len([v for v in  collections.Counter(s).values() if v % 2 == 1]) == 1
 
 
-    #book anaswer, just see the sum of  [0,0,0,0,1,0,0,0] something like this, at most one odd count only
+    #book answer, just see the sum of  [0,0,0,0,1,0,0,0] something like this, at most one odd count only
     #return sum([v % 2 for v in  collections.Counter(s).values() ]) <= 1
+
+#alternate method, we keep on canceling the pairs encountered
+#Any methods that use map or set should have space complexity O(1) as the char number should be less than 256 as the assumption in the O(128) or O(256)
+def can_form_palindrome(s: str) -> bool: 
+    #keep deleting the pairs
+    palin = {}
+    count = 0
+    for char in s:
+        count += 1
+        if char not in palin:
+            palin[char] = 1
+        else:
+            del palin[char]
+    if count % 2 == 0:
+        return len(palin) == 0
+    else:
+        return len(palin) == 1
 
 if __name__ == '__main__':
     exit(

@@ -3,7 +3,7 @@ import copy
 from test_framework import generic_test
 
 """
-There can be many solutions, jfind all
+There can be many solutions, find all
 Backtracking intro: https://cs.lmu.edu/~ray/notes/backtracking/
 Leetcode 51 https://leetcode.com/problems/n-queens/solution/
 Leetcode 52 Second type: https://leetcode.com/problems/n-queens-ii/
@@ -46,7 +46,7 @@ def n_queens_ori(n: int) -> List[List[int]]:
     return result
 
 # [["".join(['Q' if x == c else '.' for x in range(4)]) for c in solution] for solution in a]
-#a bit simple of validity check
+#a bit simple in validity check
 def n_queens(n: int) -> List[List[int]]:
     def validity(col, row):
         for i, c in enumerate(col_placement[:row]):
@@ -112,6 +112,7 @@ def totalNQueens(n: int) -> int:
 
 #variant 2
 """
+Note that here multiple queens can be placed in same row or columns, since we need to block every non-attacked cells
 Kinda a brute force with recursion
 https://www.geeksforgeeks.org/minimum-queens-required-to-cover-all-the-squares-of-a-chess-board/
 Compute the smallest number of queens that can be placed to attack each uncovered square
@@ -160,18 +161,18 @@ def totalNQueens_attack(n: int) -> int:
         return True
     def solve_n_queens(queen_count=0):
         if queen_count >= smallest_count[0]:
-            return #no need to go further
+            return #no need to go further #pruning
         #check all the places are attacked
         if check_any_placement_left():
             result.append(copy.deepcopy(board))
             smallest_count[0] = queen_count
             return
-        for row in range(n):
+        for row in range(n): #try placing queens in every cells (n * n)
             for col in range(n):
                 if validity(row, col):
                     board[row][col] = True
                     solve_n_queens(queen_count + 1)
-                    board[row][col] = False
+                    board[row][col] = False #backtrack
                     
     smallest_count = [float('Inf')]
     result = []
