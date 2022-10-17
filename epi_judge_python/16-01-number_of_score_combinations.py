@@ -33,6 +33,7 @@ Time complexity = O(nm), same for space
 
 
 #top_down method
+#here just pass the index that has to be excluded
 def num_combinations_for_final_score_mem(final_score: int,
                                      individual_play_scores: List[int]) -> int:
     # individual_play_scores.sort()#optional            
@@ -47,7 +48,7 @@ def num_combinations_for_final_score_mem(final_score: int,
             return 0
         else:
             #Our solutions can be divided into two sets,
-            #   1) Solutions that cointain the coin/score at the end of the coins array 
+            #   1) Solutions that contain the coin/score at the end of the coins array 
             #   2) Solutions that don't contain that coin/score
             return dp(s - individual_play_scores[i], i) + dp(s, i+1)#basically you use that coin/score at i and you didnt use that coin/score at i
     return dp(final_score, 0)
@@ -123,7 +124,7 @@ def num_combinations_for_final_score(final_score: int,
 Similar to stairs climbing ways
 Write a program that takes a final score and scores for individual plays, and returns the number of sequences of plays that
 result in the final score. It is a permutation not combination like previous ones
-Logic, invert the lop, since we need to reuse the coins
+Logic, invert the loop, since we need to reuse the coins, inverting the loop gives us the chance to reuse someother coins
 """
 # dp approach
 def num_combinations_for_final_score_sequences(final_score: int,

@@ -134,7 +134,7 @@ def maxSubArray_dp(nums: List[int]) -> int:
     B = [nums[0]]
     max_subarray_sum = max(float('-Inf'), B[-1])
     for item in nums[1:]:
-        B.append(max(item, B[-1] + item))  # this is greedy approach, reseeting to current item or sum
+        B.append(max(item, B[-1] + item))  # this is greedy approach, reseting to current item or sum
         max_subarray_sum = max(B[-1], max_subarray_sum) 
     return max_subarray_sum
 maxSubArray_dp([-2, 1, -3, 4, -1, 2, 1, -5, 4])
