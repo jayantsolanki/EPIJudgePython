@@ -48,7 +48,8 @@ def levenshtein_distance_mem(word1: str, word2: str) -> int:
             if word1[i] == word2[j]:
                 return dp(i + 1, j + 1)
             else:
-                return min(dp(i + 1, j), dp(i + 1, j + 1), dp(i, j + 1)) + 1 #delete, replace and insert, respectively
+                return min(dp(i + 1, j), dp(i + 1, j + 1), dp(i, j + 1)) + 1 #delete, replace and insert, respectively, when inserting, character at
+                # ith position has been inserted with character at jth position, hence j now becomes j + 1
     return dp(0, 0)
 
 
@@ -56,8 +57,21 @@ def levenshtein_distance_mem(word1: str, word2: str) -> int:
 # O(mn) for time and space
 def levenshtein_distance_iter(word1: str, word2: str) -> int:
     m, n = len(word1), len(word2)
-    cache = [[0] * (n+1) for _ in range(m + 1)] #contains emty string clause too
+    cache = [[0] * (n+1) for _ in range(m + 1)] #contains empty string clause too
     #setting base cases, that is number of changes needs for converting empty strings to other word
+    """
+    two convert first blank to r, we need to make 1 insert, to convert - to r, we need two inserts, for ros, we need 3 inserts, hence
+    first row is 1, 2, 3, similarly
+    to convert h to -, we need one deletion, to convert ho to -, we need 2 deletions, so on , for horse, we need 5 deletions 
+        -   r   o   s
+    - | 0 | 1 | 2 | 3 |
+    h | 1 |   |   |   |
+    o | 2 |   |   |   |
+    r | 3 |   |   |   |
+    s | 4 |   |   |   |
+    e | 5 |   |   |   |
+    """
+
     
     for i in range(m+1):#first column
         cache[i][0] = i
@@ -75,7 +89,8 @@ def levenshtein_distance_iter(word1: str, word2: str) -> int:
 
 #variant 1
 """
-Compute distance in O(min(m,n)) space and O(mn) time"""
+Compute distance in O(min(m,n)) space and O(mn) time
+"""
 #bottom up, improved space O(min(m, n))
 def levenshtein_distance(word1: str, word2: str) -> int:
     m, n = len(word1), len(word2)
@@ -138,6 +153,27 @@ longestCommonSubsequence_b2("Carthorse", "Orchestra")
 longestCommonSubsequence_b2("abcde", "ace")
 
 #this returns the actual subsequence
+"""
+[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], 
+ [0, 0, 1, 1, 1, 1, 1, 1, 1, 1], 
+ [0, 0, 1, 1, 1, 1, 1, 2, 2, 2], 
+ [0, 0, 1, 1, 2, 2, 2, 2, 2, 2], 
+ [0, 0, 1, 1, 2, 2, 2, 2, 2, 2], 
+ [0, 0, 1, 1, 2, 2, 2, 2, 3, 3], 
+ [0, 0, 1, 1, 2, 2, 3, 3, 3, 3], 
+ [0, 0, 1, 1, 2, 3, 3, 3, 3, 3]]
+
+ #abcde ace
+      -  a  c  e
+  -  [0, 0, 0, 0]
+  a  [0, 1, 1, 1]
+  b  [0, 1, 1, 1]
+  c  [0, 1, 2, 2]
+  d  [0, 1, 2, 2]
+  e  [0, 1, 2, 3]
+"""
 def longestCommonSubsequence_b2_seq(text1: str, text2: str) -> int:
     m, n = len(text1), len(text2) 
     cache = [[0] * (n+1) for _ in range(m+1)]
@@ -158,9 +194,9 @@ def longestCommonSubsequence_b2_seq(text1: str, text2: str) -> int:
                 char_array.append(text1[i - 1])
                 i , j = i - 1, j - 1
             else:
-                if cache[i - 1][j] > cache[i][j - 1]:
+                if cache[i - 1][j] > cache[i][j - 1]:#go up, why go up, because cache[i][j] took the value of cache[i - 1][j], because we look for max
                     i = i - 1
-                else:
+                else:#go left, why go left, because cache[i][j] took the value of cache[i][j - 1], because we look for max, here cache[i][j - 1] is greater
                     j = j - 1
 
 
