@@ -60,7 +60,7 @@ def levenshtein_distance_iter(word1: str, word2: str) -> int:
     cache = [[0] * (n+1) for _ in range(m + 1)] #contains empty string clause too
     #setting base cases, that is number of changes needs for converting empty strings to other word
     """
-    two convert first blank to r, we need to make 1 insert, to convert - to r, we need two inserts, for ros, we need 3 inserts, hence
+    two convert first blank to r, we need to make 1 insert, to convert - to ro, we need two inserts, for ros, we need 3 inserts, hence
     first row is 1, 2, 3, similarly
     to convert h to -, we need one deletion, to convert ho to -, we need 2 deletions, so on , for horse, we need 5 deletions 
         -   r   o   s
@@ -77,11 +77,11 @@ def levenshtein_distance_iter(word1: str, word2: str) -> int:
         cache[i][0] = i
     for j in range(n+1): #top row
         cache[0][j] = j
-    
+    #start from base
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             if word1[i - 1] == word2[j - 1]: # if same characters, also why i - 1 and j - 1, since starting from 1
-                cache[i][j] = cache[i - 1][j - 1] #no changes required, hence copy changes from last character
+                cache[i][j] = cache[i - 1][j - 1] #no changes required, hence copy last changes from last character (edits)
             else:
                 cache[i][j] = 1 +min(cache[i - 1][j], cache[i - 1][j - 1], cache[i][j - 1]) # delete, replace, insert
     
@@ -115,7 +115,7 @@ def levenshtein_distance(word1: str, word2: str) -> int:
                 cache[j] = 1 + min(temp_row[j], temp_row[j - 1], cache[j - 1])
     return cache[-1]
     
-#varian2
+#variant2
 """
 Leetcode: 1143. Longest Common Subsequence
 https://leetcode.com/problems/longest-common-subsequence/
@@ -252,9 +252,13 @@ PalindromiclongestCommonSubsequence_b2_seq("abcde")
 """
 Leetcode: 97. Interleaving String
 https://leetcode.com/problems/interleaving-string/
-Define a string t to be an interleaving of strings s1 and s2 if there is a way to interleave the characters of s1 and s2, 
-keeping the left-to-right order of each, to obtain t.
-Design an algorithm that takes as input strings s1, s2 and t, and determines if t is an inteleaving of s1 and s2
+Define a string t to be an interleaving of strings s1 and s2 if there is a way to interleave the
+characters of s1 and s2, keeping the left-to-right order of each, to obtain t.
+Design an algorithm that takes as input strings s1, s2 and t, and determines if t is an 
+interleaving of s1 and s2
+Logic:
+    You basically increment i and j one at a time and check if the i + j character in S3 is same 
+    as s1[i] or s2[j]
 #Time and Space Complexity: O(m * n)
 """
 def isInterleave(s1: str, s2: str, s3: str) -> bool:
@@ -267,10 +271,6 @@ def isInterleave(s1: str, s2: str, s3: str) -> bool:
     def dp(i, j, res):
         if res == s3 and i == m and j == n:
             return True
-        # elif i == m:
-        #     return False
-        # elif j == n:
-        #     return False
         else:
             # ans = dp(i + 1, j, res + s1[i]) | dp(i, j + 1, res + s2[j])
             ans =  False
