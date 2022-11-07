@@ -10,7 +10,8 @@ https://leetcode.com/problems/stone-game/
 Design an efficient algo for computing the maximum total value for the starting player in the pick-up-coins game
 Note: it is for the player who starts first
 Logic: 
-    Since total values of coins are constant, use minmax theory, that is we pick the coin to maximize our gain, but make sure the way we pick it in such a way that he options left for opponent will be have its gain minimized.
+    Since total values of coins are constant, use minmax theory, that is we pick the coin to maximize our gain, but make sure the way we pick 
+    it in such a way that the options left for opponent will be have its gain minimized.
 Time: O(n*2), because dp formula has two parameters, i will go from 0 to m /2, j will go from m to m/2 
 Same for time
 """

@@ -18,7 +18,7 @@ the array [0,3,1,6,2,2,7]
 
 Logic:
     Express the longest nondecreasing subsequence ending at an entry in terms of the longest nondecreasing
-    subsequecne appearing in the subarray consisting of preceding elements.
+    subsequence appearing in the subarray consisting of preceding elements.
 Time: O(n^2)
 Space: O(n)
 """

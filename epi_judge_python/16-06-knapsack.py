@@ -17,7 +17,7 @@ constraint. All items have integer weights and values. Return the value of the s
 Note: Each Item can be taken only once (bounded knapsack)
 Logic:
     Similar to coin chain problem II in leetcode, but here each item can be taken once. unlike coin change 
-    So the decision goes like this, either we take the weight and value and move one by adding its value or we by pass it
+    So the decision goes like this, either we take the weight and value and move one by adding its value or we bypass it
 Time and Space: O(weight X number of items) aka O(wn)
 """
 #my take, topdown
@@ -32,7 +32,7 @@ def optimum_subject_to_capacity_mem(items: List[Item], capacity: int) -> int:
             return 0
         else:
             if cap >= items[index].weight:#important
-                return max(dp(cap - items[index].weight, index + 1) + items[index].value, dp(cap, index + 1))
+                return max(dp(cap - items[index].weight, index + 1) + items[index].value, dp(cap, index + 1))#here we either include that or not include that
             else:
                 return dp(cap, index + 1)
     return dp(capacity, 0)
@@ -57,18 +57,26 @@ def optimum_subject_to_capacity_ori(items: List[Item], capacity: int) -> int:
 
     return optimum_subject_to_item_and_capacity(len(items) - 1, capacity)
 
-#bottom up solution
-def optimum_subject_to_capacity_bottomup(items: List[Item], capacity: int) -> int:
+#dont recomment, use above solutions
+#bottom up solution, inspired from bottom up solution of coin change ii  problem,. just one difference, each row has unique item, that can be used 
+#only once, hence we use i - 1 at line 72
+def optimum_subject_to_capacity(items: List[Item], capacity: int) -> int:
     m = len(items)
     cache = [[0] * (capacity + 1) for _ in range(m)]
-
-    for i in range(m):
+    #base cases:
+    for weight in range(capacity + 1):
+        if items[0].weight <= weight:
+            cache[0][weight] = items[0].value
+        else:
+            cache[0][weight] = 0
+    #subtracted to zero
+    for i in range(1, m):
         # for weight in range(1, capacity + 1):
         for weight in range(capacity, -1, -1): # use this instead of above
             if items[i].weight <= weight: #take the weight, remember, we cannot use the item again, hence i - 1 in both
-                cache[i][weight] = max(cache[i - 1][weight], cache[i - 1][weight - items[i].weight] + items[i].value)
+                    cache[i][weight] = max(cache[i - 1][weight], cache[i - 1][weight - items[i].weight] + items[i].value)
             else:#that weight cannot be taken
-                cache[i][weight] = cache[i - 1][weight]
+                    cache[i][weight] = cache[i - 1][weight]
 
     return cache[-1][-1]
 
@@ -76,13 +84,13 @@ def optimum_subject_to_capacity_bottomup(items: List[Item], capacity: int) -> in
 """
 Solve above problem in O(w) space constraint
 Logic:
-    Since we are only using the previous cell ( i - 1) all the time, hence we  an just keep on updating the same row
+    Since we are only using the previous cell ( i - 1) all the time, hence we  can just keep on updating the same row
 
-    Note cache[weight - item.weight] might be overridden if “ item.weight > 0”. Therefore we can’t use this value for the current 
+    Note cache[weight - item.weight] might be overridden if 'item.weight > 0'. Therefore we can't use this value for the current 
     iteration.To solve it, we can change our inner loop to process in the reverse direction. This will ensure that whenever we 
     change a value in cache[], we will not need it anymore in the current iteration. Hence value wont be adding up
 """
-def optimum_subject_to_capacity(items: List[Item], capacity: int) -> int:
+def optimum_subject_to_capacity_(items: List[Item], capacity: int) -> int:
     # m = len(items)
     cache = [0] * (capacity + 1)
 
@@ -118,7 +126,7 @@ def fractional_knapsack(items: List[Item], capacity: int):
     #or use this
     fractionVal.sort(reverse = True, key = lambda val: val[0])
     TotalVal = 0
-    for item in fractionVal:
+    for item in fractionVal:#remember, you can add each item only once
         if capacity >= items[item[1]].weight: #accessing weight by index
             TotalVal += items[item[1]].value
             capacity -= items[item[1]].weight
@@ -146,6 +154,7 @@ def minAbsDifference(nums: List[int]) -> int:
     goal = sum(nums) // 2
     m = len(nums)
     result = set()
+    #Finds all possible subset sums of integers in set half of the nums
     def dp(arr, i, total):#generates
         if i == len(arr):
             # print(total)
@@ -170,13 +179,18 @@ def minAbsDifference(nums: List[int]) -> int:
         index = bisect.bisect_left(sum2, goal - item)
         if index < len(sum2):
             ans = min(ans, abs(goal - (item + sum2[index]))) #goal - s1 - s2, s2 here is sum2[index]
-            group_1, group_2 = item, sum2[index]
+            # group_1, group_2 = item, sum2[index]
+            group_1, group_2 = item + sum2[index], sum(nums) - (item + sum2[index])
         if 0 < index:
             ans = min(ans, abs(goal - (item + sum2[index - 1])))
-            group_1, group_2 = item, sum2[index - 1]
-            #sum2[index] is the smallest number in sum2 that's larger than or equal to remain and sum2[index-1] 
+            # group_1, group_2 = item, sum2[index - 1]
+            group_1, group_2 = item + sum2[index - 1], sum(nums) - (item + sum2[index - 1])
+            #sum2[index] is the smallest number in sum2 that's larger than or equal to remain(goal - item) and sum2[index-1] 
             #is the largest number in sum2 that's smaller than remain. In order to find the 
             #smallest absolute difference we need to consider both numbers (if they exist).
+
+            #resultant sum could be larger than goal or less than goal, first if condition meb find both larger or msaller
+            #second if coniditon will find smaller. We take the min abs of both
     return (group_1, group_2)
 
 #variant 5

@@ -24,6 +24,7 @@ def number_of_ways_mem(m: int, n: int) -> int:
     return dp(m - 1, n - 1)
 
 #bottom-up
+#start building from base cases
 def number_of_ways(m: int, n: int) -> int:
 
     cache = [[0] * n for _ in range(m)]
@@ -40,15 +41,15 @@ def number_of_ways(m: int, n: int) -> int:
     
     return cache[-1][-1]
 
-#variant 1, solcve it in O(min(m,n)) space
+#variant 1, solve it in O(min(m,n)) space
 #space efficient, since we need to track two places, one place is on the same column a row above, and other place
 # is in same row a index place behind, hence we store the first place in a variable and refer second place from same
 # cache array
 def number_of_ways_space_efficient(m, n):
-    if n < m:
+    if n < m: # m is supposed to be small at the end
         n, m = m, n
 
-    cache = [1] * m
+    cache = [1] * m # think in terms of trasnpose, the shorter side become the columns
     for _ in range(1, n):
         prev_res = 0
         for j in range(m):
@@ -63,7 +64,7 @@ https://leetcode.com/problems/unique-paths-ii/
 Solve the same problem in presence of obstacles, specified by a boolean 2d array, where the presence of a true
 value represents and obstacle.
 Logic:
-    In topdown appraoch, once we encounter a obstacle, we stop going forward in that direction
+    In topdown approach, once we encounter a obstacle, we stop going forward in that direction
     In bottom-up approach, once a find a obstacle, we dont go right any more in that row, if obstacle was at right
     similarly, we dont go down anymore in that column, if obstacle is just below current position
 
@@ -128,11 +129,11 @@ def maxPathSum_mem2(grid: List[List[int]]) -> int:
     
     @cache
     def dp(i, j):#we walk backwards
-        if i == 0 and j == 0:#why setting this to 1, because once we reach the first row or column, we only
+        if i == 0 and j == 0:# because once we reach the first row or column, we only
             #go up or left in one way
             return grid[i][j]
         elif i < 0 or j < 0:
-            return float("Inf")
+            return float("-Inf")
         else:
             return max(dp(i - 1, j), dp(i, j - 1)) + grid[i][j]
     return dp(m - 1, n - 1)
@@ -173,9 +174,10 @@ def maxPathSum(grid: List[List[int]]) -> int:
 
 #variant 5
 """
-Write a program which takes as input a positive integer k and computes the number of decimal numbers o lengh k that are monotone
+Write a program which takes as input a positive integer k and computes the number of decimal numbers of length k that are monotone
 """
-def monotoneIncreasingDigits(n: int) -> int:
+'''
+def monotoneIncreasingDigits_wrong(n: int) -> int:
     n = str(n)
     m = len(n)
     @cache
@@ -189,24 +191,44 @@ def monotoneIncreasingDigits(n: int) -> int:
                 return dp(i + 1)
         
     return dp(0)
+'''
+#correct version
+def monotoneIncreasingDigits(n: int) -> int:
+    n = str(n)
+    m = len(n)
+    count = 1
+    maxCount = 1
+    for i in range(1, m):
+        if n[i] >= n[i - 1]:
+            count = count + 1
+        else:
+            maxCount = max(count, maxCount)
+            count = 1
+    return max(count, maxCount)
+        
+
+
+
+# monotoneIncreasingDigits(3456123)
+# monotoneIncreasingDigits(1203)
+# monotoneIncreasingDigits(4312)
+# monotoneIncreasingDigits(2410212345)
 
 #variant 6:
-"""same as aobve but strictly monotne
+"""same as above but strictly monotone
 """
 def monotoneIncreasingDigits(n: int) -> int:
     n = str(n)
     m = len(n)
-    @cache
-    def dp(i):
-        if i == m:
-            return 1
+    count = 1
+    maxCount = 1
+    for i in range(1, m):
+        if n[i] > n[i - 1]:
+            count = count + 1
         else:
-            if i + 1 < m and int(n[i] < n[i + 1]):#change here
-                return max(dp(i + 1), dp(i + 1) + 1)
-            else:
-                return dp(i + 1)
-        
-    return dp(0)
+            maxCount = max(count, maxCount)
+            count = 1
+    return max(count, maxCount)
 
 if __name__ == '__main__':
     exit(

@@ -4,10 +4,10 @@ from typing import List
 from test_framework import generic_test
 
 """
-Write a program that takes  as arugments a 2d array and a 1d array, and chgecks whether the 1d array occurs in the 2d array .
+Write a program that takes as arugments a 2d array and a 1d array, and checks whether the 1d array occurs in the 2d array .
 Logic:
     Use Recursion with memoization.
-    Similar to n-queen problem, start with the first poin tin 2d which matches with the 1d array and carry one from there
+    Similar to n-queen problem, start with the first point in 2d which matches with the 1d array and carry on from there
 Time and Space: O(mnl), l is size of pattern
 """
 def is_pattern_contained_in_grid_ori(grid: List[List[int]],
@@ -58,7 +58,7 @@ def is_pattern_contained_in_grid(grid: List[List[int]],
             #     return True
             # return False
 
-    for i in range(m):
+    for i in range(m): #important
         for j in range(n):
             if dp(i, j, 0):#looking for starting point
                 return True
