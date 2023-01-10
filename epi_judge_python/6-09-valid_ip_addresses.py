@@ -9,8 +9,8 @@ https://leetcode.com/problems/restore-ip-addresses/
 Write a program that determine where to add periods to a decimal string so that the resulting string
 is a valid IP address. There may be more than one valid addresses. Print all possibilities.
 Logic:
-    Use string decompistion using recursion, or use three nested for loops and take care to idenity empty string and 00,000
-Time: Constant O(2^33)
+    Use string decomposition using recursion, or use three nested for loops and take care to idenity empty string and 00,000
+Time: Constant O(2^32)
 Space: O(n) * Valid ips
 """
 def get_valid_ip_address(s: str) -> List[str]:
@@ -50,7 +50,7 @@ def get_valid_ip_address_rec(s: str) -> List[str]:
             for j in range(i + 1, ip_length + 1):
                 if dot_count > 3:#prune
                     break
-                if int(s[i: j]) == 0:
+                if int(s[i: j]) == 0:# #just move for one digit and dont move further, 0, not 00, or 000
                     backtrack(j, ip + [s[i: j]], dot_count + 1)
                     break
                 elif 1 <= int(s[i: j]) <= 255:

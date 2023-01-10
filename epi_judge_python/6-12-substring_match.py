@@ -19,13 +19,13 @@ def rabin_karp_brute(t: str, s: str) -> int:
                 break
             else:
                 local_index += 1
-        if match:
+        if match:#returns first occurence of match
             return i
     return -1
 
 # time O(m + n)
 # https://riptutorial.com/algorithm/example/24653/introduction-to-rabin-karp-algorithm
-#my formula has MSB starting with 0, insterad of m - 1 power
+#my formula has MSB starting with 0, instead of m - 1 power
 def rabin_karp(t: str, s: str) -> int:    
     pattern_len = len(s)
     if pattern_len > len(t):
@@ -40,10 +40,12 @@ def rabin_karp(t: str, s: str) -> int:
         if Ts_hash == Tt_hash and t[i - pattern_len:i] == s:
             # print("i ran")
             return i - pattern_len
-        elif i < len(t): #protedction against index error
+        elif i < len(t): #protection against index error
             #now calculate rolling hash
             first_char = ord(t[i - pattern_len])
             Tt_hash = (Tt_hash - first_char) // prime_num + (ord(t[i]) * prime_num ** (pattern_len - 1))
+            # (Tt_hash - first_char) // prime_num because Tt_hash = a + b*prime + c * prime**2 + d * prime ** 3 ..., hence for rolling, we need to remove a first
+            #then divide by prime the remaining, so as to reduce the power, New hash = (b + c * prime + d * prime ** 2) + e * prime **3
     return -1
 
 # rabin_karp("FOOBAR", "BAR")

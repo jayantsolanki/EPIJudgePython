@@ -15,7 +15,7 @@ def can_reach_end_ori(A: List[int]) -> bool:
     # TODO - you fill in here.
     furthest_reach_so_far, last_index = 0, len(A) - 1
     i = 0
-    while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:#stop is i more than furthest distance reached so far, 
+    while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:#stop if i more than furthest distance reached so far, 
         #or furthest distances more than length of array
         furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
         # print(i,furthest_reach_so_far)
@@ -28,7 +28,7 @@ def can_reach_end(A: List[int]) -> bool:
     # TODO - you fill in here.
     furthest_reach_so_far, last_index = 0, len(A) - 1
     i = 0
-    while furthest_reach_so_far < last_index:#stop is i more than furthest distance reached so far, 
+    while furthest_reach_so_far < last_index:#stop if i more than furthest distance reached so far, 
         #or furthest distances more than length of array
         furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
         if furthest_reach_so_far >= len(A)  - 1: #early stop
@@ -70,6 +70,30 @@ print(number_of_steps([3, 3, 1, 0, 2, 0, 1])) # [3, 3, 1, 0, 2, 0, 1]	true	A val
 print(number_of_steps([3, 2, 0, 0, 2, 0, 1])) # [3, 2, 0, 0, 2, 0, 1]	False
 print(number_of_steps([1, 1, 1, 1, 1, 1, 1])) # true	
 print(number_of_steps([7,0,9,6,9,6,1,7,9,0,1,2,9,0,3]))
+
+# https://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
+# O(n^2)
+def minJumps(arr, n):
+    jumps = [0 for i in range(n)]
+ 
+    if (n == 0) or (arr[0] == 0):
+        return float('inf')
+ 
+    jumps[0] = 0
+ 
+    # Find the minimum number of
+    # jumps to reach arr[i] from
+    # arr[0] and assign this
+    # value to jumps[i]
+    for i in range(1, n):
+        jumps[i] = float('inf')
+        for j in range(i):
+            #first condition to make sure thati can be reached from j, and second to make sure
+            # j is not dead stop
+            if (i <= j + arr[j]) and (jumps[j] != float('inf')):
+                jumps[i] = min(jumps[i], jumps[j] + 1)
+                break
+    return jumps[n-1]
 
 if __name__ == '__main__':
     exit(

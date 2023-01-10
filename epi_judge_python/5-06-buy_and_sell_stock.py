@@ -8,7 +8,7 @@ WAP that takes an array denoting the daily stock price and returns the maximum p
 by buying and then selling on share of that stock. There is no need to buy if no profit is possible
 Example: [310, 315, 275, 295, 260, 270, 290, 230, 255, 250], so buy at 260 and sell at 290, profit of 30
 Logic: Focus on maximum difference, instead of min and max
-Logic: maxium profit can be made by selling on specifc day is determined  by the minimum of the stock prices over the previous days 
+Logic: maximum profit can be made by selling on specifc day is determined  by the minimum of the stock prices over the previous days 
 Iterate through S, keeping track of minimum price seen so far.
 Below algo has time complexity of O(n)
 """

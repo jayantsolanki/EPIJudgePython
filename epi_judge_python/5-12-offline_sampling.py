@@ -13,15 +13,15 @@ Implement an algorithm that takes as input an array of distinct elements and a s
 size and array elements
 All subsets should be equally likely. Return the result in input array itself
 Time: O(k), space: O(1 )
-Logic: build one index at a time, than replace that index with index at 0, then go on
+Logic: build one index at a time, then replace that index with index at 0, then go on
 """
 def random_sampling(k: int, A: List[int]) -> None:
 
     for i in range(k):
         # Generate a random index in [i, len(A) - 1].
         # r = random.randint(i, len(A) - 1) # Return a random integer N such that a <= N <= b
-        r = random.randrange(i, len(A)) #this and above are same
-        A[i], A[r] = A[r], A[i]
+        r = random.randrange(i, len(A)) #this and above are same, this line is same as choice(range(start, stop, step)), ignores last value(stop)
+        A[i], A[r] = A[r], A[i]#this is the key, this makes sure that all numbers are equally likely to appear
     return A[:k]
 
 random_sampling(2, [3,7,5,11])

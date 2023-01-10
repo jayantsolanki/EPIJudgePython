@@ -4,7 +4,7 @@ from test_framework import generic_test
 Check if a string is palindrome when all the non alphanumeric characters are removed
 Logic
     Use two indices to travel, forward and backward, and skip the non alphanumeric characters
-    Return false if mismatch, if indices croiss each other then report palindrome
+    Return false if mismatch, if indices cross each other then report palindrome
 """
 def is_palindrome_original(s: str) -> bool:
 
@@ -12,7 +12,7 @@ def is_palindrome_original(s: str) -> bool:
     i, j = 0, len(s) - 1
     while i < j:
         # i and j both skip non-alphanumeric characters.
-        while not s[i].isalnum() and i < j:
+        while not s[i].isalnum() and i < j:#isalnum return True for numbers or alphabets
             i += 1
         while not s[j].isalnum() and i < j:
             j -= 1

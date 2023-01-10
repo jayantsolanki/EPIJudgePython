@@ -16,7 +16,7 @@ So, identify each postitions to be exchanges, one on the left of equation will t
 example, 1 will take 4th element, 2 will take 1st element, 3 will take 2nd element, 4th will take 3rd element in outer layer
 """
 def rotate_matrix(square_matrix: List[List[int]]) -> None:
-    matrix_size = len(square_matrix) - 1 # sse this, this make sure the the second loop doesnt access the last element in each of four section
+    matrix_size = len(square_matrix) - 1 # see this, this make sure the the second loop doesnt access the last element in each of four section
     for i in range(len(square_matrix) // 2):#this tackles the layer, 
         for j in range(i, matrix_size - i):#second loop you are capturing elements in that layer
             # Perform a 4-way exchange. Note that A[~i] for i in [0, len(A) - 1]

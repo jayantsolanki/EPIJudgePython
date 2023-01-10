@@ -65,6 +65,7 @@ def is_valid_sudoku(partial_assignment: List[List[int]]) -> bool:
             return False
 
     # Check region constraints.
+    #this also has to run 81 times, hence four for loops used, for grid size 3
     region_size = int(math.sqrt(n))
     for I in range(region_size): #decides row-wise subgrid blocks to process
         for J in range(region_size): #decides columns wise subgrid blocks to process

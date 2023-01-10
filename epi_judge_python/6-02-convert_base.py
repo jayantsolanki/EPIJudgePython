@@ -44,7 +44,7 @@ def convert_base_simple(num_as_string: str, b1: int, b2: int) -> str:
     power = 1
     for i in range(len(num_as_string) -1, (num_as_string[0] in '-+') - 1, -1):
         num_as_int += power * (string.hexdigits.index(num_as_string[i].lower())) #similar to binary to decimal conversion
-        power *= b1
+        power *= b1#increases in power by each iteration
 
     return ('-' if is_negative else '') + ('0' if num_as_int == 0 else
                                            construct_from_base(num_as_int, b2))

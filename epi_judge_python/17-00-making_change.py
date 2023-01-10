@@ -4,7 +4,7 @@ from test_framework import generic_test
 """
 Write a program to find minimum number of coins for a change (US coins)
 Logic:
-    Greedy strategy will work here, isnce they are US coins
+    Greedy strategy will work here, since they are US coins
     We pick the highest coins first
 """
 def change_making(cents: int) -> int:

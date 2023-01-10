@@ -14,13 +14,16 @@ WAP that takes input positive integer n and a size k <=n, and returns a size-k s
 #you can use offline random sampling, but this could be O(n) for both time and space, since the original array needs to be generated first
 # in order to reduce it to the O(k)  
 #
+#basically in below code we map index to randnumber and randnumber to index, both being keys of an array of size n
+#if randnumber is repeated during a new index then it will be pointed to that new index, and the older index it pointed to , that will point by new index
+#since index is increasing in the loop, there will be no repetition
 def random_subset(n: int, k: int) -> List[int]: 
-
+    #below program similar to 5.12, where we need to exchange the elements. Since we dont know the elements early, we use hashmap
     changed_elements: Dict[int, int] = {}
     for i in range(k):#no need to create an array, unlike in problem 5.12
         # Generate a random index between i and n - 1, inclusive.
         rand_idx = random.randrange(i, n)
-        #now try to get the index which has been mapped to this random number
+        #now try to get the index which has been mapped to this random number previously
         rand_idx_mapped = changed_elements.get(rand_idx, rand_idx)#second parameter is default value, in case index doesnt exist
         #now see if curernt index is mapped or not, return the value of random number if mapped
         i_mapped = changed_elements.get(i, i)# initially A[i] = i, these are untouchd ones

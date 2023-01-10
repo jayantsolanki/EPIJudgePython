@@ -164,7 +164,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: 4-11-rectangle_intersection.py": {
-                "passed": 10000,
+                "passed": 1,
                 "total": 10000
             }
         }

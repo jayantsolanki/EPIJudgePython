@@ -4,11 +4,11 @@ from test_framework import generic_test
 
 """
 Schedule to minimize waiting time
-Given service times nfor a set of queries, compute a schedule for processing the queires that 
+Given service times for a set of queries, compute a schedule for processing the queries that 
 minimizes the total waiting time.
 Logic:
     Sort the service times by ascending order and process the shorter queries first. So that they are gone quickly and 
-    then we focus on longer queries and lt them take their due time
+    then we focus on longer queries and let them take their due time
 Time: O(nlogn)
 """
 #original
@@ -30,7 +30,7 @@ def minimum_total_waiting_time_pythonic(service_times):
         for remaining_queries, time in enumerate(sorted(service_times)[::-1]))
 
 #my way
-#first one is alwasy zero, so i start from 1 and start adding those to previous values
+#first one is always zero, so i start from 1 and start adding those to previous values
 #second variable takes the total
 def minimum_total_waiting_time(service_times: List[int]) -> int:
     service_times.sort()

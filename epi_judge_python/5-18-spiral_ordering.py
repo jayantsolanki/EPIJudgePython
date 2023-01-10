@@ -38,14 +38,21 @@ def matrix_in_spiral_order(square_matrix):
     size = len(square_matrix)
     spiral_ordering = []
     def matrix_layer_in_clockwise(offset, size):
-        if (size - offset - 1) == offset: #checking if only one element left
+        # if (size - offset - 1) == offset: #checking if only one element left, how did we arrive at this formula?
+        # this or above
+        if len(square_matrix[offset:size-offset-1]) == 0:
+            #think in terms of subsetting an array, arr[s:t] will return 0 dimension, only if t - s = 0
+            # so when then the offset is increasing, then there will be an instance when arr[offset: size - 1 - offset] will return 0 element
+            # that is size - 1 - offset - offset = 0. this is   
             spiral_ordering.append(square_matrix[offset][offset])#should be append, since we getting only element, not subarray
             return
                
         spiral_ordering.extend(square_matrix[offset][offset:size-offset-1])#row elements
-        spiral_ordering.extend([col[size-offset - 1] for col in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
+        spiral_ordering.extend([row[size-offset - 1] for row in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
+        #or above
+        # spiral_ordering.extend([row[-offset - 1] for row in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
         spiral_ordering.extend(square_matrix[size-offset - 1][size-offset-1:offset:-1])#row elements reversed
-        spiral_ordering.extend([col[offset] for col in square_matrix[size-offset-1:offset:-1][:]]) #col elements reversed
+        spiral_ordering.extend([row[offset] for row in square_matrix[size-offset-1:offset:-1][:]]) #col elements reversed
         
     for offset in range((len(square_matrix)+1) // 2): # + one needed, for n = 1 -> (1+1)//2
     # for offset in range(math.ceil(len(square_matrix) / 2)): # + one needed, for n = 1

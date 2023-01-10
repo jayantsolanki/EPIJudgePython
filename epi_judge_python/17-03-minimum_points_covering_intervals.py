@@ -12,7 +12,7 @@ Leetcode: 452. Minimum Number of Arrows to Burst Balloons
 https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
 
 The interval covering problem
-You are given a set of closed intervals. Design an efficeint algorithm for finding a minimum sized set of 
+You are given a set of closed intervals. Design an efficient algorithm for finding a minimum sized set of 
 numbers that covers all the intervals.
 Another description:
 Consider a foreman responsible for a number fo tasks on the factory floor. Each task starts at a fixed time 
@@ -47,7 +47,7 @@ def find_minimum_visits(intervals: List[Interval]) -> int:
     if len(intervals) == 0:
         return 0
     visit_time = 0
-    intervals.sort(key = lambda a: a.right)#sort by endpoints
+    intervals.sort(key = lambda a: a.right)#sort by right endpoints
     total = 1 #at least one
     visit_time = intervals[0].right
     for i in range(1, len(intervals)):
@@ -84,7 +84,8 @@ def find_minimum_cameras(intervals: List[Interval]) -> int:
 There are number of points in the plane that you want to observe. You are located at the point(0, 0).
 You can rotate about this point. What should the direction you face to maximize the number of visible point (field of view)?
 Logic:
-    Calculate the radians from x,y cooridnates. Sort it, and watch in the max radian - min radian
+    Calculate the radians from x,y coordinates. Sort it, and watch in the max radian - min radian
+
 """
 @enable_executor_hook
 def find_minimum_visits_wrapper(executor, A):
