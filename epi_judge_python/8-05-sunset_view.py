@@ -8,7 +8,7 @@ from test_framework import generic_test
 Write a program that processess buildings from east-to-west order, and returns the set of buildings which view the sunset.
 Each building is specified by a size
 #basically, you maintain a stack of buildings that can view the sunset
-If a incoming building is taller than building at the top of stack, we keep popping it untill we find a building taller then 
+If a incoming building is taller than building at the top of stack, we keep popping it until we find a building taller then 
 incoming build. Voila
 """
 def examine_buildings_with_sunset_original(sequence: Iterator[int]) -> List[int]: #returns the indices 
@@ -39,7 +39,7 @@ def examine_buildings_with_sunset(sequence: Iterator[int]) -> List[int]: #return
 # print(examine_buildings_with_sunset_v2([6,5,4,3,2,1]))
 
 #SIMPLE
-#just check the running max
+#just check the running max of buildings in reverse
 def examine_buildings_with_sunset_v2(sequence: Iterator[int]) -> List[int]: #returns the indices 
     candidates = []
     running_max = float("-Inf")

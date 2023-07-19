@@ -18,10 +18,11 @@ def get_valid_ip_address(s: str) -> List[str]:
     ip_length = len(s) 
     parts = [""] * 4
     def is_valid(part):
+        #assuming first digit wont be zero
         # '00', '000', '01', etc. are not valid, but '0' is valid.
         # return len(part) != 0 and (len(part) == 1 or (part[0] != '0' and int(part) <= 255))#first condition makes sure that not empty string
         # using regex
-        return bool(re.search("^([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$", part))# 0-9 or 10-99 or 100-199 or 200 - 248 or 250 - 255
+        return bool(re.search("^([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$", part))# 0-9 or 10-99 or 100-199 or 200 - 249 or 250 - 255
     for i in range(min(4, ip_length)):
         if is_valid(s[: i + 1]):
             parts[0] = s[: i + 1]
@@ -53,7 +54,7 @@ def get_valid_ip_address_rec(s: str) -> List[str]:
                 if int(s[i: j]) == 0:# #just move for one digit and dont move further, 0, not 00, or 000
                     backtrack(j, ip + [s[i: j]], dot_count + 1)
                     break
-                elif 1 <= int(s[i: j]) <= 255:
+                elif 1 <= int(s[i: j]) <= 255:#it works becasue previous if condition took care of digits beginning with 0
                     # ip.append(s[i: j])
                     backtrack(j, ip + [s[i: j]], dot_count + 1)
                     # ip.pop()

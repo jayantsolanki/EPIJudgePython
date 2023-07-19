@@ -14,7 +14,7 @@ def is_well_formed_original(s: str) -> bool:
         elif not left_chars or lookup[left_chars.pop()] != c: # if list is empty or doesnt match with one popped up
             # Unmatched right char or mismatched chars.
             return False
-    return not left_chars # return truw if empty
+    return not left_chars # return true if empty
 #simple
 def is_well_formed(s: str) -> bool:
 

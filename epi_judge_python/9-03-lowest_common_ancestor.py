@@ -9,7 +9,7 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 #compared to one on the leetcode, this one has O(h) space complexity. I prefer that leetcode one, but leetcode has p!=q (node0 != node1)
-#below approach go for postorder, makes sence, becasue we need to check for both side first
+#below approach go for postorder, makes sense, because we need to check for both branches of a node first
 #here p can be same as q
 def lca_ori(tree: BinaryTreeNode, node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:

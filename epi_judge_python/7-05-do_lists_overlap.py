@@ -29,7 +29,8 @@ def overlapping_lists(l0: ListNode, l1: ListNode) -> Optional[ListNode]:
         if temp is root0 or temp is root1:#we will have top break anyways, because loop will be infinite
             break
 
-    return root1 if temp is root0 else None
+    # return root1 if temp is root0 else None
+    return temp if temp is root0 else None
 
 @enable_executor_hook
 def overlapping_lists_wrapper(executor, l0, l1, common, cycle0, cycle1):

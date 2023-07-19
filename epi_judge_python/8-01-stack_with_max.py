@@ -4,10 +4,10 @@ from typing import List
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-#Design a list that inlcudes a max operation n addition to push and pop
+#Design a list that includes a max operation n addition to push and pop
 # Max should return the max number stored in the stack
 # O(1) for checking max after each push. But a bit longer for checking max after pop
-# we do this; for each entry into the stack, we cache the maximum stored at or below thazt entry
+# we do this; for each entry into the stack, we cache the maximum stored at or below that entry
 # when we pop we evict that corresponding cached value
 # sapce complexity: O(n), since we are maintaining a another stack
 class StackWithMax:#original\
@@ -16,7 +16,7 @@ class StackWithMax:#original\
                                                   ('element', 'max'))
 
     def __init__(self) -> None:
-        # self._element_with_cached_max: List[Stack.ElementWithCachedMax] = []
+        # self._element_with_cached_max: List[StackWithMax.ElementWithCachedMax] = []
         self._element_with_cached_max = [] # this is also fine
 
     def empty(self) -> bool:

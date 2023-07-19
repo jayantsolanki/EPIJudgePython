@@ -88,7 +88,7 @@ def minJumps(arr, n):
     for i in range(1, n):
         jumps[i] = float('inf')
         for j in range(i):
-            #first condition to make sure thati can be reached from j, and second to make sure
+            #first condition to make sure that i can be reached from j, and second to make sure
             # j is not dead stop
             if (i <= j + arr[j]) and (jumps[j] != float('inf')):
                 jumps[i] = min(jumps[i], jumps[j] + 1)

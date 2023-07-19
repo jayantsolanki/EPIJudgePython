@@ -13,7 +13,7 @@ def has_path_sum(tree: BinaryTreeNode, remaining_weight: int) -> bool:
 
     if not tree:
         return False
-    if not tree.left and not tree.right:  # Leaf. chgeck if the leaf adds up to the sum or not
+    if not tree.left and not tree.right:  # Leaf. check if the leaf adds up to the sum or not
         return remaining_weight == tree.data
     # Non-leaf.
     #short circuiting is done using OR, it will keep on traversing until first leaf with True encountered
@@ -25,7 +25,7 @@ def has_path_sum(tree: BinaryTreeNode, remaining_weight: int) -> bool:
 """
 https://leetcode.com/problems/path-sum/
 112. Path Sum
-Write a progrm which takes the sam inputs as in above problem and returns all the paths to leaves whose weight equals s.
+Write a progrm which takes the same inputs as in above problem and returns all the paths to leaves whose weight equals s.
 Type of recursion
 """
 def has_path_sum_variant_v1(node: BinaryTreeNode, weight: int):
@@ -50,6 +50,7 @@ def has_path_sum_variant_v1(node: BinaryTreeNode, weight: int):
     has_path_sum(node, weight)
     return paths
 
+#no pruning here, pruning can be done, if weights are all positive, as soon as remaining becomes negative, stop going further
 def has_path_sum_variant(node: BinaryTreeNode, weight: int):
     paths = []
     def has_path_sum(tree: BinaryTreeNode, remaining_weight: int, path) -> bool:

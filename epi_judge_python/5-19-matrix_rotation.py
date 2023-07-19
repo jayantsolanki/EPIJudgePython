@@ -71,7 +71,7 @@ def mirror_matrix_left_diagonal(square_matrix):
 
     matrix_size = len(square_matrix)
     for i in range(matrix_size):
-        for j in range(i, matrix_size):
+        for j in range(i, matrix_size):#or use range(i)
             (square_matrix[i][j], square_matrix[j][i]) = (square_matrix[j][i], square_matrix[i][j])
     return square_matrix
 

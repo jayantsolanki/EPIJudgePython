@@ -8,7 +8,7 @@ def reverse_bits(x: int) -> int:
     y = 0
     position = bit_size - 1
     while position >= 0:#start with LSB, push it to MSB
-        y |=(x & 1) << position
+        y |=(x & 1) << position #extract digit and push it to left
         x >>= 1#kick out LSB
         position -= 1
     return y

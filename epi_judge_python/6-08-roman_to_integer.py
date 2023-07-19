@@ -50,7 +50,7 @@ def roman_to_integer_simple(s: str) -> int:
 # roman_to_integer_simple('LIX')
 
 #practice 22MAY2022
-def roman_to_integer(s: str) -> int:
+def roman_to_integer_prac(s: str) -> int:
     val = 0
     T = {
         'I' : 1,
@@ -67,6 +67,25 @@ def roman_to_integer(s: str) -> int:
             val = val - T[s[i]]
         else:
             val = val + T[s[i]]
+    return val
+#practice 17JUL2023
+def roman_to_integer(s: str) -> int:
+    val = 0
+    T = {
+        'I' : 1,
+        'V' : 5,
+        'X' : 10,
+        'L' : 50,
+        'C' : 100,
+        'D' : 500,
+        'M' : 1000
+    }
+    #you can move from left to right too
+    for i in range(len(s)):
+        if i+1 < len(s) and T[s[i+1]] > T[s[i]]:
+            val -= T[s[i]]
+        else:
+            val += T[s[i]]
     return val
 
 #variant

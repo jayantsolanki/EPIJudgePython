@@ -2,6 +2,8 @@ from operator import inv
 from typing import List
 
 from test_framework import generic_test
+# Leetcode: 31
+# https://leetcode.com/problems/next-permutation
 
 """
 Although, it is better to generate permutations in lexicographically sorted order using D.E. Knuth algorithm. 
@@ -103,7 +105,7 @@ def reverse_permutation(perm):
         return []  # perm is the identity number. 
 
     for i in reversed(range(inversion_point + 1, len(perm))):
-        if(perm[i] < perm[inversion_point]):#now find the number just smaller than the inversion one
+        if(perm[i] < perm[inversion_point]):#find the number just smaller than the inversion one
             perm[i], perm[inversion_point] = perm[inversion_point], perm[i]
             break
     perm[inversion_point+1:] = reversed(perm[inversion_point+1:])

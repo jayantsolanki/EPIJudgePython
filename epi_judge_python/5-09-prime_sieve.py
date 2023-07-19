@@ -2,6 +2,8 @@ from typing import List
 
 from test_framework import generic_test
 
+# leetcode: 204,
+# https://leetcode.com/problems/count-primes/?envType=list&envId=9fmel2q1
 # a trial division algo has O(n^1.5), because we go through n numbers, and do n^0.5 division checks. 
 # It is a classical algo we use to do in school
 #improved one
@@ -28,3 +30,4 @@ if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('5-09-prime_sieve.py', 'prime_sieve.tsv',
                                        generate_primes))
+  

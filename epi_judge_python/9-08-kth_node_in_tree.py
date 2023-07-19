@@ -15,7 +15,7 @@ class BinaryTreeNode:
 """
 Write a program to compute kth node appearing in inorder
 """
-#uses size to fine numbers of child nodes in current node
+#uses size to find numbers of child nodes in current node
 def find_kth_node_binary_tree(tree: BinaryTreeNode,
                               k: int) -> Optional[BinaryTreeNode]:
 
@@ -30,7 +30,7 @@ def find_kth_node_binary_tree(tree: BinaryTreeNode,
             tree = tree.left
     return None  # If k is between 1 and the tree size, this is unreachable.
 
-#naive solution, doesn use size, time: O(k),brute force
+#naive solution, doesnt use size, time: O(k),brute force
 def find_kth_node_binary_tree_naive(tree: BinaryTreeNode,
                               k: int) -> Optional[BinaryTreeNode]:
     counter = 0

@@ -15,7 +15,7 @@ that program on each successive node.
 Below program's logic:
     We need to know when we return to a parent if the just completed subtree was
     the parent's left child (then we need to visit the parent and then traverse the right subtree)
-    or a right subtree (in which case we have completed trasversing the parent). Weachieve this by recording
+    or a right subtree (in which case we have completed trasversing the parent). We achieve this by recording
     the subtree's root before we move to parent. We can compare the subtree's root with the parent's left child.
 """
 def inorder_traversal(tree: BinaryTreeNode) -> List[int]:

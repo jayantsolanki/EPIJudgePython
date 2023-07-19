@@ -1,7 +1,7 @@
 # from stack_with_max import Stack
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
-
+#use combination of Question 8.1 and 8.8
 class Stack:#imported from Stack with Max program
     def __init__(self):
          

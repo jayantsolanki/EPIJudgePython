@@ -241,7 +241,7 @@ def reverse_sublist_knodes(L1, k):
         return dummy_head.next
     temp = L1.head
     for i in range(1, lenList + 1 - (lenList%k), k):
-        temp = reverse_sublist_nodes(temp, i, i + k - 1)
+        temp = reverse_sublist_nodes(temp, i, i + k - 1)#k nodes including i, hence -1
         # break
     return temp
 #better, time complexity n

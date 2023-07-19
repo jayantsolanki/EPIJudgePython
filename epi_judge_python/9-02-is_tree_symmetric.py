@@ -6,6 +6,7 @@ BinaryTreeNode = Node #creating synonym
 
 #no need to create mirror tree, just find out that the subtreees are mirror or not
 # as soon as one fails exit
+#each node will give two checks
 #time : O(n), space O(h)
 #logic BFS aka level order traversal
 def is_symmetric_ori(tree: BinaryTreeNode) -> bool:
@@ -50,7 +51,7 @@ def is_symmetric(tree: BinaryTreeNode) -> bool:
         while node_deque:
             node1 = node_deque.popleft()
             node2 = node_deque.popleft()
-            if not node1 and not node2:
+            if not node1 and not node2:#leaves
                 continue
             elif not node1 or not node2:#either of them are None
                 return False

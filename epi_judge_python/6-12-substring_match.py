@@ -17,7 +17,7 @@ def rabin_karp_brute(t: str, s: str) -> int:
             if local_index == len(t) or s[j] != t[local_index]:#also check whether you are nearing end of t
                 match = False
                 break
-            else:
+            else:#if character matches
                 local_index += 1
         if match:#returns first occurence of match
             return i

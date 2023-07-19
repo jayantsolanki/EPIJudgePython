@@ -9,20 +9,22 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def zero_one_random():
-    return random.randrange(2)#returns 0 or 1
+    # return random.randrange(2)#returns 0 or 1
+    # return random.choice([0,1])#returns 0 or 1
+    return random.randint(0,1)
 
 
 def uniform_random(lower_bound: int, upper_bound: int) -> int:
     # TODO - you fill in here.
-    # number_of_outcomes = upper_bound - lower_bound #this also works
-    number_of_outcomes = upper_bound - lower_bound + 1
+    number_of_outcomes = upper_bound - lower_bound #this also works
+    # number_of_outcomes = upper_bound - lower_bound + 1
     iter = math.floor(math.log(number_of_outcomes, 2))+1 #iter gives the size of binary digits to get those outcomes
     while True:
         result = 0
         for i in range(iter):#construct a number which is three bits size
             result  = (result << 1)| zero_one_random()#absorb 0 or 1 from right side and at the same time push existing 0 or 1 towards left
-        if result < number_of_outcomes:#if not then try again
-        # if result <= number_of_outcomes:#if not then try again, this also works
+        # if result < number_of_outcomes:#if not then try again
+        if result <= number_of_outcomes:#if not then try again, this also works
             break
     return result+lower_bound
 

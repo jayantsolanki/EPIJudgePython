@@ -39,6 +39,7 @@ class SinglyLinkedList:
     def __init__(self):
         # Creates a placeholder for the result.
         self.head = None
+        self.tail = None
 	
     #  Insert new node at end position
     def insert(self, value):
@@ -47,16 +48,19 @@ class SinglyLinkedList:
         if (self.head == None):#chain it now
             #  Add first node
             self.head = node
+            self.tail = node
             return
         #if list not empty
-        tail = self.head#create a tracker/tail and loop through list
+        # tail = self.head#create a tracker/tail and loop through list
         #  Find last node
-        while (tail.next != None):#don use tail!=None, you need to find the last node, hence using tail.next!= None
-            #  Visit to next node
-            tail = tail.next
+        # while (tail.next != None):#don use tail!=None, you need to find the last node, hence using tail.next!= None
+        #     #  Visit to next node
+        #     tail = tail.next
+        self.tail.next = node
+        self.tail = self.tail.next
         
         #  Add node at the end position
-        tail.next = node
+        # tail.next = node
 	
     #  Display node element of doubly linked list
     def display(self):

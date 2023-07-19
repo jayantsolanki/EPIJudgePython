@@ -75,6 +75,15 @@ def is_valid_sudoku(partial_assignment: List[List[int]]) -> bool:
                 for b in range(region_size * J, region_size * (J + 1))#visit each cell in that subgrid
             ]):
                 return False
+    #alternate
+    # for I in range(region_size): #decides row-wise subgrid blocks to process
+    #     for J in range(region_size): #decides columns wise subgrid blocks to process
+    #         temp = []
+    #         for i in range(region_size * I, region_size * I + region_size):
+    #             for j in range(region_size * J, region_size * J + region_size):
+    #                 temp.append(partial_assignment[i][j])
+    #         if has_duplicate(temp):
+    #             return False
     return True
 
 

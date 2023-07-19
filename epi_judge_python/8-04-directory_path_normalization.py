@@ -2,7 +2,7 @@ from test_framework import generic_test
 
 """
 Write a program which takes a pathname, and returns the shortest directory paths.
-Logic: Ignore /., and handle /.. by popping the stack, if string starts with / then you 
+Logic: Ignore ., and handle .. by popping the stack, if string starts with / then you 
 can go up, record it in a stack. Insert everything else in the stack
 We may encounter a .. when stack is empty, this shows a path begining with an ancestor name
  we will then need to record that ..

@@ -11,7 +11,7 @@ def even_odd_merge(L: ListNode) -> Optional[ListNode]:
 
     even_dummy_head, odd_dummy_head = ListNode(0), ListNode(0)
     tails, turn = [even_dummy_head, odd_dummy_head], 0
-    while L:
+    while L:#starts with even, since turn is 0 first
         tails[turn].next = L#assign odd or even
         L = L.next #move to next node in list
         tails[turn] = tails[turn].next #move to assigned node

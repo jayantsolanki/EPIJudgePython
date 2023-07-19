@@ -19,6 +19,7 @@ BinaryTreeNode = Node #creating synonym
 # Note
 #if recursive calls before conditional check, then its bottom up. If recursive call after conditional check, its top down
 # post order traversal indicates bottom up, pre order traversal indicates top down
+# post order needed since I need to check left and right subtree before going up
 def is_balanced_binary_treed(tree: BinaryTreeNode) -> bool:
 
     BalancedStatusWithHeight = collections.namedtuple(
@@ -148,7 +149,7 @@ def is_complete_binary_tree(tree):
     node_deque = collections.deque([tree])#insert the root
     while node_deque:
         current_node = node_deque.popleft()
-        if (not current_node.left and current_node.right):#check if the current node has only one child:
+        if (not current_node.left and current_node.right):#check if the current node has only one child and that is right child:
             return False
         if current_node.left and current_node.right:
             node_deque.append(current_node.left)

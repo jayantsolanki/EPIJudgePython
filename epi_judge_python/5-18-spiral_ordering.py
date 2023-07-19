@@ -38,9 +38,9 @@ def matrix_in_spiral_order(square_matrix):
     size = len(square_matrix)
     spiral_ordering = []
     def matrix_layer_in_clockwise(offset, size):
-        # if (size - offset - 1) == offset: #checking if only one element left, how did we arrive at this formula?
+        # if (size - offset - 1) == offset: #checking if only one element left, how did we arrive at this formula? check note in the book
         # this or above
-        if len(square_matrix[offset:size-offset-1]) == 0:
+        if len(square_matrix[offset:size-offset-1]) == 0:#think in terms of subset, offset:size-offset-1 one return zero only if offset == size-offset -1
             #think in terms of subsetting an array, arr[s:t] will return 0 dimension, only if t - s = 0
             # so when then the offset is increasing, then there will be an instance when arr[offset: size - 1 - offset] will return 0 element
             # that is size - 1 - offset - offset = 0. this is   
@@ -188,7 +188,7 @@ def matrix_in_spiral_order_mn(A):
  
         # append the last row from
         # the remaining rows
-        if (k < m): #make sure there is  not a single row array left
+        if (k < m): #make sure there is  at least a single row array left
  
             for i in range(n - 1, (l - 1), -1):
                 spiral_ordering.append(A[m - 1][i])
@@ -233,7 +233,7 @@ def find_kth_element(A, m, n, k):
     ring = 1
     mod_m = m 
     mod_n = n
-    if(k == m*n):
+    if(k == m*n): #last element
         if m%2!=0 and n%2!=0:
             return A[m//2][n//2]
     while True:
@@ -244,7 +244,7 @@ def find_kth_element(A, m, n, k):
             offset = k
             #check in first row
             if offset <= mod_n:
-                x = ring - 1
+                x = ring - 1 #starts with ring 0, hence has to so ring - 1
                 y = ring - 1 + offset -1
             #check in last column
             elif offset <= (mod_n + mod_m - 1):

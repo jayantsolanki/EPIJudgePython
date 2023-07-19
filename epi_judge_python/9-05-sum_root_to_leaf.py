@@ -9,7 +9,7 @@ If node is a leaf, we return its integer, if it is not a leaf, we return the sum
 Time and space are O(n) and O(h)
 #remember, addition will kick as soon as the leaf is encounterd, before that we will be just 
 # creating the numbers
-Kinda inorder traversal
+Kinda preorder traversal
 """
 def sum_root_to_leaf_ori(tree: BinaryTreeNode) -> int:
     def sum_root_to_leaf_helper(tree, partial_path_sum=0):
@@ -28,8 +28,9 @@ def sum_root_to_leaf_ori(tree: BinaryTreeNode) -> int:
 
 #my another try
 """
-idea is to reach the leaf, and pass the partially constrcuted number at every recursion.
+idea is to reach the leaf, and pass the partially constructed number at every recursion.
 #at the leaf, add partial sum to the final result
+# we will use preorder since root has to be calculated and passed on to branches
 """
 def sum_root_to_leaf(tree: BinaryTreeNode) -> int:
     result = [0]

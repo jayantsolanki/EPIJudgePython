@@ -10,7 +10,7 @@ from test_framework.test_utils import enable_executor_hook
 #logic: difficult to solve in one pass, needs two passes
 # in first pass, just reverse the whole array
 #in second pass, identify each word , and its word boundary, then reverse them
-#basically reverse th3e whole srting first, then reverse indiviual words
+#basically reverse the whole srting first, then reverse indiviual words
 # time : O(n), space O(1)
 def reverse_words_original(s):
     def reverse_range(s, start, finish):# main work function for reversing
