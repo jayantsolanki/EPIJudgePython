@@ -54,7 +54,7 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
         #post order implemeentation
         left_result = check_balanced(tree.left)
         #if any left subtree is not height balanced we do not need to visit
-        # he corresponding right subtree
+        # the corresponding right subtree
         if not left_result[0]:#only run when not height balanced, else return before visting the other side
             return left_result#return false if not balanced, propogate the result to the parent
 
@@ -212,7 +212,7 @@ print(root)
 
 ## Variant 2 k balanced tree
 """
-Return the node whose subtree is hieght balanced
+Return the node whose subtree is k height balanced
 """
 def is_kth_balanced_binary_tree(tree: BinaryTreeNode, k: int) -> bool:
 

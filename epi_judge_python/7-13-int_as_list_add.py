@@ -4,13 +4,13 @@ from list_node import ListNode
 from test_framework import generic_test
 
 """
-Leetcode 2
+Leetcode 2: https://leetcode.com/problems/add-two-numbers/
 Add list based integer
-Write a program which takes two single linkedList of digits anbd returns the list corresponding to the sum of the
+Write a program which takes two single linkedList of digits and returns the list corresponding to the sum of the
 integers they represent.
 Note: Least significant digits comes first, unlike normal representation of a number, here it is backward
 Logic:
-    We mimic greade school arithmatic.  Add each digits one by one and carry over the extra
+    We mimic grade school arithmatic.  Add each digits one by one and carry over the extra
 Time: O(n+m), Space: O(max(m, n)), m and n length of both linked lists
 """
 def add_two_numbers(L1: ListNode, L2: ListNode) -> Optional[ListNode]:

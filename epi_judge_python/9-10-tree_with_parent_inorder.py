@@ -111,8 +111,8 @@ def preorder_traversal(tree: BinaryTreeNode) -> List[int]:
 """
 Variant 2, perform postorder iteratively using O(1) space
 """
-
-def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
+#this seems wrong
+def postorder_traversal_wrong(tree: BinaryTreeNode) -> List[int]:
 
     prev, result = None, []
     while tree:
@@ -122,7 +122,7 @@ def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
             if tree.left:  # Keep going left.
                 next = tree.left
             else:
-                result.append(tree.data)
+                result.append(tree.data) #this is the reason, cant add this, as I have to also checkf for right node 
                 next = tree.right or tree.parent#left most node can also have a right child, so we need to visit that
         elif tree.left is prev:#
             next = tree.right or tree.parent
@@ -130,6 +130,40 @@ def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
             # Done with both children, add the tree node (parent) to result and move up.
             result.append(tree.data)
             next = tree.parent
+        prev, tree = tree, next
+    return result
+
+#i think this is correct, run the tree mentioned in this link:
+#  https://www.geeksforgeeks.org/post-order-traversal-of-binary-tree-in-on-using-o1-space/#
+# Input:   1 
+#        /   \
+#      2       3
+#     / \     / \
+#    4   5   6   7
+#   / \
+#  8   9
+# Output: 8 9 4 5 2 6 7 3 1
+def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
+
+    prev, result = None, []
+    while tree:
+        if tree.parent == prev:
+            if tree.left:
+                next = tree.left
+            elif tree.right:
+                next = tree.right
+            else:
+                result.append(tree.data)
+                next = tree.parent
+        elif tree.left == prev:#came from left so check right
+            if tree.right:
+                next = tree.right
+            else:
+                result.append(tree.data)
+                next = tree.parent
+        else:#came from tree.right
+            result.append(tree.data)
+            next = tree.parent        
         prev, tree = tree, next
     return result
 

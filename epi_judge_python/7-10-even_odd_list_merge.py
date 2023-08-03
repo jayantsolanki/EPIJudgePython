@@ -4,6 +4,7 @@ from list_node import ListNode
 from test_framework import generic_test
 
 #time is: O(n)
+#leetcode: https://leetcode.com/problems/odd-even-linked-list
 def even_odd_merge(L: ListNode) -> Optional[ListNode]:
 
     if L is None:

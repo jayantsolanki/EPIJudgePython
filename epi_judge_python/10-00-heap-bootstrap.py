@@ -48,7 +48,7 @@ class MinHeap_recursive:
         self.heapifyDown(0)
         return data
     
-    def heapifyDown(self,index):
+    def heapifyDown(self,index): #shift down
         smallest = index
         if(self.hasLeftChild(index) and self.storage[smallest] > self.leftChild(index)):
             smallest = self.getLeftChildIndex(index)
@@ -65,7 +65,7 @@ class MinHeap_recursive:
         self.size += 1
         self.heapifyUp(self.size - 1)
 
-    def heapifyUp(self,index):
+    def heapifyUp(self,index):#shift up
         if(self.hasParent(index) and self.parent(index) > self.storage[index]): 
             self.swap(index,self.getParentIndex(index))
             self.heapifyUp(self.getParentIndex(index))
@@ -124,7 +124,7 @@ class MinHeap_iterative:
     
     def heapifyDown(self):
         index = 0
-        while(self.hasLeftChild(index)):
+        while(self.hasLeftChild(index)):#its a complete binary tree so check for leftchild if you want to go down
             smallerChildIndex = self.getLeftChildIndex(index)
             if(self.hasRightChild(index) and self.rightChild(index) < self.leftChild(index)):
                 smallerChildIndex = self.getRightChildIndex(index)
@@ -159,7 +159,7 @@ Time: O(nlogk)
 """
 Logic:
     How to decide which type of heap to use. When using minheap, we will need to kickout smallest string in order to make way for elements after 
-    size k. Smallest string sits at the top. Where as for maxheap we will need to kick out largest string sitting at the top. Since we need to preserve largest string. We will have to use minheap
+    size k largest. Smallest string sits at the top. Where as for maxheap we will need to kick out largest string sitting at the top for accommodating k smallest. Since we need to preserve largest string. We will have to use minheap
 """
 def top_k(k : int, stream: Iterator[str]) -> List[str]:
     # Entries are compared by their lengths

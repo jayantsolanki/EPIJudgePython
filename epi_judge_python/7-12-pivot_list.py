@@ -7,7 +7,7 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 """
-Leetcode: 86
+Leetcode: 86 https://leetcode.com/problems/partition-list/
 Implement a function that takes a linkedlist, and an integer k, and performs a pivot(partition) of the list with respect to k, such that all nodes less than k appear first, then nodes == k and then nodes > k. relative ordering should be preserved
 Logic:
     Maintain three list, in one pass, then join them later

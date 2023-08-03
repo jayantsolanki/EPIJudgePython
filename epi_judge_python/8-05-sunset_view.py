@@ -38,8 +38,10 @@ def examine_buildings_with_sunset(sequence: Iterator[int]) -> List[int]: #return
 # print(examine_buildings_with_sunset_v2([1,2,3,4,5,6]))
 # print(examine_buildings_with_sunset_v2([6,5,4,3,2,1]))
 
-#SIMPLE
+#SIMPLE, another way
 #just check the running max of buildings in reverse
+# we do a reverse scan of the array , tracking running max. Any incoming building which has height less than running max is rejected.
+# Logic: why reject those building,, since you expect continuosly increasing buildings to be part of sunset view 
 def examine_buildings_with_sunset_v2(sequence: Iterator[int]) -> List[int]: #returns the indices 
     candidates = []
     running_max = float("-Inf")

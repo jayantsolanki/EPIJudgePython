@@ -8,8 +8,9 @@ from test_framework import generic_test
 
 """
 use stack to do it. Get the current node, mark it false until its left and right node has been checked
-Then, visit its left node and repeat the same process, untill every node has been true. While popping if
+Then, visit its left node and repeat the same process, until every node has been true. While popping if
 you find a node which is already marked true, then insert it into a traversal result array
+Note that each node is added two times in the _in_process array, first as a child (false) and later has the root of its children (true)
 Logic: O(n), Space O(h)
 """
 def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
@@ -23,9 +24,9 @@ def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
             if left_subtree_traversed:#if node just popped is not False then add it to result
                 result.append(node.data)
             else:
-                in_process.append((node.right, False))
-                in_process.append((node, True))
-                in_process.append((node.left, False))
+                in_process.append((node.right, False))#in process
+                in_process.append((node, True))#fully processed
+                in_process.append((node.left, False))#in process
     return result
 
 

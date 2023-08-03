@@ -31,6 +31,7 @@ Thus, the whole algorithm is O(n)
     If there's a cycle, then once both pointers are in the cycle, the fast pointer "catches up" by one 
     step on every iteration. The distance it needs to "catch up" is at most the length of the cycle, 
     so the slow pointer can't start a second lap around the cycle before the fast pointer catches up.
+    That is by the time slow pointer again reaches the same node, fast pointer would have been there in two cycles
 
 Another https://stackoverflow.com/questions/47193225/runtime-complexity-of-floyds-cycle-detection
     If the list has N nodes, then in <= N steps, either the fast pointer will find the end of the list,

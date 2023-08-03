@@ -3,7 +3,7 @@ from test_framework import generic_test
 """
 Write a program which takes a pathname, and returns the shortest directory paths.
 Logic: Ignore ., and handle .. by popping the stack, if string starts with / then you 
-can go up, record it in a stack. Insert everything else in the stack
+cant go up, record it in a stack. Insert everything else in the stack
 We may encounter a .. when stack is empty, this shows a path begining with an ancestor name
  we will then need to record that ..
 Final result is the state of the stack after loop finishes
@@ -32,8 +32,8 @@ def shortest_equivalent_path(path: str) -> str:
             path_names.append(token)
 
     result = '/'.join(path_names)#return overall shortest path
-    return result[result.startswith('//'):]  # Avoid starting '//'. #another edge cases, double slash, because first
-    # slash will be join by slash. Or remove the unwanted slash from line 34, example "/foo/../foo/./../"
+    return result[result.startswith('//'):]  # Avoid starting '//'. #another edge cases, double slash, because first        
+    # slash will be join by slash. 
 
 if __name__ == '__main__':
     exit(

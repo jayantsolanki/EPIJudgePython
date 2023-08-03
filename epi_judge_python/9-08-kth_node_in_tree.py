@@ -13,7 +13,7 @@ class BinaryTreeNode:
         self.right = right
         self.size = size
 """
-Write a program to compute kth node appearing in inorder
+Write a program to compute kth node appearing in inorder. Each node stores the number of its descendent nodes
 """
 #uses size to find numbers of child nodes in current node
 def find_kth_node_binary_tree(tree: BinaryTreeNode,
@@ -21,7 +21,7 @@ def find_kth_node_binary_tree(tree: BinaryTreeNode,
 
     while tree:
         left_size = tree.left.size if tree.left else 0
-        if left_size + 1 < k:  # k-th node must be in right subtree of tree.
+        if left_size + 1 < k:  # k-th node must be in right subtree of tree.# left_size + 1 means nodes in tree.left + tree.left node
             k -= left_size + 1
             tree = tree.right
         elif left_size == k - 1:  # k-th is iter itself.

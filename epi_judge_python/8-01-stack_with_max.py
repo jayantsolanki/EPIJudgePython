@@ -10,6 +10,9 @@ from test_framework.test_failure import TestFailure
 # we do this; for each entry into the stack, we cache the maximum stored at or below that entry
 # when we pop we evict that corresponding cached value
 # sapce complexity: O(n), since we are maintaining a another stack
+#in below code you are entering tuple values (x, y) in a list array called _element_with_cached_max. x represent normal value 
+# and y represent max found so far
+
 class StackWithMax:#original\
 
     ElementWithCachedMax = collections.namedtuple('ElementWithCachedMax',

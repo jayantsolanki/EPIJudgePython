@@ -12,7 +12,7 @@ from test_framework.test_utils import enable_executor_hook
 Logic:
     recognize that first node in the sequence is the root, and the sequence  for the root's left subtree appears
     before all the nodes in the root's right subtree. It is not easy too see where the left subtree ends, but, if we solve the problem
-    recursively, we can assume rthat the routine correctlty computes left subtree, which will aso tell where the right subtree begins
+    recursively, we can assume that the routine correctly computes left subtree, which will also tell where the right subtree begins
     To understand it better, jst mentally run example 9.5 diagram. Left tree will halt by itself
 Time: O(n)
 """
@@ -37,7 +37,7 @@ def reconstruct_preorder_v2(preorder: List[int]) -> BinaryTreeNode:
 def reconstruct_preorder_v3(preorder: List[int]) -> BinaryTreeNode:
     def reconstruct_preorder_helper(preorder_iter):
         subtree_key = next(preorder_iter) #using iter, interesting
-        if subtree_key is None:
+        if subtree_key is None:#this stops the recursion from going further since null cant be a node
             return None
 
         # Note that reconstruct_preorder_helper updates preorder_iter. So the
@@ -57,7 +57,7 @@ def reconstruct_preorder_v4(preorder: List[int]) -> BinaryTreeNode:
         # subtree_key = next(preorder_iter) #using iter, interesting
         index = index + 1
         subtree_key = preorder_iter[index]
-        if subtree_key is None:
+        if subtree_key is None:#this stops the recursion from going further since null cant be a node
             return None, index
 
         # Note that reconstruct_preorder_helper updates preorder_iter. So the
@@ -110,6 +110,8 @@ def reconstruct_postorder(postorder: List[int]) -> BinaryTreeNode:
     return reconstruct_postorder_helper(postorder)
 
 print(reconstruct_postorder([None, None, 'F', None, None, 'A', None, 'E', 'B', None, None, None, None, 'I', None, 'G', 'D', 'C', 'H']))
+
+#variant 2, inorder, just use divide and conquer
 
 @enable_executor_hook
 def reconstruct_preorder_wrapper(executor, data):

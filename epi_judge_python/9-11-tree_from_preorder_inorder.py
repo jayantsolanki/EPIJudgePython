@@ -44,7 +44,7 @@ def binary_tree_from_preorder_inorder_v2(preorder: List[int],
 
     # Builds the subtree with preorder[preorder_start:preorder_end] and
     # inorder[inorder_start:inorder_end].
-    #below you calcualte the subsets for preorder and inorder to be worked by the recusion function to calcualte subtrees
+    #below you calculate the subsets for preorder and inorder to be worked by the recusion function to calcualte subtrees
     def binary_tree_from_preorder_inorder_helper(preorder_start, preorder_end,
                                                  inorder_start, inorder_end):
         if preorder_end <= preorder_start or inorder_end <= inorder_start:
@@ -193,7 +193,7 @@ print(constructMaximumBinaryTree([3,2,0, 1 ,6,5]))
     orginal question we need to find first largest max then second largest max then third so on. Based on the original 
     question, elements to the left of local max goes left child and right goes right child. Stack makes sure we can 
     keep popping the last element to find the max encountered so far. 
-    Below is bottom up approach. The O(n^2) one is top down appraoch
+    Below is bottom up approach. The O(n^2) one is top down approach
 """
 def constructMaximumBinaryTree(nums): # 
     stk = [BinaryTreeNode(nums[0])]

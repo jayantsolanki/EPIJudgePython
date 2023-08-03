@@ -10,7 +10,7 @@ from test_framework import generic_test
 # when first iterator reaches the tail, the second iterator is at k+1 node, there it can 
 # delete the kth node easily
 #time: O(n)
-def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
+def remove_kth_last_ori(L: ListNode, k: int) -> Optional[ListNode]:
 
     dummy_head = ListNode(0, L)#this is an extra node, hence k + 1
     first = dummy_head.next
@@ -24,6 +24,17 @@ def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
     second.next = second.next.next
     return dummy_head.next
 
+#better
+def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
+    dummy_head = ListNode(0, L)
+    first, second = dummy_head, dummy_head
+    for _ in range(k):
+        first = first.next
+    while first.next: #now reach last node
+        first, second = first.next, second.next
+    # when the above loop ends, first would be last node and second will be k nodes behind first, that is second is (k+1)th last node
+    second.next = second.next.next
+    return dummy_head.next
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('7-07-delete_kth_last_from_list.py',

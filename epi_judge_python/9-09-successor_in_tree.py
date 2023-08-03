@@ -16,14 +16,15 @@ For extreme cases, such as having no right subtree, then you will have to back t
 """
 def find_successor_v2(node: BinaryTreeNode) -> Optional[BinaryTreeNode]:
 
-    if node.right:#this is the first thing you should, a successor aslways belongs to right subtree
+    if node.right:#this is the first thing you should check, a successor always belongs to right subtree
         # Successor is the leftmost element in node's right subtree.
         node = node.right
         while node.left:#check until the left node has no left child
             node = node.left
         return node
     #exceptions
-    # Find the closest ancestor whose left subtree contains node.
+    # Find the closest ancestor whose left subtree contains node. Keep going up until you either encounter node.parent is None or 
+    # node.parent.left = node (this is the answer)
     while node.parent and node.parent.right is node:#this loop will break coz of 1 - either node reaches top, or 2- node == node.parent.left
         node = node.parent
 

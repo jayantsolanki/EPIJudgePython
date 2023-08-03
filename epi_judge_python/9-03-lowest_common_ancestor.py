@@ -8,6 +8,7 @@ from test_framework.binary_tree_utils import must_find_node, strip_parent_link
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+# Leetcode: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 #compared to one on the leetcode, this one has O(h) space complexity. I prefer that leetcode one, but leetcode has p!=q (node0 != node1)
 #below approach go for postorder, makes sense, because we need to check for both branches of a node first
 #here p can be same as q

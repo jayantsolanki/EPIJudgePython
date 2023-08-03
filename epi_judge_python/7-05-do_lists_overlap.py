@@ -24,7 +24,7 @@ def overlapping_lists(l0: ListNode, l1: ListNode) -> Optional[ListNode]:
     # Both lists have cycles.
     temp = root1 
     while temp:#doesnt matter if you choose root1 or root2, if you imagine an overlap in two cyclical list, the starting nodes will
-        #eventually lead to common starting node
+        #eventually lead to common node inte cycle, since both cycles are identical
         temp = temp.next
         if temp is root0 or temp is root1:#we will have top break anyways, because loop will be infinite
             break

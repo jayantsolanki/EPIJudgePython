@@ -3,6 +3,10 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
+#https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/?envType=list&envId=9fmel2q1
+
+#Leetcode: https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+#leetcode: https://leetcode.com/problems/remove-duplicates-from-sorted-list/
 
 def remove_duplicates(L: ListNode) -> Optional[ListNode]:
 

@@ -239,7 +239,7 @@ def reverse_sublist_knodes(L1, k):
                                                             temp)
 
         return dummy_head.next
-    temp = L1.head
+    temp = L1.head#temp will always be the same, pointing to node at kth place from left
     for i in range(1, lenList + 1 - (lenList%k), k):
         temp = reverse_sublist_nodes(temp, i, i + k - 1)#k nodes including i, hence -1
         # break
@@ -275,6 +275,7 @@ def reverse_sublist_knodes_variant2(L1, k):
         # recursively call for the list starting
         # from current. And make rest of the list as
         # next of first node
+        #ater end of every looop, prev points to kth node, hence head.next should point to prev after every recursion
         if next is not None:
             head.next = reverse_knodes(next, k, remainingLength-k)# if none is returned from prev it means end of the list has been reached
 
@@ -288,7 +289,7 @@ head->next = reverse(next, k) ( Recursively call for rest of the list and link t
 Return prev ( prev becomes the new head of the list (see the diagrams of an iterative method of this post )
 """
 # https://pythontutor.com/visualize.html to visualize
-## logic: jayant: basically you need to return the head in the end, which in this case is the prev
+## logic: jayant: basically you need to return the new head after reversal of each sublist in the end, which in this case is the prev
 # in subsequent recursive call, prev is return and is connected to head.next, the first prev is return as head
 def reverse_knodes(head, k):# this reverses all
     

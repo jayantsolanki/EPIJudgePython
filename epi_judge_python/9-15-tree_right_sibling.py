@@ -27,7 +27,9 @@ def construct_right_siblingd(tree: BinaryTreeNode) -> None:
             start_node.left.next = start_node.right
             # Populate right child's next field if start_node is not the last
             # node of level.
-            start_node.right.next = start_node.next and start_node.next.left#first condition makes sure that next exist for start node
+            if start_node.next:
+                start_node.right.next = start_node.next.left
+            # start_node.right.next = start_node.next and start_node.next.left#first condition makes sure that next exist for start node
             #before accessing next property, else error will be thrown when exising left, for example root node doesnt 
             # has next property node
             start_node = start_node.next#now move to the next node in the same level using the next property of that node
@@ -46,19 +48,19 @@ def construct_right_sibling(tree):
     if not tree:
         return None
     node_deque = deque([tree])
-    # last = None
+    # prev = None
     #you can do by level ordering
     while node_deque:#done using single queue
         # result.append([])
-        last = None
+        prev = None
         queu_len = len(node_deque)
         for i in range(queu_len):
             node = node_deque.popleft()
             # if len(result[depth]):#do the linking here
             #     result[depth][-1].next = node
-            if last:
-                last.next = node
-            last = node
+            if prev:
+                prev.next = node
+            prev = node
             # result[depth].append(node)
             if node.left:
                 node_deque.append(node.left)
