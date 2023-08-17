@@ -17,6 +17,7 @@ write a program to find k nearest stars in terms of distance to earth (0, 0, 0)
         Simply add each star to the maxheap, and discard the max from the max-heap once it contains the k + 1 stars
     Time: O(nlogk), space O(k)
 """
+#YOU WILL NEED TO CREATE A CUSTOM COMPARATOR 
 class Star:
     def __init__(self, x: float, y: float, z: float) -> None:
         self.x, self.y, self.z = x, y, z
@@ -91,7 +92,7 @@ Design an O(nlogk) time algo that reads a sequence of n elements and for each el
 prints the kth largest element read up to that point. The length of sequence is not known in advance. You algo 
 cannot use more than  O(k) additional storage. 
 What are the worst-case inputs for your algo.
-    Logic: kth largest element upto that point means print the smallest element encountered so far.
+    Logic: kth largest element upto that point means print the smallest element among k elemnts encountered so far.
     Since after reading the first k elements, min heap will keep the smallest at the top aka the kth largest element
     After that start printing the root, then insert the next, pop the root. Pop the root because we want to remove that
     smallest element read so far

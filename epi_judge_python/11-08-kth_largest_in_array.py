@@ -6,6 +6,7 @@ from typing import List, Tuple
 from test_framework import generic_test
 
 """
+QUICKSELECT
 Design an algo for finding the kth largest element in an array.
 Logic:
     We try to find the element in that array itself by rearranging the elements using a pivot
@@ -16,7 +17,7 @@ Logic:
     If right side has more than k -1 elements, then we reduce the search space to right side and discard left side and pivot
     If right side has lesser than k -1 elements, than we discard right side and pivot and search space the left side elements
     We again pick new pivot and repeat the process on smaller subarrays until we find kth largest element
-
+#For k largest, array will be arranged in decreasing order
 """
 
 # The numbering starts from one, i.e., if A = [3, 1, -1, 2]
@@ -138,7 +139,7 @@ def median_n(A):
     if len(A) % 2 == 1:
         return find_kth_smallest(len(A) // 2 + 1, A) # here  + 1 because k here begins with 1
     else:
-        return 0.5 * (find_kth_smallest(len(A) // 2, A) + find_kth_smallest((len(A) // 2) + 1, A)) #here + 1 becuase k begins with 1
+        return 0.5 * (find_kth_smallest(len(A) // 2, A) + find_kth_smallest((len(A) // 2) + 1, A)) 
 
 median_n([3, 1, -1, 5, 4])
 

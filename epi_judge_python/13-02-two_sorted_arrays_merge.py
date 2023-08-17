@@ -3,8 +3,8 @@ from typing import List
 from test_framework import generic_test
 
 """
-Write a program which takes as inpit two sorted arrays of integers, and updates the fiorst array to the 
-combined entries of the two arrays in sorted order. Assum the first array has enough empty entries 
+Write a program which takes as inputs two sorted arrays of integers, and updates the first array to the 
+combined entries of the two arrays in sorted order. Assume the first array has enough empty entries 
 at its end to hold the result.
 Logic:
     Start from the end, index at m + n  - 1. 

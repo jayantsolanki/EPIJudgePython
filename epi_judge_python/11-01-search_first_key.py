@@ -29,7 +29,8 @@ def search_first_of_k(A: List[int], k: int) -> int:
     left, right, result = 0, len(A) - 1, -1
     # A[left:right + 1] is the candidate set.
     while left <= right:
-        mid = (left + right) // 2
+        # mid = (left + right) // 2
+        mid = left + (right - left) // 2
         if A[mid] > k:
             right = mid - 1
         elif A[mid] == k:
@@ -40,9 +41,9 @@ def search_first_of_k(A: List[int], k: int) -> int:
     return result
 
 
-# Pythonic solution
+# Pythonic solution, awesome
 def search_first_of_k_pythonic(A, k):
-    i = bisect.bisect_left(A, k)
+    i = bisect.bisect_left(A, k)#returns i where A[i:n-1] >= k
     return i if i < len(A) and A[i] == k else -1 # awesome
 
 # variant 1
@@ -119,8 +120,9 @@ def local_min(A):#size will be at least three, #this is for a special case
         if A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]:
             result = mid
             break
-        elif A[mid - 1] > A[mid] > A[mid + 1]:#move towards descending series
+        elif A[mid - 1] > A[mid] > A[mid + 1]:#move towards descending series, actually  second condition not needed
             left = mid + 1
+        # A[mid+1] < A[mid]: Jayant 05AUG2023
         else:#A[mid - 1] < A[mid] < A[mid + 1] or A[mid - 1] < A[mid] > A[mid + 1] 
             right = mid - 1
     
@@ -134,7 +136,7 @@ local_min([10, 9, 11])
 local_min([10, 9, 11, 7, 20])
 local_min([12, 11, 7, 20])
 
-#find local valley
+#find local valley, You may imagine that nums[-1] = nums[n] = -∞
 def findValleyElement(A: List[int]) -> int:
     if len(A) == 1:
         return 0
@@ -156,8 +158,35 @@ def findValleyElement(A: List[int]) -> int:
             right = mid - 1
 
     return result
+#above code re-written, You may imagine that nums[-1] = nums[n] = -∞
+def findValleyElementv2(A: List[int]) -> int:
+    if len(A) == 1:
+        return 0
+    # if A[0] > A[1] or A[-2] < A[-1]:
+    #     return -1
+    left, mid, right = 0, 0, len(A) - 1
+    result = -1
+    if (A[0] < A[1]):#edge cases
+        return 0
+    if (A[len(A) - 1] < A[len(A) - 2]):#:#edge cases
+        return len(A) - 1
+    while left <= right:
+        mid = left + (right - left)//2
+        # if A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]:
+        if (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]):
+            result = mid
+            break
+        # when (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]) is false, if below is true or 
+        elif A[mid] > A[mid + 1]:##go for descending,  A[mid] > A[ mid + 1]
+            left = mid + 1
+        # when (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]) is false, if below is true
+        else:##go for ascending #A[mid] > A[mid - 1]
+            right = mid - 1
 
-#find local peak, facebook, array elements are not distinct, and no boundary condition
+    return result
+
+#find local peak, facebook, array elements are not distinct, and no boundary condition, You may imagine that nums[-1] = nums[n] = -∞
+#check refined code in leetcode
 # https://leetcode.com/problems/find-peak-element/submissions/
 def findPeakElement(A: List[int]) -> int:#local peak or local maxima
     if len(A) == 1:
@@ -184,12 +213,31 @@ def findPeakElement(A: List[int]) -> int:#local peak or local maxima
         #above (A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]) will be false when  A[mid -] > A[ mid], so below else will run
         else:#descending
             right = mid - 1
-
-
+    return result
+    
+#another verison 
+def findPeakElementv2(A: List[int]) -> int:
+    if len(A) == 1:
+        return 0
+    left, mid, right = 0, 0, len(A) - 1
+    result = -1
+    if (A[0] > A[1]):#edge cases
+        return 0
+    if (A[len(A) - 1] > A[len(A) - 2]):#:#edge cases
+        return len(A) - 1
+    while left <= right:
+        mid = left + (right - left)//2
+        if A[mid] < A[mid - 1]:
+            right = mid - 1
+        elif A[mid] < A[mid + 1]:
+            left = mid + 1
+        else:
+            result = mid
+            break
     return result
 #find maxima
 # https://leetcode.com/problems/peak-index-in-a-mountain-array/solution/
-# Also a variant in Problem 11-03
+# Also a variant in Problem 11-02
 #there wont be two maximas
 def peakIndexInMountainArray(arr: List[int]) -> int:
     if len(arr) < 3:
@@ -197,7 +245,8 @@ def peakIndexInMountainArray(arr: List[int]) -> int:
     left, right, mid = 0, len(arr) -1, 0
     while left <= right:
         mid = left + (right - left) // 2
-        if arr[mid] > arr[mid + 1] and arr[mid] > arr[mid - 1]:
+        # if arr[mid] > arr[mid + 1] and arr[mid] > arr[mid - 1]:
+        if  arr[mid - 1] < arr[mid] > arr[mid + 1] :
             return mid
         elif arr[mid] < arr[mid + 1]:#go towards ascending
             left = mid + 1
@@ -299,6 +348,7 @@ check_prefix(["ab", "abc", "abbdf", "abz"], 'abd')
 #variant 5:
 """
 Design an algo which returns all the strings if p is the prefix of string in an array of sorted strings 
+#based on Variant 3 algo for L and U
 """
 def return_prefix(A: List[str], p: str):
     left, mid, right, result = 0, 0, len(A) -1 , -1
@@ -330,7 +380,7 @@ return_prefix(["ab", "abd", "abdf", "abz"], 'abd')
 return_prefix(["ab", "abc", "abdf", "abz"], 'abd')
 return_prefix(["ab", "abc", "abbdf", "abz"], 'abd')
 
-#alternative:
+#alternative: using bisect. Important
 class PrefixCompares(object):
      def __init__(self, value):
          self.value = value
@@ -347,7 +397,7 @@ names.sort()
 key = PrefixCompares('bob')
 leftIndex = bisect.bisect_left(names, key)
 rightIndex = bisect.bisect_right(names, key)
-print(names[leftIndex:rightIndex])
+print(names[leftIndex:rightIndex])#interval is leftindex, and rightindex - 1, subsetting is correct
 
 if __name__ == '__main__':
     exit(

@@ -42,11 +42,13 @@ def find_duplicate_missing(A: List[int]) -> DuplicateAndMissing:
     #     if a & differ_bit:
     #         miss_or_dup ^= a
     #above for loop can be written as
+    #get those numbers in array A whose ith bit is same as ith bit in differ_bit == 1
     for a in A:
         # Focus on entries in which the differ_bit-th bit is 1.
         if a & differ_bit:
             miss_or_dup ^= a
     #now do for all numbers, idealy range
+    #get those numbers in 0 - (n-1) values whose ith bit is same as ith bit in differ_bit == 1
     for i in range(len(A)):
         if i & differ_bit:
             miss_or_dup ^= i

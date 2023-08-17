@@ -20,13 +20,13 @@ https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 Design an algo  for finding the position of the smallst element in a cyclically sorted array.
 Intuition for shifted sorted array: Example: A = [378, 478, 550, 631, 103, 203, 220, 234, 279, 368]
     Since it is  shifted, the max element is not at the last position. 631 is max, so every element
-    on or before 630 will always be greater than A[n - 1](last element). Hence to find the smaller element we need to 
+    on or before 631 will always be greater than A[n - 1](last element). Hence to find the smaller element we need to 
     search in towards right, excluding that element itself, hence left = mid + 1. Conversely, since it is shifted, and we find a element 
     smaller than A[n-1], then rest of smaller elements will be always on or left to that element. Hence to find smaller element
     we need to search towards left including that element too, since that may be the smallest., hence right = mid
 There is a point in the array at which you would notice a change. This is the point which would help us in this question. We call this the Inflection Point(Answer)
-All the elements to the left of inflection point > first element of the array.
-All the elements to the right of inflection point < first element of the array.
+All the elements to the left of inflection point > first element of the array. 
+All the elements to the right of inflection point < first element of the array. 
 Assume all elements are distinct
 Time: O(logn)
 Note: problem cannot be solved in log n time if elements repeated

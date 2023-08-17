@@ -20,7 +20,7 @@ Logic:
 
     If to update the array in place, follow below
     Maintain a subarray for each different types of elements. Each subarray marks out entries which have not been 
-    assigned elements of that type. We swap elements across these subarrays to move them to their correct positions.
+    assigned elements of that type. We keep on swapping elements across these subarrays to move them to their correct positions then move to next.
     USe two hastables to track subarrays. one for offsets, other for its size. As soon as subarray is empty, we remove it.
     Key is that we swap
     Tldr: get the first age key from offset hash,, find the index(from_idx) where it should have belonged, then get the actual element
@@ -57,6 +57,13 @@ def group_by_age(people: List[Person]) -> None:
             age_to_offset[to_age] = to_idx + 1
         else:
             del age_to_offset[to_age]
+        #why below is wrong, we dont know if from_age is still at correct location, since the element we picked from to_idx
+        #may not be the element with age == from_age, but we are sure that element we pciked from from_idx can be moved to correct idx (to_idx). Hence we update counter and offset for to_age
+        # age_to_count[from_age] -= 1
+        # if age_to_count[from_age]:
+        #     age_to_offset[from_age] = from_idx + 1
+        # else:
+        #     del age_to_offset[from_age]
 
 # people = [[13, "Oliver"], [4, "Quincy"], [10, "Bob"], [27, "Quincy"], [11, "Sam"], [11, "Frank"], [15, "Mary"], [3, "Thomas"], [28, "William"], [26, "Adam"], [19, "Mary"], [14, "Vincent"], [29, "Harry"], [31, "Sam"], [9, "Vincent"], [5, "Vincent"], [11, "Vincent"], [20, "David"], [26, "Nancy"], [22, "William"], [8, "Adam"], [8, "Quincy"], [9, "Sam"], [5, "Thomas"], [13, "Quincy"], [11, "Eddie"], [20, "Adam"], [1, "Sam"], [27, "Zachary"], [19, "Bob"], [2, "Zachary"], [30, "Frank"], [3, "Quincy"], [17, "Peter"], [12, "Ike"], [24, "Xavier"], [5, "Harry"], [19, 
 # "Xavier"], [13, "Yogi"], [3, "Frank"], [30, "Eddie"], [1, "Thomas"], [29, "Thomas"], [19, "Larry"], [9, "Harry"], [10, "Ike"], [3, "Sam"], [24, "Vincent"], [2, "Roger"], [6, "David"], [10, "Jim"], [1, "Xavier"], [11, "Mary"], [6, "Oliver"], [21, "Nancy"], [31, "Zachary"], [16, "Peter"], [31, "Larry"], [4, "Oliver"], [2, "Kenny"], [29, "William"], [31, "David"], [17, "Ike"], [1, "Ike"], [18, "Thomas"], [19, "Xavier"], [31, "Zachary"], [7, "Roger"], [14, "Ike"], [18, "Adam"], [30, "Nancy"], [1, "Mary"], [30, "Adam"], [16, "Sam"], [22, "Thomas"], [3, "Kenny"], [15, "Ike"], [4, "Nancy"], [15, "Yogi"], [9, "Quincy"], [18, "Sam"], [22, "Roger"], [1, "Jim"], [2, "William"], [3, "Harry"], [19, "Adam"], [24, "Quincy"], [30, "Peter"], [24, "Quincy"], [27, "Ike"], [4, "Nancy"], [27, "Bob"], [13, "Oliver"], [11, "Vincent"], [20, "Mary"], [31, "Harry"], [14, "Larry"], [5, "Peter"], [17, "Sam"], [7, "Larry"], [2, "Quincy"], [30, "Ike"], [16, "Adam"], [8, "Peter"], [10, 

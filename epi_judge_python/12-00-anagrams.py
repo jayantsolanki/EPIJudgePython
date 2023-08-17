@@ -4,6 +4,14 @@ from typing import DefaultDict, List
 from test_framework import generic_test, test_utils
 import functools
 
+"""
+A universal hash function is defined by the following equation:
+
+h(x) = ((ax + b) mod p) mod m
+
+In this equation, x is the input value, h(x) is the output value, a and b are integers, p is a prime number, and m is the number of slots in the hash table.
+To use this technique, the values of a, b, and p must be chosen. The value of a should be chosen to be relatively prime to p. The value of b can be any integer. The value of p should be a prime number.
+"""
 #string_hash
 def string_hash(s: str, modulus: int) -> int:
     mult = 997 # prime number
@@ -72,7 +80,7 @@ def find_anagrams_simple(dictionary: List[str]) -> List[List[str]]:
 #Variant 1, find anagrams in O(nm)
 """
 Since we only need to calculate hashvalue, we can have same hash value or a string, even if characters in that string are in any order
-. We need to modify general technique for calcualting the hash vale, by assigning unique prime value to each character. 
+. We need to modify general technique for calculating the hash value, by assigning unique prime value to each character. 
 Create key independent of sorted values, i think use the custom hash function created in previous algo
     Logic:
         With prime mapping 2 strings are guaranteed to have different factors.

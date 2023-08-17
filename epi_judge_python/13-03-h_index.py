@@ -47,7 +47,7 @@ here we dont need to actually sort the array. Since we only need to find out the
 We just count papers distributed across each citations
 The counting results are:
 https://leetcode.com/problems/h-index/solution/
-Exmple:  citations=[1,3,2,3,100]. Counting sorts work by making sure that range of values in an array in within the total length of array. However, in real word, not every citation will be less than total papers. So we just convert those high number = total papers. Example, if authors has 10 papers, and three of them have > 10 citations, so we just fix those values to 10. H-index wont change. No k is the index of each number, 0 citation goes to 0 position, 1 citation paper go to index 1, and so on, also called k citations
+Exmple:  citations=[1,3,2,3,100]. Counting sorts work by making sure that range of values in an array in within the total length of array. However, in real word, not every citation will be less than total papers. So we just convert those high number = total papers. Example, if authors has 10 papers, and three of them have > 10 citations, so we just fix those values to 10. H-index wont change. Note k is the index of each number, 0 citation goes to 0 position, 1 citation paper go to index 1, and so on, also called k citations
 Count takes the total number of those citations encountered and create a array of those. Analogous to hash map for the counts of each citations.
 The value sk is defined as "the sum of all counts with citation >= k". That is sk[0] is count of papers having at least 0 citations,
 sk[1] is count of papers having at least 1 citations. So as soon as we find sk going below k, thats the answer
@@ -63,8 +63,8 @@ def h_indexs(citations: List[int]) -> int:
     for c in citations:#each citation becomes the index
         citationCounts[min(n, c)] += 1  # All papers with citations larger than n is counted as n.
     k = 0
-    s = len(citations) #or n+1 #total papers
-    while s >= k:
+    s = len(citations) 
+    while s >= k: #stop if remaining papers less that h-index or k
         s = s - citationCounts[k]#keep on lowering the paper count
         k += 1
 

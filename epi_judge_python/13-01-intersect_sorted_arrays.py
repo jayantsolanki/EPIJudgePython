@@ -64,8 +64,8 @@ def intersect_two_sorted_arrays(A: List[int], B: List[int]) -> List[int]:
     while i < len(A) and j < len(B):
         if A[i] == B[j]:
             #check for duplicate
-            # if i == 0 or A[i] != A[i - 1]:
-            if i == 0 or len(result) == 0 or A[i] != result[-1]:
+            if i == 0 or A[i] != A[i - 1]:
+            # if i == 0 or len(result) == 0 or A[i] != result[-1]:
                 result.append(A[i])
             i += 1 #imp
             j += 1 #imp

@@ -4,11 +4,11 @@ from typing import List
 
 from test_framework import generic_test
 from test_framework.test_failure import PropertyName
-
 MinMax = collections.namedtuple('MinMax', ('smallest', 'largest'))
 
-#time is O(n) and n - 1 comparision
-#remember if a < b and b < c, that means a < c, this difitenly saves extra comparision
+#time is O(n) and n - 1 comparison
+#remember if a < b and b < c, that means a < c, this definitely saves extra comparison
+# total 3 comparsion for each iteration, and total iteration is n/2
 def find_min_max(A: List[int]) -> MinMax:
     def min_max(a, b):
         return MinMax(a, b) if a < b else MinMax(b, a)
@@ -19,10 +19,10 @@ def find_min_max(A: List[int]) -> MinMax:
     global_min_max = min_max(A[0], A[1])
     # Process two elements at a time.
     for i in range(2, len(A) - 1, 2):#this would leave out the last element if array length is odd
-        local_min_max = min_max(A[i], A[i + 1]) #comparision 1
+        local_min_max = min_max(A[i], A[i + 1]) #comparison 1
         global_min_max = MinMax(
-            min(global_min_max.smallest, local_min_max.smallest), #comparision 2
-            max(global_min_max.largest, local_min_max.largest)) #comparision 3
+            min(global_min_max.smallest, local_min_max.smallest), #comparison 2
+            max(global_min_max.largest, local_min_max.largest)) #comparison 3
     # If there is odd number of elements in the array, we still need to
     # compare the last element with the existing answer.
     if len(A) % 2:
@@ -30,10 +30,9 @@ def find_min_max(A: List[int]) -> MinMax:
                                 max(global_min_max.largest, A[-1]))
     return global_min_max
 
-#this takes 2n - 1 comparisions
+#this takes 2n - 1 comparisons
+# , two comparisons each iteraton and total iteration n
 def find_min_max_(A: List[int]) -> MinMax:
-    def min_max(a, b):
-        return MinMax(a, b) if a < b else MinMax(b, a)
     global_min_max = MinMax(float('Inf'), float('-Inf'))
     if len(A) <= 1:
         return MinMax(A[0], A[0])

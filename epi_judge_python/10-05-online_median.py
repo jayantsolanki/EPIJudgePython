@@ -46,7 +46,8 @@ def online_median_v2(sequence: Iterator[int]) -> List[float]:
         # number of elements is read; otherwise, min_heap must have one more
         # element than max_heap.
         # we store the extra one value in min_heap when both heaps are unbalanced, balanced as in  0 == 0 also
-        if len(max_heap) > len(min_heap):#checks if even or odd number of values read
+        if len(max_heap) > len(min_heap):#checks if even or odd number of values read # this line makes sure that min_heap length is never zero
+            # cause in line 44, min_heap let go off its element via pushpop. Without line 49, min_heap will always remain of length 0 due to pushpop
             heapq.heappush(min_heap, -heapq.heappop(max_heap)) #  min_heap keep getting the larger numbers
 
         result.append(0.5 * (min_heap[0] + (-max_heap[0])) if len(min_heap) ==
@@ -64,7 +65,7 @@ online_median_v2(iter([5, 4, 3, 2, 1]))
 # here make sure that min_heap keep getting the larger numbers and max_heap keep getting the smaller numbers
 # hence use pushpop on maxheap and minheap respectively on line 81 and 79
 
-def online_median(sequence: Iterator[int]) -> List[float]:
+def online_median_simple(sequence: Iterator[int]) -> List[float]:
 
     # min_heap stores the larger half seen so far.
     min_heap: List[int] = []
@@ -87,6 +88,25 @@ def online_median(sequence: Iterator[int]) -> List[float]:
                       len(max_heap) else min_heap[0])
     return result
 
+#idea here is same, both heap should have largest of the first half and smallest of the second half. 
+# And line 104 has to be executed lest max_heap will always remain of length zero.
+#so same thing as above, but funneling though max-heap first, instead of min_heap
+def online_median(sequence: Iterator[int]) -> List[float]:
+
+    # min_heap stores the larger half seen so far.
+    min_heap: List[int] = []
+    # max_heap stores the smaller half seen so far.
+    # values in max_heap are negative
+    max_heap: List[int] = []
+    result = []#stores running median
+    for x in sequence: 
+        heapq.heappush(min_heap, -heapq.heappushpop(max_heap, -x))
+        if len(min_heap) > len(max_heap):
+            heapq.heappush(max_heap, -heapq.heappop(min_heap)) 
+
+        result.append(0.5 * (min_heap[0] + (-max_heap[0])) if len(min_heap) ==
+                      len(max_heap) else -max_heap[0])#max heap here, since max_heap contains the extra element
+    return result
 
 def online_median_wrapper(sequence):
     return online_median(iter(sequence))

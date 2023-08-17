@@ -6,7 +6,7 @@ from test_framework.test_failure import TestFailure
 
 """
 146. LRU Cache
-https://leetcode.com/problems/lru-cache/
+https://leetcode.com/problems/lru-cache/ This is based on using two dicts and a double linked list
 
 Create a cache for looking up prices of books identified by their ISBN. You must implement inset, lookup, and erase
 Use  LRU (Least Recently Used) policy for cache eviction (deletion) in case size get contrained

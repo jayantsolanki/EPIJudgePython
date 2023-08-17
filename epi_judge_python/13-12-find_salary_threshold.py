@@ -8,8 +8,10 @@ Logic:
     First sort the array
     Let the salary cap be c and given target payroll be T. Condition is that if any salary is >=  C, that will be capped to c.
     So, for each salary in the sorted salaries, we calculate the total payroll. Then we find those two salaries whose total payroll
-    calculation becomes the interval in which T lies. Then we use the formula to calculate exact c
-    Let those two salaries are at K and K + 1. See book for formula
+    calculation becomes the interval in which T(Target) lies. Then we use the formula to calculate exact c
+    Let those two salaries are at K and K + 1. See book for formula C = (T - (A[0] + A[1] ... A[k - 1]))/ (n - k)
+    That means C will be =< for values A[k], A[k+1]....A[n-1]. So we calcualte C everytime and check if upcoming A[i] is
+    < C 
     Main crux is finding K and K+1 in the loop
 Time: O(nlogn)
 """

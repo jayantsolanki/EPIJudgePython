@@ -20,6 +20,7 @@ Logic:
 Time: O(n)
 """
 #works for duplicates too, also in leetcode 76
+# https://leetcode.com/problems/minimum-window-substring/
 Subarray = collections.namedtuple('Subarray', ('start', 'end'))
 def find_smallest_subarray_covering_set_v2(paragraph: List[str],
                                         keywords: Set[str]) -> Subarray:
@@ -37,7 +38,7 @@ def find_smallest_subarray_covering_set_v2(paragraph: List[str],
 
         # Keeps advancing left until keywords_to_cover does not contain all
         # keywords.
-        #once all the elements are covered, start to reduce the size
+        #once all the elements are covered, start to reduce the size, that is increment left index
         while remaining_to_cover == 0:
             if result == Subarray(#check if the size of subarray is less, if less than save the new indices
                     start=-1,
@@ -101,7 +102,7 @@ def find_smallest_subarray_covering_set(paragraph: List[str],
         for right, p in enumerate(paragraph):
             if p in keywords:#keyword is a set, lookup is O(1)
                 keywords_to_cover[p] += 1#that specific element in the set can occur many times in the subarray
-                if keywords_to_cover[p] <= KeyCountNeeded[p]: #keep updating untill desired count reached
+                if keywords_to_cover[p] <= KeyCountNeeded[p]: #keep updating until desired count reached
                     remaining_to_cover -= 1 #if p is covered, then reduce the size
 
             # Keeps advancing left until keywords_to_cover does not contain all
@@ -190,7 +191,7 @@ Logic:
     a [] a [] a [] a []
     and we just pad other letters in between the a's. Only letters with the same highest frequency can go in to the last []. and we don't care about any letters with lower frequencies, we just scatter them among the paddings. So we end up with
     a [bcdf] a [bcdg] a [bce] a [b].
-    If all the paddings except the last one have length larger than k-1, then we have our answer; else we return ''.
+    If all the paddings (buckets) except the last one have length larger than k-1, then we have our answer; else we return ''.
     Solution below is modified, based on heap
     Type of Greedy algo
     Time: O(n), space O(26)
@@ -227,9 +228,10 @@ def rearrangeString(string, k):
             if charCount == count: #same as max count encountered
                 lst[chrCount % count].append(char) #use all bucket
             else:
-                # general case: don't use the last bucket; this way we maximize the chars between each two adjacent buckets.
+                # general case: don't use the last bucket; this way we maximize the chars between each two adjacent buckets. Reason we do this is becuse we need to make sure that 
+                #spacing between character which has max count is k, we also pad the last buvket than previous bucket may not be compeltely filled and we lose the k distance for max count character
                 lst[chrCount % (count - 1)].append(char) #omit last bucket
-            chrCount += 1
+            chrCount += 1#filling has to be sequential hence we cant use charCount, we use chrcount which keep son increasing
     # all the characters left
     #res = ''.join((-1*n)*c for n, c in max_heap) #rest of the characters are joined in together like cccddefg, same belong together
     # padding or filling in
@@ -243,7 +245,7 @@ def rearrangeString(string, k):
 
     return ''.join(''.join(l) for l in lst)
 
-#subvariant 3, characters and their duplicates excatly d distance away
+#subvariant 3, characters and their duplicates exactly d distance away
 """
 https://www.geeksforgeeks.org/rearrange-a-string-so-that-all-same-characters-become-at-least-d-distance-away/
 The approach to solving this problem is to count frequencies of all characters and consider the most frequent character first and place all occurrences of it as close as possible. After the most frequent character is placed, repeat the same process for the remaining characters.
@@ -279,6 +281,44 @@ spreadout_elements_k("aabbcc", 4)
 
 #subvariant 4:
 # https://leetcode.com/problems/reorganize-string/
+
+#more simple answer is to alternate 
+# https://leetcode.com/problems/reorganize-string/discuss/113457/Simple-python-solution-using-PriorityQueue
+"""
+Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
+
+Return any possible rearrangement of s or return "" if not possible.
+The idea is to build a max heap with freq. count
+a) At each step, we choose the element with highest freq (a, b) where b is the element, to append to result.
+b) Now that b is chosen. We cant choose b for the next loop. So we dont add b with decremented value count 
+immediately into the heap. Rather we store it in prev_a, prev_b variables.
+c) Before we update our prev_a, prev_b variables as mentioned in step 2, we know that whatever prev_a, prev_b 
+contains, has become eligible for next loop selection. so we add that back in the heap.
+
+In essence,
+
+at each step, we make the currently added one ineligible for next step, by not adding it to the heap
+at each step, we make the previously added one eligible for next step, by adding it back to the heap
+
+Basically we pick(pop) the highest frquecy letter, put it to result, then lower itsd frequency, move it to temp variable (cool down)
+then pop next element, then push the previously cool down element and then redo cooldown for popped element
+"""
+def reorganizeString(S):
+    res, c = [], collections.Counter(S)
+    pq = [(-value,key) for key,value in c.items()]
+    heapq.heapify(pq)
+    p_a, p_b = 0, ''
+    cooldown = (0, "")
+    while pq:
+        freq, letter = heapq.heappop(pq)
+        res += [letter]
+        if cooldown[0] < 0:
+            heapq.heappush(pq, cooldown)
+        freq += 1
+        cooldown = (freq, letter)
+    res = ''.join(res)
+    if len(res) != len(S): return ""
+    return res
 
 @enable_executor_hook
 def find_smallest_subarray_covering_set_wrapper(executor, paragraph, keywords):

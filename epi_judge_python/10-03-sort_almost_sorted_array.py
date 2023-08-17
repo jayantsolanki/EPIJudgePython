@@ -5,10 +5,10 @@ from typing import Iterator, List
 from test_framework import generic_test
 
 """
-Write a program which takes as input a very long dequence of numbers and prints the numbers
+Write a program which takes as input a very long sequence of numbers and prints the numbers
 in sorted array. Each number is at most k position away from it correctly sorted position. Also called k-sorted array
 Example [3, -1, 2, 6, 4, 5, 8], is numbers is within 2 positions away from its correctly sorted [-1, 2, 3, 4, 5, 6, 8]
-Analogy, Often data is almost sorted, for example, a server receivesn timestamped stock quiotes and earlier quotes 
+Analogy, Often data is almost sorted, for example, a server receivesn timestamped stock quotes and earlier quotes 
 may arrive slightly after later quotes because of server loads or network congestions.
 Below probelm will efficiently sort those
 Logic: To solve this problem in general setting, we need to store the k+1 numbers in a min-heap, that will enable to 

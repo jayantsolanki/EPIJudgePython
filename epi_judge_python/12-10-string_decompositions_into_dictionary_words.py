@@ -13,9 +13,9 @@ Logic:
     Strategy:
         Create a function which receives the index to start searching from. It will have a for loop starting with that index
         and goes until the start + total length of the words array(total character count), step size is the length of each word.
-        Maintain a counter which trackes the word if found and cross checks with a sepearate word counter to see 
-        how many are needed. Return fales if counter exceeds or step size character doesnt match
-Time: for each substring check we need to run loop untill size of words(total character) O(mN), m is length of word arrayand N is 
+        Maintain a counter which trackes the word if found and cross checks with a separate word counter to see 
+        how many are needed. Return false if counter exceeds or step size character doesnt match
+Time: for each substring check we need to run loop until size of words(total character) O(mN), m is length of word array and N is 
 each word size. Also we scan each character in sentence of size n, so total Time is O(nmN)
 
 """
@@ -36,7 +36,7 @@ def find_all_substrings_original(s: str, words: List[str]) -> List[int]:
     word_to_freq = collections.Counter(words)
     unit_size = len(words[0])
     return [
-        i for i in range(len(s) - unit_size * len(words) + 1)
+        i for i in range(len(s) - unit_size * len(words) + 1)#you will go until total length - total length of words to check + 1
         if match_all_words_in_dict(i)
     ]
 

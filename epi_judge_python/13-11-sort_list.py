@@ -29,18 +29,20 @@ def insertion_sort(L: ListNode) -> ListNode:
     # predecessors in the list till it's in the right place.
 
     while L and L.next:
-        #first go until where incoming node is smaller than current one
+        #first go untill where incoming node is smaller than current one
         #as soon as you encounter the next node (target node) is smaller, you will try to find its correct place in the previous nodes
-        #that you can do by start searching from dumm_head always, as soon as you find the node(pre.next) which is greater than target node,
+        #that you can do by start searching from dummy_head always, as soon as you find the node(pre.next) which is greater than target node,
         # you simply squeeze the target node before that node. Then point the L.next to target.next, and target.next to node (pre.next)
-        if L.data > L.next.data:
+        if L.data > L.next.data:#keep finding the smaller ones
             target, pre = L.next, dummy_head
-            L.next = target.next #move the pointer to target's next node
+            L.next = target.next #move the pointer to target's next node , note that L is not updated to L.next, since 
+            #above if keeps on checking L with L.next, hence we simply updated L.next directly
             #below loop finds which node is greater than target node, condition makes sure that stablity is maintained, hence we omitted <=
             #start searching from beginning for node greater than target
+            #here pre points to start of the list (dummy)
             while pre.next.data < target.data:
                 pre = pre.next
-            target.next, pre.next = pre.next, target
+            target.next, pre.next = pre.next, target#target node is squeezed between greater node (pre.next) and prev
         else:
             L = L.next
     return dummy_head.next
@@ -49,6 +51,7 @@ def insertion_sort(L: ListNode) -> ListNode:
 
 #method 2
 """
+Leetcode: https://leetcode.com/problems/sort-list/
 This is using merge sorting technique
 We repeatedly reorder smallest nodes encountered
 see this image https://leetcode.com/problems/sort-list/Figures/148/topDown_merge_sort.png

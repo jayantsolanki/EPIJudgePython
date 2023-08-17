@@ -49,7 +49,7 @@ def square_root(k: int) -> int:
 """
 Logic:
     We start with a number larger than sqaure root of k, hence k//2, then keep on decreasing it using Newton method
-    Once the new x  is reasched, check if its square is less then k, if yes, then return that x.
+    Once the new x  is reached, check if its square is less then k, if yes, then return that x.
 """
 # Time: O(logk)
 def square_root_(k: int) -> int:
@@ -59,7 +59,7 @@ def square_root_(k: int) -> int:
     while True:
         if x * x <= k:
             return x
-        x = (x + k//x)//2
+        x = (x + k//x)//2 #see eq 3 in notes
 
 # square_root_newton(10)      
 

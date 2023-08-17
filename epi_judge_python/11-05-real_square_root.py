@@ -8,7 +8,7 @@ Time: O(log(x/s)), where s is the tolerance
 """
 
 
-def square_root(x: float) -> float:
+def square_root_v1(x: float) -> float:
 
     # Decides the search range according to x's value relative to 1.0.
     left, right = (x, 1.0) if x < 1.0 else (1.0, x) #(x, 1.0) since square root of a fractional >= that number but less than 1
@@ -24,12 +24,12 @@ def square_root(x: float) -> float:
     return left
 
 
-square_root(23)
+# square_root(23)
 #another take, more or less same as above, but easier to understand
 def square_root_v2(x: float) -> float:
 
     # Decides the search range according to x's value relative to 1.0.
-    left, right = (x, 1.0) if x < 1.0 else (1.0, x)#if x is < 1 then its sqaure root will be always < 1
+    left, right = (x, 1.0) if x < 1.0 else (1.0, x)#if x is < 1 then its square root will be always < 1
     
     # Keeps searching as long as left != right.
     while not math.isclose(left, right): # math.isclose(2,2.00000001) is false, math.isclose(2,2.000000001) is true
@@ -44,6 +44,26 @@ def square_root_v2(x: float) -> float:
             left = mid
     return left
 square_root_v2(23)
+
+#practice: 06AUG2023
+def square_root(x: float) -> float:
+
+    # Decides the search range according to x's value relative to 1.0.
+    left, right = (x, 1.0) if x < 1.0 else (1.0, x) #(x, 1.0) since square root of a fractional >= that number but less than 1
+    # Keeps searching as long as left != right.
+    if math.isclose(1.0, x):
+        return x
+    mid = 0
+    while not math.isclose(left, right): # math.isclose(2,2.00000001) is false, math.isclose(2,2.000000001) is true
+        mid = 0.5 * (left + right)
+        mid_squared = mid * mid
+        if math.isclose(mid_squared, x) and mid_squared < x:
+            return mid
+        elif mid_squared > x:
+            right = mid
+        else:
+            left = mid
+    return mid
 
 
 #variant 1

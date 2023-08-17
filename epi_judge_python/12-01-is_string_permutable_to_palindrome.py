@@ -17,7 +17,7 @@ def can_form_palindrome_ori(s: str) -> bool:
 
 
     #book answer, just see the sum of  [0,0,0,0,1,0,0,0] something like this, at most one odd count only
-    #return sum([v % 2 for v in  collections.Counter(s).values() ]) <= 1
+    #return sum([v % 2 for v in  collections.Counter(s).values() ]) <= 1, two odds will make a even sum
 
 #alternate method, we keep on canceling the pairs encountered
 #Any methods that use map or set should have space complexity O(1) as the char number should be less than 256 as the assumption in the O(128) or O(256)

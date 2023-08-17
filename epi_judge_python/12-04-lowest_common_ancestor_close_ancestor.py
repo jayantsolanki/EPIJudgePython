@@ -23,7 +23,7 @@ def lca(node0: BinaryTreeNode,
     iter0, iter1 = node0, node1
     nodes_on_path_to_root: Set[BinaryTreeNode] = set() #hashtable, using set because we only need to store the key
     #not using list, because lookup will be O(n)
-    while iter0 or iter1:#it will continue untill both are None
+    while iter0 or iter1:#it will continue until both are None
         # Ascend tree in tandem for these two nodes.
         if iter0:
             if iter0 in nodes_on_path_to_root:

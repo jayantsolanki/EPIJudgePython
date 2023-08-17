@@ -4,7 +4,7 @@ from typing import List
 from test_framework import generic_test
 
 """
-Write a program which takes an array of positive integers, and retyurns the smalles number which can be 
+Write a program which takes an array of positive integers, and returns the smalles number which can be 
 the sum of a subset of elements of the array
 Logic:
     Trick is to play with smaller arrays and check the max sum, lower bound (minimum change that can be constructed) and then go for larger

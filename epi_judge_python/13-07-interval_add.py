@@ -8,7 +8,7 @@ from test_framework.test_utils import enable_executor_hook
 
 """
 Write a program which takes as input an array of disjoint closed intervals with integers endpoints which are sorted by 
-increasing order of left endpoint, and an interncval to be added, and returns the union of the intervals in the array 
+increasing order of left endpoint, and an interval to be added, and returns the union of the intervals in the array 
 and the added intervals. Result should be expressed as the union of disjoint intervals sorted by left endpoint.
 Logic:
     Use the sorted proprty of the intervals
@@ -74,6 +74,7 @@ def add_interval(disjoint_intervals: List[Interval],
     #  |---- DateRange A -----|                        _ 
     #_                          |---Date Range B ----|
     # (True if EndA < StartB)
+    #now process the overlaps
     while (i < len(disjoint_intervals)
            and new_interval.right >= disjoint_intervals[i].left and disjoint_intervals[i].right >= new_interval.left):
         # If [a, b] and [c, d] overlap, union is [min(a, c), max(b, d)].

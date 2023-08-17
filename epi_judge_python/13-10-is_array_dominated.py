@@ -32,7 +32,7 @@ class Team:
     def valid_placement_exists(team0: 'Team', team1: 'Team') -> bool:
 
         return all(
-            a < b
+            a < b#this assumes team1 is at back row, if team0 is at back row than a > b
             for a, b in zip(sorted(team0._players), sorted(team1._players)))
 
 @enable_executor_hook

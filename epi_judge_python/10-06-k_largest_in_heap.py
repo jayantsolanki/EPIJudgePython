@@ -8,7 +8,7 @@ Find k largest elements in a Max-heap without modifying the existing heap
 HInt: Use array representation of i, 2i + 1 and 2i + 2, to find parent, and its respective children
 Second hint: parent is always equal to greater than its two children, so start constructing the result array from parent at index 0
 Third hint: use a temporary maxheap to procure the stored elements from given heap and also to get max element encountered till now
-Time: O(klogk), space O(k)
+Time: O(klogk), space O(k). Why, cause in the loop there are two insert (left and right), and one extraction, so net is k extraction and k insertions
 """
 def k_largest_in_binary_heap_v2(A: List[int], k: int) -> List[int]:
 
@@ -27,7 +27,7 @@ def k_largest_in_binary_heap_v2(A: List[int], k: int) -> List[int]:
     for _ in range(k):
         candidate_idx = candidate_max_heap[0][1]
         result.append(-heapq.heappop(candidate_max_heap)[0])
-    #now get the children and put them to temp heap
+        #now get the children and put them to temp heap
         left_child_idx = 2 * candidate_idx + 1
         if left_child_idx < len(A): #important, make sure the left_child exists
             heapq.heappush(candidate_max_heap,
