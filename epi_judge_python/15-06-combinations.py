@@ -7,7 +7,7 @@ from test_framework import generic_test, test_utils
 # https://leetcode.com/problems/combinations/
 """
 Given two integers n and k, return all possible combinations of k numbers out of the range [1, n]
-Time: O(KC^kn), where k is size of subset, n is total size avaialbe. It is binomial combo formual. the only consuming part here is to append the built combination of length k to the output, hence multiple by k
+Time: O(KC^kn), where k is size of subset, n is total size available. It is binomial combo formula. the only consuming part here is to append the built combination of length k to the output, hence multiple by k
 Explanation: let's say, K==N==3
 output would be -->
 1 -> 2 -> 3 and only 3 calls were made which is O(N) which is O(K nCk) -> 3 * 1 = 3

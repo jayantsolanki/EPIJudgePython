@@ -51,7 +51,7 @@ def n_queens(n: int) -> List[List[int]]:
     def validity(col, row):
         for i, c in enumerate(col_placement[:row]):
             #check diagonal
-            if (abs(i - row) == abs(col - c)):#tan 45 is 1
+            if (abs(i - row) == abs(col - c)):#tan 45 is 1 #horizontal distance equal to vertical distance
                 return False
             if c == col:#same column
                 return False
@@ -117,11 +117,11 @@ Kinda a brute force with recursion
 https://www.geeksforgeeks.org/minimum-queens-required-to-cover-all-the-squares-of-a-chess-board/
 Compute the smallest number of queens that can be placed to attack each uncovered square
 Logic:
-    Step 1: Starting from any corner square of the board, find an ‘uncovered’ square (Uncovered square is a square which isn’t attacked by any of the queens already placed). If none found, goto Step 4.
-    Step 2: Place a Queen on this square and increment variable ‘count’ by 1.
+    Step 1: Starting from any corner square of the board, find an 'uncovered' square (Uncovered square is a square which isn't attacked by any of the queens already placed). If none found, goto Step 4.
+    Step 2: Place a Queen on this square and increment variable 'count' by 1.
     Step 3: Repeat step 1.
-    Step 4: Now, you’ve got a layout where every square is covered. Therefore, the value of ‘count’ can be the answer. However, you might be able to do better, as there might exist a better layout with lesser number of queens. So, store this ‘count’ as the best value till now and proceed to find a better solution.
-    Step 5: Remove the last queen placed and place it in the next ‘uncovered’ cell.
+    Step 4: Now, you've got a layout where every square is covered. Therefore, the value of 'count' can be the answer. However, you might be able to do better, as there might exist a better layout with lesser number of queens. So, store this 'count' as the best value till now and proceed to find a better solution.
+    Step 5: Remove the last queen placed and place it in the next 'uncovered' cell.
     Step 6: Proceed recursively and try out all the possible layouts. Finally, the one with the least number of queens is the answer.
 
     Basically trick is to identify if there are any valid spaces left every time you place one queen in the matrix.
@@ -135,7 +135,7 @@ def totalNQueens_attack(n: int) -> int:
                 if validity(i, j):#there are some places still left
                     return False
         return True
-    def validity(row, col):
+    def validity(row, col):#returns true if uncovered
         #check for queen across column 'column
         for i in range(n):
             if board[i][col]:
@@ -164,12 +164,12 @@ def totalNQueens_attack(n: int) -> int:
             return #no need to go further #pruning
         #check all the places are attacked
         if check_any_placement_left():
-            result.append(copy.deepcopy(board))
+            result.append(copy.deepcopy(board))#copy.copy would have only copied row level, not column level
             smallest_count[0] = queen_count
             return
         for row in range(n): #try placing queens in every cells (n * n)
             for col in range(n):
-                if validity(row, col):
+                if validity(row, col):#check if [row][col] is covered by any queen, if uncovered then proceed
                     board[row][col] = True
                     solve_n_queens(queen_count + 1)
                     board[row][col] = False #backtrack

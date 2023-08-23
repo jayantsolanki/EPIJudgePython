@@ -71,6 +71,8 @@ def pair_includes_ancestor_and_descendant_of_m(possible_anc_or_desc_0: BstNode,
     return search_target(
         middle, possible_anc_or_desc_1
         if search_0 is middle else possible_anc_or_desc_0)
+    # below means if search_1 reached middle, then search for path to possible_anc_or_desc_1 and vice versa
+    # return search_target(middle, possible_anc_or_desc_0) or search_target(middle, possible_anc_or_desc_1)
 
 
 @enable_executor_hook

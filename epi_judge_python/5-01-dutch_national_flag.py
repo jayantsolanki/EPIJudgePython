@@ -163,7 +163,7 @@ it would have been encountered already and moved behind lastTrue
 This programming is pushing False towards left, Ts order with respect to one another doesnt change
 only required criteria: the relative ordering among true values to be preserved
 """
-
+#start from right side and just move true to right side.
 def dutch_flag_partition_variant4(A):
     lastTrue = len(A)#tracker for storing True moved by i
     i = len(A) - 1

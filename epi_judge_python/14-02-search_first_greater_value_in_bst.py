@@ -9,7 +9,7 @@ Write a program that takes as input a BST and a value, and return the first key 
 is greater than the input value.
 Logic:
     Use Binary Search logic, and keep updating the result with any greater value encountered.  As soon as we encounter the first
-    greater value, the correct answer will be definetely wihtin that tree whose root is that greater key.
+    greater value, the correct answer will be definitely wihtin that tree whose root is that greater key.
     Dont use the inorder traversal since it is not using the BST property
 Time: O(h), Space is O(1)
 """

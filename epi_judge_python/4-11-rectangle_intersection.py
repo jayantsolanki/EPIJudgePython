@@ -7,8 +7,37 @@ from test_framework.test_failure import PropertyName
 836. Rectangle Overlap
 https://leetcode.com/problems/rectangle-overlap/
 """
+"""
+13.7
+# https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964#325964
+(StartA <= EndB) and (EndA >= StartB)
+
+Proof:
+Let ConditionA Mean that DateRange A Completely After DateRange B
+
+_                        |---- DateRange A ------|
+|---Date Range B -----|                          _
+(True if StartA > EndB)
+
+Let ConditionB Mean that DateRange A is Completely Before DateRange B
+
+|---- DateRange A -----|                        _ 
+_                          |---Date Range B ----|
+(True if EndA < StartB)
+
+Then Overlap exists if Neither A Nor B is true -
+(If one range is neither completely after the other,
+nor completely before the other, then they must overlap.)
+
+Now one of De Morgan's laws says that:
+
+Not (A Or B) <=> Not A And Not B
+
+Which translates to: (StartA <= EndB)  and  (EndA >= StartB)
+"""
 
 Rect = collections.namedtuple('Rect', ('x', 'y', 'width', 'height'))
+
 
 
 def intersect_rectangle(r1: Rect, r2: Rect) -> Rect:

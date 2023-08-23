@@ -67,7 +67,7 @@ def plus_bits(Bs, Bt):
         Carry = Bs & Bt
         Bs, Bt = Bs ^ Bt, Carry<<1
 
-    return ("{0:b}".format(Bs))
+    return ("{0:b}".format(Bs)) #or use f string f"{Bs:b}"
 
 plus_bits("1010", "0010")
 plus_bits("1000000000000000000000", "0010")

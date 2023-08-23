@@ -26,6 +26,8 @@ def uniform_random(lower_bound: int, upper_bound: int) -> int:
         # if result < number_of_outcomes:#if not then try again
         if result <= number_of_outcomes:#if not then try again, this also works
             break
+        # if (lower_bound <= lower_bound + result <= upper_bound):
+        #     break
     return result+lower_bound
 
 

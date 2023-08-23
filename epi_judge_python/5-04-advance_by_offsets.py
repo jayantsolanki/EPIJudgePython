@@ -15,8 +15,8 @@ def can_reach_end_ori(A: List[int]) -> bool:
     # TODO - you fill in here.
     furthest_reach_so_far, last_index = 0, len(A) - 1
     i = 0
-    while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:#stop if i more than furthest distance reached so far, 
-        #or furthest distances more than length of array
+    while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:#stop if i more than furthest distance reached
+        # so far, or furthest distances more than length of array
         furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
         # print(i,furthest_reach_so_far)
         i += 1 #if i or current index tobe evaluated > furthest reach so far, that means no further can be moved, deadend

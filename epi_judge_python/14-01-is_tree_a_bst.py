@@ -33,7 +33,7 @@ Logic:
     right child in range [w, l]. Range percolates downward .
 Time: O(n), Space: O(h), h is the height of the tree
 """
-#using dfs technique
+#using dfs technique preorder
 def is_binary_tree_bst_original(tree: BinaryTreeNode) -> bool:
     def are_keys_in_range(tree,
                           low_range=float('-inf'),
@@ -85,6 +85,20 @@ def is_binary_tree_bst_inorder(tree):
     prev = [None]
     return inorder_traversal(tree)
 
+def is_binary_tree_bst(tree):
+    prev = [None]
+    def inorder_traversal(tree):
+        if not tree:
+            return True
+        if not inorder_traversal(tree.left):
+            return False
+        if prev[0] is not None and tree.data < prev[0]: #prev[0] if None has to be explicitely matched with None
+            return False
+        prev[0] = tree.data
+        return inorder_traversal(tree.right)
+    return inorder_traversal(tree)
+
+
 
 #method 2:
 """
@@ -94,7 +108,7 @@ Logic:
 Time and Space O(n)
 """
 #book
-def is_binary_tree_bst(tree: BinaryTreeNode) -> bool:
+def is_binary_tree_bst_bfs(tree: BinaryTreeNode) -> bool:
     QueueEntry = collections.namedtuple('QueueEntry', ('node', 'lower', 'upper'))
     TreeQueue = collections.deque([QueueEntry(tree, float('-Inf'), float('Inf'))])
 

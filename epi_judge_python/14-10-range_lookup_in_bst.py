@@ -23,6 +23,8 @@ depth of h to find the min and max, then findout the m elements belong under the
 """
 Interval = collections.namedtuple('Interval', ('left', 'right'))
 #below progrm is basically inorder optimized to look into given intervals
+#basically you try to identify the root which falls under the interval and then some of its children will be under same interval
+#so just run the inorder on that root
 def range_lookup_in_bst(tree: BstNode, interval: Interval) -> List[int]:
     def range_lookup_in_bst_helper(tree):
         if tree is None:

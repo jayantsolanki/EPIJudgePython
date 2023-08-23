@@ -14,10 +14,20 @@ def gcd(x: int, y: int) -> int: #assuming x will be always less than y
     if x == 0:
         return y
     else:
-        if x > y:
-            return gcd(y, x)
-        else:
-            return gcd(y % x, x)
+        return gcd(y % x, x)
+        # if x > y:
+        #     return gcd(y, x) # this also works return gcd(y % x, x)
+        # else:
+        #     return gcd(y % x, x)
+
+# Python code to demonstrate naive
+# method to compute gcd ( Euclidean algo )
+ 
+ 
+def computeGCD(x, y):
+    while(y):
+       x, y = y, x % y
+    return abs(x)
 
 
 def gcd_book(x: int, y: int) -> int:

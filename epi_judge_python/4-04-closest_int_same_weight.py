@@ -10,7 +10,8 @@ def closest_int_same_bit_count(x: int) -> int:
         return "Can not be found"
     lowestsetBit = x & ~(x-1) #remember this technique always
     lowestunSetbit = ~x & (x+1) #remember this technique always, trick is to remeber that you need to sert first 0 to 1 but adding 1 to it
-    if lowestunSetbit > lowestsetBit: # for cases like x = 7
+    if lowestunSetbit > lowestsetBit: # for cases like x = 7, we check for unsetbit first, because if it is greater than
+        #definitely there should be 1 before it
         x |= lowestunSetbit
         x ^= lowestunSetbit>>1#need this for example 0100111, unset is 1000, and set is 1, hence cant do x ^= lowestsetbit
     else:

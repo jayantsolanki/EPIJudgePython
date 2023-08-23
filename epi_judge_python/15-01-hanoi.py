@@ -35,7 +35,7 @@ The pattern here is :
  - Shift last disk from 'origin' to 'destination'.
  - Shift 'n-1' disks from 'buffer' to 'destination', using origin.
 
-moveDisks(int n, Tower origin, Tower destination, Tower buffer) {
+moveDisks(int n, Tower origin, Tower destination, Tower buffer) { //places fixed remember
 
 /* Base case */
 if (n <= 0) return;
@@ -57,7 +57,7 @@ NUM_PEGS = 3 #number of towers
 
 def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
     def compute_tower_hanoi_steps(num_rings_to_move, from_peg, to_peg,
-                                  use_peg):
+                                  use_peg):# origin, destination, buffer
         if num_rings_to_move > 0:
             compute_tower_hanoi_steps(num_rings_to_move - 1, from_peg, use_peg,
                                       to_peg)#move n - 1 disk to buffer using destination 
@@ -89,7 +89,7 @@ def compute_tower_hanyoi(num_rings: int) -> List[List[int]]:
         else:
             #using 3 here, since 0 + 1 + 2 = 3, video shows 6 , since 1 + 2 + 3
             other = 3 - (start + end)#method of finding the auxiliary/buffer rod at any given time in the recursion
-            #above formual find which rod is available for next free legal move
+            #above formula find which rod is available for next free legal move
             hanoi(n - 1, start, other)#first move to buffer, you can imagine this step for total disk ==2
             result.append([start, end])#move
             hanoi( n - 1, other, end)
