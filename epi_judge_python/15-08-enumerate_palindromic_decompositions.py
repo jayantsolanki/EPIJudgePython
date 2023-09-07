@@ -65,9 +65,9 @@ def decompositions(text: str) -> List[List[str]]:
             result.append(curr[:])
             return
         for end in range(start, n):
-            curr.append(text[start:end + 1])
-            backdoor(end+1, curr)
-            curr.pop()
+            # curr.append(text[start:end + 1])
+            backdoor(end+1, curr + [text[start:end + 1]])
+            # curr.pop()
     n = len(text)
     backdoor(0, [])
     return result

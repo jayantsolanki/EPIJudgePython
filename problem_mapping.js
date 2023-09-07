@@ -2086,7 +2086,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: 15-09-enumerate_trees.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         },

@@ -25,7 +25,7 @@ def number_of_ways_mem(m: int, n: int) -> int:
 
 #bottom-up
 #start building from base cases
-def number_of_ways(m: int, n: int) -> int:
+def number_of_ways_dp1(m: int, n: int) -> int:
 
     cache = [[0] * n for _ in range(m)]
     
@@ -38,6 +38,22 @@ def number_of_ways(m: int, n: int) -> int:
     for i in range(1, m):
         for j in range(1, n):
             cache[i][j] = cache[i - 1][j] + cache[i][j - 1]
+    
+    return cache[-1][-1]
+#better
+def number_of_ways(m: int, n: int) -> int:
+
+    cache = [[0] * n for _ in range(m)]
+    
+    #setting base cases
+    cache[0][0] = 1
+        
+    for i in range(m):
+        for j in range(n):
+            if i > 0:
+                cache[i][j] += cache[i - 1][j] 
+            if j > 0:
+                cache[i][j] += cache[i][j - 1]
     
     return cache[-1][-1]
 
@@ -56,6 +72,24 @@ def number_of_ways_space_efficient(m, n):
             cache[j] += prev_res
             prev_res = cache[j]
     return cache[m - 1]
+
+#
+#bottom-up, O(mn), space(min(m,n)), since we just need to reuse previous row, we can just copy it
+def number_of_ways_space_efficient_2(m: int, n: int) -> int:
+    if m > n:#picking smallest dimension
+        m, n = n, m
+        
+    row = [1] * m #setting base cases
+    temp_row = [0] * m
+    #setting base cases
+    # new_row[0] = 1
+    #imagine it as you have to copy new_row n times        
+    for i in range(n):
+        for j in range(m):
+            if j > 0:
+                row[j] = row[j - 1] + temp_row[j]
+        temp_row = row
+    return row[-1] #returns number of ways to reach cache[m-1][n-1]
 
 #variant  2
 """
@@ -84,9 +118,9 @@ def uniquePathsWithObstacles(obstacleGrid: List[List[int]]) -> int:
             return 1
         else:
             ans = 0
-            if i - 1 >= 0 and obstacleGrid[i - 1][j] != 1:#stop going up in that column if obstacle found
+            if i > 0 and obstacleGrid[i - 1][j] != 1:#stop going up in that column if obstacle found
                 ans = dp(i - 1, j)
-            if j - 1 >= 0 and obstacleGrid[i][j - 1] != 1: # stop going left in that row if obstacle encountered
+            if j > 0 and obstacleGrid[i][j - 1] != 1: # stop going left in that row if obstacle encountered
                 ans += dp(i, j - 1)
             return ans
     return dp(m - 1, n - 1)
@@ -94,25 +128,14 @@ def uniquePathsWithObstacles(obstacleGrid: List[List[int]]) -> int:
 def uniquePathsWithObstacles_iter(obstacleGrid: List[List[int]]) -> int:
     m, n = len(obstacleGrid), len(obstacleGrid[0])
     cache = [[0] * n for _ in range(m)]
-    
-    #setting base cases
-    for i in range(m):#first col = 1
-        if obstacleGrid[i][0] != 1:
-            cache[i][0] = 1
-        else:#break because after obstacles is encountered you can go anymore left in cells after that obstacle
-            break
-    for j in range(n): #first row =1
-        if obstacleGrid[0][j] != 1:
-            cache[0][j] = 1
-        else:#break because after obstacles is encountered you can go anymore down in cells after that obstacle
-            break
-        
-    for i in range(1, m):
-        for j in range(1, n):
-            if obstacleGrid[i][j] != 1:
-                cache[i][j] = cache[i - 1][j] + cache[i][j - 1]
-            else:
-                cache[i][j] = 0
+    #base case
+    cache[0][0] =  1 if obstacleGrid[0][0]!= 1 else 0
+    for i in range(m):
+        for j in range(n):
+            if i > 0 and obstacleGrid[i][j] != 1:
+                cache[i][j] += cache[i - 1][j] 
+            if j > 0 and obstacleGrid[i][j] != 1:
+                cache[i][j] += cache[i][j - 1]
                     
     return cache[-1][-1]
 
@@ -122,6 +145,7 @@ A fisherman is in a rectangular sea. The value of each fish at point(i, j) in th
 Find maximum catch a fisherman can have before it reaches bottom-right of that array. Fisherman can go right or down only at 
 a time.
 Similar to 64. Minimum Path Sum, https://leetcode.com/problems/minimum-path-sum/
+#check this too: 1937. Maximum Number of Points with Cost https://leetcode.com/problems/maximum-number-of-points-with-cost/
 """
 #topdown
 def maxPathSum_mem2(grid: List[List[int]]) -> int:

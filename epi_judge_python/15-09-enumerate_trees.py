@@ -31,6 +31,7 @@ def generate_all_binary_trees(num_nodes: int
         ]
     return result
 
+
 #run node 0 in your mind
 generate_all_binary_trees(3)
 for i in generate_all_binary_trees(3):

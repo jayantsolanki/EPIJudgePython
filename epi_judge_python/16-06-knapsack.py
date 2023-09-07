@@ -12,7 +12,7 @@ Leetcode 518. Coin Change 2
 https://leetcode.com/problems/coin-change-2/
 
 Knapsack problem
-Write a program for the knapsack problem that seldcts a subset of items that has maximum value ans satisfies the weight
+Write a program for the knapsack problem that selects a subset of items that has maximum value ans satisfies the weight
 constraint. All items have integer weights and values. Return the value of the subset
 Note: Each Item can be taken only once (bounded knapsack)
 Logic:

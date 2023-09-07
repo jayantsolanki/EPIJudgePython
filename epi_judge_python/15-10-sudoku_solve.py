@@ -13,8 +13,7 @@ Leetcode: 37. Sudoku Solver
 https://leetcode.com/problems/sudoku-solver/
 Implement a Sudoku solver.
 Logic: #similar to n-queen
-    Traverse the 2-D array entries one at a time, if empty, we try each value, then we check the validity of that specific cell
-    across row, column and subgrid, if right we recurse further else backtrack
+    Traverse the 2-D array entries one at a time, if empty, we try each value, then we check the validity of that specific cell across row, column and subgrid, if right we recurse further else backtrack
 Time: https://github.com/amitkumar50/Code-examples/blob/master/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver/4x4Board/README.md#co
 Time complexity is constant here since the board size is fixed and there is no N-parameter to measure. Though let's discuss the number of operations needed : (9!)^9
  . Let's consider one row, i.e. not more than 99 cells to fill. There are not more than 9 possibilities for the first number to put, not more than 9 x 8 for the second one, not more than 9x 8 x 7 for the third one etc. In total that results in not more than 9! possibilities for a just one row, that means not more than (9!)^9 operations in total
@@ -115,9 +114,9 @@ def solve_sudoku(partial_assignment: List[List[int]]) -> bool:
             # cause a problem is entry val at (i,j).
             if valid_to_add(i, j, val):#check for validity before assigning #pruning too, similar to n-queen
                 partial_assignment[i][j] = val
-                if solve_partial_sudoku(i + 1, j): # we are filling the sudoku columnwise (vertically)
+                if solve_partial_sudoku(i + 1, j): # we are filling the sudoku columnwise (vertically) recursive, goes till complete end
                     # print(partial_assignment)
-                    return True
+                    return True #cause cascading true to be returned
         #if here, that means, above numbers failed, go back to previous row and try again
         partial_assignment[i][j] = empty_entry  # Undo assignment.
         return False

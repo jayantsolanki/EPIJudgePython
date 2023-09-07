@@ -9,9 +9,9 @@ from test_framework.test_utils import enable_executor_hook
 Leetcode: 89. Gray Code
 https://leetcode.com/problems/gray-code/
 Write out Gray Codes for n = 2, 3, 4
-An n-bit gray code sequence is a sequence of 2n integers where:
+An n-bit gray code sequence is a sequence of 2^n integers where:
 
-    Every integer is in the inclusive range [0, 2n - 1],
+    Every integer is in the inclusive range [0, 2^(n - 1)],
     The first integer is 0,
     An integer appears no more than once in the sequence,
     The binary representation of every pair of adjacent integers differs by exactly one bit, and
@@ -92,7 +92,7 @@ considered in the space complexity analysis. All 2^n numbers are added to the sa
 
 
 """
-#bottom -up
+#bottom -up, start with index == max, here it is 2
 def gray_code_recursion2(num_bits: int) -> List[int]:
     if num_bits ==0:
         return [0]
@@ -108,7 +108,7 @@ def gray_code_recursion2(num_bits: int) -> List[int]:
 
 gray_code_recursion2(2)
 
-#my take, simple to understand,  my favorite, top down
+#my take, simple to understand,  my favorite, top down, topdown starts with index = 0
 def gray_code(num_bits: int) -> List[int]:
     def gray_code_gen(n, result):
         if n == num_bits:
@@ -126,6 +126,8 @@ def gray_codde(num_bits: int) -> List[int]:
     results = [0]
     for i in range(num_bits):#at every ith bit, result size becomes twice, size doubles for every bit, hence Time comeplxity = 2^n
         results += [x | (1 << i) for x in reversed(results)]#here i am simply adding one to msb
+        #or 
+        #results += [x + 2**i for x in reversed(results)]#here simply adding 2**i to x
     return results
 
 
