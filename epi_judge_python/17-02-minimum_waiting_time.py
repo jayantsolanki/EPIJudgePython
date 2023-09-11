@@ -32,7 +32,7 @@ def minimum_total_waiting_time_pythonic(service_times):
 #my way
 #first one is always zero, so i start from 1 and start adding those to previous values
 #second variable takes the total
-def minimum_total_waiting_time(service_times: List[int]) -> int:
+def minimum_total_waiting_time_sim(service_times: List[int]) -> int:
     service_times.sort()
     wait_time_cumulative = [0]
     total_wait = 0
@@ -41,6 +41,16 @@ def minimum_total_waiting_time(service_times: List[int]) -> int:
         total_wait = total_wait + wait_time_cumulative[-1]
     return total_wait
 
+#10SEP2023, better
+def minimum_total_waiting_time(service_times: List[int]) -> int:
+    service_times.sort()
+    waiting_time = 0
+    total_waiting_time = 0
+    for index in range(1, len(service_times)): #there will be zero wait time for index 0 aka first query
+        waiting_time += service_times[index - 1]#get the execution time of previous query, 
+        #use it to calculate wait time for current val
+        total_waiting_time += waiting_time #cumulative add
+    return total_waiting_time
 
 
 if __name__ == '__main__':

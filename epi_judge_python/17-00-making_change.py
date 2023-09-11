@@ -1,5 +1,6 @@
 from test_framework import generic_test
 
+#reading material: https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/13/Small13.pdf
 
 """
 Write a program to find minimum number of coins for a change (US coins)

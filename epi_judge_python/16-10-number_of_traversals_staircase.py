@@ -30,7 +30,7 @@ def number_of_ways_to_top_old(top: int, maximum_step: int) -> int:
             return ans
     return climb(top)
 
-#bottom up, not able to figure out
+#bottom up
 def number_of_ways_to_top(top: int, maximum_step: int) -> int:
     if top == 1:
         return 1

@@ -56,7 +56,7 @@ def decompose_into_dictionary_words_ori(domain: str,
     return decompositions
 
 #my way, topdown
-# Time complexity in all: O(N.K.L), L becasue of splicing/substring, L is average length of spliced substring
+# Time complexity in all: O(N.K.L), L because of splicing/substring, L is average length of spliced substring
 #Space: O(N)
 def decompose_into_dictionary_words_mem(domain: str,
                                     dictionary: Set[str]) -> List[str]:

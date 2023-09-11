@@ -7,7 +7,7 @@ from test_framework import generic_test
 Compute an optimum assignment of tasks
 Design an algorithm that takes as input a set of tasks and returns an optimum assignment.
 Logic:
-    Sort it, and then pair shortest and longest, then second shorteest and second longest, and so on.
+    Sort it, and then pair shortest and longest, then second shortest and second longest, and so on.
 Time: O(nlogn)
 """
 PairedTasks = collections.namedtuple('PairedTasks', ('task_1', 'task_2'))

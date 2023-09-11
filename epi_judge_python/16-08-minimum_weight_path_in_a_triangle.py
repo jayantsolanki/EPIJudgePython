@@ -39,7 +39,7 @@ def minimum_path_weight_iter1(triangle: List[List[int]]) -> int:
     cache = [[0] * len(triangle[j]) for j in range(height)]
     cache[0][0] = triangle[0][0]
     minima = cache[0][0]
-
+    #imagine the triangle in your mind
     for i in range(1, height):
         minima = float('Inf')
         for j in range(len(triangle[i])):
@@ -64,8 +64,8 @@ def minimum_path_weight(triangle: List[List[int]]) -> int:
 
     for i in range(1, height):
         minimum_weight_to_current_row = float('Inf')
-        for j in range(len(triangle[i]) - 1, - 1, -1):# you have to do in reverse, since result caclualted in nonreverse 
-            #order wont work, try to do it manually on copy, you will know
+        for j in range(len(triangle[i]) - 1, - 1, -1):# you have to do in reverse, 
+            #since result caclualted in nonreverse order wont work, try to do it manually on copy, you will know
             if i == 1:#second row
                 cache[j] = triangle[i][j] + cache[0]
             elif j - 1 >= 0 and j <= i - 1:#neither first column or last column

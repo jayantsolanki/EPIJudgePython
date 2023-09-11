@@ -86,6 +86,26 @@ def longest_nondecreasing_subsequence_length(nums: List[int]) -> int:
     #cache contains length of longest subsequences for each value starting at index i
     return maxVal
 
+#important, nlogn
+#idea here is that longest increasing subsequence will be naturally ordered (sorted in ascending order)
+#so let an array store this sorted orderd. For any incoming number, it will either sit in the end or in mid somewhere, so idea
+# here is to find the its position using bisect_left, and place it there.
+# https://leetcode.com/problems/longest-increasing-subsequence/discuss/1326308
+def lengthOfLIS_binary(nums: List[int]) -> int:
+    sub = []
+    for num in nums:
+        i = bisect_left(sub, num)
+
+        # If num is greater than any element in sub
+        if i == len(sub):
+            sub.append(num)
+        
+        # Otherwise, replace the first element in sub greater than or equal to num
+        else:
+            sub[i] = num
+    
+    return len(sub)
+
 #variant 1
 """
 Write a program that takes as input an array of numbers and returns a longest nondecreasing subsequence in the array

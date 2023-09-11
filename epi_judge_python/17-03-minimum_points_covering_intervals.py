@@ -19,9 +19,12 @@ Consider a foreman responsible for a number fo tasks on the factory floor. Each 
 and ends at fixed time. The foremanwants to visit the floor to check on the tasks. Your job is to help 
 him minimize the number of visits. That is find the visit times which can conincide with max running tasks.
 Logic:
+    Good idea is to focus on extreme cases, Events which ends first.
+    So greedy approach here is to pick the earliest finishing event and see how many other events overalps with it.
+    Then go to next earliest non overlapping event
     Sort all interval on right endpoints. Select the first interval's right endpoint, iterate through 
     intervals, looking for those intervals which have overlapping with selected right endpoint. Look for the first interval 
-    which has no overalpping, and select its right endpoint and move on until you are done with all tasks. 
+    which has no overlapping, and select its right endpoint and move on until you are done with all tasks. 
     These right end points selected will be the visit times.
     Example: [[1, 2], [2, 3], [3, 4], [2, 3], [3, 4], [4, 5]], Sorted: [[1, 2], [2, 3], [2, 3], [3, 4], [3, 4], [4, 5]]
 """

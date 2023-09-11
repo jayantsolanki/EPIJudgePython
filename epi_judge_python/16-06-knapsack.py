@@ -59,8 +59,8 @@ def optimum_subject_to_capacity_ori(items: List[Item], capacity: int) -> int:
 
 #dont recomment, use above solutions
 #bottom up solution, inspired from bottom up solution of coin change ii  problem,. just one difference, each row has unique item, that can be used 
-#only once, hence we use i - 1 at line 72
-def optimum_subject_to_capacity(items: List[Item], capacity: int) -> int:
+#only once, hence we use i - 1 at line 77
+def optimum_subject_to_capacity_iter1(items: List[Item], capacity: int) -> int:
     m = len(items)
     cache = [[0] * (capacity + 1) for _ in range(m)]
     #base cases:
@@ -71,6 +71,19 @@ def optimum_subject_to_capacity(items: List[Item], capacity: int) -> int:
             cache[0][weight] = 0
     #subtracted to zero
     for i in range(1, m):
+        # for weight in range(1, capacity + 1):
+        for weight in range(capacity+1): # use this instead of above
+            if items[i].weight <= weight: #take the weight, remember, we cannot use the item again, hence i - 1 in both
+                    cache[i][weight] = max(cache[i - 1][weight], cache[i - 1][weight - items[i].weight] + items[i].value)
+            else:#that weight cannot be taken
+                    cache[i][weight] = cache[i - 1][weight]
+    return cache[-1][-1]
+
+#see the table in page 268
+def optimum_subject_to_capacity(items: List[Item], capacity: int) -> int:
+    m = len(items)
+    cache = [[0] * (capacity + 1) for _ in range(m)]
+    for i in range(m):
         # for weight in range(1, capacity + 1):
         for weight in range(capacity, -1, -1): # use this instead of above
             if items[i].weight <= weight: #take the weight, remember, we cannot use the item again, hence i - 1 in both
@@ -145,13 +158,15 @@ fractional_knapsack([Item(10, 60), Item(40, 40), Item(20, 100), Item(30, 120)], 
 #variant 4
 """
 Divide the spoils fairly
+https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
 Similar to 1755. Closest Subsequence Sum
 https://leetcode.com/problems/closest-subsequence-sum/
     #check https://www.geeksforgeeks.org/meet-in-the-middle/
     # O(n2^(n/2))
 """
 def minAbsDifference(nums: List[int]) -> int:
-    goal = sum(nums) // 2
+    total = sum(nums)
+    goal = total // 2
     m = len(nums)
     result = set()
     #Finds all possible subset sums of integers in set half of the nums
@@ -173,25 +188,19 @@ def minAbsDifference(nums: List[int]) -> int:
     ans = float('Inf')
     # for each possible sum of the 1st half, find the sum in the 2nd half
     # that gives a value closest to the goal using binary search
-    group_1 = 0
-    group_2 = 0
+    max_group_1 = 0
+    max_group_2 = 0
     for item in sum1:
         index = bisect.bisect_left(sum2, goal - item)
-        if index < len(sum2):
-            ans = min(ans, abs(goal - (item + sum2[index]))) #goal - s1 - s2, s2 here is sum2[index]
-            # group_1, group_2 = item, sum2[index]
-            group_1, group_2 = item + sum2[index], sum(nums) - (item + sum2[index])
-        if 0 < index:
-            ans = min(ans, abs(goal - (item + sum2[index - 1])))
-            # group_1, group_2 = item, sum2[index - 1]
-            group_1, group_2 = item + sum2[index - 1], sum(nums) - (item + sum2[index - 1])
-            #sum2[index] is the smallest number in sum2 that's larger than or equal to remain(goal - item) and sum2[index-1] 
-            #is the largest number in sum2 that's smaller than remain. In order to find the 
-            #smallest absolute difference we need to consider both numbers (if they exist).
-
-            #resultant sum could be larger than goal or less than goal, first if condition meb find both larger or msaller
-            #second if coniditon will find smaller. We take the min abs of both
-    return (group_1, group_2)
+        #so find the number which is = or just less than the goal - item number
+        #if not there, find the closest smallest
+        if index == len(sum2) or (sum2[index] != (goal - item)):
+            index = index - 1
+        #if match found than index is correct
+        sum_val = item + sum2[index]
+        if sum_val > max_group_1:
+            max_group_1, max_group_2 = sum_val, total - (item + sum2[index])
+    return (max_group_1, max_group_2)
 
 #variant 5
 """
