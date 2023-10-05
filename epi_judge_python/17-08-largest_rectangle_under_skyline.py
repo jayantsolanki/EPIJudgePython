@@ -3,6 +3,7 @@ from typing import List
 from test_framework import generic_test
 
 """
+https://leetcode.com/problems/largest-rectangle-in-histogram/
 Compute the largest rectangle under the skyline.
 Let A be an array representing the heights of adjacent buildings of unit width. Design an algo to compute
 the area of the largest rectangle contained in this skyline.
@@ -82,7 +83,7 @@ def calculate_largest_square(heights: List[int]) -> int:
         while pillar_indices and heights[pillar_indices[-1]] >= h:
             height = heights[pillar_indices.pop()]
             width = i if not pillar_indices else i - pillar_indices[-1] - 1 # - 1 because we are counting from the index ahead of the one which has been popped
-            if width >= height: #only calculate ares if width is >= height else don't
+            if width >= height: #only calculate area if width is >= height else don't
                 max_rectangle_area = max(max_rectangle_area, height * height)
             else:
                 continue

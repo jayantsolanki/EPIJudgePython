@@ -22,7 +22,7 @@ WHITE, BLACK = range(2)
 
 Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
 
-
+#this code is modifying the maze
 def search_maze_ori(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
 
@@ -57,7 +57,7 @@ def search_maze_v1(maze: List[List[int]], s: Coordinate,
     path = []
     motions = [Coordinate(0, -1), Coordinate(0, 1), Coordinate(1, 0), Coordinate(-1, 0)]
     # here modify the maze cell to add black color for visited cells, so that no cycle is formed accidently
-    #no need to track visited set beccasue of modifying maze
+    #no need to track visited set because of modifying maze
     #you may wanna use tuple set, if you dont want to modify the maze
     # visit
     def dfs(node):
@@ -79,16 +79,16 @@ def search_maze_v1(maze: List[List[int]], s: Coordinate,
 
 #second veriosn, without modifying original maze
 #my implementation
-def search_maze(maze: List[List[int]], s: Coordinate,
+def search_maze_dfs(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
     path = []
     visited = set()
     motions = [Coordinate(0, -1), Coordinate(0, 1), Coordinate(1, 0), Coordinate(-1, 0)]
     def dfs(node):
-        if maze[node.x][node.y] == BLACK:#visited already or a obstacle
+        if maze[node.x][node.y] == BLACK or (node.x, node.y) in visited:#visited already or a obstacle
             return False  
-        elif (node.x, node.y) in visited:
-            return False      
+        # elif (node.x, node.y) in visited:
+        #     return False      
         else:
             # maze[node.x][node.y] = BLACK#mark it as visited
             visited.add((node.x, node.y))#marking cell as visited
@@ -102,6 +102,26 @@ def search_maze(maze: List[List[int]], s: Coordinate,
             path.pop()
             return False
     dfs(s)
+    return path
+
+#bfs
+def search_maze(maze: List[List[int]], s: Coordinate,
+                e: Coordinate) -> List[Coordinate]:
+    path = []
+    visited = set()
+    motions = [Coordinate(0, -1), Coordinate(0, 1), Coordinate(1, 0), Coordinate(-1, 0)]
+    node_queue = collections.deque([([s], s)])#storing both path and the starting node
+    while node_queue:
+        current_path, current_node = node_queue.popleft()
+        if (current_node.x, current_node.y) in visited or maze[current_node.x][current_node.y] == BLACK:
+            continue
+        visited.add((current_node.x, current_node.y))
+        if current_node == e:
+            path = current_path
+            break
+        for motion in motions:
+            if 0 <= current_node.x + motion.x < len(maze) and 0 <= current_node.y + motion.y < len(maze[0]):#valid motions only
+                node_queue.append([current_path + [Coordinate(current_node.x + motion.x, current_node.y + motion.y)], (Coordinate(current_node.x + motion.x, current_node.y + motion.y))])
     return path
 
 def path_element_is_feasible(maze, prev, cur):

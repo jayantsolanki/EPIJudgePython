@@ -7,6 +7,7 @@ from test_framework import generic_test
 """
 Leetcode: 169. Majority Element
 https://leetcode.com/problems/majority-element/
+Check https://leetcode.com/problems/majority-element-ii/
 Write a program that makes a single pass over the sequence and identifies the majority element.
 Rememebr majority means count  > n/2. Hence only the algo will work
 Logic:
@@ -14,8 +15,14 @@ Logic:
     For improved space:
 
     Boyer-Moore Voting Algorithm
+    To figure out a 
+    O(1) space requirement, we would need to get this simple intuition first. For an array of length n:
+
+        There can be at most one majority element which is more than ⌊n/2⌋ times.
+        There can be at most two majority elements which are more than ⌊n/3⌋ times.
+        There can be at most three majority elements which are more than ⌊n/4⌋ times.
     Since majority here means count > n/2, hence we just maintain the count of element being encountered
-    We initialize count of first element to 1, if the enxt element is same, we increament the count, else decrement
+    We initialize count of first element to 1, if the next element is same, we increament the count, else decrement
     If after decrement the count is zero, we reintialize the count to 1 again for the current item and carry on.
     The last remaining element will be the majority. Because rest of the other elements wont be able to cancel out the
     count of the majority element.
@@ -58,13 +65,14 @@ def majority_search(stream: Iterator[str]) -> str:
             current_count += 1
             current_val = item
         else:
-            if current_val == item:
-                current_count += 1
-            else:
-                current_count -= 1
             if current_count == 0:
                 current_val = item
                 current_count += 1
+            elif current_val == item:
+                current_count += 1
+            else:
+                current_count -= 1
+            
     return current_val
 
 

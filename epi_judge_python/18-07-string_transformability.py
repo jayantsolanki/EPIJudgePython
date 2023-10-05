@@ -6,10 +6,10 @@ from test_framework import generic_test
 
 
 """
-Similar leetcode:269. Alien Dictionary
-https://leetcode.com/problems/alien-dictionary/
+
 
 Transform one string to another
+S is source and t is target vertex. You need to traverse from s to t in shortest fashion hence bfs recommended
 
 Given a dictionary D and two string s, and t, write a program to determine if s produces t.
 Assume all characters are lowercase alphabets. If s does prodcue t, output the length of a shortest production sequence
@@ -17,7 +17,7 @@ otherwise return -1.
 Logic:
     Treat string in D as vertices in undirected graph, with an edge between u and v if and only if the u and v differ
     in one character, also both vertices should be of same length.
-    Once edges are created, you joes need to search for t vertex, starting from s vertex. Use BFS to do the shortest
+    Once edges are created, you just need to search for t vertex, starting from s vertex. Use BFS to do the shortest
     path search.
 """
 #very slow, and dictionary being copied

@@ -7,7 +7,7 @@ import collections
 """
 Leetcode: 733. Flood Fill
 https://leetcode.com/problems/flood-fill/
-
+Basically you have to change the color of cells adjacent to the target one, and start the spreading.Only check left, right, top, bottom
 Implement a routine that takes an mxn Boolean array A together with an entry (x, y), and 
 flips the color of the region associated with (x, y). 
 Logic, similar to flood fill, check the neighbours value which are not equal to original value of the coordinate at x, y
@@ -20,6 +20,7 @@ def flip_color_dfs(sx: int, sy: int, image: List[List[bool]]) -> None:
     motions = [(0, 1), (0, - 1), (1, 0), (-1, 0)]
     m, n  = len(image), len(image[0])
     visited = set()
+    color = image[sx][sy]
     def dfs(x, y):
         if (x, y) in visited:
             return
@@ -27,7 +28,8 @@ def flip_color_dfs(sx: int, sy: int, image: List[List[bool]]) -> None:
             image[x][y] = not image[x][y] #change the color
             visited.add((x, y))
             for motion in motions:
-                if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] != image[x][y]:
+                if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] == color: #or below
+                # if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] != image[x][y]:
                     dfs(x + motion[0], y + motion[1])
     dfs(sx, sy)
     return(image)
@@ -38,7 +40,7 @@ def flip_color(sx: int, sy: int, image: List[List[bool]]) -> None:
     m, n  = len(image), len(image[0])
     visited = set()
     node_stack = [(sx, sy)]
-
+    color = image[sx][sy]
     while node_stack:
         x, y = node_stack.pop()
         if (x, y) in visited:
@@ -47,7 +49,8 @@ def flip_color(sx: int, sy: int, image: List[List[bool]]) -> None:
             image[x][y] = not image[x][y] #change the color
             visited.add((x, y))
             for motion in motions:
-                if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] != image[x][y]:
+                if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] == color: #or below
+                # if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] != image[x][y]:
                     node_stack.append((x + motion[0], y + motion[1]))
 
     return(image)
@@ -57,7 +60,7 @@ def flip_color_bfs(sx: int, sy: int, image: List[List[bool]]) -> None:
     motions = [(0, 1), (0, - 1), (1, 0), (-1, 0)]
     m, n  = len(image), len(image[0])
     visited = set()
-
+    color = image[sx][sy]
     node_queue = collections.deque()
     node_queue.append((sx, sy))
     while node_queue:
@@ -68,11 +71,15 @@ def flip_color_bfs(sx: int, sy: int, image: List[List[bool]]) -> None:
             image[x][y] = not image[x][y] #change the color
             visited.add((x, y))
             for motion in motions:
-                if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] != image[x][y]:
+                if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] == color: #or below
+                # if 0 <= x + motion[0] < m and 0 <= y + motion[1] < n and image[x + motion[0]][y + motion[1]] != image[x][y]:
                     node_queue.append((x + motion[0], y + motion[1]))
 
     return(image)
 
+
+#variant 1:
+# https://leetcode.com/problems/max-area-of-island/
 
 def flip_color_wrapper(x, y, image):
     flip_color(x, y, image)

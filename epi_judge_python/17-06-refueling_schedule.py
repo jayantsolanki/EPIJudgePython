@@ -12,7 +12,7 @@ Leetcode: 134. Gas Station
 https://leetcode.com/problems/gas-station/
 Given an instance of the gasup Problem. how would you efficiently compute an ample city? You can assume that an ample city does exist. The input is given in the form of two arrays, for gallons, gas at each city, and other for distance to next city.
 Logic:
-    Look at the graph in the book. We plot the consumption of gas when we start from first point. Note that the graph will remain same reltively irrespective from where we start.  That is drop in the consumption will remain same for each city visit.
+    Look at the graph in the book. We plot the consumption of gas when we start from first point. Note that the graph will remain same relatively irrespective from where we start.  That is drop in the consumption will remain same for each city visit.
     Our goal is to find the point (x, y), which can be used as the translation for this graph, such that minimum dip (fall), which 
     is below zero, could be moved up and left side. so that dip never goes below zero. That dip will be the start point (ample city)
 """
@@ -55,7 +55,7 @@ def find_ample_city_simple(gallons: List[int], distances: List[int]) -> int:
         # current_tank_level = refuel - consumed to reach that pos + previous_tank_level
         #refill at pos i + 1
         current_gas = gallons[(i + 1) % m] + gas_left
-        if min_gas > gas_left:
+        if min_gas >= gas_left:
             min_gas = gas_left
             min_point = (i + 1) % m
         # print(current_gas, gallons[(i + 1) % m], distances[(i) % m])
@@ -73,7 +73,7 @@ def find_ample_city(gallons: List[int], distances: List[int]) -> int:
         #gas left after reaching pos i
         gas_left += gallons[i - 1] - distances[i - 1] // MPG
         #refill at pos i + 1
-        if min_gas_left > gas_left:
+        if min_gas_left >= gas_left:
             min_gas_left = gas_left
             min_point = (i) % m
     return min_point

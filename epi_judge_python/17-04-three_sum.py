@@ -3,15 +3,19 @@ from typing import List
 from test_framework import generic_test
 
 """
+IF sorted then use sliding window, if unsorted then use hashmap
 Leetcode: 15. 3Sum
 https://leetcode.com/problems/3sum/
+https://leetcode.com/problems/3sum-closest
+https://leetcode.com/problems/3sum-smaller
+https://leetcode.com/problems/4sum/ #use recursion to bring down the probme to 2sum
 
 Three Sum problem
 Design an algo that takes as input an Array and a number, and determines if there are three entries in the
 array (not necessarily distinct position) which add up to the specified number.
 Logic:
     First we sort the array    .
-    We use two_sum method as a helper function. Idea is to lower the coun to two needed element for two sum.
+    We use two_sum method as a helper function. Idea is to lower the count to two needed element for two sum.
     We can do this by iterating over a loop and send t - A[i] to the two_sum function. Tada!!!
 Time: O(n^2)
 Space: O(1) 
@@ -58,6 +62,7 @@ def has_three_sum(A: List[int], t: int) -> bool:
 """
 Solve the problem  when three elements must be distinct.
 Example:  [5, 2, 3, 4, 3] and t = 9, aceeptable answ = [2, 3, 4] or [2, 4, 3]
+Logic, change the <= to <
 """
 def two_sum_distinct(A, t, l):
     i, j = l + 1, len(A) - 1
@@ -100,10 +105,10 @@ def kSum(nums: List[int], target: int, k) -> List[List[int]]:
         i, j = 0, len(nums) - 1 #start from l + 1
 
         while i < j: 
-            if nums[i] + nums[j] > target or ( j < len(nums) - 1 and nums[j + 1] == nums[j]):
+            if nums[i] + nums[j] > target# or ( j < len(nums) - 1 and nums[j + 1] == nums[j]):
                 j -= 1  
 
-            elif nums[i] + nums[j] < target or ( i > 0 and nums[i - 1] == nums[i]):
+            elif nums[i] + nums[j] < target# or ( i > 0 and nums[i - 1] == nums[i]):
                 i += 1
             else:
                 result.add(tuple(sorted(curr + [nums[i], nums[j]])))
@@ -123,8 +128,8 @@ def kSum(nums: List[int], target: int, k) -> List[List[int]]:
 
             for j in range(i, m):
 
-                if nums[j] >= 0 and target < 0 and S + nums[j] > target:
-                    break
+                # if nums[j] >= 0 and target < 0 and S + nums[j] > target:
+                #     break
                 backtrack(j + 1, curr + [nums[j]], S + nums[j])
         return
     backtrack(0, [], 0)

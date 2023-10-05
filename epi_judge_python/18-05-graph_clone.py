@@ -5,6 +5,7 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
 """
+Leetcode: 133 https://leetcode.com/problems/clone-graph/
 Design an algo that takes a reference to a vertex u, and creates a copy (deep copy) of the graph on the vertices reachable
 from u. Return the copy of u
 Logic:
@@ -29,7 +30,7 @@ def clone_graph(graph: GraphVertex) -> GraphVertex:
         current_node = node_queue.popleft()
         new_vertex = vertex_track[current_node.label]#get the new vertex by its label from the hashmap
         for edge in current_node.edges:
-            if edge.label not in vertex_track:
+            if edge.label not in vertex_track:#only create that node if not created before
                 vertex_track[edge.label] = GraphVertex(edge.label) #create new node
                 node_queue.append(edge)#at this edge in to queue for later processing
             new_vertex.edges.append(vertex_track[edge.label])#add this cloned vertex to new_vertex
