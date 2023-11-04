@@ -11,8 +11,19 @@ from test_framework.random_sequence_checker import (
     check_sequence_is_uniformly_random, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
-#time O(n)
-#same as offline sampling, but we do it for whole n, instead of k
+"""
+Design an algorithm that creates uniformly random permutations of [0, 1, 2, 3, ... n-1]. 
+You are given a random number generator that returns integers in the set [0, 1,2,3,4,...n-1] with equal probability. 
+Use as few calls as possible.
+Logic: 
+A brute-force approach might be to iteratively pick a random number between the [0, n-1] range. If the number repeats we drop it, Use hash map to check if the number repeats.
+Time is little challenging to analyse since number could be repeated. Early iterations will get more new values, but it takes long time to collect the last few values. This is a classic Coupon Collector problem. Time (nlogn) on average, Space O(n)
+Better way:
+We can avoid repeats by restricting the set from where we choose the random numbers (randrange(i, n-1))
+same as offline sampling, but we do it for whole n, instead of kline sampling, but we do it for whole n, instead of k
+time O(n)
+"""
+
 def compute_random_permutation(n: int) -> List[int]:
 
     permutation = list(range(n))

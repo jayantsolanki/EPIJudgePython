@@ -9,6 +9,8 @@ from test_framework import generic_test
 #numbering begins from 1, do not allocate additional node
 #focus on successor field which have to be updated
 """
+WAP  which takes a Singly Linked List L and two integers s and f as arguments, and reverses the order of the nodes from the sth node to
+fth node, inclusive. The numbering begins at 1. Do not allocate additional nodes.
 https://leetcode.com/problems/reverse-linked-list-ii/ 
 92. Reverse Linked List II
 
@@ -16,6 +18,7 @@ We identify the start of sublist  by using iteration to get the sth node and its
 Once we reach the sth node, we start the process of reversing the links and keep counting.
 When we reach the fth node, we stop the reversion, and link the reverted section with unreverted section
 Time: O(f)
+Time complexity is dominated by the search of the fth node.
 """
 def reverse_sublist_or(L: ListNode, start: int,
                     finish: int) -> Optional[ListNode]:
@@ -58,86 +61,25 @@ def reverse_sublist(L: ListNode, start: int,
         sublist_head = sublist_head.next
 
     # Reverses sublist.
-    #start reversing the link from position s untill position f, then relink the node before s to node on f, and node s to node after f
+    #start reversing the link from position s until position f, then relink the node before s to node on f, and node s to node after f
     # sublist_iter = sublist_head.next #getting the node at position s
     #in the end of loop sublist_head.next points to node at position f and node s (sublist_iter) points to node after f
     # for _ in range(start, finish): #this also works
     # prev = sublist_head
-    prev = curr = sublist_head.next
+    # prev = curr = sublist_head.next
+    curr = sublist_head.next
     #idea is to get the second node and point it towards previous node, and have the sublist_head.next point towars the node after f
     for _ in range(finish - start):#basically track two consecutive nodes, point the next of second node to first node, then move ahead
         temp = curr.next
         curr.next = temp.next
-        temp.next = prev
-        prev = temp
-        sublist_head.next = prev
+        temp.next = sublist_head.next
+        sublist_head.next = temp
+        # sublist_head.next = prev
+        #above or below
+        #curr.next, temp.next, sublist_head.next = temp.next, sublist_head.next, temp 
 
     return dummy_head.next
 
-# def reverse_sublist_v2(L, start: int,
-#                     finish: int):
-#     if (finish-start<0 or L is None):
-#         return None
-#     head = currenthead = L
-#     prev = None
-#     next = None
-#     for _ in range(1, start):#finding predecessor to node at start
-#         prev = currenthead
-#         currenthead = currenthead.next
-#     head = prev
-#     print(currenthead.data, prev.data)
-#     for _ in range(start, finish+1):
-#         next = currenthead.next
-#         currenthead.next = prev
-#         prev = currenthead
-#         currenthead = next
-#     print(head.data, currenthead.data, prev.next.data)
-#     head.next.next  = currenthead
-#     head.next = prev#point original head to node after node f
-#     return L # return head of node f    
-# full implmentation
-#import from SinlyLinkedList file
-# class SinglyListNode:
-#     def __init__(self, data=0, next=None):
-#         self.data = data
-#         self.next = next
-
-# class SinglyLinkedList:
-#     def __init__(self):
-#         # Creates a placeholder for the result.
-#         self.head = None
-	
-#     #  Insert new node at end position
-#     def insert(self, value):
-#         #  Create a node
-#         node = SinglyListNode(data = value)#create node, assign the data
-#         if (self.head == None):#chain it now
-#             #  Add first node
-#             self.head = node
-#             return
-#         #if list not empty
-#         tail = self.head#create a tracker/tail and loop through list
-#         #  Find last node
-#         while (tail.next != None):#dont use tail!=None, you need to find the last node, hence using tail.next!= None
-#             #  Visit to next node
-#             tail = tail.next
-        
-#         #  Add node at the end position
-#         tail.next = node
-	
-#     #  Display node element of doubly linked list
-#     def display(self):
-#         if (self.head == None):
-#             print("Empty Linked List")
-#         else :
-#             #  Get first node of linked list
-#             tail = self.head
-#             #  iterate linked list 
-#             while (tail != None):
-#                 #  Display node value
-#                 print("  ", tail.data, end = "")
-#                 #  Visit to next node
-#                 tail = tail.next
 
 def reverse_sublist_full(L: SinglyListNode, start: int,
                     finish: int):
@@ -152,8 +94,8 @@ def reverse_sublist_full(L: SinglyListNode, start: int,
         sublist_head = sublist_head.next
 
     sublist_iter = sublist_head.next #getting the node at position s
-
-    for _ in range(finish - start):#basically track two consecutive nodes, point the next of second node to first node, then move ahead
+    #basically track two consecutive nodes, point the next of second node to first node, then move ahead
+    for _ in range(finish - start):
         temp = sublist_iter.next#getting node next to position s
 
         sublist_iter.next, temp.next, sublist_head.next = (temp.next,
@@ -203,9 +145,9 @@ def reverse_v2(head: ListNode) -> ListNode:
 # variant 2
 """
 https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
-Write a program which takes as input a singly list L, and a nonnegative integer k, and reverses the list k nodes at a time
-If the number of nodes n in the list is not a multiple of k,  leave the last n mod k nodes unchanged.
-Do not change the data stored within a node.
+Write a program which takes as input a singly list L, and a nonnegative integer k, and reverses the 
+list k nodes at a time. If the number of nodes n in the list is not a multiple of k,
+leave the last n mod k nodes unchanged. Do not change the data stored within a node.
 Logic: Basically, run the reverse sublist code with changing limits, call it repeatedly
 
 """
@@ -230,8 +172,8 @@ def reverse_sublist_knodes(L1, k):
             sublist_head = sublist_head.next
 
         sublist_iter = sublist_head.next #getting the node at position s
-
-        for _ in range(finish - start):#basically track two consecutive nodes, point the next of second node to first node, then move ahead
+        #basically track two consecutive nodes, point the next of second node to first node, then move ahead
+        for _ in range(finish - start):
             temp = sublist_iter.next#getting node next to position s
 
             sublist_iter.next, temp.next, sublist_head.next = (temp.next,
@@ -277,20 +219,23 @@ def reverse_sublist_knodes_variant2(L1, k):
         # next of first node
         #ater end of every looop, prev points to kth node, hence head.next should point to prev after every recursion
         if next is not None:
-            head.next = reverse_knodes(next, k, remainingLength-k)# if none is returned from prev it means end of the list has been reached
+            # if none is returned from prev it means end of the list has been reached
+            head.next = reverse_knodes(next, k, remainingLength-k)
 
         # prev is new head of the input list
         return prev
     return reverse_knodes(L1, k, lenList)
 
 """
-Reverse the first sub-list of size k. While reversing keep track of the next node and previous node. Let the pointer to the next node be next and pointer to the previous node be prev. See this post for reversing a linked list.
+Reverse the first sub-list of size k. While reversing keep track of the next node and previous node.
+Let the pointer to the next node be next and pointer to the previous node be prev. See this post for reversing a linked list.
 head->next = reverse(next, k) ( Recursively call for rest of the list and link the two sub-lists )
 Return prev ( prev becomes the new head of the list (see the diagrams of an iterative method of this post )
 """
 # https://pythontutor.com/visualize.html to visualize
-## logic: jayant: basically you need to return the new head after reversal of each sublist in the end, which in this case is the prev
-# in subsequent recursive call, prev is return and is connected to head.next, the first prev is return as head
+#logic: jayant: basically you need to return the new head after reversal of each sublist in 
+# the end, which in this case is the prev in subsequent recursive call, prev is return and is 
+# connected to head.next, the first prev is return as head
 def reverse_knodes(head, k):# this reverses all
     
     if head == None:
@@ -313,7 +258,8 @@ def reverse_knodes(head, k):# this reverses all
     # from current. And make rest of the list as
     # next of first node
     if next is not None:
-        head.next = reverse_knodes(next, k)# if none is returned from prev it means end of the list has been reached
+        # if none is returned from prev it means end of the list has been reached
+        head.next = reverse_knodes(next, k)
 
     # prev is new head of the input list
     return prev

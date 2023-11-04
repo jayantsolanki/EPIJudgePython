@@ -1,5 +1,5 @@
 """
-WAP that multiply two arbitrary precsion integers
+WAP that multiply two arbitrary precison integers
 for example, [1,9,3,7,0,7,7,2,1] * [-7,6,1,8,3,8,2,5,7,2,8,7] = [-1,4,7,5,7,3,9,5,2,5,8,9,6,7,4,1,2,9,2,7]
 Hint: use grade school mutliplication, one at a time
 time complexity: O(nm)
@@ -31,7 +31,8 @@ def multiply(num1, num2):
     # result = result[next((i for i , x in enumerate(result)#enumerate gives you index too
     #                     if x != 0), len(result)):] or [0]
                         #next function gets the subsequent value one at a time
-                        #this statement under next only runs once, that is it returns the first element from enumerator iterator satisfying x!=0
+                        #this statement under next only runs once, that is it returns the 
+                        # first element from enumerator iterator satisfying x!=0
     # this or above 
     # #discard any beginning zeroes
     index = len(result)

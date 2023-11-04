@@ -9,10 +9,26 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+"""
+Write a program that takes two cycle-free linked lists and determines if there exists a node that is common to both lists.
+Either or both of the lists may have cycles. You may return any node that appears in their overlap.
+Logic:
+Either of the 3 cases possible, test for cycles in both list and see the following:
+1 - If any one list is cyclic and other is not, then both cannot overlap.
+2 - If both not cyclic, then they may or may not overlap.
+3 - If both have cycles then they may overlap, and if they overlap then their cycles must be same and identical.
 
+For case 3: Since both have same cycle, so pick the start node of the cycle of a linked list and mark it. Iterate through
+the other start node node of the cycle in other list, and before ending the full cycle, if you encounter the marked start node
+then they overlap, return either of the start node.
+Time: O(n), Space: O(1)
+"""
+
+#remember question tells you that you can return any overlapping node, so if 
+# same sharing cycles, then just return the overlap node common
 def overlapping_lists(l0: ListNode, l1: ListNode) -> Optional[ListNode]:
 
-    # Store the start of cycle if any.
+    # Store the start nodes of the cycle if any.
     root0, root1 = has_cycle.has_cycle(l0), has_cycle.has_cycle(l1)
 
     if not root0 and not root1:
@@ -22,9 +38,11 @@ def overlapping_lists(l0: ListNode, l1: ListNode) -> Optional[ListNode]:
         # One list has cycle, one list has no cycle.
         return None
     # Both lists have cycles.
-    temp = root1 
-    while temp:#doesnt matter if you choose root1 or root2, if you imagine an overlap in two cyclical list, the starting nodes will
-        #eventually lead to common node inte cycle, since both cycles are identical
+    temp = root1 #this is start of the cycle node, not the head
+    #doesnt matter if you choose root1 or root2, if you imagine an overlap 
+    # in two cyclical list, the starting nodes will
+    while temp:
+        #eventually lead to common node in the cycle, since both cycles are identical
         temp = temp.next
         if temp is root0 or temp is root1:#we will have top break anyways, because loop will be infinite
             break

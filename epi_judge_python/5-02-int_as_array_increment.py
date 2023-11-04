@@ -12,7 +12,8 @@ from test_framework import generic_test
 #time complexity O(n)
 def plus_one(A):
     A[-1] += 1 # first add the number
-    #for i in reversed(range(1, len(A))):# like a school level addition, move the carry to next element. Reversed is a iterator, actual array not reversed
+    #for i in reversed(range(1, len(A))):# like a school level addition, move the carry to next element. 
+    # Reversed is a iterator, actual array not reversed
     for i in range(len(A)-1, 0, -1):# like a school level addition, move the carry to next element.
         # if A[i] != 10:
         #     break
@@ -40,7 +41,8 @@ plus_one([9, 9, 9])
 
 #variant
 """
-WAP which takes as input two strings s and t of bits encoding binary numbers Bs and Bt, respectively, and returns a new string of bits representing Bs + Bt
+WAP which takes as input two strings s and t of bits encoding binary numbers Bs and Bt, respectively, 
+and returns a new string of bits representing Bs + Bt
 """
 
 # def plus_bits(Bs, Bt):
@@ -84,7 +86,7 @@ plus_bits2("1010100", "0010")
 
 
 
-print()
+
 
 if __name__ == '__main__':
     exit(

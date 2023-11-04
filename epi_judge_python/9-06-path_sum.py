@@ -5,10 +5,14 @@ from test_framework import generic_test
 
 
 """
-Leetcode: https://leetcode.com/problems/sum-root-to-leaf-numbers
+Write a program which takes as input an integer and a binary tree with integer node weights, 
+and checks if there exists a leaf whose path weight equals the given integer.
+Leetcode: 112 https://leetcode.com/problems/path-sum/
 traverse the tree, keeping track of difference of the root -to-node path sum and the target value
-call this the remaining weight. As soon as we encounter a leaf and the remaining weight is equal to leaf data, we return true.
+call this the remaining weight. As soon as we encounter a leaf and the remaining weight is equal
+ to leaf data, we return true.
 Short circuit evaluation of the check ensures that we donot processes additional leaves
+time complexity and space complexity are O(n) are O(h), respectively
 """
 def has_path_sum(tree: BinaryTreeNode, remaining_weight: int) -> bool:
 
@@ -24,9 +28,10 @@ def has_path_sum(tree: BinaryTreeNode, remaining_weight: int) -> bool:
 
 #variant 1
 """
-https://leetcode.com/problems/path-sum/
-112. Path Sum
-Write a progrm which takes the same inputs as in above problem and returns all the paths to leaves whose weight equals s.
+https://leetcode.com/problems/path-sum-ii/
+113. Path Sum
+Write a progrm which takes the same inputs as in above problem and returns all the paths to leaves 
+whose weight equals s.
 Type of recursion
 """
 def has_path_sum_variant_v1(node: BinaryTreeNode, weight: int):
@@ -51,7 +56,8 @@ def has_path_sum_variant_v1(node: BinaryTreeNode, weight: int):
     has_path_sum(node, weight)
     return paths
 
-#no pruning here, pruning can be done, if weights are all positive, as soon as remaining becomes negative, stop going further
+#no pruning here, pruning can be done, if weights are all positive, as soon as remaining 
+# becomes negative, stop going further
 def has_path_sum_variant(node: BinaryTreeNode, weight: int):
     paths = []
     def has_path_sum(tree: BinaryTreeNode, remaining_weight: int, path) -> bool:

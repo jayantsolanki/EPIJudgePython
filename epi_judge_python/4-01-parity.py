@@ -57,7 +57,8 @@ use this theory, x & (x-1), drops the lowest bit, if that is one, than the final
 since after first iteration the value will become zero.
 """
 def checkPower(x):
-    return bool((((x & (x-1)) == 0) and x)) #extra and makes sure that it is not marking zero as power of two
+    return bool((((x & (x-1)) == 0) and x)) #extra and makes sure that it is not 
+    #marking zero as power of two
 
 #test
 print("Check power")
@@ -78,9 +79,19 @@ logic: subtract 1 from x and or(|) it with x, O(1), subtracting 1 turns all zero
 def rightProp(x):
     return (x | (x-1))
 
+"""
+right propogate the rightmost set bit , example, turn 01010000 to 01011111
+logic: get the lowestsetbit, subtract 1 from it, now OR it with x
+"""
+def rightProp_2(x):
+    lowestsetbit = x & ~(x-1)
+    return x | (lowestsetbit - 1)
+
 print("Check rightmost set bit propogate")
 print(rightProp(8))
+print(rightProp_2(8))
 print(rightProp(16))
+print(rightProp_2(16))
 
 if __name__ == '__main__':
     exit(generic_test.generic_test_main('4-01-parity.py', 'parity.tsv', parity))

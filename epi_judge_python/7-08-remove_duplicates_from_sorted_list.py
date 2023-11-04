@@ -3,6 +3,11 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
+
+"""
+WAP that takes as input a singly linked list of integers in sorted order, and removes duplicates from it. The list should be sorted.
+Time O(n), Constant Space
+"""
 #https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/?envType=list&envId=9fmel2q1
 
 #Leetcode: https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/

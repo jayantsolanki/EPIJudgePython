@@ -2,6 +2,8 @@ from typing import List
 import math
 from test_framework import generic_test
 
+#https://leetcode.com/problems/spiral-matrix/
+#https://leetcode.com/problems/spiral-matrix-ii/
 #a 2-d array can be written as row-wise or columnwise. In this problem we write spiral clockwise
 #wap which takes nxn 2d array and returns the spiral ordering
 #time: O(n^2)
@@ -48,11 +50,15 @@ def matrix_in_spiral_order(square_matrix):
             return
                
         spiral_ordering.extend(square_matrix[offset][offset:size-offset-1])#row elements
-        spiral_ordering.extend([row[size-offset - 1] for row in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
+        # spiral_ordering.extend([row[size-offset - 1] for row in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
+        #above or below
+        spiral_ordering.extend([square_matrix[row][size-offset - 1] for row in range(offset, size-offset-1)])
         #or above
         # spiral_ordering.extend([row[-offset - 1] for row in square_matrix[offset:size-offset-1][:]])#col elements, [:] not needed
         spiral_ordering.extend(square_matrix[size-offset - 1][size-offset-1:offset:-1])#row elements reversed
-        spiral_ordering.extend([row[offset] for row in square_matrix[size-offset-1:offset:-1][:]]) #col elements reversed
+        # spiral_ordering.extend([row[offset] for row in square_matrix[size-offset-1:offset:-1][:]]) #col elements reversed
+        #above or below
+        spiral_ordering.extend([square_matrix[row][offset] for row in range(size-offset-1, offset, -1)])
         
     for offset in range((len(square_matrix)+1) // 2): # + one needed, for n = 1 -> (1+1)//2
     # for offset in range(math.ceil(len(square_matrix) / 2)): # + one needed, for n = 1
@@ -157,11 +163,11 @@ write a program to compute spiral of mxn array
 #time: O(m*n)
 #https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
 def matrix_in_spiral_order_mn(A):
-    m = len(A)    
-    n = len(A[0]) 
+    m = len(A)    #bottom
+    n = len(A[0]) #right
     spiral_ordering = []
-    k = 0 #for controlling row offset
-    l = 0 #for controlling column offset
+    k = 0 #for controlling row offset #top
+    l = 0 #for controlling column offset #left
  
     ''' k - starting row index
         m - ending row index
@@ -188,7 +194,7 @@ def matrix_in_spiral_order_mn(A):
  
         # append the last row from
         # the remaining rows
-        if (k < m): #make sure there is  at least a single row array left
+        if (k < m): #make sure there is  at least a single row array left, lets say array was only 1 row in total, then this would not run
  
             for i in range(n - 1, (l - 1), -1):
                 spiral_ordering.append(A[m - 1][i])
@@ -219,6 +225,8 @@ matrix_in_spiral_order_mn([[1,2,3,4,5],[6, 7,8,9,10],[11,12,13,14,15], [16,17,18
 #variant 5 and 6
 """
 Compute the kth element in the spiral order for an mxn 2d array A in O(R) time
+Logic:
+Start from first ring, calculate total perimter , check if k is within that perimeter, else increment ring, calculate new perimeter
 https://stackoverflow.com/questions/54774747/compute-the-kth-element-in-spiral-order-for-an-m-x-n-2d-array-a-in-o1-time
 """
 def find_kth_element(A, m, n, k):
@@ -281,9 +289,10 @@ find_kth_element([[1,2,3], [4,5,6], [7,8,9]], 3, 3, 9)
 find_kth_element([[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]], 5, 5, 25)
 
 
-# Variant 5 and 6
+# Variant 5 and 6 another
 """
 Compute the kth element in the spiral order for an mxn 2d array A in O(R) time
+Here you use the quadratic equation to directly find the ring needed, and jump to that.
 https://stackoverflow.com/questions/54774747/compute-the-kth-element-in-spiral-order-for-an-m-x-n-2d-array-a-in-o1-time
 """
 # def kth_element_spiral(A, m, n, k):#k here starts with 0
@@ -344,15 +353,15 @@ def kth_element_spiral(A, m, n, k):#k here starts with 1
         return(-1,-1)
 
     first_ring_max = 2*m + 2*n - 4
-    ring, ring_start_elements = None, None #ring: rings elapsed to reach position k
+    ring, ring_elements_covered_so_far = None, None #ring: rings elapsed to reach position k
     if (k < first_ring_max):
         ring = 0
-        ring_start_elements = 0
+        ring_elements_covered_so_far = 0
     else:
         ring = int(math.floor((-(m + n) + math.sqrt((m+n)**2 - 4*k)) /(-4)))
-        #arithmetic sum to find out how many elements covered in ring, ring-1 , .. 0
-        ring_start_elements = int(-4*(ring**2) + 2*ring*(m+n))
-    offset = k - ring_start_elements#elements remaining to check for in the current ring, because k is upper boundary
+        #arithmetic sum to find out how many elements covered in ring, ring-1 , .. 1
+        ring_elements_covered_so_far = int(-4*(ring**2) + 2*ring*(m+n))
+    offset = k - ring_elements_covered_so_far#elements remaining to check for in the current ring, because k is upper boundary
 
     #rows left in current ring, logic: after every ring top and bottom rows removed
     mod_m = (m - ring*2)

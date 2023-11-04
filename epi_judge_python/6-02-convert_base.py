@@ -3,6 +3,15 @@ import string
 
 from test_framework import generic_test
 
+"""
+Write a program that performs base conversion. The input is a string, an integer b1, and another integer b2. 
+The string represents an integer in base br. The output should be the string representing the integer in base 02. 
+Assume 2 < bt,b2 < 16. Use " N' to represent L0, "B" for 1.L,.. ., and "F" fot 15. (For example, if the string is "61.5", 
+h is 7 and bz is 13, then the result should be "1A7", since 6x72 +1x7 + 5 = 1x 132 +70xL3+7.)
+
+Time complexity is O(n(1 + log(b1, b2))), where n is the length of s. The reasoning is as follows. First, we perform n multiply-and-adds to get x from s. Then we perform log(b2, x) multiply and adds to get the result. The value x is upper-bounded by b1n, and log(b1n)= nlog(b1, b2).
+"""
+
 # string.hexdigits   = '0123456789abcdefABCDEF'
 #return string value of a string number in a particular base with a targetted base
 # example 615 base 7 in base 13 is 1A7

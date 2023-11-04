@@ -6,7 +6,8 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 """
-Design an algo that takes as input a set of intervals, and outputs their union expressed as a set of disjoint intervals/
+Leetcode 56: https://leetcode.com/problems/merge-intervals/
+Design an algo that takes as input a set of intervals, and outputs their union expressed as a set of disjoint intervals.
 Logic:
     First sort the array by left endpoints, in ascending order then start handling the cases:
     1 - the intervals most recently added to the result array does not intersect with the incoming interval (current interval), 

@@ -13,16 +13,25 @@ Write a program to get inorder in constant space:
 One way is to use previous program, start from the left_most node and keep calling
 that program on each successive node.
 Below program's logic:
+3 things:
+1 - When on any new node, after traverse to its leftmost node and print that leftmost node (hence 1st condition)
+2 - Once done with left most node, check if that leftmost node has any right child. Visit that and again repeat step 1
+    If no right child go up (parent)
+3 - Now rest of two conditions check that if you came to parent from what side.
+    if left side then print that parent and go to right child of that parent or go up
+    if coming from right side, that means right subtree fully explored not go up.
+
     We need to know when we return to a parent if the just completed subtree was
     the parent's left child (then we need to visit the parent and then traverse the right subtree)
-    or a right subtree (in which case we have completed trasversing the parent). We achieve this by recording
+    or a right subtree (in which case we have completed traversing the parent). We achieve this by recording
     the subtree's root before we move to parent. We can compare the subtree's root with the parent's left child.
 """
 def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
 
     prev, result = None, []
     while tree:
-        if prev is tree.parent:
+        #first step is to always go left
+        if prev is tree.parent:#will run since starting node has None as parent
             # We came down to tree from prev.
             if tree.left:  # Keep going left.
                 next = tree.left

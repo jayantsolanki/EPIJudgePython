@@ -1,6 +1,7 @@
 from test_framework import generic_test
 
 """
+Leetcode 71 https://leetcode.com/problems/simplify-path/
 Write a program which takes a pathname, and returns the shortest directory paths.
 Logic: Ignore ., and handle .. by popping the stack, if string starts with / then you 
 cant go up, record it in a stack. Insert everything else in the stack
@@ -25,7 +26,7 @@ def shortest_equivalent_path(path: str) -> str:
             if not path_names or path_names[-1] == '..': # example: ../../local
                 path_names.append(token)
             else: #if path list not empty then pop the last element
-                if path_names[-1] == '/':#edge cases , not needed though, since assuming path will be error free
+                if path_names[-1] == '/':#edge cases , not needed though, since assuming path will be error free "/../"
                     raise ValueError('Path error')
                 path_names.pop()
         else:  # Must be a name.

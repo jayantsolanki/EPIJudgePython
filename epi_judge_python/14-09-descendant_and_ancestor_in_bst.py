@@ -36,7 +36,7 @@ def pair_includes_ancestor_and_descendant_of_m(possible_anc_or_desc_0: BstNode,
     while (search_0 is not possible_anc_or_desc_1 and search_0 is not middle
            and search_1 is not possible_anc_or_desc_0
            and search_1 is not middle and (search_0 or search_1)):#break if first node reaches second node or middle node, or 
-           #second node reaches first node or middle node,  or either of the nodes reaches end
+           #second node reaches first node or middle node,  or both of the nodes reaches end
         if search_0:
             search_0 = (search_0.left
                         if search_0.data > middle.data else search_0.right)

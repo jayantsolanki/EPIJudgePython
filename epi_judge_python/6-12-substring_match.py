@@ -14,7 +14,8 @@ def rabin_karp_brute(t: str, s: str) -> int:
         match = True
         local_index = i
         for j in range(len(s)):
-            if local_index == len(t) or s[j] != t[local_index]:#also check whether you are nearing end of t
+            #also check whether you are nearing end of t
+            if local_index == len(t) or s[j] != t[local_index]:
                 match = False
                 break
             else:#if character matches
@@ -44,8 +45,10 @@ def rabin_karp(t: str, s: str) -> int:
             #now calculate rolling hash
             first_char = ord(t[i - pattern_len])
             Tt_hash = (Tt_hash - first_char) // prime_num + (ord(t[i]) * prime_num ** (pattern_len - 1))
-            # (Tt_hash - first_char) // prime_num because Tt_hash = a + b*prime + c * prime**2 + d * prime ** 3 ..., hence for rolling, we need to remove a first
-            #then divide by prime the remaining, so as to reduce the power, New hash = (b + c * prime + d * prime ** 2) + e * prime **3
+            # (Tt_hash - first_char) // prime_num because Tt_hash = a + b*prime + c * prime**2 + d * prime ** 3 ..., 
+            # hence for rolling, we need to remove a first
+            #then divide by prime the remaining, so as to reduce the power, 
+            # New hash = (b + c * prime + d * prime ** 2) + e * prime **3
     return -1
 
 # rabin_karp("FOOBAR", "BAR")

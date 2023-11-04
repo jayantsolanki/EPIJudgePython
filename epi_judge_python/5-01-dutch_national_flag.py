@@ -13,10 +13,11 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
     pivot = A[pivot_index]
     #keep the follwing invariants during partioning
     # bottom group: A[:smaller]
-    # middle group: A[smaller:larger]
+    # middle group: A[smaller:equal]
     # unclassified group: A[equal:larger]
     # top group: A[larger:]
-    smaller, equal, larger = 0, 0, len(A)# reason we use len(A) instead of len(A) -1, because equal needs to go through all element
+    smaller, equal, larger = 0, 0, len(A)# reason we use len(A) instead of len(A) -1, 
+    #because equal needs to go through all element
     # in case, for example 3, [2,1,0,5,4,3] 
     #keep iterating as long as there is an unclassified element
     #each iteration decreases the unclassifieds by one
@@ -35,14 +36,16 @@ def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
 
 # variant 1
 """
-Assuming that keys take one of the three values ...[1,2,3,2,3,1] =  [1,1,3,3,2,2] or [1,1,2,2,3,3]
+Assuming that keys take one of the three values, reorder the array so that all three different values are grouped together.
+[1,2,3,2,3,1] =  [1,1,3,3,2,2] or [1,1,2,2,3,3]
 use O(n) time complexity and O(1) space
 """
 
 def dutch_flag_partition_variant1(A):
     left, equal, right = 0, 0, len(A)
     left_element, right_element = A[left], None
-    # we initialise the right element later because we dont know if there will be any element greater than middle
+    # we initialise the right element later because we dont know if there will be 
+    # any element greater than middle
     while equal < right:
         # A[equal] is incoming unclassified element
         if A[equal] == left_element:
@@ -66,11 +69,12 @@ dutch_flag_partition_variant1([1,1,1,1,1,2,2,2,2, 1])
 #Variant 2
 """
 Keys appear together
-Assuming that keys take one of the 4 values ...[1,2,3,2,3,1,4, 3} =  [1,1,3,3,4,4, 2,2] or [1,4,1,4,2,2,3,3], partition them
-use O(n) time complexity and O(1) space
+Assuming that keys take one of the 4 values ...[1,2,3,2,3,1,4, 3} =  [1,1,3,3,4,4, 2,2]
+or [1,4,1,4,2,2,3,3], partition them use O(n) time complexity and O(1) space
 https://gist.github.com/lopespm/81a336871ce6074f63f3cad349c3a95d
-The rationale behind it is to squeeze the fourth value (middle right value) in between the middle-left 
-and middle-right sub-arrays. It defines the values as the algorithm progresses.
+The rationale behind it is to squeeze the fourth value (middle right value) 
+in between the middle-left and middle-right sub-arrays. It defines the 
+values as the algorithm progresses.
 """
 
 def dutch_flag_partition_variant2(A):
@@ -83,12 +87,14 @@ def dutch_flag_partition_variant2(A):
     mid_right_i = len(A)
     right_i = len(A)#counter for tracking rightmost element
 
-    while mid_left_i < right_i and mid_left_i < mid_right_i:# first fill left, then right, then equal(third), then the fourth value
+    while mid_left_i < right_i and mid_left_i < mid_right_i:# first fill left, then right, 
+        #then equal(third), then the fourth value
         if (A[mid_left_i] == left):#first value
             A[mid_left_i], A[left_i] = A[left_i], A[mid_left_i]
             mid_left_i += 1
             left_i += 1
-        elif (right is None or A[mid_left_i] == right): #second value, mid_left_i is the counter similar to equal in previous code
+        elif (right is None or A[mid_left_i] == right): #second value, mid_left_i is the 
+            #counter similar to equal in previous code
             right_i -= 1
             mid_right_i = right_i#this is important, you need to squeeze 4th element between mid_right_i and right_i, 
             #hence mid_right_i will be always reseted to right_i whenever there is item ==right found

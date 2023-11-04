@@ -4,6 +4,10 @@ from test_framework import generic_test
 import bisect
 
 """
+Write a program which takes as hput two sorted arrays, and returns a new array containing elements 
+that are present in both of the input arrays. The input arrays may have duplicate entries, 
+but the returned array should be free of duplicates.
+For example, the input is <2,3,3,5,5,6,7,7,8,12> and (5,5,6,8 ,8,9,70,10), your output should be (5, 6, 8).
 https://leetcode.com/problems/intersection-of-three-sorted-arrays/solution/
 1213. Intersection of Three Sorted Arrays
 
@@ -21,7 +25,8 @@ def intersect_two_sorted_arrays_one_prac(A: List[int], B: List[int]) -> List[int
     result = []
 
     for index, val in enumerate(A):
-        if (index == 0 or A[index - 1] != A[index]) and val in B: #shortcircuiting with OR so that no need to check for duplicate
+        #shortcircuiting with OR so that no need to check for duplicate
+        if (index == 0 or A[index - 1] != A[index]) and val in B: 
             #at index ==- 0
             result.append(val)
     return result

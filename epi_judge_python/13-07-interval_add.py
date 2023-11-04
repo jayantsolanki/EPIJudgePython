@@ -75,8 +75,17 @@ def add_interval(disjoint_intervals: List[Interval],
     #_                          |---Date Range B ----|
     # (True if EndA < StartB)
     #now process the overlaps
-    while (i < len(disjoint_intervals)
-           and new_interval.right >= disjoint_intervals[i].left and disjoint_intervals[i].right >= new_interval.left):
+    # while (i < len(disjoint_intervals)
+    #        and new_interval.right >= disjoint_intervals[i].left and disjoint_intervals[i].right >= new_interval.left):
+    #     # If [a, b] and [c, d] overlap, union is [min(a, c), max(b, d)].
+    #     new_interval = Interval(
+    #         min(new_interval.left, disjoint_intervals[i].left),
+    #         max(new_interval.right, disjoint_intervals[i].right))
+    #     i += 1
+    #check for overlap, same as above, if you use de-morgan on this you will get above
+    while (i < len(disjoint_intervals) and 
+           not(new_interval.left > disjoint_intervals[i].right or 
+               new_interval.right <  disjoint_intervals[i].left)):
         # If [a, b] and [c, d] overlap, union is [min(a, c), max(b, d)].
         new_interval = Interval(
             min(new_interval.left, disjoint_intervals[i].left),

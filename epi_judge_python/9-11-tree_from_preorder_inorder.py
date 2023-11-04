@@ -1,5 +1,4 @@
 from typing import List
-import importlib  
 # from binary_tree_node import BinaryTreeNode
 # bt= importlib.import_module("9-00-tree_traversal.py")
 # BinaryTreeNode = bt.BinaryTreeNode
@@ -44,7 +43,8 @@ def binary_tree_from_preorder_inorder_v2(preorder: List[int],
 
     # Builds the subtree with preorder[preorder_start:preorder_end] and
     # inorder[inorder_start:inorder_end].
-    #below you calculate the subsets for preorder and inorder to be worked by the recusion function to calcualte subtrees
+    #below you calculate the subsets for preorder and inorder to be worked by the
+    #  recusion function to calculate subtrees
     def binary_tree_from_preorder_inorder_helper(preorder_start, preorder_end,
                                                  inorder_start, inorder_end):
         if preorder_end <= preorder_start or inorder_end <= inorder_start:
@@ -80,7 +80,9 @@ def binary_tree_from_preorder_inorder(preorder: List[int], inorder: List[int]) -
     #     inorder_index_map[value] = index
 
     def array_to_tree(left, right):
-        nonlocal preorder_index # see this, very important, it works in exactly the same way as the global statement, except that it is used to refer to variables that are neither global nor local to the function.
+        # see this, very important, it works in exactly the same way as the global statement, 
+        # except that it is used to refer to variables that are neither global nor local to the function.
+        nonlocal preorder_index 
         # if there are no elements to construct the tree
         if left > right: return None
 
@@ -108,7 +110,8 @@ if __name__ == '__main__':
 
 # Variant 1, solve the problem using inorder and a postorder
 """
-For example, for preorder traversal the first value is a root, then its left child, then its right child, etc. For postorder traversal the last value is a root, then its right child, then its left child
+For example, for preorder traversal the first value is a root, then its left child, then its right child, etc.
+ For postorder traversal the last value is a root, then its right child, then its left child
 https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/solution/
 """
 
@@ -143,7 +146,9 @@ def binary_tree_from_postorder_inorder(self, inorder: List[int], postorder: List
 """
 https://en.wikipedia.org/wiki/Cartesian_tree
 https://leetcode.com/problems/maximum-binary-tree/
-A is list of n distinct numbers. Let the index of max value in A be m. Define the max-tree on A recursively to be the binary tree on the entries of A in which the root contains the maximum element of A, the left child is the max-tree on A[0,m-1] and the right child is the max-tree on A[m+1,n-1]. return empty tree if A is len 0. 
+A is list of n distinct numbers. Let the index of max value in A be m. Define the max-tree on A recursively 
+to be the binary tree on the entries of A in which the root contains the maximum element of A, the left 
+child is the max-tree on A[0,m-1] and the right child is the max-tree on A[m+1,n-1]. return empty tree if A is len 0. 
 Time O(n)
 https://stackoverflow.com/questions/27425711/create-max-tree-in-order-n
 A couple of observations:
@@ -179,11 +184,14 @@ print(constructMaximumBinaryTree([3,2,0, 1 ,6,5]))
     Then:
 
     If stack is empty, we push the node into stack and continue
-    If new value is smaller than the node value on top of the stack, we append TreeNode as the right node of top of stack.
-    If new value is larger, we keep poping from the stack until the stack is empty OR top of stack node value is greater than 
+    If new value is smaller than the node value on top of the stack, we append TreeNode as the right node 
+    of top of stack.
+    If new value is larger, we keep poping from the stack until the stack is empty OR top of stack node value 
+    is greater than 
     the new value. During the pop, we keep track of the last node being popped.
     After step 2, we either in the situation of 0, or 1, either way, we append last node as left node of the new node.
-    After traversing, the bottom of stack is the root node because the bottom is always the largest value we have seen so far (during the traversing of list).
+    After traversing, the bottom of stack is the root node because the bottom is always the largest value we
+    have seen so far (during the traversing of list).
 """
 """
     Analogy is like this, since index to the left of max belongs to left and index to the right belongs to right, 

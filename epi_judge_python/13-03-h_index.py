@@ -41,34 +41,63 @@ def h_index_v1(citations: List[int]) -> int:
 
 #https://leetcode.com/problems/h-index/discuss/70946/AC-Python-40-ms-solution-O(n)-time-O(n)-space-using-counting-sort
 """
+Check leetcode version for preferred
 Also variant 3
 alternate using counting sort
-here we dont need to actually sort the array. Since we only need to find out the number of papers is equal to h number of citations
+here we dont need to actually sort the array. Since we only need to find out the number of papers is 
+equal to h number of citations
 We just count papers distributed across each citations
 The counting results are:
 https://leetcode.com/problems/h-index/solution/
-Exmple:  citations=[1,3,2,3,100]. Counting sorts work by making sure that range of values in an array in within the total length of array. However, in real word, not every citation will be less than total papers. So we just convert those high number = total papers. Example, if authors has 10 papers, and three of them have > 10 citations, so we just fix those values to 10. H-index wont change. Note k is the index of each number, 0 citation goes to 0 position, 1 citation paper go to index 1, and so on, also called k citations
-Count takes the total number of those citations encountered and create a array of those. Analogous to hash map for the counts of each citations.
-The value sk is defined as "the sum of all counts with citation >= k". That is sk[0] is count of papers having at least 0 citations,
-sk[1] is count of papers having at least 1 citations. So as soon as we find sk going below k, thats the answer
+Exmple:  citations=[1,3,2,3,100]. Counting sorts work by making sure that range of values in an array 
+in within the total length of array. However, in real word, not every citation will be less than total 
+papers. So we just convert those high number = total papers. Example, if authors has 10 papers, and
+ three of them have > 10 citations, so we just fix those values to 10. H-index wont change. Note k 
+ is the index of each number, 0 citation goes to 0 position, 1 citation paper go to index 1, and so 
+ on, also called k citations
+Count takes the total number of those citations encountered and create a array of those. Analogous 
+to hash map for the counts of each citations.
+The value sk is defined as "the sum of all counts with citation >= k". That is sk[0] is count of 
+papers having at least 0 citations,
+sk[1] is count of papers having at least 1 citations. So as soon as we find sk going below k, 
+thats the answer
 k     	0	1	2	3	4	5 #citation values
 count	0	1	1	2	0	1 #paper count
 sk  	5	5	4	3	1	1
-The observation h index is limited by both citation and paper count gives us the idea of counting/bucket sort. 
-Imagine above as a histgram of each paper count, bar height at value x is the value that is equal how many papers which has count x
+The observation h index is limited by both citation and paper count gives us the idea of 
+counting/bucket sort. 
+Imagine above as a histgram of each paper count, bar height at value x is the value that is 
+equal how many papers which has count x
 """
 def h_indexs(citations: List[int]) -> int:
     n = len(citations)
     citationCounts = [0] * (n + 1)  # citationCounts[i] is the number of papers with i citations.
     for c in citations:#each citation becomes the index
         citationCounts[min(n, c)] += 1  # All papers with citations larger than n is counted as n.
-    k = 0
-    s = len(citations) 
+    k = 0#k is the citations, 0 means 0 citations
+    s = len(citations) #
     while s >= k: #stop if remaining papers less that h-index or k
         s = s - citationCounts[k]#keep on lowering the paper count
         k += 1
 
     return k-1
+#better
+#similar to counting, i am just counting papers from backside, while loop breaks if total paper counted yet >= h-index
+#preferred
+def hIndex(citations: List[int]) -> int:
+    n = len(citations)
+    citationCounts = [0] * (n + 1)  # citationCounts[i] is the number of papers with i citations.
+    for c in citations:#each citation becomes the index
+        citationCounts[min(n, c)] += 1  # All papers with citations larger than n is counted as n.
+    count_papers = 0
+    i = n #i here is the citation
+    while i >= 0:
+        count_papers = count_papers + citationCounts[i]
+        if count_papers >= i:
+            return i
+        i -= 1
+    return 0
+            
 #variant 1
 """
 Suppose you cannot alter the input array, and cannot allocate additional memory space. 
@@ -85,7 +114,10 @@ Logic: Use binary search to find the paper whose citation is >= n - i
     We are finding the index where the value at that index is >= papers left that is n - i
     We need to find the left most value where the condition citation[mid] >= n - i, still stands
 https://leetcode.com/problems/h-index/discuss/70990/Java-AC-solution-by-Binary-Search
-binary search could be used to solve this problem; at each check point, say mid, and its value is citation[mid]; we could check whether there are not more than citation[mid] citations behind it, by comparing citation[mid] and n - mid; and after processing, the pointer left will be at the index which is just invalid; so the final answer is n - left;
+binary search could be used to solve this problem; at each check point, say mid, and its value is 
+citation[mid]; we could check whether there are not more than citation[mid] citations behind it, 
+by comparing citation[mid] and n - mid; and after processing, the pointer left will be at the index 
+which is just invalid; so the final answer is n - left;
 """
 import bisect
 def h_index_var3(citations: List[int]) -> int:

@@ -20,8 +20,9 @@ from test_framework import generic_test
 Write a program that takes a sorted array and a key and returns the index of first occurrence of that key, 
 otherwise returns -1 if key not found in the array.
 Logic:
-    If we see any index i with element equal to k, then we do know that no subsequent elements can be the first k
-    Therefore we discard all elements with index i + 1 or more. Thus we maintain a candidate set (array left after discard others)
+    If we see any index i with element equal to k, then we do know that no subsequent elements 
+    can be the first k. Therefore we discard all elements with index i + 1 or more. 
+    Thus we maintain a candidate set (array left after discard others)
 Time: O(logn), this because each iteration reduces the size of candate array by half
 """
 def search_first_of_k(A: List[int], k: int) -> int:
@@ -48,7 +49,8 @@ def search_first_of_k_pythonic(A, k):
 
 # variant 1
 """
-Design an efficient algorithm that takes a sorted array and a key, and finds the index of the first occurence of an element greater than that key
+Design an efficient algorithm that takes a sorted array and a key, and finds the index of 
+the first occurence of an element greater than that key
 Logic: Find the rightmost k and its index and return index + 1
 """
 
@@ -66,7 +68,7 @@ def find_gt(A: List[int], k: int):
             right = mid - 1
     #return (result + 1) if (result > -1 and result < len(A) - 1) else -1
     # return (result + 1) if (result !=len(A) - 1) else -1
-    return (result + 1) if (result !=len(A)) else -1
+    return (result + 1) if (result !=len(A)-1) else -1
 
 #pythonic solution
 # https://docs.python.org/3.9/library/bisect.html
@@ -85,27 +87,45 @@ find_gt_pythonic([-14, -10, 2, 108, 108, 243, 285, 285, 285, 401], 401)
 
 # variant 2
 """
-https://www.youtube.com/watch?v=HtSuA80QTyo&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=4&ab_channel=MITOpenCourseWare
+https://www.youtube.com/watch?v=HtSuA80QTyo&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=4&ab_channel=
+MITOpenCourseWare
 https://leetcode.com/problems/find-peak-element/submissions/
 http://www.dsalgo.com/2013/03/find-local-minima-in-array.html
 Explanation: 
-    First we need to understand that if in an array of unique(important) integers first two numbers are decreasing and last two 
-    numbers are increasing there ought to be a local minima. Why so? We can prove it in two ways. First we will do it 
-    by negation (contradiction). If first two numbers are decreasing, and there is no local minima, that means 3rd number is less than 
-    2nd number. otherwise 2nd number would have been local minima. Following the same logic 4th number will have to be 
-    less than 3rd number and so on and so forth. So the numbers in the array will have to be in decreasing order. 
-    Which violates the constraint of last two numbers being in increasing order. This proves by negation that there 
-    need to be a local minima.
+    First we need to understand that if in an array of unique(important) integers first two numbers 
+    are decreasing and last two numbers are increasing there ought to be a local minima. Why so? 
+    We can prove it in two ways. First we will do it by negation (contradiction). 
+    If first two numbers are decreasing, and there is no local minima, that means 3rd number is less than 2nd number. 
+    otherwise 2nd number would have been local minima. Following the same logic 4th number 
+    will have to be less than 3rd number and so on and so forth. So the numbers in the array
+    will have to be in decreasing order. 
+    Which violates the constraint of last two numbers being in increasing order. 
+    This proves by negation that there need to be a local minima.
 
-    We can prove this in some other way also. Suppose we represent the array as a 2-D graph where the index of the numbers in the array represents the x-coordinate. and the number represents the y-coordinate. Now for the first two numbers, derivative will be negative, and for last two numbers derivative will be positive. So at some point the derivative line will have to cross the x axis. As the array contains only unique elements there cannot be a derivative point on the x axis. Because that will mean that two consecutive index having same number. So for any intersection of x axis by the derivative line will be a local minima.
+    We can prove this in some other way also. Suppose we represent the array as a 2-D graph 
+    where the index of the numbers in the array represents the x-coordinate. and the number 
+    represents the y-coordinate. Now for the first two numbers, derivative will be negative, 
+    and for last two numbers derivative will be positive. So at some point the derivative 
+    line will have to cross the x axis. As the array contains only unique elements there 
+    cannot be a derivative point on the x axis. Because that will mean that two consecutive 
+    index having same number (value zero in this case). So for any intersection of x axis by 
+    the derivative line will be a local minima.
 
-    We will solve this problem in O(log n) time by divide and conquer method. We will first check the mid index of the array. If it is smaller than its left and right, then it is the answer. If it is bigger than the left number then from start to left we have a subproblem, and as we proved already that starting with decreasing and ending with increasing sequence array will have to have a local minima, we can safely go to the left subarray. Otherwise if mid is bigger than its right, then we go to the right subarray. This way we guarantee a O(log n) algorithm to find any of the local minima present in the array.
+    We will solve this problem in O(log n) time by divide and conquer method. We will first 
+    check the mid index of the array. If it is smaller than its left and right, then it is 
+    the answer. If it is bigger than the left number then from start to left we have a 
+    subproblem, and as we proved already that starting with decreasing and ending with 
+    increasing sequence array will have to have a local minima, we can safely go to the 
+    left subarray. Otherwise if mid is bigger than its right, then we go to the right subarray. 
+    This way we guarantee a O(log n) algorithm to find any of the local minima present in the array.
 
-Let A be an unsorted array of n unique integers, with A[0] >= A[1] and A[n-2] <= A[n-1]. Call an index i a local minimum if A[i] 
-is less than or equal to its neighbours, i.e.,  A[i -1] > A[i] < A[i + 1]. How would you efficiently find a local minimum, 
-if one exists?
+Let A be an unsorted array of n unique integers, with A[0] >= A[1] and A[n-2] <= A[n-1]. Call an 
+index i a local minimum if A[i] is less than or equal to its neighbours, i.e.,  
+A[i -1] > A[i] < A[i + 1]. How would you efficiently find a local minimum, if one exists?
 Logic: 
-    look at the middle element of the array. If it's a local minimum, return it. Otherwise, at least one adjacent value must be smaller than this one. Recurse in the half of the array containing that smaller element (but not the middle).
+    look at the middle element of the array. If it's a local minimum, return it. Otherwise, 
+    at least one adjacent value must be smaller than this one. Recurse in the half of the array 
+    containing that smaller element (but not the middle).
 """
 #Answer is always there
 def local_min(A):#size will be at least three, #this is for a special case
@@ -147,7 +167,9 @@ def findValleyElement(A: List[int]) -> int:
     while left <= right:
         mid = left + (right - left)//2
         # if A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]:
-        if (mid == 0 and A[mid] < A[mid + 1]) or (mid == len(A) -1 and A[mid] < A[mid - 1]) or (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]):
+        if (mid == 0 and A[mid] < A[mid + 1]) or \
+            (mid == len(A) -1 and A[mid] < A[mid - 1]) or \
+                (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]):
             result = mid
             break
         # when (A[mid] < A[mid - 1] and A[mid] < A[ mid + 1]) is false, if below is true or 
@@ -185,7 +207,8 @@ def findValleyElementv2(A: List[int]) -> int:
 
     return result
 
-#find local peak, facebook, array elements are not distinct, and no boundary condition, You may imagine that nums[-1] = nums[n] = -∞
+#find local peak, facebook, array elements are not distinct, and no boundary condition, 
+# You may imagine that nums[-1] = nums[n] = -∞
 #check refined code in leetcode
 # https://leetcode.com/problems/find-peak-element/submissions/
 def findPeakElement(A: List[int]) -> int:#local peak or local maxima
@@ -198,7 +221,9 @@ def findPeakElement(A: List[int]) -> int:#local peak or local maxima
     while left <= right:
         mid = left + (right - left)//2
         # if A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]:
-        if (mid == 0 and A[mid] > A[mid + 1]) or (mid == len(A) -1 and A[mid] > A[mid - 1]) or (A[mid] > A[mid - 1] and A[mid] > A[ mid + 1]):
+        if (mid == 0 and A[mid] > A[mid + 1]) or (mid == len(A) -1 and \
+                                                  A[mid] > A[mid - 1]) or (A[mid] > A[mid - 1] and \
+                                                                           A[mid] > A[ mid + 1]):
             result = mid
             break
         #If this element happens to be lying in a descending sequence of numbers. or a local falling slope
@@ -257,7 +282,9 @@ def peakIndexInMountainArray(arr: List[int]) -> int:
 
 #variant 3
 """
-Design an algo which takes a sorted array A of integers, and int K, and returns the interval enclosing k, i.e., the pair of integers L and U such that L is the first occurence of k and L is the last occurence of k. If K does not appear, return [-1, -1].
+Design an algo which takes a sorted array A of integers, and int K, and returns the interval enclosing k, 
+i.e., the pair of integers L and U such that L is the first occurence of k and L is the last occurence of k. 
+If K does not appear, return [-1, -1].
 Example: A = [1,2,2,4,4,4,7,11,11,13], k = 11, return [7,8] 
 """
 

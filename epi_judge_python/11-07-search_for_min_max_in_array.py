@@ -6,9 +6,16 @@ from test_framework import generic_test
 from test_framework.test_failure import PropertyName
 MinMax = collections.namedtuple('MinMax', ('smallest', 'largest'))
 
+#Idea is that you do like that you do pair wise comparision, then the results will be compared in min and max
+# this is maxes coming out from every pairwise comparision are comapred again with one another, and smae for mins
+#WAP to find the min and max elements in an array. Total time should be less then brute force O(2n - 1)
 #time is O(n) and n - 1 comparison
 #remember if a < b and b < c, that means a < c, this definitely saves extra comparison
 # total 3 comparsion for each iteration, and total iteration is n/2
+# elaboration: You compare elements independentaly as pairs, each pair form s a localmaxmin (one operation)
+#after getting the local maxmin on everyt compare, compare that with global maxmin (2 operation, one for largest, one for smallest)
+# Total operation  = n/2 * (1 + 2) = 3n/2
+#Time  = O(n), Space = (1)
 def find_min_max(A: List[int]) -> MinMax:
     def min_max(a, b):
         return MinMax(a, b) if a < b else MinMax(b, a)
@@ -21,8 +28,8 @@ def find_min_max(A: List[int]) -> MinMax:
     for i in range(2, len(A) - 1, 2):#this would leave out the last element if array length is odd
         local_min_max = min_max(A[i], A[i + 1]) #comparison 1
         global_min_max = MinMax(
-            min(global_min_max.smallest, local_min_max.smallest), #comparison 2
-            max(global_min_max.largest, local_min_max.largest)) #comparison 3
+            min(global_min_max.smallest, local_min_max.smallest), #comparison 2, #compare the losing sides now
+            max(global_min_max.largest, local_min_max.largest)) #comparison 3 #compare the winning sides
     # If there is odd number of elements in the array, we still need to
     # compare the last element with the existing answer.
     if len(A) % 2:

@@ -77,12 +77,12 @@ def search_maze_v1(maze: List[List[int]], s: Coordinate,
     dfs(s)
     return path
 
-#second veriosn, without modifying original maze
+#second version, without modifying original maze , some interviews dont like modifying the original data, like amazon
 #my implementation
 def search_maze_dfs(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
     path = []
-    visited = set()
+    visited = set()#store the tuple
     motions = [Coordinate(0, -1), Coordinate(0, 1), Coordinate(1, 0), Coordinate(-1, 0)]
     def dfs(node):
         if maze[node.x][node.y] == BLACK or (node.x, node.y) in visited:#visited already or a obstacle
@@ -104,7 +104,7 @@ def search_maze_dfs(maze: List[List[int]], s: Coordinate,
     dfs(s)
     return path
 
-#bfs
+#bfs, this gives the shortest path
 def search_maze(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
     path = []
@@ -123,6 +123,10 @@ def search_maze(maze: List[List[int]], s: Coordinate,
             if 0 <= current_node.x + motion.x < len(maze) and 0 <= current_node.y + motion.y < len(maze[0]):#valid motions only
                 node_queue.append([current_path + [Coordinate(current_node.x + motion.x, current_node.y + motion.y)], (Coordinate(current_node.x + motion.x, current_node.y + motion.y))])
     return path
+
+# Variant 1:
+# https://leetcode.com/problems/flood-fill/ 
+# Leetcode 695, https://leetcode.com/problems/max-area-of-island/
 
 def path_element_is_feasible(maze, prev, cur):
     if not ((0 <= cur.x < len(maze)) and

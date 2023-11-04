@@ -108,8 +108,8 @@ def find_max_simultaneous_events(A: List[Event]) -> int:
 
 #variant 1
 """
-Users 1, 2, ...., n share an Internet connection. User i uses bi bandwidthj from time si to fi, inclusive. What is the
-peak bandwith usage?
+Users 1, 2, ...., n share an Internet connection. User i uses bi bandwidthj from time si to fi, inclusive. 
+What is the peak bandwith usage?
 Logic:
     Peak bandwith usage is the max bandwith used during concurrent usage from multiple users
     We can store the start time, end time and bandwith used in a tuple, then sort them then do the concurrency check
@@ -123,12 +123,13 @@ def find_max_simultaneous_bandwidth_usage(A) -> int:
     # Builds an array of all endpoints.
     E = [
         p for event in A
-        for p in (Endpoint(event[0], 0, event[2]), Endpoint(event[1], 1, event[2])) #stores (start or finish, is_start, bandwidth)
+        #stores (start or finish, is_start, bandwidth)
+        for p in (Endpoint(event[0], 0, event[2]), Endpoint(event[1], 1, event[2])) 
     ]
     # Sorts the endpoint array according to the time, breaking ties by putting
     # start times before end times.
-
-    E.sort(key = operator.attrgetter('time', 'is_start')) # this also works E.sort(key = operator.itemgetter(0, 1))
+    # this also works E.sort(key = operator.itemgetter(0, 1))
+    E.sort(key = operator.attrgetter('time', 'is_start')) 
     # Track the number of simultaneous events, record the maximum number of
     # simultaneous events.
     print(E)
@@ -142,25 +143,29 @@ def find_max_simultaneous_bandwidth_usage(A) -> int:
             num_simultaneous_bandwidths -= e.bandwidth
     return max_num_simultaneous_bandwidths
 
-find_max_simultaneous_bandwidth_usage([[1, 5, 1], [2, 7, 2], [4, 5, 1], [6, 10, 3], [8, 9, 3], [9, 17, 3], [11, 13, 1], [12, 15, 3], [14, 15, 2]])
+find_max_simultaneous_bandwidth_usage([[1, 5, 1], [2, 7, 2], [4, 5, 1], [6, 10, 3], [8, 9, 3], 
+                                       [9, 17, 3], [11, 13, 1], [12, 15, 3], [14, 15, 2]])
 
 #variant 1-2 #uswe two arrays, one for intervals, and other for bandwidth
 def find_max_simultaneous_bandwidth_usage_2(A, B) -> int:
 
     # Endpoint is a tuple (start_time, 0) or (end_time, 1) so that if times, True is 1, False is 0
     # are equal, start_time comes first
-    temp = list(zip(A, B)) # [([1, 5], 1), ([2, 7], 2), ([4, 5], 1), ([6, 10], 3), ([8, 9], 3), ([9, 17], 3), ([11, 13], 1), ([12, 15], 3), ([14, 15], 2)]
+    # [([1, 5], 1), ([2, 7], 2), ([4, 5], 1), ([6, 10], 3), ([8, 9], 3), 
+    # ([9, 17], 3), ([11, 13], 1), ([12, 15], 3), ([14, 15], 2)]
+    temp = list(zip(A, B)) 
     combined = [(x[0], x[1], y) for x, y in temp]
     Endpoint = collections.namedtuple('Endpoint', ('time', 'is_start', 'bandwidth'))
     # Builds an array of all endpoints.
     E = [
         p for event in combined
-        for p in (Endpoint(event[0], 0, event[2]), Endpoint(event[1], 1, event[2])) #stores (start or finish, is_start, bandwidth)
+        #stores (start or finish, is_start, bandwidth)
+        for p in (Endpoint(event[0], 0, event[2]), Endpoint(event[1], 1, event[2])) 
     ]
     # Sorts the endpoint array according to the time, breaking ties by putting
     # start times before end times.
-
-    E.sort(key = operator.attrgetter('time', 'is_start')) # this also works E.sort(key = operator.itemgetter(0, 1))
+    # this also works E.sort(key = operator.itemgetter(0, 1))
+    E.sort(key = operator.attrgetter('time', 'is_start')) 
     # Track the number of simultaneous events, record the maximum number of
     # simultaneous events.
     print(E)
@@ -174,7 +179,8 @@ def find_max_simultaneous_bandwidth_usage_2(A, B) -> int:
             num_simultaneous_bandwidths -= e.bandwidth
     return max_num_simultaneous_bandwidths
 
-find_max_simultaneous_bandwidth_usage_2([[1, 5], [2, 7], [4, 5], [6, 10], [8, 9], [9, 17], [11, 13], [12, 15], [14, 15]], [1, 2, 1, 3, 3, 3, 1, 3, 2])
+find_max_simultaneous_bandwidth_usage_2([[1, 5], [2, 7], [4, 5], [6, 10], [8, 9], [9, 17], 
+                                         [11, 13], [12, 15], [14, 15]], [1, 2, 1, 3, 3, 3, 1, 3, 2])
 
 @enable_executor_hook
 def find_max_simultaneous_events_wrapper(executor, events):

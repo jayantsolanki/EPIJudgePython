@@ -9,6 +9,7 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 """
+Design an algorithm for reconstructing a binary tree from a preorder traversal visit sequence that uses null to mark empty children.
 Logic:
     recognize that first node in the sequence is the root, and the sequence  for the root's left subtree appears
     before all the nodes in the root's right subtree. It is not easy too see where the left subtree ends, but, if we solve the problem
@@ -49,11 +50,13 @@ def reconstruct_preorder_v3(preorder: List[int]) -> BinaryTreeNode:
 
     return reconstruct_preorder_helper(iter(preorder))
 
-# print(reconstruct_preorder(['H', 'B', 'F', None, None, 'E', 'A', None, None, None, 'C', None, 'C', None, 'G', 'I', None, None, None]))
+# print(reconstruct_preorder(['H', 'B', 'F', None, None, 'E', 'A', None, None, None, 'C', None, 
+# 'C', None, 'G', 'I', None, None, None]))
 
 # this without iterator
 def reconstruct_preorder_v4(preorder: List[int]) -> BinaryTreeNode:
-    def reconstruct_preorder_helper(preorder_iter, index): # you need to make sure that index is kept trac, because subtrees can go deep and deep
+    # you need to make sure that index is kept tracked, because subtrees can go deep and deep
+    def reconstruct_preorder_helper(preorder_iter, index): 
         # subtree_key = next(preorder_iter) #using iter, interesting
         index = index + 1
         subtree_key = preorder_iter[index]
@@ -71,7 +74,8 @@ def reconstruct_preorder_v4(preorder: List[int]) -> BinaryTreeNode:
 # better
 def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
     index = -1
-    def reconstruct_preorder_helper(): # you need to make sure that index is kept trac, because subtrees can go deep and deep
+    # you need to make sure that index is kept tracked, because subtrees can go deep and deep
+    def reconstruct_preorder_helper(): 
         nonlocal index
         index = index + 1
         # subtree_key = next(preorder_iter) #using iter, interesting
@@ -109,7 +113,8 @@ def reconstruct_postorder(postorder: List[int]) -> BinaryTreeNode:
 
     return reconstruct_postorder_helper(postorder)
 
-print(reconstruct_postorder([None, None, 'F', None, None, 'A', None, 'E', 'B', None, None, None, None, 'I', None, 'G', 'D', 'C', 'H']))
+#print(reconstruct_postorder([None, None, 'F', None, None, 'A', None, 'E', 'B', None, None, 
+# None, None, 'I', None, 'G', 'D', 'C', 'H']))
 
 #variant 2, inorder, just use divide and conquer
 

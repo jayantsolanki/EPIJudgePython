@@ -13,7 +13,7 @@ Logic:
     First key always corresponds to root, then the next subsequent key which begins next to first key and ends at
     the last key less than first key, belongs to left subtree. Remaining subsequent keys (if any) will be always greater then 
     root (first key) and belong to right subtree. 
-    Recursively construct the tree by working working on thise subtrees
+    Recursively construct the tree by working working on these subtrees
 Complexity: Time: worst O(n2), because we repeatedly have to search for the keys belonging to right subtree, 
     so in case of left skewed tree, there are none. W(n) = W(n - 1) + O(n), that solves to O(n2)
     Best case corresponds to right skewed tree, and corresponding time complexity is O(n)
@@ -34,7 +34,7 @@ def rebuild_bst_from_preorder_ori(preorder_sequence: List[int]
         len(preorder_sequence))
     return BstNode(
         preorder_sequence[0],
-        rebuild_bst_from_preorder_ori(preorder_sequence[1:transition_point]),
+        rebuild_bst_from_preorder_ori(preorder_sequence[1:transition_point]),#from 1 because you need to exclude the root
         rebuild_bst_from_preorder_ori(preorder_sequence[transition_point:]))
 
 #simple way
@@ -69,7 +69,7 @@ Tree is build from the leaves first (bottom up approach)
 def rebuild_bst_from_preorder_or(preorder_sequence: List[int]
                               ) -> Optional[BstNode]:
     def rebuild_bst_from_preorder_on_value_range(lower_bound, upper_bound):
-        if root_idx[0] == len(preorder_sequence):#leaves reached
+        if root_idx[0] == len(preorder_sequence):#all nodes exhausted, return
             return None
         
         root = preorder_sequence[root_idx[0]]

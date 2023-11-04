@@ -1,7 +1,7 @@
 from test_framework import generic_test
 #https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
 """
-Implement a code that takes as input a 64bit intyeger and swaps the bits at indices i and j.
+Implement a code that takes as input a 64bit integer and swaps the bits at indices i and j.
 """
 
 def swap_bits(x, i, j):

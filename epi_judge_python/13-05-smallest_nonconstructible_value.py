@@ -7,6 +7,7 @@ from test_framework import generic_test
 Write a program which takes an array of positive integers, and returns the smalles number which can be 
 the sum of a subset of elements of the array
 Logic:
+Fact: You cannot create a change amount greater than summ of your coins.
     Trick is to play with smaller arrays and check the max sum, lower bound (minimum change that can be constructed) and then go for larger
     arrays
     Remember you are tasked with finding smallest number that the sum can produce, this makes thing easy

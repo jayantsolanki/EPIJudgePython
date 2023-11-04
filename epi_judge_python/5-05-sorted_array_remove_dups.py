@@ -47,7 +47,8 @@ def delete_duplicates(A: List[int]) -> int:
 
 """
 Variant 1:
-WAP that takes an array (sorted) and a key, and updates the array so that all occurences of the key have been removed, and the remaining elements have been shifted left to fill the empty indices. Return the number of remaining elements. 
+WAP that takes an array (sorted) and a key, and updates the array so that all occurences of the key have been removed, 
+and the remaining elements have been shifted left to fill the empty indices. Return the number of remaining elements. 
 No requirements for number stored after last
 valid element
 This can be also done using list comprehension, just saying
@@ -81,7 +82,8 @@ Variant 2:
 WAP which takes as input a sorted Array A of integers and a positive integer m, and updates
 the array so that if x appears m times in A it appears exactly min(2, m) times in A.
 The update to A should be performed in one pass, and no additional storage may be allocated
-Logic: remove extra occurences of elements which have count of m, and set them to min(2,m), that is repeat at most twice only
+Logic: remove extra occurences of elements which have count of m, and set them to min(2,m), 
+that is repeat at most twice only
 
 """
 def minArray(A, m):

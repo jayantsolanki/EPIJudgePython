@@ -1,11 +1,14 @@
 from typing import List
+from functools import cache
 
 from test_framework import generic_test
 
 """
+https://leetcode.com/problems/jump-game/ Leetcode 55
 WAP which takes an array of n integers, where A[i] denotes the maximum you can advance from index x, 
-and return whether it is possible to advance to the last index starting from the beginning of the array
-Below is O(n) time complexity algorithm, and also works on negative entries
+and return whether it is possible to advance to the last index starting from the beginning of the array.
+Below is O(n) time complexity algorithm
+Also works on negative entries
 Logic: as we iterate, we track the furthest index we can advance to, furthest we can advance is i + A[i]
 It is a greedy algo
 """
@@ -15,11 +18,15 @@ def can_reach_end_ori(A: List[int]) -> bool:
     # TODO - you fill in here.
     furthest_reach_so_far, last_index = 0, len(A) - 1
     i = 0
+    #imilar to by and sell
+    #basically track whats the maximum jump you have found provided that i is 
+    # less or equal to than that max jump recorded so far, break if violated
     while i <= furthest_reach_so_far and furthest_reach_so_far < last_index:#stop if i more than furthest distance reached
         # so far, or furthest distances more than length of array
         furthest_reach_so_far = max(furthest_reach_so_far, A[i] + i)
         # print(i,furthest_reach_so_far)
-        i += 1 #if i or current index tobe evaluated > furthest reach so far, that means no further can be moved, deadend
+        i += 1 #if i or current index tobe evaluated > furthest reach so far, 
+        #that means no further can be moved, deadend
 
     return furthest_reach_so_far >= last_index
 
@@ -36,7 +43,8 @@ def can_reach_end(A: List[int]) -> bool:
         if i >= furthest_reach_so_far: 
             return False
         # print(i,furthest_reach_so_far)
-        i += 1 #if i or current index tobe evaluated > furthest reach so far, that means no further can be moved, deadend
+        i += 1 #if i or current index tobe evaluated > furthest reach so far, 
+        #that means no further can be moved, deadend
 
     return True
 
@@ -94,6 +102,20 @@ def minJumps(arr, n):
                 jumps[i] = min(jumps[i], jumps[j] + 1)
                 break
     return jumps[n-1]
+
+#simplest memoization
+def canJump(nums: List[int]) -> bool:
+    @cache
+    def jump(pos):
+        if pos == len(nums) - 1:
+            return True
+        else:
+            max_jump = min(nums[pos] + pos, len(nums) - 1)#if current jump is more then length of nums, just trim the jump to that length
+            for i in range(max_jump, pos, -1): #start checking for further jumps for every index, starting maxjumps index attained so far
+                if jump(i):
+                    return True
+            return False #didnt reach the last position
+    return jump(0)
 
 if __name__ == '__main__':
     exit(

@@ -72,7 +72,8 @@ print(next_permutation([6,2,5,5,4,3,0]))
 '''
 Leetcode 60. Permutation Sequence
 https://leetcode.com/problems/permutation-sequence/
-Compute the kth permutation under dictionary ordering, starting from the identity permutation; smallest in the permutation
+Compute the kth permutation under dictionary ordering, starting from the identity permutation; 
+smallest in the permutation
 that is the first permutation in dictionary ordering
 Logic: I think I should repeatedly call previous function for kth times
 '''
@@ -96,6 +97,9 @@ print(kth_permute([1, 2, 3], 5))
 
 Given a permutation p, return the permutation corrsponding to the previous permutation of p
 Logic: I think we just need to retrace the steps backward
+# 1 - start from right, look for first non decreasing number, thats the inversion point
+# 2 - start from right, look for first number just smaller than the inversion point, swap both,
+# 3 - reverse the series after the iversion point index
 """
 def reverse_permutation(perm):
     inversion_point = len(perm) - 2

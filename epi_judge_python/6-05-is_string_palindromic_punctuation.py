@@ -1,6 +1,7 @@
 from test_framework import generic_test
 
 """
+#sliding window
 Check if a string is palindrome when all the non alphanumeric characters are removed
 Logic
     Use two indices to travel, forward and backward, and skip the non alphanumeric characters

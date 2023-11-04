@@ -1,3 +1,6 @@
+#http://www.cs.umd.edu/%7Emeesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+#https://stackoverflow.com/questions/9755721/how-can-building-a-heap-be-on-time-complexity
+
 class MinHeap_recursive:
     def __init__(self,capacity):
         self.storage = [0] * capacity
@@ -158,6 +161,8 @@ Time: O(nlogk)
 #bootcamp for k longest strings
 """
 Logic:
+    For incoming lement idea is to easily kick an element (either smallest of largest) when the heap has achieved k size. Root is the best option, because you simlpy 
+    replace root by the incoming element and do the heapifydown on root (logn).
     How to decide which type of heap to use. When using minheap, we will need to kickout smallest string in order to make way for elements after 
     size k largest. Smallest string sits at the top. Where as for maxheap we will need to kick out largest string sitting at the top for accommodating k smallest. Since we need to preserve largest string. We will have to use minheap
 """

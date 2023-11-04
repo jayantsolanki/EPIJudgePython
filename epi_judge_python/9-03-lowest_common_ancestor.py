@@ -8,10 +8,15 @@ from test_framework.binary_tree_utils import must_find_node, strip_parent_link
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+"""
+Design an algorithm for computing the LCA of two nodes in a binary tree in which nodes do not have a parent field.
+"""
 # Leetcode: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+# https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 #compared to one on the leetcode, this one has O(h) space complexity. I prefer that leetcode one, but leetcode has p!=q (node0 != node1)
 #below approach go for postorder, makes sense, because we need to check for both branches of a node first
 #here p can be same as q
+#the time complexity and space complexity are O(n) andO(h), respectively, where h is the height of the tree.
 def lca_ori(tree: BinaryTreeNode, node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
 
@@ -33,10 +38,13 @@ def lca_ori(tree: BinaryTreeNode, node0: BinaryTreeNode,
         if right_result.num_target_nodes == 2:
             # Found both nodes in the right subtree.
             return right_result
-        #check if left_result 0, 1, or 2, same for right_result, and also check if root(tree) is same as p or q or both
+        #check if left_result 0, 1, or 2, same for right_result, and also check if root(tree) 
+        # is same as p or q or both
         num_target_nodes = (left_result.num_target_nodes +
                             right_result.num_target_nodes +
-                            (node0, node1).count(tree)) #(node0, node1).count(tree) checks if current node (tree) is same node0 or node1 or both, if both value will be two, if with of them then 1, since node0 can be same as node1
+                            (node0, node1).count(tree)) 
+        #(node0, node1).count(tree) checks if current node (tree) is same node0 or node1 or both, 
+        # if both value will be two, if with of them then 1, since node0 can be same as node1
         return Status(num_target_nodes,
                       tree if num_target_nodes == 2 else None)
 

@@ -8,10 +8,14 @@ from test_framework.binary_tree_utils import must_find_node
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+"""
+Given two nodes in a binary tree, design an algorithm that computes their LCA. Assume that each node has a parent pointer
+"""
 #logic: get to the level, after traversing the one which is already deeper, and then do tandem traversing
+#leetcode https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/, 1650
 #until common node found
 #time O(h), space O(1)
-def lca_v2(node0: BinaryTreeNode,
+def lca(node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
     def get_depth(node):
         depth = 0

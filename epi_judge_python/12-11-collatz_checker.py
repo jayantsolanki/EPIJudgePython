@@ -12,7 +12,7 @@ Logic:
     2 - skip even numbers, since they are immediately halved and result number must have been checked before
     3 - if every number until k has been tested,  we can stop the loop as soon as we reach a number
         less than or equal to k. We do not need to store the number < k in the hash table
-    4 - Check for inifnite loop if smae number encountered, then exit
+    4 - Check for infinite loop if same number encountered, then exit
 Time: at least proportional to n
 """
 def test_collatz_conjecture(n: int) -> bool:
@@ -24,6 +24,8 @@ def test_collatz_conjecture(n: int) -> bool:
     for i in range(3, n + 1):
         sequence: Set[int] = set()#used for checking if infinite loop is going
         test_i = i
+        #if every number until k has been tested,  we can stop the loop as soon as we reach a number
+        #less than or equal to k
         while test_i >= i:
             if test_i in sequence:
                 # We previously encountered test_i, so the Collatz sequence has

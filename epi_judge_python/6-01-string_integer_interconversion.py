@@ -1,6 +1,11 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
+"""
+Implement an integer to string conversion function, and a string to integer conversison function, 
+For example, if the input to the first function is the integer 314, it should retum the string "31.4" and 
+if the input to the second function is the string "314" it should return the integer 314.
+"""
 #not supposed to use int and str
 #   logic: extract each digit using %10 and /10 then
 #   Use ord and chr

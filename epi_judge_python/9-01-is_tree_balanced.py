@@ -11,13 +11,22 @@ from binarytree import Node
 #using binarytree lib for visualizing the tree 
 
 BinaryTreeNode = Node #creating synonym
+"""
+A binary tree is said to be height-balanced if for each node in the tree, the difference in the height of 
+its left and right subtrees is at most one. A perfect binary tree is height-balanced, as is a complete binary tree. 
+A height-balanced binary tree does not have to be perfect or complete.
 
+Write a program that takes as input the root of a binary tree and checks whether the tree is heightbalanced.
+"""
 #O(h) space and O(n) time
 #postorder needed, becasue you need to check left and right subtree, before going up
-# A binary tree is balanced, if, for every node, the heights of its left and right children differ by at most 1.
-#logic: so traverse in postorder, as soon as you get the false for any node, propogate that false all the way to root
+# A binary tree is balanced, if, for every node, the heights of its left and right children differ 
+# by at most 1.
+#logic: so traverse in postorder, as soon as you get the false for any node, propogate that false all 
+# the way to root
 # Note
-#if recursive calls before conditional check, then its bottom up. If recursive call after conditional check, its top down
+#if recursive calls before conditional check, then its bottom up. If recursive call after conditional 
+# check, its top down
 # post order traversal indicates bottom up, pre order traversal indicates top down
 # post order needed since I need to check left and right subtree before going up
 def is_balanced_binary_treed(tree: BinaryTreeNode) -> bool:
@@ -121,7 +130,8 @@ def is_full_binary_tree(tree):
     node_deque = collections.deque([tree])#insert the root
     while node_deque:
         current_node = node_deque.popleft()
-        if (not current_node.left and current_node.right) or (current_node.left and not current_node.right):#check if the current node has only one child:
+        #check if the current node has only one child:
+        if (not current_node.left and current_node.right) or (current_node.left and not current_node.right):
             return False
         if current_node.left and current_node.right:
             node_deque.append(current_node.left)
@@ -149,7 +159,8 @@ def is_complete_binary_tree(tree):
     node_deque = collections.deque([tree])#insert the root
     while node_deque:
         current_node = node_deque.popleft()
-        if (not current_node.left and current_node.right):#check if the current node has only one child and that is right child:
+        #check if the current node has only one child and that is right child:
+        if (not current_node.left and current_node.right):
             return False
         if current_node.left and current_node.right:
             node_deque.append(current_node.left)
@@ -221,7 +232,8 @@ def is_kth_balanced_binary_tree(tree: BinaryTreeNode, k: int) -> bool:
 
     def check_balanced(tree):
         if not tree:
-            return BalancedStatusWithHeight(node = None, balanced=True, height=-1)#children of leaves are always None hence set to -1
+            #children of leaves are always None hence set to -1
+            return BalancedStatusWithHeight(node = None, balanced=True, height=-1)
         #post order implemeentation
         left_result = check_balanced(tree.left)
         if not left_result.balanced:

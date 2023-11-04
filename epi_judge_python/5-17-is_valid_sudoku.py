@@ -4,14 +4,17 @@ from typing import List
 
 from test_framework import generic_test
 
+#https://leetcode.com/problems/valid-sudoku/
 
-# Check if a partially filled matrix has any conflicts. Specifically check if no rows or 
-# columns contains duplicates
-# 0 value in the entry means its blank
-# we need to check 9 rows, 9 columns, and 9 sub squares
 """
-We need to check nine rows, nine colmns and 9 subgrids (those squares consisting of 9 cells), 
+Check wheter a 9 x 9 2D array representing a partially completed Sudoku is valid. A 0 value in the entry indicated it is blank, every other entry is in range [1, 9].
+
+We need to check nine rows, nine columns and 9 subgrids (those squares consisting of 9 cells), 
 to ensure no duplicates occurs
+Check if a partially filled matrix has any conflicts. Specifically check if no rows or 
+columns contains duplicates
+0 value in the entry means its blank
+we need to check 9 rows, 9 columns, and 9 sub squares
 Time: O(n^2), space complexity: O(n)
 Derivation of time: O(n^2) (rows) + O(n^2) (columns) + O(n^2/(n^0.5)^2 X (n^0.5)^2) (for subgrids) = O(n)^2
 """

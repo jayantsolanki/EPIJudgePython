@@ -1,8 +1,7 @@
-from logging import RootLogger
-
 """
 https://en.wikipedia.org/wiki/Tree_traversal
-pre-order traversal is actually a form of Depth-First-Search (DFS) traversal. There are three different forms of DFS, namely:
+pre-order traversal is actually a form of Depth-First-Search (DFS) traversal. 
+There are three different forms of DFS, namely:
 
 Pre-Order
 In-Order

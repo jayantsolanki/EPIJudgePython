@@ -1,6 +1,9 @@
 from test_framework import generic_test
 
-
+"""
+Implement a function that converts a spreadsheet column id to the corresponding integer, with 'A' corresponding to 1. For example, you should retum 4 for "D", 27 for "AN", 702 for "ZZ" , etc. How would you test your code?
+The time complexity is O(n)
+"""
 def ss_decode_col_id_v1(col: str) -> int:
     # TODO - you fill in here.
     num = 0

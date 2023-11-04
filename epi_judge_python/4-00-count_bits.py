@@ -1,6 +1,7 @@
 from test_framework import generic_test
 #https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
 
+# Write a program to count the number of 1s in the n bits
 def count_bits_old(x: int) -> int:
     # TODO - you fill in here.
     count = 0

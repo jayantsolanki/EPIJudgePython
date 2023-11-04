@@ -3,8 +3,17 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
+"""
+WAP that takes as input a singly linked list and a non-negative integer k, and returns the list cyclically
+shifted to the right by k nodes. 
+"""
 # Leetcode: https://leetcode.com/problems/rotate-list/
-
+# Similar to concept of roating an array.
+#two things
+# 1- find the tail and connect it to the old head
+# 2 - find the new tail and disconnect it, this will be at n - k distance
+# goto last code
+# Time: O(n) and constant space
 def cyclically_right_shift_list_ori(L: ListNode, k: int) -> Optional[ListNode]:
 
     if L is None:
@@ -34,7 +43,7 @@ def cyclically_right_shift_list_ori(L: ListNode, k: int) -> Optional[ListNode]:
 """
 Logic:
     Since it is k right shift, 
-    find the tail, it will point to head now
+    find the current tail, it will point to head now
     find the kth last element. this will be the tail
     element next to k + 1th last element will become head
 """
@@ -64,11 +73,11 @@ def cyclically_right_shift_list_simple(L: ListNode, k: int) -> Optional[ListNode
     return dummy_head.next
 
 #better, 24JUL2023
-def cyclically_right_shift_list(L: ListNode, k: int) -> Optional[ListNode]:
+def cyclically_right_shift_list_(L: ListNode, k: int) -> Optional[ListNode]:
     if not L:
         return L
     dummy_head = first = second = tail = ListNode(0, L)
-    n = 0
+    n = 0 #0 because we are using a sentinel
     while tail.next:
         n += 1
         tail = tail.next
@@ -91,6 +100,31 @@ def cyclically_right_shift_list(L: ListNode, k: int) -> Optional[ListNode]:
     second.next = None
 
     return dummy_head.next
+
+#always use sentinel
+def cyclically_right_shift_list(L: ListNode, k: int) -> Optional[ListNode]:
+
+    if L is None:
+        return L
+    dummy_head = ListNode(0, L)
+    # Computes the length of L and the tail., length is needed, top calculate k mod n
+    tail, n = L, 1
+    while tail.next:
+        n += 1
+        tail = tail.next
+
+    k %= n
+    if k == 0:
+        return L
+
+    tail.next = L  # Makes a cycle by connecting the tail to the head.
+    steps_to_new_head, it = n - k, dummy_head#new tail will be at n - k distance from original head
+    for _ in range(steps_to_new_head):
+        it = it.next
+
+    new_head = it.next
+    it.next = None
+    return new_head
 
 
 

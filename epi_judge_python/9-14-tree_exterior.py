@@ -10,7 +10,10 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 """
-get nodes on the path from root to leftmost leaf, and leaves in the left subtree in on traversal. After that, find leaves in right sub tree follwed by nodes from rightmost leaf to root
+Write a program that computes the exterior of a binary tree.
+
+get nodes on the path from root to leftmost leaf, and leaves in the left subtree in on traversal. 
+After that, find leaves in right sub tree follwed by nodes from rightmost leaf to root
 Time: O(n)
 """
 def exterior_binary_tree(tree: BinaryTreeNode) -> List[BinaryTreeNode]:

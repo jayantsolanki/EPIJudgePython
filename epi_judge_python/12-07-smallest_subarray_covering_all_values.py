@@ -11,12 +11,12 @@ Subarray = collections.namedtuple('Subarray', ('start', 'end'))
 """
 Write a program that takes two arrays of strings, and return the indices of the starting and ending index of a 
 shortest subarray of the first array that 'sequentially covers' all the strings of the keywords array. 
-Assume all strings are disctict in keyword array.
+Assume all strings are distinct in keyword array.
 Logic:
 One hashmap and two  arrays
     Create  hashmap (keyword_to_idx) for tracking the relative position of strings in keywords, i.e., their index numbers in keywords
     Create  an array (shortest_subarray_length) for storing the shortest subarray length created until that string in the keyword list
-    Create another array which has its index mapped to position of those kywords, this array will store the altest index found for that keyword
+    Create another array which has its index mapped to position of those kywords, this array will store the latest index found for that keyword
 
     While enumerating through the paragraph array, keep updating the latest location of keyword encountered, and if
     they are in order, update the shortest_subarray_length for that keyword
@@ -34,13 +34,15 @@ def find_smallest_sequentially_covering_subset_original(paragraph: List[str],
                                                ) -> Subarray:
 
     # Maps each keyword to its index in the keywords array.
-    keyword_to_idx = {k: i for i, k in enumerate(keywords)}# used for getting the index once the keyword found in the paragraph
+    # used for getting the index once the keyword found in the paragraph
+    keyword_to_idx = {k: i for i, k in enumerate(keywords)}
 
     # Since keywords are uniquely identified by their indices in keywords
     # array, we can use those indices as keys to lookup in an array.
     #above line is important, using indices instead of keyword: Jayant
 
-    latest_occurrence = [-1] * len(keywords) #for storing the latest index of that keyword in the paragraph
+    #for storing the latest index of that keyword in the paragraph
+    latest_occurrence = [-1] * len(keywords) 
     # For each keyword (identified by its index in keywords array), the length
     # of the shortest subarray ending at the most recent occurrence of that
     # keyword that sequentially cover all keywords up to that keyword.
@@ -54,11 +56,13 @@ def find_smallest_sequentially_covering_subset_original(paragraph: List[str],
             keyword_idx = keyword_to_idx[p] #get the index position of that keyword in the keywords
             #note that these keyword position will be updated throughout the iteration
             #on each update their latest_occurrence position will only move ahead, so
-            #if a keyword of order ith is found and reupdated with new index, it wont have any impact on i+1th keyword up until i+1th keyword
+            #if a keyword of order ith is found and reupdated with new index, it wont have any impact 
+            # on i+1th keyword up until i+1th keyword
             #is also found later. Then their shortest_subarray_length array will be updated
             if keyword_idx == 0:  # First keyword.
                 shortest_subarray_length[keyword_idx] = 1
-            elif shortest_subarray_length[keyword_idx - 1] != float('inf'):#check if previous has been filled then only update. This maintains the order
+            #check if previous has been filled then only update. This maintains the order
+            elif shortest_subarray_length[keyword_idx - 1] != float('inf'):
                 distance_to_previous_keyword = (
                     i - latest_occurrence[keyword_idx - 1])
                 shortest_subarray_length[keyword_idx] = (
@@ -72,11 +76,14 @@ def find_smallest_sequentially_covering_subset_original(paragraph: List[str],
                 shortest_distance = shortest_subarray_length[-1]
                 result = Subarray(i - shortest_distance + 1, i)#we are not using latest location of first keywords
                 #since that could have been updated with new one
-            #print(f'keyword_idx = {keyword_idx} p = {p}, latest_occurrence[keyword_idx] = {latest_occurrence[keyword_idx]}, shortest_subarray_length = {shortest_subarray_length}, shortest_distance = {shortest_distance}')
+            #print(f'keyword_idx = {keyword_idx} p = {p}, latest_occurrence[keyword_idx] = 
+            # {latest_occurrence[keyword_idx]}, shortest_subarray_length = 
+            # {shortest_subarray_length}, shortest_distance = {shortest_distance}')
             #print("==========")
     return result
 
-# find_smallest_sequentially_covering_subset(['apple', 'banana','cat','apple', 'cat', 'banana', 'cat', 'apple', 'cat'],  ['banana', 'apple', 'cat'])
+# find_smallest_sequentially_covering_subset(['apple', 'banana','cat','apple', 'cat', 'banana', 'cat', 'apple', 'cat'],  
+# ['banana', 'apple', 'cat'])
 
 #practice run
 def find_smallest_sequentially_covering_subset(paragraph: List[str],
@@ -94,7 +101,8 @@ def find_smallest_sequentially_covering_subset(paragraph: List[str],
             latest_location_keywords[key_index] =  index
             if key_index == 0:
                 subarray_length_per_keyword[key_index] = 1
-            elif subarray_length_per_keyword[key_index - 1] != float('Inf'): #check to make sure that previous key was encountered
+             #check to make sure that previous key was encountered
+            elif subarray_length_per_keyword[key_index - 1] != float('Inf'):
                 distance_to_key = index - latest_location_keywords[key_index - 1]
                 subarray_length_per_keyword[key_index] = distance_to_key + subarray_length_per_keyword[key_index - 1]
             

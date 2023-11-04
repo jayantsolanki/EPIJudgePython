@@ -1,9 +1,10 @@
 import collections
-from typing import List
 
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
+#leetcode: https://leetcode.com/problems/min-stack/ 155
+#leetcode https://leetcode.com/problems/max-stack/ 716
 #Design a list that includes a max operation n addition to push and pop
 # Max should return the max number stored in the stack
 # O(1) for checking max after each push. But a bit longer for checking max after pop
@@ -13,7 +14,7 @@ from test_framework.test_failure import TestFailure
 #in below code you are entering tuple values (x, y) in a list array called _element_with_cached_max. x represent normal value 
 # and y represent max found so far
 
-class StackWithMax:#original\
+class StackWithMax:#original
 
     ElementWithCachedMax = collections.namedtuple('ElementWithCachedMax',
                                                   ('element', 'max'))
@@ -40,10 +41,12 @@ class StackWithMax:#original\
             self.ElementWithCachedMax(
                 x, x if self.empty() else max(x, self.max())))
 """
-Create an auxiliary stack, say ‘trackStack’ to keep the track of maximum element
+Create an auxiliary stack, say 'trackStack' to keep the track of maximum element
 Push the first element to both mainStack and the trackStack. 
  
-Now from the second element, push the element to the main stack. Compare the element with the top element of the track stack, if the current element is greater than the top of trackStack then push the current element to trackStack otherwise push the top element of trackStack again into it. 
+Now from the second element, push the element to the main stack. Compare the element with the top element 
+of the track stack, if the current element is greater than the top of trackStack then push the current 
+element to trackStack otherwise push the top element of trackStack again into it. 
  
 If we pop an element from the main stack, then pop an element from the trackStack as well. 
  
@@ -95,8 +98,9 @@ class Stack_simple:#simple
 """
 Can you improve on additional storeage space, if there are many duplicates
 example [1,5,0,1,2,2,1,5,2,6,3,3,0,3] #only max we are caring for are 1,5,6
-Logic: keep tracking the index of max element in the auxilliary array instead of storing actual element
-If index of max element is not equal to index of element to be popped, then dont remove the index from aux array
+Logic: keep tracking the index of max element in the auxilliary array instead of 
+storing actual element. If index of max element is not equal to index of element to be popped, 
+then dont remove the index from aux array
 """
 class Stack:#simple
     def __init__(self):
@@ -129,7 +133,8 @@ class Stack:#simple
     def pop(self):
         if self.empty():#check if empty
             return
-        if self.mainStackLen == self.trackMaxIndex[-1] + 1:#update the tracker for max index, if length same as tracker's last index
+        #update the tracker for max index, if length same as tracker's last index
+        if self.mainStackLen == self.trackMaxIndex[-1] + 1:
             self.trackMaxIndex.pop()
         self.mainStackLen -= 1
         return(self.mainStack.pop())

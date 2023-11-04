@@ -1,4 +1,3 @@
-from ast import keyword
 import collections
 import functools
 from typing import List, Set
@@ -32,7 +31,9 @@ def find_smallest_subarray_covering_set_v2(paragraph: List[str],
     for right, p in enumerate(paragraph):
         if p in keywords:#keyword is a set, lookup is O(1)
             keywords_to_cover[p] -= 1 
-            if keywords_to_cover[p] >= 0: ##this is very important, because same word can be encountered many times, dont update if counter is negative
+            ##this is very important, because same word can be encountered many times, 
+            # dont update if counter is negative
+            if keywords_to_cover[p] >= 0: 
                 # so lower the cover count when it goes to zero,  if it is negative then no need
                 remaining_to_cover -= 1 #if p is covered, then reduce the size
 
@@ -79,14 +80,16 @@ def find_smallest_subarray_covering_set_simple(paragraph: List[str],
                     end=-1) or right - left < result.end - result.start:
                 result = Subarray(start=left, end=right)
             pl = paragraph[left]
-            if pl in keywords:# Keeps advancing left until keywords_to_cover does not contain all elements in the set
+            # Keeps advancing left until keywords_to_cover does not contain all elements in the set
+            if pl in keywords:
                 keywords_to_cover[pl] -= 1
                 if keywords_to_cover[pl] == 0:#so increase the cover only when it goes above zero
                     remaining_to_cover += 1
             left += 1
     return result
 
-#this one tackles duplicates in the keywords, see leetcode https://leetcode.com/problems/minimum-window-substring/submissions/
+#this one tackles duplicates in the keywords, see leetcode 
+# https://leetcode.com/problems/minimum-window-substring/submissions/
 def find_smallest_subarray_covering_set(paragraph: List[str],
                                         keywords: Set[str]) -> Subarray:
 
@@ -109,14 +112,17 @@ def find_smallest_subarray_covering_set(paragraph: List[str],
             # keywords.
             #once all the elements are covered, start to reduce the size
             while remaining_to_cover == 0:
-                if result == Subarray(#check if the size of subarray is less, if less than save the new indices
+                #check if the size of subarray is less, if less than save the new indices
+                if result == Subarray(
                         start=-1,
                         end=-1) or right - left < result.end - result.start:
                     result = Subarray(start=left, end=right)
                 pl = paragraph[left]
-                if pl in keywords:# Keeps advancing left until keywords_to_cover does not contain all elements in the set
+                # Keeps advancing left until keywords_to_cover does not contain all elements in the set
+                if pl in keywords:
                     keywords_to_cover[pl] -= 1
-                    if keywords_to_cover[pl] < KeyCountNeeded[pl]:#so increase the cover only when it goes below deisred count
+                    #so increase the cover only when it goes below deisred count
+                    if keywords_to_cover[pl] < KeyCountNeeded[pl]:
                         remaining_to_cover += 1
                 left += 1
         return result
@@ -124,7 +130,8 @@ def find_smallest_subarray_covering_set(paragraph: List[str],
 
 # Variant 1
 """
-Given an array A, find a shortest subarray A[i, j] such that each distinct value present in A is also present in the subarray
+Given an array A, find a shortest subarray A[i, j] such that each distinct value present in A is
+also present in the subarray
 Logic:
     Basically the keyword set consists of all the unique characters of A, then redo the first problem
     YOu need to create the keyword list from A itself
@@ -142,7 +149,8 @@ def find_shortest_subarray(A: List[str]):
     for right, p in enumerate(A):
         if p in keywords:#keyword is a set, lookup is O(1)
             keywords_to_cover[p] -= 1
-            if keywords_to_cover[p] >= 0: ##this is very important, because same word can be encountered many times
+             ##this is very important, because same word can be encountered many times
+            if keywords_to_cover[p] >= 0:
                 # so lower the cover count when it goes to zero,  if it is negative then no need
                 remaining_to_cover -= 1 #if p is covered, then reduce the size
 
@@ -155,7 +163,8 @@ def find_shortest_subarray(A: List[str]):
                     end=-1) or right - left < result.end - result.start:
                 result = Subarray(start=left, end=right)
             pl = A[left]
-            if pl in keywords:# Keeps advancing left until keywords_to_cover does not contain all elements in the set
+            # Keeps advancing left until keywords_to_cover does not contain all elements in the set
+            if pl in keywords:
                 keywords_to_cover[pl] += 1
                 if keywords_to_cover[pl] > 0:#so increase the cover only when it goes above zero
                     remaining_to_cover += 1  #since keywords_to_cover[pl] became > 0
@@ -166,10 +175,13 @@ find_shortest_subarray('aaacbabcdbabddbddaba')
 
 #variant 2: Unable to understand
 """
-Given an Array A, rearrange the elements so that the shortest subarray containing all the distinct values in A has maximum possible length.
+Given an Array A, rearrange the elements so that the shortest subarray containing all the distinct
+values in A has maximum possible length.
 
-http://talk.elementsofprogramminginterviews.com/t/variant-13-9-2-given-an-array-a-rearrange-the-elements-so-that-the-shortest-subarray-containing-all-the-distinct-values-in-a-has-maximum-possible-length/311/4
-The approach that was suggested is to put the least frequent item (and its duplicates) in one end, and the next less frequent item on the other end and so on. 
+http://talk.elementsofprogramminginterviews.com/t/variant-13-9-2-given-an-array-a-rearrange-the-elements-so-that-the-shortest-
+subarray-containing-all-the-distinct-values-in-a-has-maximum-possible-length/311/4
+The approach that was suggested is to put the least frequent item (and its duplicates) in one end,
+ and the next less frequent item on the other end and so on. 
 """
 def max_subarray_distinct(A):
     pass
@@ -189,11 +201,16 @@ Logic:
     The idea is simple: we only worry about the most frequent character(s).
     For example aaaabbbbcccddefg, a is the most frequent letter, so we start with a structure like
     a [] a [] a [] a []
-    and we just pad other letters in between the a's. Only letters with the same highest frequency can go in to the last []. and we don't care about any letters with lower frequencies, we just scatter them among the paddings. So we end up with
+    and we just pad other letters in between the a's. Only letters with the same highest frequency can go 
+    in to the last []. and we don't care about any letters with lower frequencies, we just scatter them 
+    among the paddings. So we end up with
     a [bcdf] a [bcdg] a [bce] a [b].
-    If all the paddings (buckets) except the last one have length larger than k-1, then we have our answer; else we return ''.
+    If all the paddings (buckets) except the last one have length larger than k-1, then we
+     have our answer; else we return ''.
     Solution below is modified, based on heap
     Type of Greedy algo
+    Time complexity O(nlgm), m is the number of distinct letter. Since k can only be 26, 
+    time complexity is O(n)
     Time: O(n), space O(26)
 """
 def rearrangeString(string, k):
@@ -228,10 +245,15 @@ def rearrangeString(string, k):
             if charCount == count: #same as max count encountered
                 lst[chrCount % count].append(char) #use all bucket
             else:
-                # general case: don't use the last bucket; this way we maximize the chars between each two adjacent buckets. Reason we do this is becuse we need to make sure that 
-                #spacing between character which has max count is k, we also pad the last buvket than previous bucket may not be compeltely filled and we lose the k distance for max count character
+                # general case: don't use the last bucket; this way we maximize the chars between each 
+                # two adjacent buckets. 
+                # Reason we do this is becuse we need to make sure that 
+                #spacing between character which has max count is k, we also pad the last bucket than 
+                # previous bucket may not be completely filled and we lose the k distance for max 
+                # count character
                 lst[chrCount % (count - 1)].append(char) #omit last bucket
-            chrCount += 1#filling has to be sequential hence we cant use charCount, we use chrcount which keep son increasing
+            #filling has to be sequential hence we cant use charCount, we use chrcount which keep on increasing
+            chrCount += 1
     # all the characters left
     #res = ''.join((-1*n)*c for n, c in max_heap) #rest of the characters are joined in together like cccddefg, same belong together
     # padding or filling in
@@ -245,10 +267,51 @@ def rearrangeString(string, k):
 
     return ''.join(''.join(l) for l in lst)
 
+#this is better
+#https://leetcode.com/problems/rearrange-string-k-distance-apart/discuss/347007/Python-heap-que-with-explanation
+"""
+Create a heapq orderd by frequency from big to small. The que length will be at most 26.
+Create a cooldown dictionary, key being letter, value being remaining frequency, to hold 
+letters in cool down state.
+
+If k==0 or k==1, just return s. Otherwise,
+Pop biggest frequency letter from que, add it to result.
+Letter frequency -1, put it to the cool down dictionary.
+For each iteration, pop letter that finished cooling down from the cool down dictionary, push it 
+back to the frequency heap.
+When it is impossible to make a valid result, the result array length must be shorter than input 
+string. In such case we return "".
+Time complexity O(nlgm), m is the number of distinct letter. Since k can only be 26, time complexity is O(n)
+"""
+def rearrangeString(s: str, k: int) -> str:
+    if k<=1: 
+        return s
+    d = collections.Counter(s)
+
+    freqs = [(-value, key) for key, value in d.items()]
+    heapq.heapify(freqs)        
+    cooling={}
+    res=[]
+    while freqs:
+        freq, c = heapq.heappop(freqs)
+        res.append(c)
+        freq += 1
+        if freq < 0:                
+            cooling[c] = (freq, c)
+        #only pop element that is k distance away, makes sure the high frequncy letter has 
+        # to cool down at least k times
+        #once the length reaches at least k , pull back the cooled element added k times ago
+        if len(res) >= k and res[-k] in cooling:
+            prevFreq, prevC = cooling.pop(res[-k])
+            heapq.heappush(freqs,(prevFreq, prevC))        
+    return ''.join(res) if len(res) == len(s) else ""
+
 #subvariant 3, characters and their duplicates exactly d distance away
 """
 https://www.geeksforgeeks.org/rearrange-a-string-so-that-all-same-characters-become-at-least-d-distance-away/
-The approach to solving this problem is to count frequencies of all characters and consider the most frequent character first and place all occurrences of it as close as possible. After the most frequent character is placed, repeat the same process for the remaining characters.
+The approach to solving this problem is to count frequencies of all characters and consider the most frequent 
+character first and place all occurrences of it as close as possible. After the most frequent character is 
+placed, repeat the same process for the remaining characters.
 Exactly d distance away
 """
 import heapq
@@ -300,8 +363,9 @@ In essence,
 at each step, we make the currently added one ineligible for next step, by not adding it to the heap
 at each step, we make the previously added one eligible for next step, by adding it back to the heap
 
-Basically we pick(pop) the highest frquecy letter, put it to result, then lower itsd frequency, move it to temp variable (cool down)
-then pop next element, then push the previously cool down element and then redo cooldown for popped element
+Basically we pick(pop) the highest frquecy letter, put it to result, then lower itsd frequency, 
+move it to temp variable (cool down) then pop next element, then push the previously cool down element 
+and then redo cooldown for popped element
 """
 def reorganizeString(S):
     res, c = [], collections.Counter(S)

@@ -4,7 +4,13 @@ from list_node import ListNode
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-
+"""
+WAP which deletes a node in a singly linked list. The input node is guaranteed not to be the tail node.
+Logic:
+Instead of deleting the node, you can delete its successor and still achieve the desired configuration by 
+overwriting the successor's data into the given node.
+Time: O(1)
+"""
 # Assumes node_to_delete is not tail.
 def deletion_from_list(node_to_delete: ListNode) -> None:
 

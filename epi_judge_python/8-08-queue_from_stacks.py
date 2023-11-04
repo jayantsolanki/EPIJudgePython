@@ -3,8 +3,12 @@ from typing import List
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-# eseentialy use two stacks, one for enqueue and other for dequeue
-#once dequeue is empty, transfer content of first stack to dequeue to stack
+"""
+Queue insertion and deletion follows first-in, first-out semantics; stack insertion and deletion is last-in, first-out.
+How would you implement a queue given a library implementing stacks?
+"""
+# essentialy use two stacks, one for enqueue and other for dequeue
+#once dequeue stack is empty, transfer content of first stack to dequeue to stack
 # this approach takes O(m) time for m operations, each element is push and popped not more then two times
 class Queue:
     def __init__(self) -> None:

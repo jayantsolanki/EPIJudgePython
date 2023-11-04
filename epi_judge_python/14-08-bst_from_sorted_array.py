@@ -12,7 +12,8 @@ from test_framework.test_utils import enable_executor_hook
 Build a balanced (min height) BST from a sorted array
 Logic:
     Always pic the middle as the root and recurse on the subtrees
-Time: O(n), any ways you are going to visit all the nodes
+Time: O(n), any ways you are going to visit all the nodes: T(n) = 2T(n/2) + O(1) = O(n)
+We make exactly n call to the recursive function since we need to visit n nodes
 Space O(logn)
 """
 def build_min_height_bst_from_sorted_array_ori(A: List[int]) -> Optional[BstNode]:
@@ -27,7 +28,7 @@ def build_min_height_bst_from_sorted_array_ori(A: List[int]) -> Optional[BstNode
 
     return build_min_height_bst_from_sorted_subarray(0, len(A))
 
-#other version, more undersandable, since using mid -1 and mid + 1
+#other version, more understandable, since using mid - 1 and mid + 1
 def build_min_height_bst_from_sorted_array(A: List[int]) -> Optional[BstNode]:
     def build_min_height_bst_from_sorted_subarray(start, end):
         if start > end: #important

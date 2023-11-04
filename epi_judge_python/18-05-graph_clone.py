@@ -36,6 +36,28 @@ def clone_graph(graph: GraphVertex) -> GraphVertex:
             new_vertex.edges.append(vertex_track[edge.label])#add this cloned vertex to new_vertex
 
     return vertex_track[graph.label]
+# my take 2
+#using seen here
+def clone_graph_another_take(graph: GraphVertex) -> GraphVertex:
+    node_queue = collections.deque()
+    node_queue.append(graph)
+    vertex_track = {
+        graph.label: GraphVertex(graph.label)
+    }#vertex_track also acts as a seen variable used in norma ldfs and bfs
+    seen = set()
+    while node_queue:
+        current_node = node_queue.popleft()
+        if current_node in seen:
+            continue
+        new_vertex = vertex_track[current_node.label]#get the new vertex by its label from the hashmap
+        seen.add(current_node)
+        for edge in current_node.edges:
+            if edge.label not in vertex_track:#only create that node if not created before
+                vertex_track[edge.label] = GraphVertex(edge.label) #create new node
+            node_queue.append(edge)#at this edge in to queue for later processing
+            new_vertex.edges.append(vertex_track[edge.label])#add this cloned vertex to new_vertex
+
+    return vertex_track[graph.label]
 
 #DFS - iterative
 def clone_graph_iter(graph: GraphVertex) -> GraphVertex:

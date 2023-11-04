@@ -2,6 +2,13 @@ from list_node import ListNode
 from test_framework import generic_test
 from DoublyLinkedList import *
 
+"""
+WAP that tests wheter a singly linked list in palindromic or not.
+Time: O(n) and constant space
+Logic:
+Traverse the list forward and backward simultaneously. Do travedrse backward, reverse half of the linked list
+"""
+
 #leetcode: https://leetcode.com/problems/palindrome-linked-list/
 def reverse_list_complex(head: ListNode) -> ListNode:
     dummy = ListNode(0)
@@ -33,7 +40,7 @@ def is_linked_list_a_palindrome(L: ListNode) -> bool:
 
     # Compares the first half and the reversed second half lists.
     first_half_iter, second_half_iter = L, reverse_list(slow)
-    while second_half_iter and first_half_iter:
+    while second_half_iter and first_half_iter:#second portion not necessary
         if second_half_iter.data != first_half_iter.data:
             return False
         second_half_iter, first_half_iter = (second_half_iter.next,
@@ -42,7 +49,7 @@ def is_linked_list_a_palindrome(L: ListNode) -> bool:
 
 #variant 1
 #check if double linked list is a palindrome or not
-# well, get the tail then walk bakward till half way to check it
+# well, get the tail then walk backwards till half way to check it
 
 def is_doublelinked_list_a_palindrome(left):
   

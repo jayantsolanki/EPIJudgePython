@@ -3,6 +3,8 @@ from typing import List
 from test_framework import generic_test
 
 """
+# https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/ 1886
+# https://leetcode.com/problems/rotate-image/ 48
 Write a function that takes as input an nxn 2d array , and rotates the array by 90 degree clockwise
 time: O(n^2), space O(1)
 Logic:
@@ -16,9 +18,11 @@ So, identify each postitions to be exchanges, one on the left of equation will t
 example, 1 will take 4th element, 2 will take 1st element, 3 will take 2nd element, 4th will take 3rd element in outer layer
 """
 def rotate_matrix(square_matrix: List[List[int]]) -> None:
-    matrix_size = len(square_matrix) - 1 # see this, this make sure the the second loop doesnt access the last element in each of four section
-    for i in range(len(square_matrix) // 2):#this tackles the layer, 
-        for j in range(i, matrix_size - i):#second loop you are capturing elements in that layer
+    matrix_size = len(square_matrix) # see this, this make sure the the second loop doesnt access the last element in each of four section
+    for i in range(len(square_matrix) // 2):#this tackles the layer, no need to rotate a 1x1 D array, start from 2x2 D array
+        for j in range(i, matrix_size - i):#second loop you are capturing elements in that layer, -i because last elements of 
+            #top row, right column, bottom row, and left column will be covered by their subsequent operation
+            #that is right_column takes care of last elemtn of top row, and so forth
             # Perform a 4-way exchange. Note that A[~i] for i in [0, len(A) - 1]
             # is A[-(i + 1)].
         #in every inner loop iteration change postition of 1st, last, then second, second last, then third, third last, so on
@@ -42,7 +46,7 @@ and diagonal top-right to bottom-left
 def mirror_matrix_vertically(square_matrix):# this is left to right switch
 
     matrix_size = len(square_matrix)
-    for i in range((matrix_size+1)//2):#left 
+    for i in range((matrix_size+1)//2):#left #+1 to tackle case where single row present
         for j in range((matrix_size+1)//2):
             (square_matrix[i][j], square_matrix[~i][j],  square_matrix[i][~j], 
             square_matrix[~i][~j])= (square_matrix[i][~j], 
@@ -67,7 +71,7 @@ def mirror_matrix_horizontally(square_matrix):
 
 mirror_matrix_horizontally([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 
-def mirror_matrix_left_diagonal(square_matrix):
+def mirror_matrix_left_diagonal(square_matrix): #\
 
     matrix_size = len(square_matrix)
     for i in range(matrix_size):
@@ -77,7 +81,7 @@ def mirror_matrix_left_diagonal(square_matrix):
 
 mirror_matrix_left_diagonal([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 
-def mirror_matrix_right_diagonal(square_matrix):
+def mirror_matrix_right_diagonal(square_matrix): #/
 
     matrix_size = len(square_matrix)
     for i in range(matrix_size):

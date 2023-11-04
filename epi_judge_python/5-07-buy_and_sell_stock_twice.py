@@ -23,9 +23,10 @@ The time complexity of the above simple solution is O(n^2)
 We can do this O(n) time complexity and O(n) space complexity, using the following Efficient Solution. 
 The idea is to store the maximum possible profit of every subarray and solve the problem in the following two phases.
 1) Create a table profit[0..n-1] and initialize all values in it 0.
-2) Traverse price[] from left to right and update profit[i] such that profit[i] stores maximum profit such that profit[i] 
-    contains maximum achievable profit from two transactions in subarray price[0..i].
-3) Traverse price[] from right to left and update profit[i] such that profit[i] stores maximum profit achievable from one transaction in subarray price[i..n-1]
+2) Traverse price[] from left to right and update profit[i] such that profit[i] 
+stores maximum profit such that profit[i] contains maximum achievable profit from two transactions in subarray price[0..i].
+3) Traverse price[] from right to left and update profit[i] such that profit[i] stores maximum profit 
+    achievable from one transaction in subarray price[i..n-1]
 4) Return profit[n-1]
 
 To do step 3, we need to keep track of the maximum price from right to left side, and to do step 2, 

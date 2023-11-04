@@ -2,6 +2,16 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 #use combination of Question 8.1 and 8.8
+"""
+Implement a queue with enqueue, dequeue, and max operations. The max operation returns the maximum element 
+currently stored in the queue.
+
+Hint: When can an element never be returned by max, regardless of future updates?
+An alternate solution that is often presented is to use reduction. Specifically, we know how to solve the stack-with-max
+ problem efficiently, and we also know how to efficiently model a queue with two stacks (Solution 8.08), so we 
+ can solve the queuewith-max design by modeling a queue with two stacks-with-max. This approach feels unnatural 
+ compared to the one presented above.
+"""
 class Stack:#imported from Stack with Max program
     def __init__(self):
          

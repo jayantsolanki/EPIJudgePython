@@ -4,25 +4,30 @@ from test_framework import generic_test
 
 # search for an item in a 2-d sorted array. 
 """
+leetcode: 74 https://leetcode.com/problems/search-a-2d-matrix/solution/
+leetcode: 240 https://leetcode.com/problems/search-a-2d-matrix-ii/
+Design an algo, that takes a 2D array SORTED and a number and checks whether that number appears in the array.
+
 A 2d array of m x n is sorted if it has non decreasing row and non decreasing columns
 A normal binary search for each row and overall will take O(mlogn)
 Technique also called Search Space Reduction
+Pick anyone technique and carry from there
 Logic:
     A good rule for design is to look for extreme cases
-    #Column rejection rule
+    #Column based rejection rule
     1 - Compare search element x with A[0][n - 1] top-right corner
-        a - if x > A[0][n-1] then x is greater than every elements in Row 0, so move to next row
-        b - if x < A[0][n-1] then x is smaller than every elements in column n -1, hence move one place in that column (that is new column limit will be n - 1 - 1)
-    Row Rejection rule
+        a - if x > A[0][n-1] then x is greater than every elements in Row 0, so move to next row, change the ~left limit
+        b - if x < A[0][n-1] then x is smaller than every elements in column n -1, hence reduce one place in that column (that is new column limit will be n - 1 - 1) #change the right limit)
+    Row based Rejection rule
     2 - Compare search element x with A[m -1][0] bottom-left corner
-        a - if x > A[m -1][0] then x is greater than every elements in Column 0, so move to next column
-        b - if x < A[m -1][0] then x is smaller than every elements in Row m - 1, , hence move one place up in that row
+        a - if x > A[m -1][0] then x is greater than every elements in Column 0, so move to next column ~left limit
+        b - if x < A[m -1][0] then x is smaller than every elements in Row m - 1, , hence move one place up in that row #change the right limit)
     You may use either 1 or 2 for your logic
 Time: O(m + n), each iteration removes a row or column, so at max we inspect m+n-1 elements
 """
 def matrix_search(A: List[List[int]], x: int) -> bool:
 
-    row, col = 0, len(A[0]) - 1  # Start from the top-right corner. Using Logic point 1
+    row, col = 0, len(A[0]) - 1  # Start from the top-right corner. Using Logic point 1, Column reduction
     # Keeps searching while there are unclassified rows and columns.
     while row < len(A) and col >= 0: #overall row index is increasing toward m and column index is decreasing towards 0
         if A[row][col] == x:

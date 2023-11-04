@@ -5,6 +5,11 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+"""
+Write a program that efficiently computes the kth node appearing in an inorder traversal. 
+Assume that each node stores the number of nodes in the subtree rooted at that node.
+the time complexity is O(h), where h is the height of tree
+"""
 
 class BinaryTreeNode:
     def __init__(self, data=None, left=None, right=None, size=None):
@@ -16,12 +21,13 @@ class BinaryTreeNode:
 Write a program to compute kth node appearing in inorder. Each node stores the number of its descendent nodes
 """
 #uses size to find numbers of child nodes in current node
-def find_kth_node_binary_tree(tree: BinaryTreeNode,
+def find_kth_node_binary_tree_ori(tree: BinaryTreeNode,
                               k: int) -> Optional[BinaryTreeNode]:
 
     while tree:
         left_size = tree.left.size if tree.left else 0
-        if left_size + 1 < k:  # k-th node must be in right subtree of tree.# left_size + 1 means nodes in tree.left + tree.left node
+        # k-th node must be in right subtree of tree.# left_size + 1 means nodes in tree.left + tree.left node
+        if left_size + 1 < k:  
             k -= left_size + 1
             tree = tree.right
         elif left_size == k - 1:  # k-th is iter itself.
@@ -29,6 +35,8 @@ def find_kth_node_binary_tree(tree: BinaryTreeNode,
         else:  # k-th node must be in left subtree of iter.
             tree = tree.left
     return None  # If k is between 1 and the tree size, this is unreachable.
+
+
 
 #naive solution, doesnt use size, time: O(k),brute force
 def find_kth_node_binary_tree_naive(tree: BinaryTreeNode,

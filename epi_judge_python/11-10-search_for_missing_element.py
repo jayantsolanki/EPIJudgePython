@@ -10,6 +10,7 @@ DuplicateAndMissing = collections.namedtuple('DuplicateAndMissing',
                                              ('duplicate', 'missing'))
 
 """
+Similar leetcode: https://leetcode.com/problems/missing-number/
 You are given an array of n integers between 0 , n-1 inclusive. Exactly one element appears twice, implying exactly one number between 0 to n-1 is missing from the array.
 How would you compute the missing and duplicate numbers
 Logic:
@@ -28,6 +29,14 @@ def find_duplicate_missing(A: List[int]) -> DuplicateAndMissing:
     #miss_xor_dup = functools.reduce(lambda v, i: v ^ i[0] ^ i[1], enumerate(A),0)
     #below is also correct
     miss_xor_dup = functools.reduce(operator.xor, A) ^ functools.reduce(operator.xor, list(range(0, len(A))))
+    #above or below
+    # miss = 0
+    # for item in A:
+    #     miss ^= item
+    # orig = 0
+    # for item in range(0, len(A)):
+    #     orig ^= item
+    # miss_xor_dup = orig ^ miss
     # We need to find a bit that's set to 1 in miss_xor_dup. Such a bit must
     # exist if there is a single missing number and a single duplicated number
     # in A.

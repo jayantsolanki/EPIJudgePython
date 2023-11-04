@@ -9,9 +9,9 @@ from test_framework.test_utils import enable_executor_hook
 
 """
 Find lowest common ancestor using Hashtable
-    Logic:
-        we alternatively move from parent to parent, storing the node encounterered into the hashtable
-        if before adding that node, we check its presence, if it is there, we return that as LCA
+Logic:
+    we alternatively move from parent to parent, storing the node encounterered into the hashtable
+    if before adding that node, we check its presence, if it is there, we return that as LCA
 Time and Space: O(D0 + D1), D0 is number of nodes needed to reach node0 from LCA and D1 same for node1
 Solution in Binary Tree chaper P4 problem is O(h) time and O(1) space, h is the depth of tree
 Here we traded space for time. So this algo is only beneficial when LCA is very close to node1 and node0, else just stick

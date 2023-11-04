@@ -1,13 +1,13 @@
 from test_framework import generic_test
 
 # add using bitwise operations, multiply using shift-and-add
-#using grade school algo
+#Using grade school algo for mutliplying by one digit at a time
+#Time O(n^2)
 def multiply(x: int, y: int) -> int:
-    # TODO - you fill in here.
     def add(a,b):
         while b:#this loop is for taking care of carry bits addition
             carry = a & b#yeah, it gives you bit place where 1 and 1 creates carry
-            a, b = a ^ b, carry <<1# you are finding the carry bit and moving to one place ahead so that it can be added using XOR later
+            a, b = a ^ b, carry <<1 # you are finding the carry bit and moving to one place ahead so that it can be added using XOR later
         return a
         
     running_sum = 0

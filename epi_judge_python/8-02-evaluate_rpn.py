@@ -2,6 +2,7 @@ from typing import List
 from test_framework import generic_test
 import math
 """
+Leetcode 150 https://leetcode.com/problems/evaluate-reverse-polish-notation/
 Write a program to evaluate postfix expression (Reverse Polish Notation)
 Example: "1729", "3,4,+,2,*,1,+", "1,1,+,-2,*", "-641, 6, /, 28, /"
 Logic: process subexpressions, keeping partial values in a stack
@@ -12,11 +13,13 @@ def evaluate(expression: str) -> int:
     intermediate_results: List[int] = []
     delimiter = ','
     operators = {#nice way to organize multiple function
-        '+': lambda y, x: x + y,#notice the order of x and y here, importnt
+        '+': lambda y, x: x + y,#notice the order of x and y here, important
         '-': lambda y, x: x - y,
         '*': lambda y, x: x * y,
         # '/': lambda y, x: x // y
-        '/': lambda y, x: math.ceil(x / y) if (x / y) < 0  else math.floor(x / y) # use this
+        '/': lambda y, x: math.ceil(x / y) if (x / y) < 0  else math.floor(x / y) # use this, The division between 
+        #two integers always truncates toward zero.
+
     }
 
     for token in expression.split(delimiter):# comma
@@ -48,8 +51,9 @@ def prefix_evaluate(expression: str) -> int:
         print(token)
         print(intermediate_results)
         if token in operators:
+            # pop two elements from stack and evaluate then push it back
             intermediate_results.append(operators[token](
-                intermediate_results.pop(), intermediate_results.pop()))# pop two elements from stack and evaluate then push it back
+                intermediate_results.pop(), intermediate_results.pop()))
         else:  # token is a number.
             intermediate_results.append(int(token))
     return intermediate_results[-1]
@@ -69,11 +73,14 @@ If the token is an operand, append it to the end of the output list.
 
 If the token is a left parenthesis, push it on the opstack.
 
-If the token is a right parenthesis, pop the opstack until the corresponding left parenthesis is removed. Append each operator to the end of the output list.
+If the token is a right parenthesis, pop the opstack until the corresponding left parenthesis is removed. 
+Append each operator to the end of the output list.
 
-If the token is an operator, *, /, +, or -, push it on the opstack. However, first remove any operators already on the opstack that have higher or equal precedence and append them to the output list.
+If the token is an operator, *, /, +, or -, push it on the opstack. However, first remove any operators already 
+on the opstack that have higher or equal precedence and append them to the output list.
 
-When the input expression has been completely processed, check the opstack. Any operators still on the stack can be removed and appended to the end of the output list.
+When the input expression has been completely processed, check the opstack. Any operators still on the stack 
+can be removed and appended to the end of the output list.
 """
 class Stack:#simple
     def __init__(self):
@@ -117,7 +124,7 @@ def infixToPostfix(infixexpr):
                 topToken = opStack.pop()
         else:#other operators
             while (not opStack.empty()) and \
-               (prec[opStack.peek()] >= prec[token]):
+               (prec[opStack.peek()] >= prec[token]):#precedence checker
                   postfixList.append(opStack.pop())
             opStack.push(token)
 

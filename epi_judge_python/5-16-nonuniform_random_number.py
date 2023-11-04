@@ -10,6 +10,11 @@ from test_framework.random_sequence_checker import run_func_with_retries
 from test_framework.test_utils import enable_executor_hook
 import numpy 
 
+"""
+You are given n numbers as well as probabilites p0, p1, p2, ... pn-1, which sum up to 1. Given a random number generator that produces values in [0, 1) uniformly, how would you generate one of the numbers according to the specified probabilites?
+If numbers are 3, 5, 7, 11, and probabilites are 9/18, 6/18, 2/18, 1/18, then in 1000000 calls to your program, 3 should appear roughly 500000 times, 5 333333 times, 7 111111 times and 11 should appear roughly 55555 times. 
+
+"""
 #you run below function X times and see each element in the List return with count corresponding to their probability
 #naive implementation
 #time: O(n). space: O(1)

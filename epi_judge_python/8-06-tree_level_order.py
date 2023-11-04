@@ -2,9 +2,13 @@ from typing import List
 from functools import reduce
 from collections import deque
 
-
+"""
+Given a binary tree, return an array consisting of the keys at the same level. Keys should appear in the order of the corresponding nodes' depths, breaking ties from left to right.
+Time complexity is O(n). The space complexity is O(m), where m is the maximum number of nodes at any single depth.
+"""
 # Leetcode: https://leetcode.com/problems/binary-tree-level-order-traversal/
 # Leetcode: https://leetcode.com/problems/binary-tree-level-order-traversal-ii
+# Leetcode 637 https://leetcode.com/problems/average-of-levels-in-binary-tree/
 # from binary_tree_node import BinaryTreeNode
 from test_framework import generic_test
 
@@ -16,7 +20,8 @@ class BinaryTreeNode:
         self.right = right
 
 #basically get children nodes at every iteration using left and right pointers, push them to
-# a list (kinda queue), now process that list and get the data (this is specific level), once done, process the queue to
+# a list (kinda queue), now process that list and get the data (this is specific level), 
+# once done, process the queue to
 #get children again (left, right), keep repeating until children are no more
 def binary_tree_depth_order_original(tree: BinaryTreeNode) -> List[List[int]]:
 
@@ -34,7 +39,7 @@ def binary_tree_depth_order_original(tree: BinaryTreeNode) -> List[List[int]]:
     return result
 
 #simple version
-def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
+def binary_tree_depth_order_simple(tree: BinaryTreeNode) -> List[List[int]]:
 
     result = []
     if not tree:
@@ -50,6 +55,26 @@ def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
             # children = children + [child for child in (curr.left, curr.right) if child]
             children.extend([child for child in (curr.left, curr.right) if child])#above is also fine
         curr_depth_nodes = children
+    return result
+#another simlpe technique
+def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
+
+    result = []
+    if not tree:
+        return result
+
+    curr_depth_nodes = [tree] #get root
+    while curr_depth_nodes:
+        temp = []
+        children = []
+        for node in curr_depth_nodes:
+            temp.append(node.data)
+            if node.left:
+                children.append(node.left)
+            if node.right:
+                children.append(node.right)
+        result.append(temp)
+        curr_depth_nodes = children[:]
     return result
 
 

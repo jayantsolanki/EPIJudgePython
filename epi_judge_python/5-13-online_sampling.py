@@ -12,13 +12,16 @@ from test_framework.test_utils import enable_executor_hook
 """
 Design a program that takes as input a size k, and reads packets, continuously maintaining
 a uniform random subset of size k of the read packets
+Logic: Idea here is to store the first k elements, then start reading the next values in stream, increasing a counter
+Use that counter as a range to run a randrange function and replace the value if random range value within the k index
 Time: O(k), space: O(1)
 """
 # Assumption: there are at least k elements in the stream.
 def online_random_sample(stream: Iterator[int], k: int) -> List[int]:
 
     # Stores the first k elements.
-    running_sample = list(itertools.islice(stream, k))#islice(iterable, start, stop, step): always takes first k elements
+    #islice(iterable, start, stop, step): always takes first k elements
+    running_sample = list(itertools.islice(stream, k))
     # Have read the first k elements.
     num_seen_so_far = k
     for x in stream:
@@ -26,6 +29,7 @@ def online_random_sample(stream: Iterator[int], k: int) -> List[int]:
         # Generate a random number in [0, num_seen_so_far - 1], and if this
         # number is in [0, k - 1], we replace that element from the sample with
         # x.
+        #this line makes sure that existing value in the running_sample is selected with equal probability
         idx_to_replace = random.randrange(num_seen_so_far) ##Return a random integer N such that a <= N < b
         # idx_to_replace = random.randint(0, num_seen_so_far - 1) #Return a random integer N such that a <= N <= b
         if idx_to_replace < k:

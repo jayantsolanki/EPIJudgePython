@@ -24,7 +24,7 @@ Time: O(h), if it was not a bst, then it would have been O(n)
 
 def find_lsca(tree: BstNode, s: BstNode, b: BstNode) -> Optional[BstNode]:
 
-    while tree.data < s.data or tree.data > b.data: #this will be false once s.data < tree.data < b.data, and that the answer
+    while tree.data < s.data or tree.data > b.data: #this will be false once s.data <= tree.data <= b.data, and that the answer
         # Keep searching since tree is outside of [s, b].
         while tree.data < s.data:
             tree = tree.right  # LCA must be in tree's right child.

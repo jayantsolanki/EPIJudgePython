@@ -1,7 +1,9 @@
-from gc import collect
 from test_framework import generic_test
 import collections
 
+"""
+Write a program to test whether the letters forming a string can be permuted to form a palindrome. For example, "edified" can be permuted to form "deified".
+"""
 #check if a string can have a pallindrome
 #Time O(n), space O(c), c is distinct characters
 def can_form_palindrome_ori(s: str) -> bool:
@@ -12,7 +14,7 @@ def can_form_palindrome_ori(s: str) -> bool:
         #check if any odds are present, so return false
         return len([v for v in  collections.Counter(s).values() if v % 2 == 1]) == 0
     else:
-        # so if strings is of size n is odd , than count of all characters occurrence except one should be even
+        # so if strings is of size n is odd , than count of all characters occurrence should be even, except one 
         return len([v for v in  collections.Counter(s).values() if v % 2 == 1]) == 1
 
 

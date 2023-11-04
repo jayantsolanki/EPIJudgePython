@@ -1,6 +1,7 @@
 from test_framework import generic_test
 import math
 
+#Write a program that takes an integer and determines if its reverse is same as the original integer.
 def is_palindrome_number(x: int) -> bool:
     # TODO - you fill in here.
     if x <= 0:#only for positives

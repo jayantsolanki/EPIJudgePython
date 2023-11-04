@@ -1,6 +1,11 @@
 from test_framework import generic_test
 
 #check book for notes
+"""
+Define the snakestring of s to be the left-right top-to-bottom sequence in which characters appear when s is written in sinusoidal fashion. For example, the snakestring string for "Hello-World!" is "e-lHloWrdlo!", - is the space.
+Write a program which takes as input a string s and retums the snakestring of s.
+O(n)time
+"""
 def snake_string(s: str) -> str:
 
     result = []

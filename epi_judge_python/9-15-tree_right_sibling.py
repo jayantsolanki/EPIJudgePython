@@ -13,6 +13,9 @@ class BinaryTreeNode:
 
 # Assumption perfect binary tree needed
 """
+Write a program that takes a perfect binary tree, and sets each node's level-next field to 
+the node on its right, if one exists.
+Leetcode 116 https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 Time: O(n), space O(1)
 We need to ensure that we process nodes level-by-level, left to right traversing. . Traversing a level in which
 the level_next field is set is trivial. When we complete that level, next level is starting node's left child.
@@ -22,19 +25,21 @@ def construct_right_siblingd(tree: BinaryTreeNode) -> None:
     def populate_children_next_field(start_node):
         #second condition is redundant
         #iterate using next attribute
-        while start_node and start_node.left:# we need to assume that it is perfect binary tree, hence starting from left
+        # we need to assume that it is perfect binary tree, hence starting from left
+        while start_node and start_node.left:
             # Populate left child's next field.
             start_node.left.next = start_node.right
             # Populate right child's next field if start_node is not the last
             # node of level.
             if start_node.next:
                 start_node.right.next = start_node.next.left
-            # start_node.right.next = start_node.next and start_node.next.left#first condition makes sure that next exist for start node
+            # start_node.right.next = start_node.next and start_node.next.left
+            # #first condition makes sure that next exist for start node
             #before accessing next property, else error will be thrown when exising left, for example root node doesnt 
             # has next property node
             start_node = start_node.next#now move to the next node in the same level using the next property of that node
-
-    while tree and tree.left:#we do it level by level, current level does the next  linking for below level. Hence we go down until one level
+    #we do it level by level, current level does the next  linking for below level. Hence we go down until one level
+    while tree and tree.left:
         #above the leaf
         populate_children_next_field(tree)
         tree = tree.left

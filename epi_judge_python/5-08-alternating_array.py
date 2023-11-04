@@ -16,6 +16,8 @@ def rearrange(A: List[int]) -> None:
     return 
 
 """
+Leetcode: 280 https://leetcode.com/problems/wiggle-sort/ 
+Leetcode: 324 https://leetcode.com/problems/wiggle-sort-ii/
 Another way, i like this more
 The idea is to start from the second array element and increment the index by 2 for each loop's iteration. 
 If the last element is greater than the current element, swap the elements. Similarly, 

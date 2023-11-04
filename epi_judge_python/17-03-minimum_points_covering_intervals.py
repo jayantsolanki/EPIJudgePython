@@ -16,11 +16,11 @@ You are given a set of closed intervals. Design an efficient algorithm for findi
 numbers that covers all the intervals.
 Another description:
 Consider a foreman responsible for a number fo tasks on the factory floor. Each task starts at a fixed time 
-and ends at fixed time. The foremanwants to visit the floor to check on the tasks. Your job is to help 
-him minimize the number of visits. That is find the visit times which can conincide with max running tasks.
+and ends at fixed time. The foreman wants to visit the floor to check on the tasks. Your job is to help 
+him minimize the number of visits. That is find the visit times which can coincide with max running tasks.
 Logic:
     Good idea is to focus on extreme cases, Events which ends first.
-    So greedy approach here is to pick the earliest finishing event and see how many other events overalps with it.
+    So greedy approach here is to pick the earliest finishing event and see how many other events overlaps with it.
     Then go to next earliest non overlapping event
     Sort all interval on right endpoints. Select the first interval's right endpoint, iterate through 
     intervals, looking for those intervals which have overlapping with selected right endpoint. Look for the first interval 
@@ -59,6 +59,7 @@ def find_minimum_visits(intervals: List[Interval]) -> int:
         visit_time = intervals[i].right
         total += 1
     return total
+
 
 #variant 1
 """ 

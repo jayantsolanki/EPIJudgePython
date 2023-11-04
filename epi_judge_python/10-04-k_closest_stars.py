@@ -7,14 +7,17 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 """
+Leetcode: 973 https://leetcode.com/problems/k-closest-points-to-origin/
 Remember there is O(n) solution using Quickselect
 write a program to find k nearest stars in terms of distance to earth (0, 0, 0)
     Logic:
-        Well first add the initial k stars from the input in to heap, this time a max heap
-        Use the negative value to push to max value to the top root.
-        Now once the heap is generated, start processing next star and only add those which are lesser than current max
-        , if adding, then make sure to kick out the max star.
-        Simply add each star to the maxheap, and discard the max from the max-heap once it contains the k + 1 stars
+    Remember, it is easier to kick an element out if it is at the root. So which start to kick out? 
+    The largest stored in the heap, hence Max-heap
+    Well first add the initial k stars from the input in to heap, this time a max heap
+    Use the negative value to push to max value to the top root.
+    Now once the heap is generated, start processing next star and only add those which are lesser than current max,
+    if adding, then make sure to kick out the max star.
+    Simply add each star to the maxheap, and discard the max from the max-heap once it contains the k + 1 stars
     Time: O(nlogk), space O(k)
 """
 #YOU WILL NEED TO CREATE A CUSTOM COMPARATOR 
@@ -36,7 +39,7 @@ class Star:
         return self.__repr__()
 
     def __eq__(self, rhs):
-        return math.isclose(self.distance, rhs.distance)#interesting
+        return math.isclose(self.distance, rhs.distance)#interesting, decimal values comparison
 
 
 def find_closest_k_stars_v1(stars: Iterator[Star], k: int) -> List[Star]:
@@ -49,8 +52,9 @@ def find_closest_k_stars_v1(stars: Iterator[Star], k: int) -> List[Star]:
         # As python has only min-heap, insert tuple (negative of distance, star)
         # to sort in reversed distance order.
         heapq.heappush(max_heap, (-star.distance, star)) # see the negative sign
-        if len(max_heap) == k + 1:#kinda counter intuitive, but remember, if the insert star is max, it will be at root then
-            #hence, below line will eventually kick it, so any further max start automatically gets kicked out
+        if len(max_heap) == k + 1:#kinda counter intuitive, but remember, if the insert star is max, 
+            # it will be at root then hence, below line will eventually kick it, so any further 
+            # #max start automatically gets kicked out
             # deletion always occurs at the root, and the mx is only stored at the top
             heapq.heappop(max_heap)
         #so once the k max-heap goes thorugh all the star, it will only contains k max(negative) stars.
@@ -74,8 +78,10 @@ def find_closest_k_stars(stars: Iterator[Star], k: int) -> List[Star]:
              heapq.heappushpop(max_heap, (-star.distance, star))
         else:
             heapq.heappush(max_heap, (-star.distance, star)) # see the negative sign
-        # if len(max_heap) == k + 1:#kinda counter intuitive, but remember, if the insert star is max, it will be at root then
-        #     #hence, below line will eventually kick it, so any further max start automatically gets kicked out
+        # if len(max_heap) == k + 1:#kinda counter intuitive, but remember, 
+        # if the insert star is max, it will be at root then
+        #     #hence, below line will eventually kick it, so any further max
+        #  start automatically gets kicked out
         #     # deletion always occurs at the root, and the mx is only stored at the top
         #     heapq.heappop(max_heap)
         #so once the k max-heap goes thorugh all the star, it will only contains k max(negative) stars.
@@ -104,7 +110,7 @@ def kth_largest_element(elements:  Iterator[int], k: int):
     min_heap = []
     for element in elements:
         heapq.heappush(min_heap, element)
-        if len(min_heap) == k + 1:#i think it should k not k + 1
+        if len(min_heap) == k + 1:#
             print(heapq.heappop(min_heap))
     
 kth_largest_element(iter([1,2,3,4,5,6,7,8,9]), 3)

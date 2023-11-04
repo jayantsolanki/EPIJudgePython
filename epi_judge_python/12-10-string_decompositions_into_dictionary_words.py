@@ -4,7 +4,7 @@ from typing import List
 from test_framework import generic_test
 
 """
-Write aprogram which takes as input a string (sentence) and an array of string (words) and returns the starting indices 
+Write a program which takes as input a string (sentence) and an array of string (words) and returns the starting indices 
 of substrings of the sentence string which are the concaternation of all the strings in the words array. 
 Each string must appear only once, their ordering is immaterial. All strings in words have equal length.
 They may have duplicates.
@@ -22,7 +22,7 @@ each word size. Also we scan each character in sentence of size n, so total Time
 def find_all_substrings_original(s: str, words: List[str]) -> List[int]:
     def match_all_words_in_dict(start):
         curr_string_to_freq = collections.Counter()
-        for i in range(start, start + len(words) * unit_size, unit_size):
+        for i in range(start, start + len(words) * unit_size, unit_size):#range should be o length == length of words
             curr_word = s[i:i + unit_size]
             it = word_to_freq[curr_word]#since words can be repeated, get the count so as to make sure that limit is reached
             if it == 0:

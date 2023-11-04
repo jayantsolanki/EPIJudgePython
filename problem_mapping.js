@@ -446,7 +446,7 @@ problem_mapping = {
                 "total": 51
             },
             "Python: 5-19-matrix_rotation.py": {
-                "passed": 51,
+                "passed": 2,
                 "total": 51
             }
         },
@@ -560,7 +560,7 @@ problem_mapping = {
                 "total": 103
             },
             "Python: 6-06-reverse_words.py": {
-                "passed": 103,
+                "passed": 2,
                 "total": 103
             }
         },
@@ -1492,7 +1492,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: 12-03-lru_cache.py": {
-                "passed": 101,
+                "passed": 1,
                 "total": 101
             }
         },
@@ -2376,7 +2376,7 @@ problem_mapping = {
                 "total": 1005
             },
             "Python: 17-03-minimum_points_covering_intervals.py": {
-                "passed": 103,
+                "passed": 0,
                 "total": 103
             },
             "Python: 17-03-two_sum.py": {

@@ -1,4 +1,3 @@
-import itertools
 from typing import Iterator
 import collections
 from test_framework import generic_test
@@ -9,7 +8,7 @@ Leetcode: 169. Majority Element
 https://leetcode.com/problems/majority-element/
 Check https://leetcode.com/problems/majority-element-ii/
 Write a program that makes a single pass over the sequence and identifies the majority element.
-Rememebr majority means count  > n/2. Hence only the algo will work
+Remember majority means count  > n/2. Hence only the algo will work
 Logic:
     You can solve it in O(n) space and time using hashmap to track the count.
     For improved space:

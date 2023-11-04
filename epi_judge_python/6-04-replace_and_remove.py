@@ -5,7 +5,7 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 """
-Write a program to remove occureeences of b and replace occurences of a with two ds. Size is given, process till the size
+Write a program to remove occurrences of b and replace occurrences of a with two ds. Size is given, process till the size.
 """
 # dont worry about preserving subsequent characters after a and b have been dealt with
 # first we delete bs and compute the final number of valid characters of the string, valid characters also include numbers of new 

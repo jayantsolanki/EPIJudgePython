@@ -11,13 +11,13 @@ from test_framework.test_utils import enable_executor_hook
 """
 WAP that takes input positive integer n and a size k <=n, and returns a size-k subset of {0,1,2,3,4,...n-1}
 Logic: Basically we use hash map to mimic swapping feature of program 5.12
+you can use offline random sampling, but this could be O(n) for both time and space, since the original array needs to be generated first
+in order to reduce it to the O(k)  
+basically in below code we map index to randnumber and randnumber to index, both being keys of an array of size n
+if randnumber is repeated during a new index then it will be pointed to that new index, and the older index it pointed to , that will point by new index
+since index is increasing in the loop, there will be no repetition
 """
-#you can use offline random sampling, but this could be O(n) for both time and space, since the original array needs to be generated first
-# in order to reduce it to the O(k)  
-#
-#basically in below code we map index to randnumber and randnumber to index, both being keys of an array of size n
-#if randnumber is repeated during a new index then it will be pointed to that new index, and the older index it pointed to , that will point by new index
-#since index is increasing in the loop, there will be no repetition
+
 def random_subset_original(n: int, k: int) -> List[int]: 
     #below program similar to 5.12, where we need to exchange the elements. Since we dont know the elements early, we use hashmap
     changed_elements: Dict[int, int] = {}#used for tracking the swapped values

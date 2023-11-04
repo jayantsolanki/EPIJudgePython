@@ -1,6 +1,7 @@
 from test_framework import generic_test
 
-
+# Write a program which takes an integer and returns the reverse of that integer including the sign.
+# Time: O(log(n, 10)), that is number of digits in the number x
 def reverse(x: int) -> int:
     # TODO - you fill in here.
     result, x_remaining = 0, abs(x)

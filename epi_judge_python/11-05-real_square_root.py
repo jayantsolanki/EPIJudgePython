@@ -1,4 +1,3 @@
-from numpy import Inf
 from test_framework import generic_test
 import math
 
@@ -18,7 +17,7 @@ def square_root_v1(x: float) -> float:
         mid = 0.5 * (left + right)
         mid_squared = mid * mid
         if mid_squared > x:
-            right = mid
+            right = mid #this is work since it is floating point, we deal with decimals, would not work in integer
         else:
             left = mid
     return left
@@ -39,7 +38,7 @@ def square_root_v2(x: float) -> float:
         if math.isclose((mid * mid), x) :
             return mid
         elif mid_squared > x:
-            right = mid
+            right = mid#this is work since it is floating point, we deal with decimals, would not work in integer
         else:
             left = mid
     return left
@@ -60,29 +59,31 @@ def square_root(x: float) -> float:
         if math.isclose(mid_squared, x) and mid_squared < x:
             return mid
         elif mid_squared > x:
-            right = mid
+            right = mid#this is work since it is floating point, we deal with decimals, would not work in integer
         else:
             left = mid
-    return mid
+    return right#or mid # left
 
 
 #variant 1
 """
 Given two positive floating point numbers x and y, calculate x/y within tolerance e if the division operation cannot be used.
 Addition multiplication acceptable
+Logic: You figure out the value for right, take the mid and multiply by y, if the value greater than x then 
+right = mid else left =  mid
 #not considering the sign
 """
 import sys
 def division(x: float, y: float):
     # left, right = 0, x
     if x < 1.0 and y < 1.0:
-        if x > y:
+        if x > y:#0.30/0.25
             left, right = 1, sys.float_info.max
-        else:
+        else:#0.25/0.30
             left, right = x, 1
     elif y < 1.0:
         left, right = 1, sys.float_info.max#this may cause overflow
-    else:
+    else:#either x < 1.0 or x > y, or x < y, but y always > 1.0
         left, right = 0, x
     # left, right = (x, 1)if x < y else (0, 1)
 

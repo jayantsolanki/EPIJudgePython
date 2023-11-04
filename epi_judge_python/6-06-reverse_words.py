@@ -1,4 +1,3 @@
-from audioop import reverse
 import functools
 
 from test_framework import generic_test

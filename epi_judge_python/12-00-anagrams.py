@@ -9,8 +9,10 @@ A universal hash function is defined by the following equation:
 
 h(x) = ((ax + b) mod p) mod m
 
-In this equation, x is the input value, h(x) is the output value, a and b are integers, p is a prime number, and m is the number of slots in the hash table.
-To use this technique, the values of a, b, and p must be chosen. The value of a should be chosen to be relatively prime to p. The value of b can be any integer. The value of p should be a prime number.
+In this equation, x is the input value, h(x) is the output value, a and b are integers, p is a prime number, 
+and m is the number of slots in the hash table.
+To use this technique, the values of a, b, and p must be chosen. The value of a should be chosen to be 
+relatively prime to p. The value of b can be any integer. The value of p should be a prime number.
 """
 #string_hash
 def string_hash(s: str, modulus: int) -> int:
@@ -33,13 +35,14 @@ Write a program to group words into their anagrams
 https://leetcode.com/problems/group-anagrams/
 Logic:
     Anagram words have same letters after sorting, hence
-    Sort each word you encounter, treat the sorted words as keys, add their original word to a hash table in the list form
-    List form for each key is the grouping of those words
-    Return the result in the form of a list of a list
+    Sort each word you encounter, treat the sorted words as keys, add their original word to a hash table in 
+    the list form.List form for each key is the grouping of those words. Return the result in the form of a
+      list of a list
 
-Time: sorting each key is mlogm, where m is the largest number of characters in a string, sorting all keys is O(nmlogm)
-    Insertion into the hashmap for each sorted key takes O(m), so for all words, insertion will be O(nm). 
-    Hence total Time: O(nmlogm)
+Time: sorting each key is mlogm, where m is the largest number of characters in a string, sorting 
+all keys is O(nmlogm).
+Insertion into the hashmap for each sorted key takes O(m), so for all words, insertion will be O(nm). 
+Hence total Time: O(nmlogm)
 
 """
 def find_anagrams_v2(dictionary: List[str]) -> List[List[str]]:
@@ -67,7 +70,7 @@ def find_anagrams_simple(dictionary: List[str]) -> List[List[str]]:
         # Sorts the string, uses it as a key, and then appends the original
         # string as another value into hash table.
         temp = ''.join(sorted(s))
-        if temp not in sorted_string_to_anagrams:
+        if temp not in sorted_string_to_anagrams:#comparing string takes O(n)
             sorted_string_to_anagrams[temp] = [s]
         else:
             sorted_string_to_anagrams[temp].append(s)
@@ -79,13 +82,15 @@ def find_anagrams_simple(dictionary: List[str]) -> List[List[str]]:
 
 #Variant 1, find anagrams in O(nm)
 """
-Since we only need to calculate hashvalue, we can have same hash value or a string, even if characters in that string are in any order
-. We need to modify general technique for calculating the hash value, by assigning unique prime value to each character. 
-Create key independent of sorted values, i think use the custom hash function created in previous algo
+Since we only need to calculate hashvalue, we can have same hash value or a string, even if characters in that string 
+are in any order. We need to modify general technique for calculating the hash value, by assigning unique prime value 
+to each character. Create key independent of sorted values, i think use the custom hash function created in previous algo
     Logic:
         With prime mapping 2 strings are guaranteed to have different factors.
         https://stackoverflow.com/questions/18781106/generate-same-unique-hash-code-for-all-anagrams
-        Pick a set of prime numbers (26 of alphabets, and one for space), as small as you like, the same size as your character set, and build a fast mapping function from your chars to that. Then for a given word, map each character into the matching prime, and multiply. finally, hash using the result.
+        Pick a set of prime numbers (26 of alphabets, and one for space), as small as you like, the same size as 
+        your character set, and build a fast mapping function from your chars to that. Then for a given word, map 
+        each character into the matching prime, and multiply. finally, hash using the result.
 """
 
 def find_anagrams_v1(dictionary: List[str]) -> List[List[str]]:

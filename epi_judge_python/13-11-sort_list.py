@@ -1,8 +1,4 @@
-from multiprocessing import dummy
 from typing import Optional
-
-from numpy import linspace
-
 from list_node import ListNode
 # # from sorted_lists_merge import merge_two_sorted_lists
 # import importlib
@@ -16,11 +12,29 @@ elements must remain unchanged.
 """
 #first method 
 """
-This is a brute force effort
-We repeatedly reorder smallest nodes encountered
+This is a brute force effort mimicing insertion sort
+We repeatedly reorder smallest nodes encountered towards left
+Just like insertion sort, we start with beginning node, get the node next to it and check if thats smaller
+if smaller, we store that smaller node in a temp variable, connect the node next to smaller node with the node before smaller node
+now use while loop, start from begnning and search for the node which is bigger than the temp node, insert it before that node
+once found 
+def insertion_sort(arr):
+
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+                
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j = j - 1
+            
+        # Place key at after the element just smaller than it.
+        arr[j + 1] = key
+
+
 """
 #time O(n2), Space O(1), worst case O(n2), if whole list was reversed initially
-
+#method 1
 def insertion_sort(L: ListNode) -> ListNode:
     dummy_head = ListNode(0, L)
     # The sublist consisting of nodes up to and including iter is sorted in
@@ -29,20 +43,25 @@ def insertion_sort(L: ListNode) -> ListNode:
     # predecessors in the list till it's in the right place.
 
     while L and L.next:
-        #first go untill where incoming node is smaller than current one
-        #as soon as you encounter the next node (target node) is smaller, you will try to find its correct place in the previous nodes
-        #that you can do by start searching from dummy_head always, as soon as you find the node(pre.next) which is greater than target node,
-        # you simply squeeze the target node before that node. Then point the L.next to target.next, and target.next to node (pre.next)
+        #first go until where incoming node is smaller than current one
+        #as soon as you encounter the next node (target node) is smaller, you will try to 
+        # find its correct place in the previous nodes
+        #that you can do by start searching from dummy_head always, as soon as you find the 
+        # node(pre.next) which is greater than target node,
+        # you simply squeeze the target node before that node. Then point the L.next to target.next, 
+        # and target.next to node (pre.next)
         if L.data > L.next.data:#keep finding the smaller ones
             target, pre = L.next, dummy_head
             L.next = target.next #move the pointer to target's next node , note that L is not updated to L.next, since 
             #above if keeps on checking L with L.next, hence we simply updated L.next directly
-            #below loop finds which node is greater than target node, condition makes sure that stablity is maintained, hence we omitted <=
+            #below loop finds which node is greater than target node, condition makes sure that 
+            # stablity is maintained, hence we omitted <=
             #start searching from beginning for node greater than target
             #here pre points to start of the list (dummy)
             while pre.next.data < target.data:
                 pre = pre.next
-            target.next, pre.next = pre.next, target#target node is squeezed between greater node (pre.next) and prev
+            #target node is squeezed between greater node (pre.next) and prev
+            target.next, pre.next = pre.next, target
         else:
             L = L.next
     return dummy_head.next
@@ -85,6 +104,7 @@ def stable_sort_list(L: ListNode) -> Optional[ListNode]:
         return L
 
     # Find the midpoint of L using a slow and a fast pointer.
+    #pre_slow will be a node before slow, it will sever the link when divide and conquer
     pre_slow, slow, fast = None, L, L
     while fast and fast.next:
         pre_slow = slow

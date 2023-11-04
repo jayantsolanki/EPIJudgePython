@@ -3,6 +3,10 @@ from typing import List
 from test_framework import generic_test
 
 """
+NOTE:
+Since k sum problem have Time complexity: O(n^(k-1)), so sorting should be done for problem start with 3 sum and more.
+Sorting not needed for 2 sum if using hashmaps. If already sorted then use sliding window technique
+
 IF sorted then use sliding window, if unsorted then use hashmap
 Leetcode: 15. 3Sum
 https://leetcode.com/problems/3sum/
@@ -62,7 +66,7 @@ def has_three_sum(A: List[int], t: int) -> bool:
 """
 Solve the problem  when three elements must be distinct.
 Example:  [5, 2, 3, 4, 3] and t = 9, aceeptable answ = [2, 3, 4] or [2, 4, 3]
-Logic, change the <= to <
+Logic, change the <= to < and track for index match
 """
 def two_sum_distinct(A, t, l):
     i, j = l + 1, len(A) - 1
@@ -85,6 +89,31 @@ def has_three_sum_distinct(A: List[int], t: int) -> bool:
     return False
 has_three_sum_distinct([11, 2, 5, 7, 3], 21)
 has_three_sum_distinct([5, 2, 3, 4, 3], 9)
+
+#another
+def threeSum_1_distinct(nums: List[int]) -> List[List[int]]:
+    target = 0
+    def two_sum_distinct(A, t, l):
+        i, j = l + 1, len(A) - 1 #start from l + 1
+
+        while i < j: 
+            if A[i] + A[j] == t:
+                result.add(tuple(sorted([A[l], A[i], A[j]])))
+                i +=1
+                j -= 1
+                # return True
+            elif A[i] + A[j] < t:
+                i += 1
+            else:
+                j -= 1
+
+    nums.sort()
+    result = set()
+    for i in range(len(nums)):
+        if nums[i] > 0:#since we have already sorted it, so no use to go further becasue rest fo those will be positive
+            break
+        two_sum_distinct(nums, target - nums[i], i)
+    return result
 
 #variant 2
 """
@@ -168,7 +197,7 @@ def threeSumClosest(nums: List[int], target: int) -> int:
 
 #variant 4
 """
-Leedtcode: 259. 3Sum Smaller
+Leetcode: 259. 3Sum Smaller
 https://leetcode.com/problems/3sum-smaller/
 Write a proghram  that takes an array if integers A and and target T, and returns the numbers of 3-tuples
 such that A[p] + A[q] + A[r] <= T and A[p] <= A[q] <= A[r].

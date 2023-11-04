@@ -23,10 +23,11 @@ Logic:
     assigned elements of that type. We keep on swapping elements across these subarrays to move them to their correct positions then move to next.
     USe two hastables to track subarrays. one for offsets, other for its size. As soon as subarray is empty, we remove it.
     Key is that we swap
-    Tldr: get the first age key from offset hash,, find the index(from_idx) where it should have belonged, then get the actual element
-    currently present there, find its index(to_idx) where it should have actually belonged, now swap the elements at those two indices
-    , update the counter and offset hash maps for element at to_idx
 
+    Tldr: get the first age key from offset hash, find the index(from_idx) where it should have belonged, then get the actual element
+    currently present there, find its index(to_idx) where it should have actually belonged, now swap the elements at those two indices
+    , update the counter and offset hash maps for element at to_idx, for to_idx because we are sure that it moved to its correct place
+    Summary: #get the element at from_idx, find its age, find its offset index where it should go then move it to that index
 If not sorted:
     Time: O(n), has tables O(m), m is distinct ages
     If ordered required, use BST, Chapter 14, Time O(n + mlogm). Use BST for mapping ages to counts. Then process it
@@ -42,23 +43,29 @@ def group_by_age(people: List[Person]) -> None:
     for age, count in age_to_count.items():#creating offsets
         age_to_offset[age] = offset
         offset += count
+    #get the element at from_idx, find its age, find its offset index where it should go then move it to that index
     while age_to_offset:#complete all the offsets
-        from_age = next(iter(age_to_offset))# this keeps on returning the same first value until it is deleted in the last line, 
+        # from_age = next(iter(age_to_offset))# this keeps on returning the same first value until it is deleted in the last line, 
+        #above or below
+        from_age = next(iter(key for key in age_to_offset.keys()))
         # then it return next first value
         # print(from_age)
-        from_idx = age_to_offset[from_age] #find the index where from_age should have belonged in ordered result
-        to_age = people[from_idx].age # get the actual element currently present there
+        from_idx = age_to_offset[from_age] #find the offset index for the from_age
+        to_age = people[from_idx].age # get the current element's age present there, goal is to move this to its correct place
         # to_idx = age_to_offset[people[from_idx].age]  # this also correct
-        to_idx = age_to_offset[to_age]#find correct index for to_age in the ordered result
+        to_idx = age_to_offset[to_age]#find correct index for to_age in the ordered result based on offset
+        #element at frol_idx is being moved to its correct index using info from to_age
         people[from_idx], people[to_idx] = people[to_idx], people[from_idx] #now swap
         # Use age_to_count to see when we are finished with a particular age.
         age_to_count[to_age] -= 1
-        if age_to_count[to_age]:
+        if age_to_count[to_age]:#update the offset
             age_to_offset[to_age] = to_idx + 1
         else:
             del age_to_offset[to_age]
-        #why below is wrong, we dont know if from_age is still at correct location, since the element we picked from to_idx
-        #may not be the element with age == from_age, but we are sure that element we pciked from from_idx can be moved to correct idx (to_idx). Hence we update counter and offset for to_age
+        #why below is wrong, we dont know if from_age is still at correct location, 
+        # since the element we picked from to_idx
+        #may not be the element with age == from_age, but we are sure that element we picked from 
+        # from_idx can be moved to correct idx (to_idx). Hence we update counter and offset for to_age
         # age_to_count[from_age] -= 1
         # if age_to_count[from_age]:
         #     age_to_offset[from_age] = from_idx + 1

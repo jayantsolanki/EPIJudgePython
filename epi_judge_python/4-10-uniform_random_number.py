@@ -7,7 +7,12 @@ from test_framework.random_sequence_checker import (
     check_sequence_is_uniformly_random, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
-
+"""
+How would you mimic a random number generator that generates a random integer i between a and b, inclusive of both.
+You need to use random number generator generating only 0 or 1.
+All values in range [a, b] should be equally likely
+Time: O(lg(b - a + 1)), that is number of binary digits in difference of a ad b. Assuming gnerating a random 0 or 1 takes O(1) time
+"""
 def zero_one_random():
     # return random.randrange(2)#returns 0 or 1
     # return random.choice([0,1])#returns 0 or 1
@@ -15,7 +20,6 @@ def zero_one_random():
 
 
 def uniform_random(lower_bound: int, upper_bound: int) -> int:
-    # TODO - you fill in here.
     number_of_outcomes = upper_bound - lower_bound #this also works
     # number_of_outcomes = upper_bound - lower_bound + 1
     iter = math.floor(math.log(number_of_outcomes, 2))+1 #iter gives the size of binary digits to get those outcomes

@@ -1,7 +1,12 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-
+"""
+Implement a queue API using an array for storing elements. Your API should include a constructor function which takes as argument the initial capacity of the queue, enqueue and dequeue functions, and a function which retums the number of elements stored. Implement dynamic resizing to support storing an arbitrarily large number of elements.
+Hint:Track the head and tail. How can you differentiate a full queue from an empty one?
+"""
+# Leetcode 622
+# https://leetcode.com/problems/design-circular-queue/
 #remember to reset head and tail if they breach the length of array
 #enqueue happens using tail, dequeue happens using head
 #time: dequeue is O(1), enqueue amortized time is O(1)

@@ -7,14 +7,15 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 """
+Leetcode 142 https://leetcode.com/problems/linked-list-cycle-ii/
 Floyd's Cycle-Finding Algorithm 
 Write a program that takes the head of a singly linked list and returns null if there does not exist
-a cycle, and returns the node at the start of the cycle in case the cycle is there
+a cycle, and returns the node at the start of the cycle in case the cycle is there.
 
 Simplest approach is to explore the nodes via a next field starting from head, and storing the visited nodes 
 in a hash table. Space complexity is O(n).
 If space is an issue then go with below code
-Logic: Slow iterator and fast iterator ( Floyd’s Cycle-Finding Algorithm )
+Logic: Slow iterator and fast iterator ( Floyd's Cycle-Finding Algorithm )
     So if we start moving both pointers again at the same speed such that one pointer (say slow) begins from the head 
     node of the linked list and other pointers (say fast) begins from the meeting point. When the slow pointer reaches 
     the beginning of the loop (has made m steps), the fast pointer would have made also moved m steps as they 
@@ -70,6 +71,7 @@ def has_cycle_original(head: ListNode) -> Optional[ListNode]:
             #above loop brings the point to position of slow pointer, below pointer it start from head
             it = head
             # Both iterators(pointers) advance in tandem.
+            #http://www.geeksforgeeks.org/wp-content/uploads/LinkedListCycle.jpg
             while it is not cycle_len_advanced_iter:#break as soon as both meet again, m = n - k
                 it = it.next
                 cycle_len_advanced_iter = cycle_len_advanced_iter.next
@@ -81,8 +83,13 @@ https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
 1. If a loop is found, initialize a slow pointer to head, let fast pointer be at its position. 
 2. Move both slow and fast pointers one node at a time. 
 3. The point at which they meet is the start of the loop.
-Key here is moving at twice the speed.  Now if consider movements of slow and fast pointers, we can notice that distance between them (from slow to fast) increase by one after every step. After one step (of slow = next of slow and fast = next of next of fast), distance between slow and fast becomes x+1, after two iterations, x+2, and so on. When distance becomes n, they meet because they are moving in a cycle of length l
-For example, we can see in below diagram, initial distance is 2. After one iteration, distance becomes 3, after 2 iterations, it becomes 4. After 3 iterations, it becomes 5 which is distance 0. And they meet.
+Key here is moving at twice the speed.  Now if consider movements of slow and fast pointers, 
+we can notice that distance between them (from slow to fast) increase by one after every step. 
+After one step (of slow = next of slow and fast = next of next of fast), distance between slow 
+and fast becomes x+1, after two iterations, x+2, and so on. When distance becomes n, they meet 
+because they are moving in a cycle of length l
+For example, we can see in below diagram, initial distance is 2. After one iteration, distance 
+becomes 3, after 2 iterations, it becomes 4. After 3 iterations, it becomes 5 which is distance 0. And they meet.
 https://media.geeksforgeeks.org/wp-content/uploads/Floyd-Proof.jpg
 """
 # https://www.youtube.com/watch?v=apIw0Opq5nk&ab_channel=IDeserve

@@ -3,6 +3,9 @@ BinaryTreeNode = Node #creating synonym
 from test_framework import generic_test
 
 """
+Design an algorithm to compute the sum of the binary numbers represented by the root-to-leaf paths.
+
+https://leetcode.com/problems/sum-root-to-leaf-numbers using decimal number
 Remember: You are recreating the actual number while going down, imagine the process in your mind
 we can compute the sum of all root  to leaf node as follows:
 Each time visit a node, we compute the integer it encodes using the number for its parent.
@@ -38,8 +41,8 @@ def sum_root_to_leaf(tree: BinaryTreeNode) -> int:
     def sum_root_to_leaf_helper(tree, partial_path_sum=0):
         if not tree:
             pass
-        elif not tree.left and not tree.right: #leaf
-            partial_path_sum = partial_path_sum * 2 + tree.data
+        elif not tree.left and not tree.right: #leaf, at leaf add to a common variable
+            partial_path_sum = partial_path_sum * 2 + tree.data#or partial_path_sum << 1 | tree.data
             result[0] = result[0] + partial_path_sum#this stores the integer equivalent of binary number constructed
         else:
             partial_path_sum = partial_path_sum * 2 + tree.data

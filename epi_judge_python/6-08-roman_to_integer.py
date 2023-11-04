@@ -36,7 +36,8 @@ def roman_to_integer_simple(s: str) -> int:
     T = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
     val = 0
     for i in range(len(s)-1, -1, -1):
-        if i+1 < len(s) and T[s[i]] < T[s[i+1]]:# if the symbol after(right) the current one is greater than it, we subtract
+        # if the symbol after(right) the current one is greater than it, we subtract
+        if i+1 < len(s) and T[s[i]] < T[s[i+1]]:
             val = val - T[s[i]]
         else:
             val = val + T[s[i]]
@@ -100,9 +101,9 @@ Logic: Look for back to back exceptions and string is always non increasing if n
 # https://stackoverflow.com/questions/267399/how-do-you-match-only-valid-roman-numerals-with-a-regular-expression
 """
 Exceptions allowed:
-- I can immediately precide V and X
-- X can immediately proceed L and C
-- C can immediately proceeed D and M
+- I can immediately precede V and X #precede means minus
+- X can immediately precede L and C
+- C can immediately precede D and M
 No digit is repeated in succession more than thrice, i.e., I, X and C cannot be repeated more than 3 times.
 The digits V, L and D are not repeated. The repetition of V, L and D is invalid in the formation of numbers.
 M{0,4} specifies the thousands section and basically restrains it to between 0 and 4000, 0000, 1000, 2000, ... 4000
@@ -136,7 +137,9 @@ ValidationOfRomanNumerals("MCXCC")# correct is MCXC
 """
 https://leetcode.com/problems/integer-to-roman/
 write a program that takes as input a positive integer n and returns a shortest valid roman number in string form
-Logic: create val and syb which will be use for mapping int values to roman values. after that take int values one by one and check how many of those will fit in input value, and add that amount of roman nums to result, and remove the added value from input and repeat the process until zero.
+Logic: create val and syb which will be use for mapping int values to roman values. after that take int values 
+one by one and check how many of those will fit in input value, and add that amount of roman nums to result, 
+and remove the added value from input and repeat the process until zero.
 Actual range 1 - 3999
 """
 def int_to_Roman(num):# this also gives the shortest one

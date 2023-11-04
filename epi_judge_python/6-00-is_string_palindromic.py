@@ -1,6 +1,9 @@
 from test_framework import generic_test
 
-
+"""
+Wap that checks whether a string is palindromic or not.
+Time: O(n), Space: O(1)
+"""
 def is_palindromic(s: str) -> bool:
     return all([s[i] == s[~i] for i in range(len(s)//2)])
 

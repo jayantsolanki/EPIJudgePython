@@ -1,4 +1,3 @@
-from re import L
 from typing import List
 
 from test_framework import generic_test
@@ -33,7 +32,7 @@ Note: problem cannot be solved in log n time if elements repeated
 Logic:  
     for any mid, if A[mid] > A[n-1], n-1 being last index, then the minimum value must be the index after mid, in range [mid+1, n-1], here left becomes mid + 1. Conversely, if A[mid] < A [n  - 1], then no value can be in range [mid + 1, n - 1], here 
     right becomes mid and acts as the boundary for new subarray
-Ex: [378, 478, 550, 631, 103, 203, 220, 234, 279, 368], answ = index 4
+Ex: [378, 478, 550, 631, 103, 203, 220, 234, 279, 368], ans = index 4
 """
 def search_smallest_v2(A: List[int]) -> int:
 
@@ -85,7 +84,8 @@ search_smallest([3,4,5,1,2])
 """
 https://leetcode.com/problems/peak-index-in-a-mountain-array/
 A sequence is strictly ascending if each element is greater that its predecessor. Suppose it is known that an 
-Array A consists of a stricly ascending sequence follwed by strictly descending sequence. Then design an algo for finding the max(global peak or global maxima) element in A
+Array A consists of a stricly ascending sequence follwed by strictly descending sequence. 
+Then design an algo for finding the max(global peak or global maxima) element in A
 Length should be at least 3
 """
 def mountain_peak(A: List[int]) -> int:
@@ -115,7 +115,7 @@ Design an algo O(logn) for finding the position of an element k in cyclically so
 Logic: 
     Two binary searches
     Find the inflexion point or the smallest value
-    Then use the samllest value to corectly determine in what range the k sits, and run binary search in that range
+    Then use the samllest value to correctly determine in what range the k sits, and run binary search in that range
 """
 def search_k_in_cyclic_array(A: List[int], k: int) -> int:
     if len(A) == 1:
@@ -130,7 +130,9 @@ def search_k_in_cyclic_array(A: List[int], k: int) -> int:
         mid == len(A) - 1 and A[mid] < A[mid - 1]: if the smallest element is towards rightmost
         A[mid] < A[mid + 1] and A[mid] < A[mid - 1]: if smallest element is in between
         """
-        if (mid == 0 and A[-1] > A[mid] < A[mid + 1]) or (mid == len(A) - 1 and A[mid - 1] > A[mid] < A[0]) or (A[mid - 1] > A[mid] < A[mid + 1]):
+        if (mid == 0 and A[-1] > A[mid] < A[mid + 1]) or \
+            (mid == len(A) - 1 and A[mid - 1] > A[mid] < A[0]) or \
+                (A[mid - 1] > A[mid] < A[mid + 1]):
             smallest = mid
             break
         elif A[mid] > A[right]:
@@ -169,18 +171,27 @@ search_k_in_cyclic_array([2, 3, 4, 5, 6, 1], 1)
 # Variant 2 - Method 2
 """
 https://leetcode.com/problems/search-in-rotated-sorted-array/
-Design an algo O(logn) for finding the position of an element k in cyclically sorted array of distinct elements
+Design an algo O(logn) for finding the position of an element k in cyclically sorted array of distinct elements.
 Logic: 
     One pass binary search
-    Formula: If a sorted array is shifted, if you take the middle, always one side will be sorted. Take the recursion according to that rule.
+    Formula: If a sorted array is shifted, if you take the middle, always one side will be sorted. 
+    Take the recursion according to that rule.
 
     1- take the middle and compare with target, if matches return.
     2- if middle is smaller than right side, it means mid - right is sorted & Binary search can be applied on right side.
         2a- if [mid] < target <= [right] then do recursion with mid + 1 (left), right
-        2b- (mid - right) side is sorted, but target not in here, search on left right side {left, mid - 1(right)} => Here one is NOT claiming that left side is sorted. We are NOT applying binary search here per-se. We are just reducing our search space since we are sure that element is NOT in the part 2a. The next iteration in this method would try to figure out which part of the subarray needs to be looked into.
+        2b- (mid - right) side is sorted, but target not in here, search on left right side 
+        {left, mid - 1(right)} => Here one is NOT claiming that left side is sorted. We are NOT 
+        applying binary search here per-se. We are just reducing our search space since we are 
+        sure that element is NOT in the part 2a. The next iteration in this method would try to 
+        figure out which part of the subarray needs to be looked into.
     3- if middle is greater than right side, it means left side (left - mid) is sorted
         3a- if [left] <= target < [mid] then do recursion with left , mid - 1 (right)
-        3b- left side is sorted, but target not in here, search on right side i.e. {mid  + 1(left) (right)} => Here one is NOT claiming that right side is sorted. We are NOT applying binary search here per-se. We are just reducing our search space since we are sure that element is NOT in the part 3a. The next iteration in this method would try to figure out which part of the subarray needs to be looked into.
+        3b- left side is sorted, but target not in here, search on right side i.e. 
+        {mid  + 1(left) (right)} => Here one is NOT claiming that right side is sorted. 
+        We are NOT applying binary search here per-se. We are just reducing our search space 
+        since we are sure that element is NOT in the part 3a. The next iteration in this 
+        method would try to figure out which part of the subarray needs to be looked into.
 """
 def search_k_in_cyclic_array_method_2(A: List[int], k: int) -> int:
     if len(A) == 1:
@@ -191,7 +202,7 @@ def search_k_in_cyclic_array_method_2(A: List[int], k: int) -> int:
         mid = left + (right - left)//2
         if A[mid] == k:
             return mid
-        elif A[mid] < A[right]: #this is unshifted array
+        elif A[mid] < A[right]: #this is unshifted array A[mid, right]
             if k > A[mid] and k <= A[right]:#if k lies inside that array,  #equal to sign important
                 left = mid  + 1
             else: #mid to right is unrotated sorted but target not there

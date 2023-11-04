@@ -9,6 +9,8 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 """
+Given a binary tree, compute a linked list from the leaves of the binary tree. 
+The leaves should appear in left-to-right order.
 Leaves should appear in left to right order
 #form of inorder where you only need to append the leaves
 Time: O(n)
@@ -26,7 +28,7 @@ def create_list_of_leaves_v2(tree: BinaryTreeNode) -> List[BinaryTreeNode]:
 def create_list_of_leaves(tree: BinaryTreeNode) -> List[BinaryTreeNode]:
     result = []
     def create_list_of_leaves(tree):
-        nonlocal result
+        # nonlocal result#not needed
         if not tree:#stopper
             return None
         if not tree.left and not tree.right:#check if it is a leaf

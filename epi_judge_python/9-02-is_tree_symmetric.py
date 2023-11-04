@@ -4,6 +4,13 @@ from test_framework import generic_test
 from binarytree import Node
 BinaryTreeNode = Node #creating synonym
 
+"""
+Write a program that checks whether a binary tree is symmetric.
+"""
+#leetcode: 100, 101, 226, 1490
+# https://leetcode.com/problems/symmetric-tree/
+# https://leetcode.com/problems/same-tree/
+# https://leetcode.com/problems/invert-binary-tree/
 #no need to create mirror tree, just find out that the subtreees are mirror or not
 # as soon as one fails exit
 #each node will give two checks
@@ -63,6 +70,39 @@ def is_symmetric(tree: BinaryTreeNode) -> bool:
                 node_deque.append(node1.right)
                 node_deque.append(node2.left)
         return True
+
+#O(n)space solution
+def invertTree(root):
+    if not root:
+        return root
+    new_root = BinaryTreeNode(root.data)
+    node_queue = collections.deque([(root, new_root)])
+    while node_queue:
+        node, node_copy = node_queue.popleft()
+        if node.left:
+            node_copy.right = BinaryTreeNode(node.left.data)
+            node_queue.append((node.left, node_copy.right))
+
+        if node.right:
+            node_copy.left = BinaryTreeNode(node.right.data)
+            node_queue.append((node.right, node_copy.left))
+        
+    return new_root
+
+def isSameTree(p, q) -> bool:
+    if (p is None and q is None):
+        return True
+    elif (p is not None and q is None) or (p is None and q is not None):#check if either of them is None
+        return False
+    elif (p.data != q.data):#if value doesnt match
+        return False
+    else:
+        return (isSameTree(p.left, q.left) and isSameTree(p.right, q.right))
+
+def is_symmetric_bookOn(tree: BinaryTreeNode) -> bool:
+    #generate the invert first
+    copy_tree = invertTree(tree)
+    return isSameTree(tree, copy_tree)
                 
 
 if __name__ == '__main__':

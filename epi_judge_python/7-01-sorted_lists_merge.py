@@ -4,6 +4,7 @@ from list_node import ListNode
 from test_framework import generic_test
 
 """
+Write a program that takes two lists, assumed to be sorted, and returns their merge.
 Traverse the two lists, always choosing the node containing the smaller key to continue traversing
 Get the sentinel tail, and start moving it based on the smallest node found
 Time: O(m+n)
@@ -144,6 +145,20 @@ main_run()#run
 #variant 2
 """
 Merge two sorted doubly linked list
+#this is a wrong implementation; problem with head and tail. why do tail need to iterate? Nonsense
+should be this 
+    def __init__(self, capacity):
+        self.head, self.tail = DoublyListNode(), DoublyListNode()
+
+        self.head.next = self.tail
+        self.tail.prev = self.head
+    def insert(self, node):
+        #Always add the new node right after head.
+        node.prev = self.head
+        node.next = self.head.next
+
+        self.head.next.prev = node#tackles tail also
+        self.head.next = node
 """
 #https://kalkicode.com/sorted-merge-of-two-sorted-doubly-linked-lists-in-python
 class DoublyListNode:

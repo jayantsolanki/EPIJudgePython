@@ -17,6 +17,7 @@ from test_framework.test_utils import enable_executor_hook
 # https://leetcode.com/problems/single-element-in-a-sorted-array/solution/670414
 
 """
+Leetcode: https://leetcode.com/problems/fixed-point
 Design an algo which returns the index i where i == A[i], provided that A is a sorted array of distinct numbers
 If there are multiple same A[i] == i, just return one
 Logic:
@@ -29,7 +30,7 @@ Logic:
     difference will be always increasing or at worst may remain same, since array is sorted.
 Time: O(logn)
 """
-# https://leetcode.com/problems/fixed-point/solution/
+# 
 def search_entry_equal_to_its_index_v2(A: List[int]) -> int:
 
     left, right = 0, len(A) - 1
@@ -66,7 +67,8 @@ Attempt above problem provided that array is sorted and may contain duplicates
 """
 https://www.geeksforgeeks.org/find-fixed-point-array-duplicates-allowed/
 https://stackoverflow.com/questions/42599946/finding-ai-i-in-a-sorted-array-with-duplicates
-The general pattern is that we compare mid Index and midValue for equality first. Then, if they are not equal, we recursively search the left and right sides as follows: 
+The general pattern is that we compare mid Index and midValue for equality first. Then, if they are not equal, 
+we recursively search the left and right sides as follows: 
 #we just search in both side, and short circuit the right search if element found in left
 Time Complexity : O(logn),  this problem has no sublinear-time algorithm, worst case O(n)
 """
@@ -81,7 +83,8 @@ def search_entry_equal_to_its_index_duplicates(A: List[int]) -> int:
             return mid
 
         # Search left
-        #leftindex = min(mid - 1, A[mid])#if moving towards left, either the element left to A[mid] will remain same or decrease, 
+        #leftindex = min(mid - 1, A[mid])#if moving towards left, either the element left to A[mid] 
+        # will remain same or decrease, 
         #hence pick min
         #this also work
         left = binarySearch(A, left, mid - 1) # A[mid] - mid < 0 or A[mid] < mid

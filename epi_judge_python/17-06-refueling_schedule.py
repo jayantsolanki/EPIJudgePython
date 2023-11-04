@@ -1,6 +1,5 @@
 import collections
 import functools
-from re import I
 from typing import List
 
 from test_framework import generic_test
@@ -83,9 +82,10 @@ find_ample_city([50, 20, 5, 30, 25, 10, 10], [900, 600, 200, 400, 600, 200, 100]
 #variant 1
 # Solve the same problem when you cannot assume that there exists an ample city
 """
+Leetcode: 134 https://leetcode.com/problems/gas-station/
 Logic:
-    To make sure if there is no ample city, we just calcualte total gas available and total distance to cover.
-    If the gas used for total distacne is > total gas avaialble, then no ample point, else we use above algo
+    To make sure if there is no ample city, we just calculate total gas available and total distance to cover.
+    If the gas used for total distance is > total gas available, then no ample point, else we use above algo
 """
 def find_ample_city(gallons: List[int], distances: List[int]) -> int:
     #check for feasibility

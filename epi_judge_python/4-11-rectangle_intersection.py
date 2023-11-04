@@ -3,7 +3,10 @@ import collections
 from test_framework import generic_test
 from test_framework.test_failure import PropertyName
 
+
 """
+Write a program which tests if two rectangles have a nonempty intersection. If the the intersection is non empty , return the rectangle formed by their intersection.
+
 836. Rectangle Overlap
 https://leetcode.com/problems/rectangle-overlap/
 """

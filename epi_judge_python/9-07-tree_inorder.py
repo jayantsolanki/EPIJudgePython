@@ -7,6 +7,10 @@ from test_framework import generic_test
 
 
 """
+Write a program which takes as input a binary tree and performs an inorder traversal of the tree. 
+Do not use recursion. Nodes do not contain parent references.
+
+Leetcode: https://leetcode.com/problems/binary-tree-inorder-traversal/
 use stack to do it. Get the current node, mark it false until its left and right node has been checked
 Then, visit its left node and repeat the same process, until every node has been true. While popping if
 you find a node which is already marked true, then insert it into a traversal result array
@@ -17,7 +21,7 @@ def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
 
     result = []
 
-    in_process = [(tree, False)]#initial node
+    in_process = [(tree, False)]#initial node, false because its children not added yet
     while in_process:#run while stack is not empty
         node, left_subtree_traversed = in_process.pop()
         if node:
@@ -32,6 +36,7 @@ def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
 
 #variant 1
 """
+https://leetcode.com/problems/binary-tree-preorder-traversal/
 write a non recursive function which takes as input a binary tree and performs preorder traversal of the tree
 """
 def preorder_traversal(tree: BinaryTreeNode) -> List[int]:
@@ -56,6 +61,7 @@ def preorder_traversal(tree: BinaryTreeNode) -> List[int]:
 
 #variant 2
 """
+https://leetcode.com/problems/binary-tree-postorder-traversal/
 write a non recursive function which takes as input a binary tree and performs postorder traversal of the tree
 """
 def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
@@ -72,6 +78,7 @@ def postorder_traversal(tree: BinaryTreeNode) -> List[int]:
                 result.append(current_node.val)
             else:#get its left and right nodes
                 # stackList.extend([(current_node.right, False), (current_node, True), (current_node, False)])
+                #real order is left right root, so just reverse it for stack
                 stackList.append((current_node, True))
                 stackList.append((current_node.right, False))
                 stackList.append((current_node.left, False))

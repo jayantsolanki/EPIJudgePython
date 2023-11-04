@@ -10,7 +10,7 @@ from test_framework import generic_test
 # Given n, return all primes up to and including n.
 # time to sieve for each p is proportional to n/p, hence O(n/2 + n/5 + n/7 + n/11  + ..) yielding below
 # time: O(nloglogn), space, O(n)
-def generate_primes(n: int) -> List[int]:
+def generate_primes_ori(n: int) -> List[int]:
     primes = []
     # is_prime[p] represents if P is prime or not. Initially, set each to
     # true, expecting 0 and 1. Then use sieving to eliminate nonprimes.
@@ -22,6 +22,29 @@ def generate_primes(n: int) -> List[int]:
             for i in range(p*2, n+1, p):#next P+P+P+P... so on, mark false for multiples of p
                 is_prime[i] = False
     return primes
+
+#ignore even numbers, and only look for p^2 for sieving, also less on storage
+def generate_primes(n: int) -> int:
+    primes = []
+    size = (n - 3) // 2 + 1 # minusing 0, 1, and 2, and also only n-1 to be considered
+    is_prime = [True] * (size)
+    if n >= 2:
+        primes.append(2)
+    for p in range(size):# < n
+        num = 2 * (p + 1) + 1 #or use 2*p + 3
+        # is_prime[p] represents (2p + 3) is prime or not.
+        # For example, is_prime[0] represents 3 is prime or not, is_prime[1]
+        # represents 5, is_prime[2] represents 7, etc.
+        # Initially set each to true. Then use sieving to eliminate nonprimes.
+        if is_prime[p]:
+            primes.append(num)
+            # Sieving from num^2, where num^2 = (4p^2 + 12p + 9). The index in is_prime
+            # is (2p^2 + 6p + 3) because is_prime[p] represents 2p + 3.
+            # for i in range(num + 2 * num, n, 2 * num):
+            for j in range(2 * p**2 + 6 * p + 3, size, num):
+                is_prime[j] = False
+    return primes
+    
 
 
 generate_primes(20)

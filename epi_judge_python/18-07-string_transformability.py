@@ -12,7 +12,7 @@ Transform one string to another
 S is source and t is target vertex. You need to traverse from s to t in shortest fashion hence bfs recommended
 
 Given a dictionary D and two string s, and t, write a program to determine if s produces t.
-Assume all characters are lowercase alphabets. If s does prodcue t, output the length of a shortest production sequence
+Assume all characters are lowercase alphabets. If s does produce t, output the length of a shortest production sequence
 otherwise return -1.
 Logic:
     Treat string in D as vertices in undirected graph, with an edge between u and v if and only if the u and v differ
@@ -54,7 +54,7 @@ Time:
     of each vertex is n, then upper bound will be O(nd)
 Space: O(d)
 """
-def transform_string(D: Set[str], s: str, t: str) -> int:
+def transform_strings(D: Set[str], s: str, t: str) -> int:
     node_queue = collections.deque()
     node_queue.append((s, 0))
     D.remove(s) ## Marks s as visited by erasing it in D.
@@ -69,6 +69,28 @@ def transform_string(D: Set[str], s: str, t: str) -> int:
                 if word in D:
                     node_queue.append((word, distance + 1))
                     D.remove(word) #mark as visited
+    return -1
+
+#using seen
+def transform_string(D: Set[str], s: str, t: str) -> int:
+    node_queue = collections.deque()
+    node_queue.append((s, 0))
+    # D.remove(s) ## Marks s as visited by erasing it in D.
+    seen = set()
+    while node_queue:
+        current_node, distance = node_queue.popleft()
+        if current_node == t:
+            return distance
+        if current_node in seen:
+            continue
+        seen.add(current_node)
+        #now find neighbours y varying the characters in current node, at ith position
+        for i in range(len(current_node)):
+            for ch in ascii_lowercase: #iterates through characters in a - z
+                word = current_node[:i] + ch + current_node[i + 1:]#
+                if word in D:
+                    node_queue.append((word, distance + 1))
+                    # D.remove(word) #mark as visited
     return -1
     
 transform_string(set(['bat', 'cot', 'dog', 'dag', 'dot', 'cat']), 'cat', 'dog')

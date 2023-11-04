@@ -5,11 +5,15 @@ from test_framework.test_failure import TestFailure
 
 
 """
+Fixed capacity 
 146. LRU Cache
 https://leetcode.com/problems/lru-cache/ This is based on using two dicts and a double linked list
+1756. Design Most Recently Used Queue https://leetcode.com/problems/design-most-recently-used-queue/
 
-Create a cache for looking up prices of books identified by their ISBN. You must implement inset, lookup, and erase
-Use  LRU (Least Recently Used) policy for cache eviction (deletion) in case size get contrained
+Create a cache for looking up prices of books identified by their ISBN. You implement lookup, insert, and remove methods. 
+Use the Least Recently Used (LRU) policy for cache eviction. If an ISBN is already present, insert should not change the price, 
+but it should update that entry to be the most recently used entry. Lookup should also update 
+that entry to be the most recently used entry.
 
 Logic:
     Use Hash table for quickly looking up books using ISBN as key. For each key we store price and timestamp, which is 
@@ -20,13 +24,19 @@ Logic:
     delete that entry from hashtable
 
     Using OrderedDict to achieve above requirements
-    Just remember all these functions
+    # If you insert a new item into an existing ordered dictionary, then the item is added to the 
+    # end of the dictionary
+    # If you delete an item from an existing ordered dictionary and insert that same item again, 
+    # then the new instance of the item is placed at the end of the dictionary
+    If an item is overwritten in the OrderedDict, it’s position is maintained.
+    Just remember all these functions (popitem(last=False), which returns LRU (first item) if False is applied, pop(key) removes the
+    element with key
 Time: O(1) for lookup, update and queue, overall O(1)
 """
 class LruCache:
     def __init__(self, capacity: int) -> None:
         #ordereddict is a dictionary based Queue
-        # remember the order of items, which is defined by the insertion order of keys
+        # remembers the order of items, which is defined by the insertion order of keys
         #  The primary goal was to have efficient maintenance of order even for severe workloads such as that 
         # imposed by the lru_cache which frequently alters order without touching the underlying dict
         # If you insert a new item into an existing ordered dictionary, then the item is added to the 
@@ -55,17 +65,19 @@ class LruCache:
         return price
 
     def insert(self, isbn: int, price: int) -> None:
-        # below we check two thing, first if key exists then delete it and readd it back to move the key to MRU, also do not use the price pa
+        # below we check two thing, first if key exists then delete it and read it back to move the key to MRU, also do not use the price pa
         #parameter, since we need to preserve older price
-        #else if not exists and capacity reched then deleted last item (LRU) using popitem false
+        #else if isbn not exists and capacity reached then deleted last item (LRU) using popitem false
         #finally add the key
         # We add the value for key only if key is not present - we don't update
         # existing values.
         if isbn in self._isbn_price_table:
-            price = self._isbn_price_table.pop(isbn) #delete first
+            price = self._isbn_price_table.pop(isbn) #delete first, insert should not change the price
         elif len(self._isbn_price_table) == self._capacity:
-            self._isbn_price_table.popitem(last=False) #remove least recently used, popitem
-        self._isbn_price_table[isbn] = price#moving to last entry (most recently used), note ORderedDict is LIFO, so most recently used is at end
+            #remove least recently used, popitemn False, so removes the item at the beginning, popleft
+            self._isbn_price_table.popitem(last=False) 
+        #moving to last entry (most recently used), note ORderedDict is LIFO, so most recently used is at end
+        self._isbn_price_table[isbn] = price
 
     def erase(self, isbn: int) -> bool:
         if isbn in self._isbn_price_table:

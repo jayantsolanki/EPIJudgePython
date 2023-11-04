@@ -3,6 +3,10 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
+"""
+Write a program that computes the even-odd merge.
+Consider the nodes are number from 0. 0 is even.
+"""
 #time is: O(n)
 #leetcode: https://leetcode.com/problems/odd-even-linked-list
 def even_odd_merge(L: ListNode) -> Optional[ListNode]:
